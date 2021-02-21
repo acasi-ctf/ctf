@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option go_package = "github.com/lgorence/goctfprototype/proto";
+
+message TerminalBytes {
+  bytes contents = 1;
+}
+
+service TermproxyService {
+  rpc OpenTerminal(stream TerminalBytes) returns (stream TerminalBytes);
+}
