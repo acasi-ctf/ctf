@@ -1,13 +1,19 @@
 package termproxy
 
 import (
+	"context"
+	"encoding/base64"
+	"github.com/improbable-eng/grpc-web/go/grpcweb"
 	"github.com/lgorence/goctfprototype/proto"
 	"golang.org/x/crypto/ssh"
+	"golang.org/x/sync/errgroup"
 	"google.golang.org/grpc"
 	"io"
 	"io/ioutil"
 	"log"
 	"net"
+	"net/http"
+	"strings"
 )
 
 type termproxyServiceImpl struct {
@@ -58,10 +64,7 @@ func (tp *termproxyServiceImpl) OpenTerminal(srv proto.TermproxyService_OpenTerm
 		return err
 	}
 
-	err = client.RequestPty("vt100", 24, 80, ssh.TerminalModes{
-		ssh.ECHO:  0,
-		ssh.IGNCR: 1,
-	})
+	err = client.RequestPty("xterm", 24, 80, ssh.TerminalModes{})
 	if err != nil {
 		return err
 	}
@@ -109,6 +112,8 @@ func (tp *termproxyServiceImpl) OpenTerminal(srv proto.TermproxyService_OpenTerm
 		}
 
 		log.Printf("Recv data: %s", string(message.Contents))
+		b64 := base64.StdEncoding.EncodeToString(message.Contents)
+		log.Printf("Recv data(b64): %s", b64)
 
 		_, err = clientStdin.Write(message.Contents)
 		if err != nil {
@@ -123,15 +128,50 @@ func (tp *termproxyServiceImpl) OpenTerminal(srv proto.TermproxyService_OpenTerm
 func RunService() {
 	listener, err := net.Listen("tcp", "localhost:1234")
 	if err != nil {
-		log.Fatalf("failed to listen: %v", err)
+		log.Fatalf("Failed to listen for gRPC: %v", err)
 	}
 
 	var opts []grpc.ServerOption
 	grpcServer := grpc.NewServer(opts...)
 	proto.RegisterTermproxyServiceServer(grpcServer, &termproxyServiceImpl{})
 
-	err = grpcServer.Serve(listener)
+	httpServer := &http.Server{
+		Addr: "localhost:1235",
+	}
+
+	var grpcWrapperOpts []grpcweb.Option
+	{
+		grpcweb.WithWebsockets(true)
+		grpcweb.WithOriginFunc(func(origin string) bool {
+			// TODO: we're allowing all origins
+			return true
+		})
+		grpcweb.WithCorsForRegisteredEndpointsOnly(false)
+	}
+	wrappedGrpc := grpcweb.WrapServer(grpcServer, grpcWrapperOpts...)
+	httpServer.Handler = http.HandlerFunc(func(resp http.ResponseWriter, req *http.Request) {
+		//resp.Header().Set("Access-Control-Allow-Origin", "*")
+		//resp.Header().Set("Access-Control-Allow-Headers", "*")
+		if wrappedGrpc.IsGrpcWebRequest(req) {
+			wrappedGrpc.ServeHTTP(resp, req)
+		} else if strings.ToLower(req.Header.Get("Upgrade")) == "websocket" {
+			wrappedGrpc.HandleGrpcWebsocketRequest(resp, req)
+		} else {
+			resp.WriteHeader(http.StatusNoContent)
+		}
+	})
+
+	eg, _ := errgroup.WithContext(context.Background())
+
+	eg.Go(func() error {
+		return grpcServer.Serve(listener)
+	})
+	eg.Go(func() error {
+		return httpServer.ListenAndServe()
+	})
+
+	err = eg.Wait()
 	if err != nil {
-		log.Fatalf("failed to serve grpc: %v", err)
+		log.Fatalf("Failed to run servers: %v", err)
 	}
 }

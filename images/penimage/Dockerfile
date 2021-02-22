@@ -1,9 +1,6 @@
 # Base image is Ubuntu 20.04 LTS
 FROM ubuntu:focal
 
-# Unminimize the system.
-RUN unminimize
-
 # Fetch initial package lists
 RUN apt-get update
 
@@ -11,7 +8,7 @@ RUN apt-get update
 RUN apt-get install -y nano vim
 
 # Install common utilities
-RUN apt-get install -y sudo curl ping
+RUN apt-get install -y sudo curl
 
 # Install pentesting packages
 RUN apt-get install -y nmap
