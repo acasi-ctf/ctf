@@ -17,7 +17,7 @@ RUN apt-get install -y nmap
 RUN apt-get install -y openssh-server
 
 # Create the player user account
-RUN useradd -m player
+RUN useradd -m player -s /bin/bash
 
 # This builds the keys that are necessary for sshd to start
 RUN service ssh start

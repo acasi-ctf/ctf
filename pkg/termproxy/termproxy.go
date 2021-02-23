@@ -64,7 +64,7 @@ func (tp *termproxyServiceImpl) OpenTerminal(srv proto.TermproxyService_OpenTerm
 		return err
 	}
 
-	err = client.RequestPty("xterm", 24, 80, ssh.TerminalModes{})
+	err = client.RequestPty("xterm-256color", 24, 80, ssh.TerminalModes{})
 	if err != nil {
 		return err
 	}
