@@ -2,14 +2,22 @@ package main
 
 import (
 	"context"
-	"github.com/lgorence/goctfprototype/proto"
-	"google.golang.org/grpc"
 	"io"
 	"log"
 	"os"
+
+	"github.com/lgorence/goctfprototype/proto"
+	"google.golang.org/grpc"
 )
 
 func main() {
+	err := run()
+	if err != nil {
+		log.Fatalf("Failed to run termcli: %v", err)
+	}
+}
+
+func run() error {
 	opts := []grpc.DialOption{
 		grpc.WithInsecure(),
 	}
@@ -25,7 +33,7 @@ func main() {
 	var callOpts []grpc.CallOption
 	srv, err := proxy.OpenTerminal(context.Background(), callOpts...)
 	if err != nil {
-		log.Fatalf("Failed to open terminal: %v", err)
+		return err
 	}
 
 	go func() {
@@ -54,9 +62,9 @@ func main() {
 			Contents: stdinBuffer[:n],
 		})
 		if err != nil {
-			log.Fatalf("Failed to send message: %v", err)
+			return err
 		}
 	}
 
-	srv.CloseSend()
+	return srv.CloseSend()
 }

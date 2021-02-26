@@ -1,8 +1,8 @@
 syntax = "proto3";
 
-import "common.proto";
-
 package goctfprototype;
+
+import "common.proto";
 
 option go_package = "github.com/lgorence/goctfprototype/proto";
 
@@ -25,7 +25,7 @@ message StartEnvironmentRequest {
 
 /**
  * Response message for starting a new environment.
- * TODO: How do we indicate an error? gRPC statuses or build it into the message?
+ * TODO: How do we indicate an error? gRPC statuses or put it in the message?
  */
 message StartEnvironmentResponse {
   /**
@@ -43,12 +43,13 @@ message StopEnvironmentRequest {
 
 /**
  * Response message for stopping an environment.
- * TODO: How do we indicate an error? gRPC statuses or build it into the message?
+ * TODO: How do we indicate an error? gRPC statuses or put it in the message?
  */
 message StopEnvironmentResponse {
 }
 
 service EnvironmentService {
-  rpc StartEnvironment(StartEnvironmentRequest) returns (StartEnvironmentResponse);
+  rpc StartEnvironment(StartEnvironmentRequest)
+    returns (StartEnvironmentResponse);
   rpc StopEnvironment(StopEnvironmentRequest) returns (StopEnvironmentResponse);
 }

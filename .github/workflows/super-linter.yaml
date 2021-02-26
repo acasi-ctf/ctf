@@ -24,4 +24,6 @@ jobs:
         env:
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_DOCKERFILE_HADOLINT: false
+          VALIDATE_CSS: false
           FILTER_REGEX_EXCLUDE: ".*pb.*"

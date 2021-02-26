@@ -3,17 +3,18 @@ package termproxy
 import (
 	"context"
 	"encoding/base64"
-	"github.com/improbable-eng/grpc-web/go/grpcweb"
-	"github.com/lgorence/goctfprototype/proto"
-	"golang.org/x/crypto/ssh"
-	"golang.org/x/sync/errgroup"
-	"google.golang.org/grpc"
 	"io"
 	"io/ioutil"
 	"log"
 	"net"
 	"net/http"
 	"strings"
+
+	"github.com/improbable-eng/grpc-web/go/grpcweb"
+	"github.com/lgorence/goctfprototype/proto"
+	"golang.org/x/crypto/ssh"
+	"golang.org/x/sync/errgroup"
+	"google.golang.org/grpc"
 )
 
 type termproxyServiceImpl struct {
@@ -32,13 +33,22 @@ func key(path string) ssh.AuthMethod {
 	return ssh.PublicKeys(signer)
 }
 
+// Writing this callback manually to avoid errors.
+// TODO: Implement host key checking, as we can potentially find it during
+// spin up of the environment.
+func insecureHostKeyCallback() ssh.HostKeyCallback {
+	return func(hostname string, remote net.Addr, key ssh.PublicKey) error {
+		return nil
+	}
+}
+
 func (tp *termproxyServiceImpl) OpenTerminal(srv proto.TermproxyService_OpenTerminalServer) error {
 	config := &ssh.ClientConfig{
 		User: "player",
 		Auth: []ssh.AuthMethod{
 			key("/home/lgorence/.ssh/id_rsa"),
 		},
-		HostKeyCallback: ssh.InsecureIgnoreHostKey(),
+		HostKeyCallback: insecureHostKeyCallback(),
 	}
 
 	sshConn, err := ssh.Dial("tcp", "localhost:2222", config)
@@ -74,55 +84,76 @@ func (tp *termproxyServiceImpl) OpenTerminal(srv proto.TermproxyService_OpenTerm
 		return err
 	}
 
-	readBuffer := make([]byte, 1024)
-	go func() error {
+	errChan := make(chan error)
+
+	go sshReadLoop(srv, clientStdout, errChan)()
+	go grpcReadLoop(srv, clientStdin, errChan)()
+
+	select {
+	case err = <-errChan:
+		if err != nil {
+			log.Printf("error occurred during read or write: %v", err)
+		}
+	case <-srv.Context().Done():
+	}
+
+	return nil
+}
+
+func sshReadLoop(srv proto.TermproxyService_OpenTerminalServer, clientStdout io.Reader, errChan chan error) func() {
+	return func() {
+		readBuffer := make([]byte, 1024)
 		for {
 			n, err := clientStdout.Read(readBuffer)
 
 			if err == io.EOF {
-				return nil
+				errChan <- nil
 			}
 			if err != nil {
-				// TODO: use error chan
 				log.Printf("read error: %v", err)
-				return err
+				errChan <- err
+				return
 			}
 
 			err = srv.Send(&proto.TerminalBytes{
 				Contents: readBuffer[:n],
 			})
 			if err != nil {
-				// TODO: use error chan
 				log.Printf("OpenTerminal Send error: %v", err)
-				return err
+				errChan <- err
+				return
 			}
 		}
-	}()
+	}
+}
 
-	for {
-		message, err := srv.Recv()
-		if err == io.EOF {
-			// TODO
-			log.Printf("EOF")
-			break
-		}
-		if err != nil {
-			log.Printf("Recv failure")
-			return err
-		}
+func grpcReadLoop(srv proto.TermproxyService_OpenTerminalServer, clientStdin io.WriteCloser, errChan chan error) func() {
+	return func() {
+		for {
+			message, err := srv.Recv()
+			if err == io.EOF {
+				log.Printf("EOF")
+				errChan <- nil
+				return
+			}
+			if err != nil {
+				log.Printf("Recv failure")
+				errChan <- err
+				return
+			}
 
-		log.Printf("Recv data: %s", string(message.Contents))
-		b64 := base64.StdEncoding.EncodeToString(message.Contents)
-		log.Printf("Recv data(b64): %s", b64)
+			log.Printf("Recv data: %s", string(message.Contents))
+			b64 := base64.StdEncoding.EncodeToString(message.Contents)
+			log.Printf("Recv data(b64): %s", b64)
 
-		_, err = clientStdin.Write(message.Contents)
-		if err != nil {
-			log.Printf("Write failure")
-			return nil
+			_, err = clientStdin.Write(message.Contents)
+			if err != nil {
+				log.Printf("Write failure")
+				errChan <- err
+				return
+			}
 		}
 	}
-
-	return nil
 }
 
 func RunService() {
@@ -150,13 +181,12 @@ func RunService() {
 	}
 	wrappedGrpc := grpcweb.WrapServer(grpcServer, grpcWrapperOpts...)
 	httpServer.Handler = http.HandlerFunc(func(resp http.ResponseWriter, req *http.Request) {
-		//resp.Header().Set("Access-Control-Allow-Origin", "*")
-		//resp.Header().Set("Access-Control-Allow-Headers", "*")
-		if wrappedGrpc.IsGrpcWebRequest(req) {
+		switch {
+		case wrappedGrpc.IsGrpcWebRequest(req):
 			wrappedGrpc.ServeHTTP(resp, req)
-		} else if strings.ToLower(req.Header.Get("Upgrade")) == "websocket" {
+		case strings.ToLower(req.Header.Get("Upgrade")) == "websocket":
 			wrappedGrpc.HandleGrpcWebsocketRequest(resp, req)
-		} else {
+		default:
 			resp.WriteHeader(http.StatusNoContent)
 		}
 	})

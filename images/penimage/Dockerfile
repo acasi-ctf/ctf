@@ -1,12 +1,9 @@
 # Base image is Ubuntu 20.04 LTS
 FROM ubuntu:focal
 
-# Fetch initial package lists
-RUN apt-get update
-
 # Install packages
-RUN apt-get -yq update && \
-  apt-get install -yq --no-install-recommends nano vim curl nmap openssh-server && \
+RUN apt-get update && \
+  apt-get -yq --no-install-recommends install nano vim curl nmap openssh-server && \
   apt-get clean all && \
   rm -rf /var/lib/apt/lists/*
 
