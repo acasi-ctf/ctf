@@ -2,7 +2,7 @@
 FROM golang:1.16.0-buster AS builder
 WORKDIR /src
 
-ADD . /src
+COPY . /src
 
 RUN go mod download
 

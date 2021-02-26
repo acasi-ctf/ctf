@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	opts := []grpc.DialOption {
+	opts := []grpc.DialOption{
 		grpc.WithInsecure(),
 	}
 

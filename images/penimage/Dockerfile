@@ -4,17 +4,11 @@ FROM ubuntu:focal
 # Fetch initial package lists
 RUN apt-get update
 
-# Install editors
-RUN apt-get install -y nano vim
-
-# Install common utilities
-RUN apt-get install -y sudo curl
-
-# Install pentesting packages
-RUN apt-get install -y nmap
-
-# Install openssh-server
-RUN apt-get install -y openssh-server
+# Install packages
+RUN apt-get -yq update && \
+  apt-get install -yq --no-install-recommends nano vim curl nmap openssh-server && \
+  apt-get clean all && \
+  rm -rf /var/lib/apt/lists/*
 
 # Create the player user account
 RUN useradd -m player -s /bin/bash
@@ -23,8 +17,8 @@ RUN useradd -m player -s /bin/bash
 RUN service ssh start
 
 # Install helper scripts for container management
-ADD init.sh /usr/local/bin/
-ADD install_key.sh /usr/local/bin/
+COPY init.sh /usr/local/bin/
+COPY install_key.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/*.sh
 
 # Entrypoint is the SSH daemon
