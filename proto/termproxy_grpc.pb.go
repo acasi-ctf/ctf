@@ -129,5 +129,5 @@ var TermproxyService_ServiceDesc = grpc.ServiceDesc{
 			ClientStreams: true,
 		},
 	},
-	Metadata: "proto/termproxy.proto",
+	Metadata: "termproxy.proto",
 }

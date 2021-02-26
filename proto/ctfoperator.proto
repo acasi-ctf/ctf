@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+import "common.proto";
+
+package goctfprototype;
+
+option go_package = "github.com/lgorence/goctfprototype/proto";
+
+/**
+ * Request message for starting a new environment.
+ */
+message StartEnvironmentRequest {
+  /**
+   * Slug name of the environment template.
+   */
+  string template_slug = 1;
+
+  /**
+   * SSH public key that the environment's penimage will use to authenticate
+   * with.
+   * TODO: Determine what format to use.
+   */
+  bytes ssh_public_key = 2;
+}
+
+/**
+ * Response message for starting a new environment.
+ * TODO: How do we indicate an error? gRPC statuses or build it into the message?
+ */
+message StartEnvironmentResponse {
+  /**
+   * This is a UUID that uniquely identifies an environment.
+   */
+  UUID environment_id = 1;
+}
+
+/**
+ * Request message for stopping an environment.
+ */
+message StopEnvironmentRequest {
+  UUID environment_id = 1;
+}
+
+/**
+ * Response message for stopping an environment.
+ * TODO: How do we indicate an error? gRPC statuses or build it into the message?
+ */
+message StopEnvironmentResponse {
+}
+
+service EnvironmentService {
+  rpc StartEnvironment(StartEnvironmentRequest) returns (StartEnvironmentResponse);
+  rpc StopEnvironment(StopEnvironmentRequest) returns (StopEnvironmentResponse);
+}

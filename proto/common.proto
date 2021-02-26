@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package goctfprototype;
+
+option go_package = "github.com/lgorence/goctfprototype/proto";
+
+/**
+ * Wrapper to store a UUID.
+ * See https://en.wikipedia.org/wiki/Universally_unique_identifier
+ */
+message UUID {
+  string contents = 1;
+}
