@@ -14,122 +14,123 @@ import (
 // Requires gRPC-Go v1.32.0 or later.
 const _ = grpc.SupportPackageIsVersion7
 
-// EnvironmentServiceClient is the client API for EnvironmentService service.
+// EnvironmentProvisioningServiceClient is the client API for EnvironmentProvisioningService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type EnvironmentServiceClient interface {
+type EnvironmentProvisioningServiceClient interface {
 	StartEnvironment(ctx context.Context, in *StartEnvironmentRequest, opts ...grpc.CallOption) (*StartEnvironmentResponse, error)
 	StopEnvironment(ctx context.Context, in *StopEnvironmentRequest, opts ...grpc.CallOption) (*StopEnvironmentResponse, error)
 }
 
-type environmentServiceClient struct {
+type environmentProvisioningServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewEnvironmentServiceClient(cc grpc.ClientConnInterface) EnvironmentServiceClient {
-	return &environmentServiceClient{cc}
+func NewEnvironmentProvisioningServiceClient(cc grpc.ClientConnInterface) EnvironmentProvisioningServiceClient {
+	return &environmentProvisioningServiceClient{cc}
 }
 
-func (c *environmentServiceClient) StartEnvironment(ctx context.Context, in *StartEnvironmentRequest, opts ...grpc.CallOption) (*StartEnvironmentResponse, error) {
+func (c *environmentProvisioningServiceClient) StartEnvironment(ctx context.Context, in *StartEnvironmentRequest, opts ...grpc.CallOption) (*StartEnvironmentResponse, error) {
 	out := new(StartEnvironmentResponse)
-	err := c.cc.Invoke(ctx, "/goctfprototype.EnvironmentService/StartEnvironment", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/goctfprototype.EnvironmentProvisioningService/StartEnvironment", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *environmentServiceClient) StopEnvironment(ctx context.Context, in *StopEnvironmentRequest, opts ...grpc.CallOption) (*StopEnvironmentResponse, error) {
+func (c *environmentProvisioningServiceClient) StopEnvironment(ctx context.Context, in *StopEnvironmentRequest, opts ...grpc.CallOption) (*StopEnvironmentResponse, error) {
 	out := new(StopEnvironmentResponse)
-	err := c.cc.Invoke(ctx, "/goctfprototype.EnvironmentService/StopEnvironment", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/goctfprototype.EnvironmentProvisioningService/StopEnvironment", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// EnvironmentServiceServer is the server API for EnvironmentService service.
-// All implementations must embed UnimplementedEnvironmentServiceServer
+// EnvironmentProvisioningServiceServer is the server API for EnvironmentProvisioningService service.
+// All implementations must embed UnimplementedEnvironmentProvisioningServiceServer
 // for forward compatibility
-type EnvironmentServiceServer interface {
+type EnvironmentProvisioningServiceServer interface {
 	StartEnvironment(context.Context, *StartEnvironmentRequest) (*StartEnvironmentResponse, error)
 	StopEnvironment(context.Context, *StopEnvironmentRequest) (*StopEnvironmentResponse, error)
-	mustEmbedUnimplementedEnvironmentServiceServer()
+	mustEmbedUnimplementedEnvironmentProvisioningServiceServer()
 }
 
-// UnimplementedEnvironmentServiceServer must be embedded to have forward compatible implementations.
-type UnimplementedEnvironmentServiceServer struct {
+// UnimplementedEnvironmentProvisioningServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedEnvironmentProvisioningServiceServer struct {
 }
 
-func (UnimplementedEnvironmentServiceServer) StartEnvironment(context.Context, *StartEnvironmentRequest) (*StartEnvironmentResponse, error) {
+func (UnimplementedEnvironmentProvisioningServiceServer) StartEnvironment(context.Context, *StartEnvironmentRequest) (*StartEnvironmentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method StartEnvironment not implemented")
 }
-func (UnimplementedEnvironmentServiceServer) StopEnvironment(context.Context, *StopEnvironmentRequest) (*StopEnvironmentResponse, error) {
+func (UnimplementedEnvironmentProvisioningServiceServer) StopEnvironment(context.Context, *StopEnvironmentRequest) (*StopEnvironmentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method StopEnvironment not implemented")
 }
-func (UnimplementedEnvironmentServiceServer) mustEmbedUnimplementedEnvironmentServiceServer() {}
+func (UnimplementedEnvironmentProvisioningServiceServer) mustEmbedUnimplementedEnvironmentProvisioningServiceServer() {
+}
 
-// UnsafeEnvironmentServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to EnvironmentServiceServer will
+// UnsafeEnvironmentProvisioningServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to EnvironmentProvisioningServiceServer will
 // result in compilation errors.
-type UnsafeEnvironmentServiceServer interface {
-	mustEmbedUnimplementedEnvironmentServiceServer()
+type UnsafeEnvironmentProvisioningServiceServer interface {
+	mustEmbedUnimplementedEnvironmentProvisioningServiceServer()
 }
 
-func RegisterEnvironmentServiceServer(s grpc.ServiceRegistrar, srv EnvironmentServiceServer) {
-	s.RegisterService(&EnvironmentService_ServiceDesc, srv)
+func RegisterEnvironmentProvisioningServiceServer(s grpc.ServiceRegistrar, srv EnvironmentProvisioningServiceServer) {
+	s.RegisterService(&EnvironmentProvisioningService_ServiceDesc, srv)
 }
 
-func _EnvironmentService_StartEnvironment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _EnvironmentProvisioningService_StartEnvironment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(StartEnvironmentRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(EnvironmentServiceServer).StartEnvironment(ctx, in)
+		return srv.(EnvironmentProvisioningServiceServer).StartEnvironment(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/goctfprototype.EnvironmentService/StartEnvironment",
+		FullMethod: "/goctfprototype.EnvironmentProvisioningService/StartEnvironment",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnvironmentServiceServer).StartEnvironment(ctx, req.(*StartEnvironmentRequest))
+		return srv.(EnvironmentProvisioningServiceServer).StartEnvironment(ctx, req.(*StartEnvironmentRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _EnvironmentService_StopEnvironment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _EnvironmentProvisioningService_StopEnvironment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(StopEnvironmentRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(EnvironmentServiceServer).StopEnvironment(ctx, in)
+		return srv.(EnvironmentProvisioningServiceServer).StopEnvironment(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/goctfprototype.EnvironmentService/StopEnvironment",
+		FullMethod: "/goctfprototype.EnvironmentProvisioningService/StopEnvironment",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(EnvironmentServiceServer).StopEnvironment(ctx, req.(*StopEnvironmentRequest))
+		return srv.(EnvironmentProvisioningServiceServer).StopEnvironment(ctx, req.(*StopEnvironmentRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// EnvironmentService_ServiceDesc is the grpc.ServiceDesc for EnvironmentService service.
+// EnvironmentProvisioningService_ServiceDesc is the grpc.ServiceDesc for EnvironmentProvisioningService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var EnvironmentService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "goctfprototype.EnvironmentService",
-	HandlerType: (*EnvironmentServiceServer)(nil),
+var EnvironmentProvisioningService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "goctfprototype.EnvironmentProvisioningService",
+	HandlerType: (*EnvironmentProvisioningServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "StartEnvironment",
-			Handler:    _EnvironmentService_StartEnvironment_Handler,
+			Handler:    _EnvironmentProvisioningService_StartEnvironment_Handler,
 		},
 		{
 			MethodName: "StopEnvironment",
-			Handler:    _EnvironmentService_StopEnvironment_Handler,
+			Handler:    _EnvironmentProvisioningService_StopEnvironment_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

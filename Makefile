@@ -13,3 +13,8 @@ docker_penimage:
 docker_termproxy:
 	docker build -t ghcr.io/lgorence/goctfprototype/termproxy:$(IMAGETAG) -f images/termproxy/Dockerfile .
 	docker push ghcr.io/lgorence/goctfprototype/termproxy:$(IMAGETAG)
+
+lint:
+	docker run -e RUN_LOCAL=true -e VALIDATE_DOCKERFILE_HADOLINT=false -e VALIDATE_CSS=false -e VALIDATE_JAVASCRIPT_STANDARD=false \
+		-e VALIDATE_TYPESCRIPT_STANDARD=false -e VALIDATE_GO=false -e LOG_LEVEL=WARN -e FILTER_REGEX_EXCLUDE=".*pb.*" \
+		-v $(shell pwd):/tmp/lint --rm github/super-linter:latest

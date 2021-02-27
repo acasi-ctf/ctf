@@ -146,5 +146,8 @@ fabric.properties
 # I don't want to commit the .idea/ directory at all.
 .idea/
 
+# Super-linter log
+super-linter.log
+
 # End of custom
 

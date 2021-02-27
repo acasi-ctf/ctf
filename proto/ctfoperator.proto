@@ -25,13 +25,22 @@ message StartEnvironmentRequest {
 
 /**
  * Response message for starting a new environment.
- * TODO: How do we indicate an error? gRPC statuses or put it in the message?
  */
 message StartEnvironmentResponse {
+  oneof response {
+    StartEnvironmentSuccessResponse success = 1;
+    StartEnvironmentFailureResponse failure = 2;
+  }
+}
+
+message StartEnvironmentSuccessResponse {
   /**
    * This is a UUID that uniquely identifies an environment.
    */
   UUID environment_id = 1;
+}
+
+message StartEnvironmentFailureResponse {
 }
 
 /**
@@ -43,12 +52,14 @@ message StopEnvironmentRequest {
 
 /**
  * Response message for stopping an environment.
- * TODO: How do we indicate an error? gRPC statuses or put it in the message?
  */
 message StopEnvironmentResponse {
 }
 
-service EnvironmentService {
+/**
+ * gRPC service used to provision environments.
+ */
+service EnvironmentProvisioningService {
   rpc StartEnvironment(StartEnvironmentRequest)
     returns (StartEnvironmentResponse);
   rpc StopEnvironment(StopEnvironmentRequest) returns (StopEnvironmentResponse);
