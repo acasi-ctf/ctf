@@ -15,6 +15,7 @@ spec:
       labels:
         app: ctf-operator
     spec:
+      serviceAccountName: operator
       containers:
       - image: ghcr.io/lgorence/goctfprototype/operator:latest
         name: operator
