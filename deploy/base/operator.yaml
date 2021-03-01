@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: operator
+  labels:
+    app: ctf-operator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ctf-operator
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: ctf-operator
+    spec:
+      containers:
+      - image: ghcr.io/lgorence/goctfprototype/operator:latest
+        name: operator
+        resources: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: ctf-operator
+  name: operator
+spec:
+  ports:
+  - port: 1234
+    protocol: TCP
+    targetPort: 1234
+  selector:
+    app: ctf-operator

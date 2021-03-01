@@ -15,4 +15,3 @@ protoc \
     --ts_out="service=grpc-web:${OUT_DIR}" \
     --proto_path="../proto" \
     ../proto/termproxy.proto
-
