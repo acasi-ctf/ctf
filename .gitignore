@@ -149,5 +149,8 @@ fabric.properties
 # Super-linter log
 super-linter.log
 
+# Bolt databases
+*.db
+
 # End of custom
 

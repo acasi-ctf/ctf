@@ -6,7 +6,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/lgorence/goctfprototype/proto"
+	"github.com/lgorence/goctfprototype/pb"
 	"google.golang.org/grpc"
 )
 
@@ -28,7 +28,7 @@ func run() error {
 	}
 	defer conn.Close()
 
-	proxy := proto.NewTermproxyServiceClient(conn)
+	proxy := pb.NewTermproxyServiceClient(conn)
 
 	var callOpts []grpc.CallOption
 	srv, err := proxy.OpenTerminal(context.Background(), callOpts...)
@@ -58,7 +58,7 @@ func run() error {
 		if err != nil {
 			panic(err)
 		}
-		err = srv.Send(&proto.TerminalBytes{
+		err = srv.Send(&pb.TerminalBytes{
 			Contents: stdinBuffer[:n],
 		})
 		if err != nil {

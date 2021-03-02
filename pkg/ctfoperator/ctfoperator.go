@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"github.com/golang/protobuf/ptypes"
 	"github.com/google/uuid"
+	"github.com/lgorence/goctfprototype/pb"
 	"github.com/lgorence/goctfprototype/pkg/ctfoperator/model"
-	"github.com/lgorence/goctfprototype/proto"
 	bolt "go.etcd.io/bbolt"
 	"golang.org/x/sync/errgroup"
 	"google.golang.org/grpc"
@@ -32,9 +32,9 @@ func StartOperator() error {
 		return err
 	}
 
-	err = dao.Set(&proto.UUID{
+	err = dao.Set(&pb.UUID{
 		Contents: newUuid.String(),
-	}, &proto.Environment{
+	}, &pb.Environment{
 		CreatedTime:  ptypes.TimestampNow(),
 		LastPingTime: ptypes.TimestampNow(),
 	})
@@ -60,7 +60,7 @@ func StartOperator() error {
 
 	var opts []grpc.ServerOption
 	grpcServer := grpc.NewServer(opts...)
-	proto.RegisterEnvironmentProvisioningServiceServer(grpcServer, &provisioningService{})
+	pb.RegisterEnvironmentProvisioningServiceServer(grpcServer, &provisioningService{})
 
 	eg, _ := errgroup.WithContext(context.Background())
 

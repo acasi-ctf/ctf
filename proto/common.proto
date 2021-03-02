@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package goctfprototype;
 
-option go_package = "github.com/lgorence/goctfprototype/proto";
+option go_package = "github.com/lgorence/goctfprototype/pb";
 
 /**
  * Wrapper to store a UUID.

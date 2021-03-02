@@ -9,7 +9,8 @@ proto: $(PROTOSRC)
 docker: docker_penimage docker_termproxy docker_operator
 
 $(PROTOSRC): %:%.proto
-	protoc --go_out=proto/ --go_opt=paths=source_relative --go-grpc_out=proto/ --go-grpc_opt=paths=source_relative -I proto/ $<
+	mkdir -p pb/
+	protoc --go_out=pb/ --go_opt=paths=source_relative --go-grpc_out=pb/ --go-grpc_opt=paths=source_relative -I proto/ $<
 
 docker_penimage:
 	docker build -t $(IMAGEBASE)/penimage:$(IMAGETAG) images/penimage

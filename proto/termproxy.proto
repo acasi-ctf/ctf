@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "github.com/lgorence/goctfprototype/proto";
+option go_package = "github.com/lgorence/goctfprototype/pb";
 
 message TerminalBytes {
   bytes contents = 1;

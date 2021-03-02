@@ -1,9 +1,8 @@
 package model
 
 import (
-	proto2 "github.com/golang/protobuf/proto"
-	// TODO: rename proto package to pb, to avoid the above...
-	"github.com/lgorence/goctfprototype/proto"
+	"github.com/golang/protobuf/proto"
+	"github.com/lgorence/goctfprototype/pb"
 	bolt "go.etcd.io/bbolt"
 )
 
@@ -27,13 +26,13 @@ type EnvironmentDao struct {
 	db *bolt.DB
 }
 
-func (d *EnvironmentDao) Set(uuid *proto.UUID, env *proto.Environment) error {
+func (d *EnvironmentDao) Set(uuid *pb.UUID, env *pb.Environment) error {
 	// TODO: would we rather store the key as a UUID in Protobuf or as a string?
-	k, err := proto2.Marshal(uuid)
+	k, err := proto.Marshal(uuid)
 	if err != nil {
 		return err
 	}
-	v, err := proto2.Marshal(env)
+	v, err := proto.Marshal(env)
 	if err != nil {
 		return err
 	}
@@ -43,20 +42,20 @@ func (d *EnvironmentDao) Set(uuid *proto.UUID, env *proto.Environment) error {
 	})
 }
 
-func (d *EnvironmentDao) List() (map[*proto.UUID]*proto.Environment, error) {
-	list := make(map[*proto.UUID]*proto.Environment)
+func (d *EnvironmentDao) List() (map[*pb.UUID]*pb.Environment, error) {
+	list := make(map[*pb.UUID]*pb.Environment)
 
 	err := d.db.View(func(tx *bolt.Tx) error {
 		return tx.Bucket(environmentBucket).ForEach(func(k, v []byte) error {
-			bk := &proto.UUID{}
-			bv := &proto.Environment{}
+			bk := &pb.UUID{}
+			bv := &pb.Environment{}
 
-			err := proto2.Unmarshal(k, bk)
+			err := proto.Unmarshal(k, bk)
 			if err != nil {
 				return err
 			}
 
-			err = proto2.Unmarshal(v, bv)
+			err = proto.Unmarshal(v, bv)
 			if err != nil {
 				return err
 			}

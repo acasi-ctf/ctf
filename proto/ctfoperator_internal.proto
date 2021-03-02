@@ -9,7 +9,7 @@ package goctfprototype;
 import "common.proto";
 import "google/protobuf/timestamp.proto";
 
-option go_package = "github.com/lgorence/goctfprototype/proto";
+option go_package = "github.com/lgorence/goctfprototype/pb";
 
 /**
  * Represents an environment that is running.

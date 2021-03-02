@@ -11,14 +11,14 @@ import (
 	"strings"
 
 	"github.com/improbable-eng/grpc-web/go/grpcweb"
-	"github.com/lgorence/goctfprototype/proto"
+	"github.com/lgorence/goctfprototype/pb"
 	"golang.org/x/crypto/ssh"
 	"golang.org/x/sync/errgroup"
 	"google.golang.org/grpc"
 )
 
 type termproxyServiceImpl struct {
-	proto.UnimplementedTermproxyServiceServer
+	pb.UnimplementedTermproxyServiceServer
 }
 
 func key(path string) ssh.AuthMethod {
@@ -42,7 +42,7 @@ func insecureHostKeyCallback() ssh.HostKeyCallback {
 	}
 }
 
-func (tp *termproxyServiceImpl) OpenTerminal(srv proto.TermproxyService_OpenTerminalServer) error {
+func (tp *termproxyServiceImpl) OpenTerminal(srv pb.TermproxyService_OpenTerminalServer) error {
 	config := &ssh.ClientConfig{
 		User: "player",
 		Auth: []ssh.AuthMethod{
@@ -100,7 +100,7 @@ func (tp *termproxyServiceImpl) OpenTerminal(srv proto.TermproxyService_OpenTerm
 	return nil
 }
 
-func sshReadLoop(srv proto.TermproxyService_OpenTerminalServer, clientStdout io.Reader, errChan chan error) func() {
+func sshReadLoop(srv pb.TermproxyService_OpenTerminalServer, clientStdout io.Reader, errChan chan error) func() {
 	return func() {
 		readBuffer := make([]byte, 1024)
 		for {
@@ -115,7 +115,7 @@ func sshReadLoop(srv proto.TermproxyService_OpenTerminalServer, clientStdout io.
 				return
 			}
 
-			err = srv.Send(&proto.TerminalBytes{
+			err = srv.Send(&pb.TerminalBytes{
 				Contents: readBuffer[:n],
 			})
 			if err != nil {
@@ -127,7 +127,7 @@ func sshReadLoop(srv proto.TermproxyService_OpenTerminalServer, clientStdout io.
 	}
 }
 
-func grpcReadLoop(srv proto.TermproxyService_OpenTerminalServer, clientStdin io.WriteCloser, errChan chan error) func() {
+func grpcReadLoop(srv pb.TermproxyService_OpenTerminalServer, clientStdin io.WriteCloser, errChan chan error) func() {
 	return func() {
 		for {
 			message, err := srv.Recv()
@@ -164,7 +164,7 @@ func RunService() {
 
 	var opts []grpc.ServerOption
 	grpcServer := grpc.NewServer(opts...)
-	proto.RegisterTermproxyServiceServer(grpcServer, &termproxyServiceImpl{})
+	pb.RegisterTermproxyServiceServer(grpcServer, &termproxyServiceImpl{})
 
 	httpServer := &http.Server{
 		Addr: "localhost:1235",
