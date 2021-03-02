@@ -1,0 +1,20 @@
+/**
+ * Messages that represent internal data structures for the CTF operator
+ * microservice.
+ */
+syntax = "proto3";
+
+package goctfprototype;
+
+import "common.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/lgorence/goctfprototype/proto";
+
+/**
+ * Represents an environment that is running.
+ */
+message Environment {
+  google.protobuf.Timestamp created_time = 1;
+  google.protobuf.Timestamp last_ping_time = 2;
+}

@@ -2,7 +2,12 @@ package ctfoperator
 
 import (
 	"context"
+	"fmt"
+	"github.com/golang/protobuf/ptypes"
+	"github.com/google/uuid"
+	"github.com/lgorence/goctfprototype/pkg/ctfoperator/model"
 	"github.com/lgorence/goctfprototype/proto"
+	bolt "go.etcd.io/bbolt"
 	"golang.org/x/sync/errgroup"
 	"google.golang.org/grpc"
 	"log"
@@ -10,6 +15,44 @@ import (
 )
 
 func StartOperator() error {
+	// TODO: move all of this to some tests
+	db, err := bolt.Open("operator.db", 0666, nil)
+	if err != nil {
+		return err
+	}
+	defer db.Close()
+
+	dao, err := model.NewEnvironmentDao(db)
+	if err != nil {
+		return err
+	}
+
+	newUuid, err := uuid.NewRandom()
+	if err != nil {
+		return err
+	}
+
+	err = dao.Set(&proto.UUID{
+		Contents: newUuid.String(),
+	}, &proto.Environment{
+		CreatedTime:  ptypes.TimestampNow(),
+		LastPingTime: ptypes.TimestampNow(),
+	})
+	if err != nil {
+		return err
+	}
+
+	envs, err := dao.List()
+	if err != nil {
+		return err
+	}
+
+	for k, v := range envs {
+		fmt.Printf("%s - %v\n", k, v)
+	}
+
+	return nil
+
 	listener, err := net.Listen("tcp", "localhost:1234")
 	if err != nil {
 		log.Fatalf("Failed to listen for gRPC: %v", err)

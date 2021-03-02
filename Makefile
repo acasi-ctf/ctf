@@ -1,10 +1,11 @@
-PROTOSRC = proto/common proto/termproxy proto/ctfoperator
+PROTOSRC = proto/common proto/termproxy proto/ctfoperator proto/ctfoperator_internal
 
 IMAGEBASE = ghcr.io/lgorence/goctfprototype
 IMAGETAG = latest
 
-all: $(PROTOSRC) docker
+all: proto docker
 
+proto: $(PROTOSRC)
 docker: docker_penimage docker_termproxy docker_operator
 
 $(PROTOSRC): %:%.proto
