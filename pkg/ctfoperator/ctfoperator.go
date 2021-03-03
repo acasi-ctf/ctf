@@ -2,12 +2,7 @@ package ctfoperator
 
 import (
 	"context"
-	"fmt"
-	"github.com/golang/protobuf/ptypes"
-	"github.com/google/uuid"
 	"github.com/lgorence/goctfprototype/pb"
-	"github.com/lgorence/goctfprototype/pkg/ctfoperator/model"
-	bolt "go.etcd.io/bbolt"
 	"golang.org/x/sync/errgroup"
 	"google.golang.org/grpc"
 	"log"
@@ -16,7 +11,7 @@ import (
 
 func StartOperator() error {
 	// TODO: move all of this to some tests
-	db, err := bolt.Open("operator.db", 0666, nil)
+	/*db, err := bolt.Open("operator.db", 0666, nil)
 	if err != nil {
 		return err
 	}
@@ -51,7 +46,7 @@ func StartOperator() error {
 		fmt.Printf("%s - %v\n", k, v)
 	}
 
-	return nil
+	return nil*/
 
 	listener, err := net.Listen("tcp", "localhost:1234")
 	if err != nil {
