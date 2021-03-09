@@ -3,7 +3,7 @@ package ctfoperator
 import (
 	"context"
 	"github.com/google/uuid"
-	"github.com/lgorence/goctfprototype/pb"
+	"github.com/acasi-ctf/ctf/pb"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	core "k8s.io/api/core/v1"
@@ -61,7 +61,7 @@ func (s *provisioningService) StartEnvironment(ctx context.Context, _ *pb.StartE
 					// Name of this container.
 					Name: "penimage",
 					// Image that we want to use for the container.
-					Image: "ghcr.io/lgorence/goctfprototype/penimage:latest",
+					Image: "ghcr.io/acasi-ctf/ctf/penimage:latest",
 					// Image pull policy will determine how to update an image. Always will
 					//  well, always check for the latest version on pod creation.
 					ImagePullPolicy: core.PullAlways,

@@ -10,8 +10,8 @@ import (
 	"net/http"
 	"strings"
 
+	"github.com/acasi-ctf/ctf/pb"
 	"github.com/improbable-eng/grpc-web/go/grpcweb"
-	"github.com/lgorence/goctfprototype/pb"
 	"golang.org/x/crypto/ssh"
 	"golang.org/x/sync/errgroup"
 	"google.golang.org/grpc"
@@ -35,7 +35,7 @@ func key(path string) ssh.AuthMethod {
 
 // Writing this callback manually to avoid errors.
 // TODO: Implement host key checking, as we can potentially find it during
-// spin up of the environment.
+//  spin up of the environment.
 func insecureHostKeyCallback() ssh.HostKeyCallback {
 	return func(hostname string, remote net.Addr, key ssh.PublicKey) error {
 		return nil

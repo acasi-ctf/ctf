@@ -1,6 +1,6 @@
 PROTOSRC = proto/common proto/termproxy proto/ctfoperator proto/ctfoperator_internal
 
-IMAGEBASE = ghcr.io/lgorence/goctfprototype
+IMAGEBASE = ghcr.io/acasi-ctf/ctf
 IMAGETAG = latest
 
 all: proto docker

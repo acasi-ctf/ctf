@@ -6,7 +6,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/lgorence/goctfprototype/pb"
+	"github.com/acasi-ctf/ctf/pb"
 	"google.golang.org/grpc"
 )
 

@@ -2,7 +2,7 @@ package model
 
 import (
 	"github.com/golang/protobuf/proto"
-	"github.com/lgorence/goctfprototype/pb"
+	"github.com/acasi-ctf/ctf/pb"
 	bolt "go.etcd.io/bbolt"
 )
 

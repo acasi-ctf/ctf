@@ -1,4 +1,4 @@
-module github.com/lgorence/goctfprototype
+module github.com/acasi-ctf/ctf
 
 go 1.15
 

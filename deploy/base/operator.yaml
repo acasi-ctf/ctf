@@ -17,7 +17,7 @@ spec:
     spec:
       serviceAccountName: operator
       containers:
-      - image: ghcr.io/lgorence/goctfprototype/operator:latest
+      - image: ghcr.io/acasi-ctf/ctf/operator:latest
         name: operator
         resources: {}
 ---

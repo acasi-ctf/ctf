@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/lgorence/goctfprototype/pkg/ctfoperator"
+	"github.com/acasi-ctf/ctf/pkg/ctfoperator"
 	"log"
 )
 

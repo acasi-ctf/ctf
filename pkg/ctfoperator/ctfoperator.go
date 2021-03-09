@@ -2,7 +2,7 @@ package ctfoperator
 
 import (
 	"context"
-	"github.com/lgorence/goctfprototype/pb"
+	"github.com/acasi-ctf/ctf/pb"
 	"golang.org/x/sync/errgroup"
 	"google.golang.org/grpc"
 	"log"

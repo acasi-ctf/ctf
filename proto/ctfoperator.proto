@@ -4,7 +4,7 @@ package goctfprototype;
 
 import "common.proto";
 
-option go_package = "github.com/lgorence/goctfprototype/pb";
+option go_package = "github.com/acasi-ctf/ctf/pb";
 
 /**
  * Request message for starting a new environment.

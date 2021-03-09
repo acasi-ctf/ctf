@@ -1,6 +1,6 @@
 package main
 
-import "github.com/lgorence/goctfprototype/pkg/termproxy"
+import "github.com/acasi-ctf/ctf/pkg/termproxy"
 
 func main() {
 	termproxy.RunService()
