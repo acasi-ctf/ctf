@@ -1,0 +1,122 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: ctf-operator
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: ctf-operator
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  - services
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+- apiGroups:
+  - ""
+  resources:
+  - nodes
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - extensions
+  resources:
+  - deployments
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: ctf-operator
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: ctf-operator
+subjects:
+- kind: ServiceAccount
+  name: ctf-operator
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: ctf-operator
+  name: ctf-operator
+spec:
+  ports:
+  - port: 1234
+    protocol: TCP
+    targetPort: 1234
+  selector:
+    app: ctf-operator
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: ctf-termproxy
+  name: ctf-termproxy
+spec:
+  ports:
+  - port: 1234
+    protocol: TCP
+    targetPort: 1234
+  selector:
+    app: ctf-termproxy
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: ctf-operator
+  name: ctf-operator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ctf-operator
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: ctf-operator
+    spec:
+      containers:
+      - image: ghcr.io/acasi-ctf/ctf/operator:latest
+        name: operator
+        resources: {}
+      serviceAccountName: ctf-operator
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: ctf-termproxy
+  name: ctf-termproxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ctf-termproxy
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: ctf-termproxy
+    spec:
+      containers:
+      - image: ghcr.io/acasi-ctf/ctf/termproxy:latest
+        name: termproxy
+        resources: {}

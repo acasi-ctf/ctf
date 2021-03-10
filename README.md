@@ -6,4 +6,4 @@ learning in the computer security field.
 
 ## Documentation
 Our documentation is currently under construction as of writing, but you can
-check in on our progress by visiting https://acasi-ctf.github.io/docs/.
+view our progress by visiting [our docs](https://acasi-ctf.github.io/docs/).
