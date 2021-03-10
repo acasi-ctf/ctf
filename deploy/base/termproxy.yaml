@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: termproxy
+  labels:
+    app: ctf-termproxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ctf-termproxy
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: ctf-termproxy
+    spec:
+      containers:
+        - image: ghcr.io/acasi-ctf/ctf/termproxy:latest
+          name: termproxy
+          resources: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: ctf-termproxy
+  name: termproxy
+spec:
+  ports:
+    - port: 1234
+      protocol: TCP
+      targetPort: 1234
+  selector:
+    app: ctf-termproxy

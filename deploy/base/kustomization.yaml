@@ -3,4 +3,5 @@ kind: Kustomization
 resources:
   - operator.yaml
   - sa.yaml
+  - termproxy.yaml
 namePrefix: ctf-
