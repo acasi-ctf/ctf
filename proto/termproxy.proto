@@ -1,11 +1,35 @@
 syntax = "proto3";
 
+import "common.proto";
+
 option go_package = "github.com/acasi-ctf/ctf/pb";
 
-message TerminalBytes {
+message ClientMessage {
+  oneof message {
+    OpenConnectionMessage open_connection = 1;
+    StreamMessage stdin = 2;
+  }
+}
+
+message ServerMessage {
+  oneof message {
+    CloseConnectionMessage close_connection = 1;
+    StreamMessage stdout = 2;
+    StreamMessage stderr = 3;
+  }
+}
+
+message OpenConnectionMessage {
+  ctf.UUID environment_id = 1;
+}
+
+message CloseConnectionMessage {
+}
+
+message StreamMessage {
   bytes contents = 1;
 }
 
 service TermproxyService {
-  rpc OpenTerminal(stream TerminalBytes) returns (stream TerminalBytes);
+  rpc ProxyTerminal(stream ClientMessage) returns (stream ServerMessage);
 }

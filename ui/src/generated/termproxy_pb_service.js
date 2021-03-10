@@ -10,13 +10,13 @@ var TermproxyService = (function () {
   return TermproxyService;
 }());
 
-TermproxyService.OpenTerminal = {
-  methodName: "OpenTerminal",
+TermproxyService.ProxyTerminal = {
+  methodName: "ProxyTerminal",
   service: TermproxyService,
   requestStream: true,
   responseStream: true,
-  requestType: termproxy_pb.TerminalBytes,
-  responseType: termproxy_pb.TerminalBytes
+  requestType: termproxy_pb.ClientMessage,
+  responseType: termproxy_pb.ServerMessage
 };
 
 exports.TermproxyService = TermproxyService;
@@ -26,13 +26,13 @@ function TermproxyServiceClient(serviceHost, options) {
   this.options = options || {};
 }
 
-TermproxyServiceClient.prototype.openTerminal = function openTerminal(metadata) {
+TermproxyServiceClient.prototype.proxyTerminal = function proxyTerminal(metadata) {
   var listeners = {
     data: [],
     end: [],
     status: []
   };
-  var client = grpc.client(TermproxyService.OpenTerminal, {
+  var client = grpc.client(TermproxyService.ProxyTerminal, {
     host: this.serviceHost,
     metadata: metadata,
     transport: this.options.transport

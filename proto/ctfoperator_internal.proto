@@ -4,7 +4,7 @@
  */
 syntax = "proto3";
 
-package goctfprototype;
+package ctf;
 
 import "common.proto";
 import "google/protobuf/timestamp.proto";

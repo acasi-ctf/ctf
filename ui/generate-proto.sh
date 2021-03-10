@@ -14,4 +14,5 @@ protoc \
     --js_out="import_style=commonjs,binary:${OUT_DIR}" \
     --ts_out="service=grpc-web:${OUT_DIR}" \
     --proto_path="../proto" \
+    ../proto/common.proto \
     ../proto/termproxy.proto

@@ -42,7 +42,7 @@ func insecureHostKeyCallback() ssh.HostKeyCallback {
 	}
 }
 
-func (tp *termproxyServiceImpl) OpenTerminal(srv pb.TermproxyService_OpenTerminalServer) error {
+func (tp *termproxyServiceImpl) ProxyTerminal(srv pb.TermproxyService_ProxyTerminalServer) error {
 	config := &ssh.ClientConfig{
 		User: "player",
 		Auth: []ssh.AuthMethod{
@@ -69,11 +69,17 @@ func (tp *termproxyServiceImpl) OpenTerminal(srv pb.TermproxyService_OpenTermina
 		return err
 	}
 
+	clientStderr, err := client.StderrPipe()
+	if err != nil {
+		return err
+	}
+
 	clientStdin, err := client.StdinPipe()
 	if err != nil {
 		return err
 	}
 
+	// TODO: We need to send size updates.
 	err = client.RequestPty("xterm-256color", 24, 80, ssh.TerminalModes{})
 	if err != nil {
 		return err
@@ -86,7 +92,8 @@ func (tp *termproxyServiceImpl) OpenTerminal(srv pb.TermproxyService_OpenTermina
 
 	errChan := make(chan error)
 
-	go sshReadLoop(srv, clientStdout, errChan)()
+	go sshPipe(srv, clientStdout, errChan)()
+	go sshPipe(srv, clientStderr, errChan)()
 	go grpcReadLoop(srv, clientStdin, errChan)()
 
 	select {
@@ -100,11 +107,11 @@ func (tp *termproxyServiceImpl) OpenTerminal(srv pb.TermproxyService_OpenTermina
 	return nil
 }
 
-func sshReadLoop(srv pb.TermproxyService_OpenTerminalServer, clientStdout io.Reader, errChan chan error) func() {
+func sshPipe(srv pb.TermproxyService_ProxyTerminalServer, reader io.Reader, errChan chan error) func() {
 	return func() {
 		readBuffer := make([]byte, 1024)
 		for {
-			n, err := clientStdout.Read(readBuffer)
+			n, err := reader.Read(readBuffer)
 
 			if err == io.EOF {
 				errChan <- nil
@@ -115,11 +122,16 @@ func sshReadLoop(srv pb.TermproxyService_OpenTerminalServer, clientStdout io.Rea
 				return
 			}
 
-			err = srv.Send(&pb.TerminalBytes{
-				Contents: readBuffer[:n],
-			})
+			msg := &pb.ServerMessage{
+				Message: &pb.ServerMessage_Stdout{
+					Stdout: &pb.StreamMessage{
+						Contents: readBuffer[:n],
+					},
+				},
+			}
+			err = srv.Send(msg)
 			if err != nil {
-				log.Printf("OpenTerminal Send error: %v", err)
+				log.Printf("ProxyTerminal Send error: %v", err)
 				errChan <- err
 				return
 			}
@@ -127,10 +139,10 @@ func sshReadLoop(srv pb.TermproxyService_OpenTerminalServer, clientStdout io.Rea
 	}
 }
 
-func grpcReadLoop(srv pb.TermproxyService_OpenTerminalServer, clientStdin io.WriteCloser, errChan chan error) func() {
+func grpcReadLoop(srv pb.TermproxyService_ProxyTerminalServer, clientStdin io.WriteCloser, errChan chan error) func() {
 	return func() {
 		for {
-			message, err := srv.Recv()
+			msg, err := srv.Recv()
 			if err == io.EOF {
 				log.Printf("EOF")
 				errChan <- nil
@@ -142,15 +154,21 @@ func grpcReadLoop(srv pb.TermproxyService_OpenTerminalServer, clientStdin io.Wri
 				return
 			}
 
-			log.Printf("Recv data: %s", string(message.Contents))
-			b64 := base64.StdEncoding.EncodeToString(message.Contents)
-			log.Printf("Recv data(b64): %s", b64)
+			// TODO: Clean this up, out into multiple files when we handle more
+			//  than one message type.
+			switch x := msg.Message.(type) {
+			case *pb.ClientMessage_Stdin:
+				msg := x.Stdin
+				log.Printf("Recv data: %s", string(msg.Contents))
+				b64 := base64.StdEncoding.EncodeToString(msg.Contents)
+				log.Printf("Recv data(b64): %s", b64)
 
-			_, err = clientStdin.Write(message.Contents)
-			if err != nil {
-				log.Printf("Write failure")
-				errChan <- err
-				return
+				_, err = clientStdin.Write(msg.Contents)
+				if err != nil {
+					log.Printf("Write failure")
+					errChan <- err
+					return
+				}
 			}
 		}
 	}
