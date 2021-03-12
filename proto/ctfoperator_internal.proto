@@ -12,9 +12,35 @@ import "google/protobuf/timestamp.proto";
 option go_package = "github.com/acasi-ctf/ctf/pb";
 
 /**
+ * Indicates which provisioner was used in this environment.
+ */
+enum ProvisionerType {
+  NONE = 0;
+  KUBERNETES = 1;
+}
+
+/**
  * Represents an environment that is running.
  */
 message Environment {
+  /**
+   * Time that this environment was created.
+   */
   google.protobuf.Timestamp created_time = 1;
+
+  /**
+   * Last time that this environment was interacted with
+   * by the player who owns it.
+   */
   google.protobuf.Timestamp last_ping_time = 2;
+
+  /**
+   * This flag is true if the provisioner has run.
+   */
+  bool provisioner_done = 3;
+
+  /**
+   * Type of provisioner that is used for this environment.
+   */
+  ProvisionerType provisioner_type = 4;
 }

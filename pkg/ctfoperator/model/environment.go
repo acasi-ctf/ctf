@@ -1,8 +1,8 @@
 package model
 
 import (
-	"github.com/golang/protobuf/proto"
 	"github.com/acasi-ctf/ctf/pb"
+	"github.com/golang/protobuf/proto"
 	bolt "go.etcd.io/bbolt"
 )
 
@@ -27,7 +27,6 @@ type EnvironmentDao struct {
 }
 
 func (d *EnvironmentDao) Set(uuid *pb.UUID, env *pb.Environment) error {
-	// TODO: would we rather store the key as a UUID in Protobuf or as a string?
 	k, err := proto.Marshal(uuid)
 	if err != nil {
 		return err

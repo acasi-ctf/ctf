@@ -33,7 +33,7 @@ func key(path string) ssh.AuthMethod {
 	return ssh.PublicKeys(signer)
 }
 
-// Writing this callback manually to avoid errors.
+// Writing this callback manually to avoid errors from the linter.
 // TODO: Implement host key checking, as we can potentially find it during
 //  spin up of the environment.
 func insecureHostKeyCallback() ssh.HostKeyCallback {

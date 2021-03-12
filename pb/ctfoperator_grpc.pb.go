@@ -32,7 +32,7 @@ func NewEnvironmentProvisioningServiceClient(cc grpc.ClientConnInterface) Enviro
 
 func (c *environmentProvisioningServiceClient) StartEnvironment(ctx context.Context, in *StartEnvironmentRequest, opts ...grpc.CallOption) (*StartEnvironmentResponse, error) {
 	out := new(StartEnvironmentResponse)
-	err := c.cc.Invoke(ctx, "/goctfprototype.EnvironmentProvisioningService/StartEnvironment", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/ctf.EnvironmentProvisioningService/StartEnvironment", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -41,7 +41,7 @@ func (c *environmentProvisioningServiceClient) StartEnvironment(ctx context.Cont
 
 func (c *environmentProvisioningServiceClient) StopEnvironment(ctx context.Context, in *StopEnvironmentRequest, opts ...grpc.CallOption) (*StopEnvironmentResponse, error) {
 	out := new(StopEnvironmentResponse)
-	err := c.cc.Invoke(ctx, "/goctfprototype.EnvironmentProvisioningService/StopEnvironment", in, out, opts...)
+	err := c.cc.Invoke(ctx, "/ctf.EnvironmentProvisioningService/StopEnvironment", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -91,7 +91,7 @@ func _EnvironmentProvisioningService_StartEnvironment_Handler(srv interface{}, c
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/goctfprototype.EnvironmentProvisioningService/StartEnvironment",
+		FullMethod: "/ctf.EnvironmentProvisioningService/StartEnvironment",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(EnvironmentProvisioningServiceServer).StartEnvironment(ctx, req.(*StartEnvironmentRequest))
@@ -109,7 +109,7 @@ func _EnvironmentProvisioningService_StopEnvironment_Handler(srv interface{}, ct
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/goctfprototype.EnvironmentProvisioningService/StopEnvironment",
+		FullMethod: "/ctf.EnvironmentProvisioningService/StopEnvironment",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(EnvironmentProvisioningServiceServer).StopEnvironment(ctx, req.(*StopEnvironmentRequest))
@@ -121,7 +121,7 @@ func _EnvironmentProvisioningService_StopEnvironment_Handler(srv interface{}, ct
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var EnvironmentProvisioningService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "goctfprototype.EnvironmentProvisioningService",
+	ServiceName: "ctf.EnvironmentProvisioningService",
 	HandlerType: (*EnvironmentProvisioningServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -131,6 +131,129 @@ var EnvironmentProvisioningService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "StopEnvironment",
 			Handler:    _EnvironmentProvisioningService_StopEnvironment_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "ctfoperator.proto",
+}
+
+// EnvironmentLookupServiceClient is the client API for EnvironmentLookupService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type EnvironmentLookupServiceClient interface {
+	IsEnvironmentReady(ctx context.Context, in *IsEnvironmentReadyRequest, opts ...grpc.CallOption) (*IsEnvironmentReadyResponse, error)
+	GetEnvironmentInfo(ctx context.Context, in *GetEnvironmentInfoRequest, opts ...grpc.CallOption) (*GetEnvironmentInfoResponse, error)
+}
+
+type environmentLookupServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewEnvironmentLookupServiceClient(cc grpc.ClientConnInterface) EnvironmentLookupServiceClient {
+	return &environmentLookupServiceClient{cc}
+}
+
+func (c *environmentLookupServiceClient) IsEnvironmentReady(ctx context.Context, in *IsEnvironmentReadyRequest, opts ...grpc.CallOption) (*IsEnvironmentReadyResponse, error) {
+	out := new(IsEnvironmentReadyResponse)
+	err := c.cc.Invoke(ctx, "/ctf.EnvironmentLookupService/IsEnvironmentReady", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *environmentLookupServiceClient) GetEnvironmentInfo(ctx context.Context, in *GetEnvironmentInfoRequest, opts ...grpc.CallOption) (*GetEnvironmentInfoResponse, error) {
+	out := new(GetEnvironmentInfoResponse)
+	err := c.cc.Invoke(ctx, "/ctf.EnvironmentLookupService/GetEnvironmentInfo", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// EnvironmentLookupServiceServer is the server API for EnvironmentLookupService service.
+// All implementations must embed UnimplementedEnvironmentLookupServiceServer
+// for forward compatibility
+type EnvironmentLookupServiceServer interface {
+	IsEnvironmentReady(context.Context, *IsEnvironmentReadyRequest) (*IsEnvironmentReadyResponse, error)
+	GetEnvironmentInfo(context.Context, *GetEnvironmentInfoRequest) (*GetEnvironmentInfoResponse, error)
+	mustEmbedUnimplementedEnvironmentLookupServiceServer()
+}
+
+// UnimplementedEnvironmentLookupServiceServer must be embedded to have forward compatible implementations.
+type UnimplementedEnvironmentLookupServiceServer struct {
+}
+
+func (UnimplementedEnvironmentLookupServiceServer) IsEnvironmentReady(context.Context, *IsEnvironmentReadyRequest) (*IsEnvironmentReadyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method IsEnvironmentReady not implemented")
+}
+func (UnimplementedEnvironmentLookupServiceServer) GetEnvironmentInfo(context.Context, *GetEnvironmentInfoRequest) (*GetEnvironmentInfoResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetEnvironmentInfo not implemented")
+}
+func (UnimplementedEnvironmentLookupServiceServer) mustEmbedUnimplementedEnvironmentLookupServiceServer() {
+}
+
+// UnsafeEnvironmentLookupServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to EnvironmentLookupServiceServer will
+// result in compilation errors.
+type UnsafeEnvironmentLookupServiceServer interface {
+	mustEmbedUnimplementedEnvironmentLookupServiceServer()
+}
+
+func RegisterEnvironmentLookupServiceServer(s grpc.ServiceRegistrar, srv EnvironmentLookupServiceServer) {
+	s.RegisterService(&EnvironmentLookupService_ServiceDesc, srv)
+}
+
+func _EnvironmentLookupService_IsEnvironmentReady_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IsEnvironmentReadyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EnvironmentLookupServiceServer).IsEnvironmentReady(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ctf.EnvironmentLookupService/IsEnvironmentReady",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EnvironmentLookupServiceServer).IsEnvironmentReady(ctx, req.(*IsEnvironmentReadyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EnvironmentLookupService_GetEnvironmentInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetEnvironmentInfoRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EnvironmentLookupServiceServer).GetEnvironmentInfo(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ctf.EnvironmentLookupService/GetEnvironmentInfo",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EnvironmentLookupServiceServer).GetEnvironmentInfo(ctx, req.(*GetEnvironmentInfoRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// EnvironmentLookupService_ServiceDesc is the grpc.ServiceDesc for EnvironmentLookupService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var EnvironmentLookupService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "ctf.EnvironmentLookupService",
+	HandlerType: (*EnvironmentLookupServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "IsEnvironmentReady",
+			Handler:    _EnvironmentLookupService_IsEnvironmentReady_Handler,
+		},
+		{
+			MethodName: "GetEnvironmentInfo",
+			Handler:    _EnvironmentLookupService_GetEnvironmentInfo_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
