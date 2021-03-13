@@ -15,8 +15,9 @@ option go_package = "github.com/acasi-ctf/ctf/pb";
  * Indicates which provisioner was used in this environment.
  */
 enum ProvisionerType {
-  NONE = 0;
-  KUBERNETES = 1;
+  UNSPECIFIED = 0;
+  NONE = 1;
+  KUBERNETES = 2;
 }
 
 /**
