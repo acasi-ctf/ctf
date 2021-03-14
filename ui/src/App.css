@@ -38,3 +38,7 @@
     transform: rotate(360deg);
   }
 }
+
+.challenge {
+  width: 100%
+}
