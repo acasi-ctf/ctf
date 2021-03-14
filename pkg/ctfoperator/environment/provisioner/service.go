@@ -11,6 +11,7 @@ import (
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/types/known/timestamppb"
+	"io/ioutil"
 	core "k8s.io/api/core/v1"
 	meta "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
@@ -52,6 +53,12 @@ func (s *ProvisioningService) StartEnvironment(ctx context.Context, _ *pb.StartE
 		return nil, err
 	}
 
+	publicKeyBytes, err := ioutil.ReadFile("/secrets/auth-key-public/id_rsa.pub")
+	if err != nil {
+		return nil, err
+	}
+	publicKey := string(publicKeyBytes)
+
 	// Create a single penimage pod for testing.
 	_, err = s.KubeClient.CoreV1().Pods(constants.KubeNamespace).Create(ctx, &core.Pod{
 		// Specify the names and a sample label for tracking the resource.
@@ -73,6 +80,13 @@ func (s *ProvisioningService) StartEnvironment(ctx context.Context, _ *pb.StartE
 					// Image pull policy will determine how to update an image. Always will
 					//  always pull a new version, if available, on pod creation.
 					ImagePullPolicy: core.PullAlways,
+					// Add the public key for the SSH server.
+					Env: []core.EnvVar{
+						{
+							Name:  "PUBLIC_KEY",
+							Value: publicKey,
+						},
+					},
 				},
 			},
 		},

@@ -39,6 +39,6 @@ func (s *LookupService) GetEnvironmentInfo(ctx context.Context, req *pb.GetEnvir
 
 	return &pb.GetEnvironmentInfoResponse{
 		SshHost: pod.Status.PodIP,
-		SshPort: 2222,
+		SshPort: 22,
 	}, nil
 }

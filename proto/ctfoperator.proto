@@ -14,13 +14,6 @@ message StartEnvironmentRequest {
    * Slug name of the environment template.
    */
   string template_slug = 1;
-
-  /**
-   * SSH public key that the environment's penimage will use to authenticate
-   * with.
-   * TODO: Determine what format to use.
-   */
-  bytes ssh_public_key = 2;
 }
 
 /**

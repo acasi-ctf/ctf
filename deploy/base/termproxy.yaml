@@ -9,7 +9,7 @@ spec:
   selector:
     matchLabels:
       app: ctf-termproxy
-  strategy: {}
+  strategy: { }
   template:
     metadata:
       labels:
@@ -18,7 +18,15 @@ spec:
       containers:
         - image: ghcr.io/acasi-ctf/ctf/termproxy:latest
           name: termproxy
-          resources: {}
+          resources: { }
+          volumeMounts:
+            - name: auth-key-private
+              mountPath: /secrets/auth-key-private
+              readOnly: true
+      volumes:
+        - name: auth-key-private
+          secret:
+            secretName: auth-key-private
 ---
 apiVersion: v1
 kind: Service
@@ -28,8 +36,13 @@ metadata:
   name: termproxy
 spec:
   ports:
-    - port: 1234
+    - name: grpc
+      port: 1234
       protocol: TCP
       targetPort: 1234
+    - name: grpc-web
+      port: 1235
+      protocol: TCP
+      targetPort: 1235
   selector:
     app: ctf-termproxy

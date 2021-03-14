@@ -4,3 +4,7 @@
 images/
 
 ui/node_modules/
+
+*.db
+
+super-linter.log

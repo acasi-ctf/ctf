@@ -39,7 +39,7 @@ func StartOperator() error {
 		return err
 	}
 
-	listener, err := net.Listen("tcp", "localhost:1234")
+	listener, err := net.Listen("tcp", ":1234")
 	if err != nil {
 		log.Fatalf("Failed to listen for gRPC: %v", err)
 	}

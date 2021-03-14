@@ -6,9 +6,11 @@ import {TermproxyServiceClient} from "./generated/termproxy_pb_service";
 import {
   ClientMessage,
   ServerMessage,
-  StreamMessage
+  StreamMessage,
+  OpenConnectionMessage
 } from "./generated/termproxy_pb";
 import {grpc} from "@improbable-eng/grpc-web";
+import {UUID} from "./generated/common_pb";
 
 const client = new TermproxyServiceClient("http://localhost:1235", {
   transport: grpc.WebsocketTransport()
@@ -20,6 +22,17 @@ function App() {
   useEffect(() => {
     let stream = client.proxyTerminal();
     console.log('Starting stream');
+
+    let envId = new UUID();
+    envId.setContents("365b5737-48aa-45b1-8302-7a4c13a54e16");
+
+    let openMsg = new OpenConnectionMessage();
+    openMsg.setEnvironmentId(envId);
+
+    let openClientMsg = new ClientMessage();
+    openClientMsg.setOpenConnection(openMsg);
+
+    stream.write(openClientMsg);
 
     stream.on('data', message => {
       switch (message.getMessageCase()) {
