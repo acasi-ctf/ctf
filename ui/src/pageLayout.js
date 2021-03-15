@@ -13,15 +13,35 @@ export default class Layout extends Component {
 
                 <Grid container item xs={6}  borderWidth={1} spacing={1} borderColor = "black" border={1} >
 
-                    <Grid container item xs={12} borderWidth={1} width={maxWidth} minHeight = {100}>
+                    <Grid container item xs={12} borderWidth={1} width={maxWidth} minHeight = {100} style={{height: '50%'}}>
 
-                        <ScrollableTabsButtonAuto/>
+                        <ScrollableTabsButtonAuto />
                     </Grid>
 
 
-                    <Grid container item xs={12} width={maxWidth} style={{backgroundColor: 'white', overflowY:'scroll'}} borderWidth = {0} >
-                        <div  >This is your challenge description!
-                            <p id='challenge'>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                    <Grid container item xs={12} width={maxWidth} style={{backgroundColor: 'white', overflowY:'scroll', height: '50%'}} borderWidth = {0} >
+                        <div>This is your challenge description!
+                            <p id='challenge' style={{
+                                height: '50%'
+                            }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                                enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                                ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehe
+                                nderit in voluptate velit esse cillum dolore eu fugiat nulla pariatu
+                                r. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+                                officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                                enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                                ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehe
+                                nderit in voluptate velit esse cillum dolore eu fugiat nulla pariatu
+                                r. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+                                officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                                enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                                ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehe
+                                nderit in voluptate velit esse cillum dolore eu fugiat nulla pariatu
+                                r. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+                                officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                                 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
                                 enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
                                 ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehe
@@ -52,3 +72,4 @@ export default class Layout extends Component {
         )
     }
 }
+
