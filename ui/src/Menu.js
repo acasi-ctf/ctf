@@ -14,6 +14,7 @@ import Layout from './pageLayout.js';
 import CodeIcon from '@material-ui/icons/Code';
 import HomeIcon from '@material-ui/icons/Home';
 import TimelineIcon from '@material-ui/icons/Timeline';
+import IssueButton from "./components/Button";
 
 const drawerWidth = 240;
 const appBarHeight = 0;
@@ -43,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.background.default,
         padding: theme.spacing(3),
 
+
     },
     body: {
         marginTop: appBarHeight,
@@ -53,14 +55,22 @@ export default function PermanentDrawerLeft() {
     const classes = useStyles();
 
     return (
-        <div className={classes.root}>
+        <div className={classes.root} >
             <CssBaseline />
             <AppBar position="fixed" className={classes.appBar} >
-                <Toolbar>
+                <Toolbar disableGutters={true}>
+
                     <Typography variant="h6" noWrap>
                         Challenge Name
+
+
                     </Typography>
+
+                    <IssueButton/>
+
+
                 </Toolbar>
+
             </AppBar>
             <Drawer
 
@@ -83,8 +93,8 @@ export default function PermanentDrawerLeft() {
                 </List>
                 <Divider />
                 <List>
-                    <p align="center"></p>
-                    {['Challenge Category','Challenge 1', 'Challenge 2', 'Challenge 3'].map((text, index) => (
+                    <ListItem button >Challenge Category</ListItem>
+                    {['Challenge 1', 'Challenge 2', 'Challenge 3'].map((text, index) => (
                         <ListItem button key={text}>
                             <ListItemIcon><CodeIcon/></ListItemIcon>
                             <ListItemText primary={text} />
