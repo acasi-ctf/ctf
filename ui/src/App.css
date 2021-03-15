@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  width: 100%;
+
 }
 
 .App-logo {
@@ -35,4 +37,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.challenge {
+  width: 100%
 }
