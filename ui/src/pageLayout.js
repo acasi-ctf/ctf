@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import App from './App';
+import Terminal from './Terminal';
 import Grid from '@material-ui/core/Grid'
 import {maxWidth} from "@material-ui/system";
 import ScrollableTabsButtonAuto from "./components/Tabs";
@@ -67,7 +67,7 @@ export default class Layout extends Component {
 
 
                 </Grid>
-                <Grid container item xs={6}><App/></Grid>
+                <Grid container item xs={6}><Terminal/></Grid>
             </Grid>
         )
     }

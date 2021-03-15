@@ -1,5 +1,5 @@
 import React, {useEffect, useRef} from 'react';
-import './App.css';
+import './Terminal.css';
 import {XTerm} from "xterm-for-react";
 
 import {TermproxyServiceClient} from "./generated/termproxy_pb_service";
@@ -16,7 +16,7 @@ const client = new TermproxyServiceClient("http://localhost:1235", {
   transport: grpc.WebsocketTransport()
 });
 
-function App() {
+function Terminal() {
   const xtermRef = useRef<XTerm>(null);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ function App() {
     console.log('Starting stream');
 
     let envId = new UUID();
-    envId.setContents("365b5737-48aa-45b1-8302-7a4c13a54e16");
+    envId.setContents(window.location.hash.substr(1).trim());
 
     let openMsg = new OpenConnectionMessage();
     openMsg.setEnvironmentId(envId);
@@ -76,4 +76,4 @@ function App() {
   );
 }
 
-export default App;
+export default Terminal;
