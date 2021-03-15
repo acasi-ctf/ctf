@@ -59,7 +59,7 @@ export default function ScrollableTabsButtonAuto() {
     };
 
     return (
-        <div className={classes.root}>
+        <div className={classes.root} >
             <AppBar position="static" color="default">
                 <Tabs
                     value={value}
@@ -70,6 +70,7 @@ export default function ScrollableTabsButtonAuto() {
                     scrollButtons="auto"
                     aria-label="scrollable auto tabs example"
                     width = {maxHeight}
+
                 >
                     <Tab label="HTML" {...a11yProps(0)} />
                     <Tab label="CSS" {...a11yProps(1)} />
@@ -79,8 +80,8 @@ export default function ScrollableTabsButtonAuto() {
                     <Tab label="Item Six" {...a11yProps(5)} />
                     <Tab label="Item Seven" {...a11yProps(6)} />
                 </Tabs>
-            </AppBar>
-            <TabPanel value={value} index={0} style={{overflowY: "scroll", resize: "none"}}>
+            </AppBar >
+            <TabPanel value={value} index={0} style={{overflowY: 'scroll'}}>
                  Hypertext Markup Language is the standard markup language for anything design to be displayed in a browser. The style can then be modified using a CSS document.
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
@@ -102,22 +103,22 @@ export default function ScrollableTabsButtonAuto() {
                 r. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
                 officia deserunt mollit anim id est laborum.
             </TabPanel>
-            <TabPanel value={value} index={1}>
+            <TabPanel value={value} index={1} style={{overflowY: 'scroll'}}>
                 Cascading style sheets is what is used to make HTML pretty.
             </TabPanel>
-            <TabPanel value={value} index={2}>
+            <TabPanel value={value} index={2} style={{overflowY: 'scroll'}}>
                 Item Three
             </TabPanel>
-            <TabPanel value={value} index={3}>
+            <TabPanel value={value} index={3} style={{overflowY: 'scroll'}}>
                 Item Four
             </TabPanel>
-            <TabPanel value={value} index={4}>
+            <TabPanel value={value} index={4} style={{overflowY: 'scroll'}}>
                 Item Five
             </TabPanel>
-            <TabPanel value={value} index={5}>
+            <TabPanel value={value} index={5} style={{overflowY: 'scroll'}}>
                 Item Six
             </TabPanel>
-            <TabPanel value={value} index={6}>
+            <TabPanel value={value} index={6} style={{overflowY: 'scroll'}}>
                 Item Seven
             </TabPanel>
         </div>
