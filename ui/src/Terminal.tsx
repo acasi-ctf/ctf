@@ -12,7 +12,7 @@ import {
 import {grpc} from "@improbable-eng/grpc-web";
 import {UUID} from "./generated/common_pb";
 
-const client = new TermproxyServiceClient("http://localhost:1235", {
+const client = new TermproxyServiceClient("https://ctf.gorence.io", {
   transport: grpc.WebsocketTransport()
 });
 
