@@ -15,6 +15,7 @@ import CodeIcon from '@material-ui/icons/Code';
 import HomeIcon from '@material-ui/icons/Home';
 import TimelineIcon from '@material-ui/icons/Timeline';
 import IssueButton from "./components/Button";
+import ChallengeBar from "./components/AppBar";
 
 const drawerWidth = 240;
 const appBarHeight = 0;
@@ -58,18 +59,7 @@ export default function PermanentDrawerLeft() {
         <div className={classes.root} >
             <CssBaseline />
             <AppBar position="fixed" className={classes.appBar} >
-                <Toolbar disableGutters={true}>
-
-                    <Typography variant="h6" noWrap>
-                        Challenge Name
-
-
-                    </Typography>
-
-                    <IssueButton/>
-
-
-                </Toolbar>
+                <ChallengeBar/>
 
             </AppBar>
             <Drawer
