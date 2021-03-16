@@ -82,7 +82,8 @@ export default function ScrollableTabsButtonAuto() {
                 </Tabs>
             </AppBar >
             <TabPanel value={value} index={0} style={{overflowY: 'scroll'}}>
-                 Hypertext Markup Language is the standard markup language for anything design to be displayed in a browser. The style can then be modified using a CSS document.
+                 Hypertext Markup Language is the standard markup language for anything design to be displayed in a browser.
+                The style can then be modified using a CSS document.
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
                 enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
@@ -105,6 +106,26 @@ export default function ScrollableTabsButtonAuto() {
             </TabPanel>
             <TabPanel value={value} index={1} style={{overflowY: 'scroll'}}>
                 Cascading style sheets is what is used to make HTML pretty.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehe
+                nderit in voluptate velit esse cillum dolore eu fugiat nulla pariatu
+                r. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+                officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehe
+                nderit in voluptate velit esse cillum dolore eu fugiat nulla pariatu
+                r. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+                officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehe
+                nderit in voluptate velit esse cillum dolore eu fugiat nulla pariatu
+                r. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+                officia deserunt mollit anim id est laborum.
+
             </TabPanel>
             <TabPanel value={value} index={2} style={{overflowY: 'scroll'}}>
                 Item Three

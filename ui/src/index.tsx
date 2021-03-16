@@ -5,7 +5,7 @@ import PermanentDrawerLeft from "./Menu";
 
 ReactDOM.render(
   <React.StrictMode>
-    <PermanentDrawerLeft></PermanentDrawerLeft>
+    <PermanentDrawerLeft/>
   </React.StrictMode>,
   document.getElementById('root')
 );
