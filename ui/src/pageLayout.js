@@ -21,9 +21,9 @@ export default class Layout extends Component {
                     </div>
                     <div>
                     <Grid container item xs={12} width={maxWidth} style={{backgroundColor: 'white', overflowY:'scroll', height: '100%'}} borderWidth = {2} >
-                        This is your challenge description!
+
                             <p id='challenge'>
-                                Type – Crypto
+                                Challenge – Crypto
                             </p>
                             <p>
                                 Crypto is learning about encryption technology. There are classical ciphers and modern ciphers.

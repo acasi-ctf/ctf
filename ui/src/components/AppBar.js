@@ -70,7 +70,7 @@ export default function ChallengeBar() {
                 <Toolbar>
 
                     <Typography className={classes.title} variant="h6" noWrap>
-                        Current Challenge
+                        Current Challenge: Caesar Cipher
                     </Typography>
                     <div className={classes.search}>
                         <div className={classes.searchIcon}>
