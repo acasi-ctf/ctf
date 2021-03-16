@@ -38,5 +38,5 @@ endif
 
 lint:
 	docker run -e RUN_LOCAL=true -e VALIDATE_DOCKERFILE_HADOLINT=false -e VALIDATE_CSS=false -e VALIDATE_JAVASCRIPT_STANDARD=false \
-		-e VALIDATE_TYPESCRIPT_STANDARD=false -e VALIDATE_GO=false -e LOG_LEVEL=WARN -e FILTER_REGEX_EXCLUDE=".*pb.*" \
-		-v $(shell pwd):/tmp/lint --rm github/super-linter:latest
+		-e VALIDATE_TYPESCRIPT_STANDARD=false -e VALIDATE_GO=false -e VALIDATE_JSCPD=false -e LOG_LEVEL=WARN \
+		-e FILTER_REGEX_EXCLUDE=".*pb.*" -v $(shell pwd):/tmp/lint --rm github/super-linter:latest
