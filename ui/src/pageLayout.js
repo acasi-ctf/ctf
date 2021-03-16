@@ -12,59 +12,38 @@ export default class Layout extends Component {
             <Grid container spacing={1} xs={12} >
 
                 <Grid container item xs={6}  borderWidth={1} spacing={1} borderColor = "black" border={1} >
+                    <div>
 
-                    <Grid container item xs={12} borderWidth={1} width={maxWidth} minHeight = {100} style={{height: '50%'}}>
+                    <Grid container item xs={8} borderWidth={1} width={maxWidth} minHeight = {100} style={{height: '40%'}}>
 
                         <ScrollableTabsButtonAuto />
                     </Grid>
+                    </div>
+                    <div>
+                    <Grid container item xs={12} width={maxWidth} style={{backgroundColor: 'white', overflowY:'scroll', height: '100%'}} borderWidth = {2} >
+                        This is your challenge description!
+                            <p id='challenge'>
+                                Type – Crypto
+                            </p>
+                            <p>
+                                Crypto is learning about encryption technology. There are classical ciphers and modern ciphers.
+                                Passwords are a part of information security. The algorithm will always be made public, and we believe weak
+                                passwords can be more dangerous to security than a password free system. Learning cryptography is not only
+                                for attacking a target but also helps us protect our information.
+                            </p>
+
+                            <p>
+                                Challenge – 1:
+
+                                In this challenge, you will face the classical cipher combination. The flag is enciphered in three different ways.
+                                For each deciphering, you will be given a hint. If you have no idea what the flag is, you can try and input whatever
+                                you would like, maybe you will get lucky. Have at it!
+                            </p>
 
 
-                    <Grid container item xs={12} width={maxWidth} style={{backgroundColor: 'white', overflowY:'scroll', height: '50%'}} borderWidth = {0} >
-                        <div>This is your challenge description!
-                            <p id='challenge' style={{
-                                height: '50%'
-                            }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                                enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                                ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehe
-                                nderit in voluptate velit esse cillum dolore eu fugiat nulla pariatu
-                                r. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-                                officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                                enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                                ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehe
-                                nderit in voluptate velit esse cillum dolore eu fugiat nulla pariatu
-                                r. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-                                officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                                enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                                ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehe
-                                nderit in voluptate velit esse cillum dolore eu fugiat nulla pariatu
-                                r. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-                                officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                                enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                                ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehe
-                                nderit in voluptate velit esse cillum dolore eu fugiat nulla pariatu
-                                r. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-                                officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                                enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                                ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehe
-                                nderit in voluptate velit esse cillum dolore eu fugiat nulla pariatu
-                                r. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-                                officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                                enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                                ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehe
-                                nderit in voluptate velit esse cillum dolore eu fugiat nulla pariatu
-                                r. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-                                officia deserunt mollit anim id est laborum.</p>
 
-
-                        </div>
                     </Grid>
-
+                    </div>
 
                 </Grid>
                 <Grid container item xs={6}><App/></Grid>

@@ -3,9 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -14,8 +12,8 @@ import Layout from './pageLayout.js';
 import CodeIcon from '@material-ui/icons/Code';
 import HomeIcon from '@material-ui/icons/Home';
 import TimelineIcon from '@material-ui/icons/Timeline';
-import IssueButton from "./components/Button";
 import ChallengeBar from "./components/AppBar";
+import CollectionsBookmarkIcon from '@material-ui/icons/CollectionsBookmark';
 
 const drawerWidth = 240;
 const appBarHeight = 0;
@@ -29,7 +27,6 @@ const useStyles = makeStyles((theme) => ({
         Height: appBarHeight,
         marginLeft: drawerWidth,
         marginBottom: 65,
-
     },
     drawer: {
         width: drawerWidth,
@@ -83,8 +80,15 @@ export default function PermanentDrawerLeft() {
                 </List>
                 <Divider />
                 <List>
-                    <ListItem button >Challenge Category</ListItem>
-                    {['Challenge 1', 'Challenge 2', 'Challenge 3'].map((text, index) => (
+                    <ListItem button >
+                        <ListItemIcon>
+                            <CollectionsBookmarkIcon/>
+                        </ListItemIcon>
+                        <ListItemText>
+                            Challenge Set 1
+                        </ListItemText>
+                    </ListItem>
+                    {['Webpage Structure', 'Ciphers and Basic Encryption', 'Directory Traversal Attacks', 'SQL Injection', 'Cumulative Challenge'].map((text) => (
                         <ListItem button key={text}>
                             <ListItemIcon><CodeIcon/></ListItemIcon>
                             <ListItemText primary={text} />
