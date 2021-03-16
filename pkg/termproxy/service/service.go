@@ -19,6 +19,7 @@ type TermproxyServiceImpl struct {
 	LookupClient pb.EnvironmentLookupServiceClient
 }
 
+// key will load a key from disk.
 func key(path string) ssh.AuthMethod {
 	key, err := ioutil.ReadFile(path)
 	if err != nil {
@@ -40,6 +41,9 @@ func insecureHostKeyCallback() ssh.HostKeyCallback {
 	}
 }
 
+// ProxyTerminal opens a bi-directional stream that allows a player to connect
+// to a terminal over SSH, without using SSH on their side. We open the SSH
+// connection for them and relay messages back and forth.
 func (tp *TermproxyServiceImpl) ProxyTerminal(srv pb.TermproxyService_ProxyTerminalServer) error {
 	// Receive the first message.
 	initMsg, err := srv.Recv()
