@@ -17,7 +17,8 @@ requirements are very involved. Because we're running isolated environments in
 Kubernetes, we have to be able to both provision those on the fly, as well as
 connect to them with a terminal. Finally, we had to tie it together to deploy
 into a cloud-like environment for the demo, which is one of our teammate's
-personal Kubernetes clusters.
+personal Kubernetes clusters. This will be migrated to a cloud service in the
+near future.
 
 Additionally, we have some GitHub Actions workflows set up, but they're still
 in progress. Go tests run currently, and there are a large number of linters
@@ -29,7 +30,10 @@ the main branch.
 #### Demo Meeting
 Our demo meeting recording is provided below, we were the first to go and were
 approximately 10-15 minutes. The rest of the time is with our sister team,
-Anatomy of Attack.
+Anatomy of Attack. It should be noted that this was just a rehersal demo and that
+we had originally been planning on meeting with them Friday 3/19 to do our demo,
+but Renuka and Mudit wanted to do a rehersal before our in class presentation and
+official sponsor demo which is still scheduled for 3/19.
 [Demo Meeting Recording](https://emailwsu.sharepoint.com/teams/2021.PULLM.CptS.421.423-F5CTF/Shared%20Documents/F5%20CTF/Meeting%20Notes/Demo%20Recordings/2021-03-15%2015-58-36.mkv)
 
 #### Tests
