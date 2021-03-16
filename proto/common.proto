@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package goctfprototype;
+package ctf;
 
 option go_package = "github.com/acasi-ctf/ctf/pb";
 

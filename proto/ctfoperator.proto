@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package goctfprototype;
+package ctf;
 
 import "common.proto";
 
@@ -14,13 +14,6 @@ message StartEnvironmentRequest {
    * Slug name of the environment template.
    */
   string template_slug = 1;
-
-  /**
-   * SSH public key that the environment's penimage will use to authenticate
-   * with.
-   * TODO: Determine what format to use.
-   */
-  bytes ssh_public_key = 2;
 }
 
 /**
@@ -63,4 +56,28 @@ service EnvironmentProvisioningService {
   rpc StartEnvironment(StartEnvironmentRequest)
     returns (StartEnvironmentResponse);
   rpc StopEnvironment(StopEnvironmentRequest) returns (StopEnvironmentResponse);
+}
+
+message IsEnvironmentReadyRequest {
+  UUID environment_id = 1;
+}
+
+message IsEnvironmentReadyResponse {
+  bool ready = 1;
+}
+
+message GetEnvironmentInfoRequest {
+  UUID environment_id = 1;
+}
+
+message GetEnvironmentInfoResponse {
+  string ssh_host = 1;
+  int32 ssh_port = 2;
+}
+
+service EnvironmentLookupService {
+  rpc IsEnvironmentReady(IsEnvironmentReadyRequest) returns
+      (IsEnvironmentReadyResponse);
+  rpc GetEnvironmentInfo(GetEnvironmentInfoRequest) returns
+      (GetEnvironmentInfoResponse);
 }

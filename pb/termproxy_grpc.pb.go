@@ -18,7 +18,7 @@ const _ = grpc.SupportPackageIsVersion7
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TermproxyServiceClient interface {
-	OpenTerminal(ctx context.Context, opts ...grpc.CallOption) (TermproxyService_OpenTerminalClient, error)
+	ProxyTerminal(ctx context.Context, opts ...grpc.CallOption) (TermproxyService_ProxyTerminalClient, error)
 }
 
 type termproxyServiceClient struct {
@@ -29,31 +29,31 @@ func NewTermproxyServiceClient(cc grpc.ClientConnInterface) TermproxyServiceClie
 	return &termproxyServiceClient{cc}
 }
 
-func (c *termproxyServiceClient) OpenTerminal(ctx context.Context, opts ...grpc.CallOption) (TermproxyService_OpenTerminalClient, error) {
-	stream, err := c.cc.NewStream(ctx, &TermproxyService_ServiceDesc.Streams[0], "/TermproxyService/OpenTerminal", opts...)
+func (c *termproxyServiceClient) ProxyTerminal(ctx context.Context, opts ...grpc.CallOption) (TermproxyService_ProxyTerminalClient, error) {
+	stream, err := c.cc.NewStream(ctx, &TermproxyService_ServiceDesc.Streams[0], "/TermproxyService/ProxyTerminal", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &termproxyServiceOpenTerminalClient{stream}
+	x := &termproxyServiceProxyTerminalClient{stream}
 	return x, nil
 }
 
-type TermproxyService_OpenTerminalClient interface {
-	Send(*TerminalBytes) error
-	Recv() (*TerminalBytes, error)
+type TermproxyService_ProxyTerminalClient interface {
+	Send(*ClientMessage) error
+	Recv() (*ServerMessage, error)
 	grpc.ClientStream
 }
 
-type termproxyServiceOpenTerminalClient struct {
+type termproxyServiceProxyTerminalClient struct {
 	grpc.ClientStream
 }
 
-func (x *termproxyServiceOpenTerminalClient) Send(m *TerminalBytes) error {
+func (x *termproxyServiceProxyTerminalClient) Send(m *ClientMessage) error {
 	return x.ClientStream.SendMsg(m)
 }
 
-func (x *termproxyServiceOpenTerminalClient) Recv() (*TerminalBytes, error) {
-	m := new(TerminalBytes)
+func (x *termproxyServiceProxyTerminalClient) Recv() (*ServerMessage, error) {
+	m := new(ServerMessage)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -64,7 +64,7 @@ func (x *termproxyServiceOpenTerminalClient) Recv() (*TerminalBytes, error) {
 // All implementations must embed UnimplementedTermproxyServiceServer
 // for forward compatibility
 type TermproxyServiceServer interface {
-	OpenTerminal(TermproxyService_OpenTerminalServer) error
+	ProxyTerminal(TermproxyService_ProxyTerminalServer) error
 	mustEmbedUnimplementedTermproxyServiceServer()
 }
 
@@ -72,8 +72,8 @@ type TermproxyServiceServer interface {
 type UnimplementedTermproxyServiceServer struct {
 }
 
-func (UnimplementedTermproxyServiceServer) OpenTerminal(TermproxyService_OpenTerminalServer) error {
-	return status.Errorf(codes.Unimplemented, "method OpenTerminal not implemented")
+func (UnimplementedTermproxyServiceServer) ProxyTerminal(TermproxyService_ProxyTerminalServer) error {
+	return status.Errorf(codes.Unimplemented, "method ProxyTerminal not implemented")
 }
 func (UnimplementedTermproxyServiceServer) mustEmbedUnimplementedTermproxyServiceServer() {}
 
@@ -88,26 +88,26 @@ func RegisterTermproxyServiceServer(s grpc.ServiceRegistrar, srv TermproxyServic
 	s.RegisterService(&TermproxyService_ServiceDesc, srv)
 }
 
-func _TermproxyService_OpenTerminal_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(TermproxyServiceServer).OpenTerminal(&termproxyServiceOpenTerminalServer{stream})
+func _TermproxyService_ProxyTerminal_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(TermproxyServiceServer).ProxyTerminal(&termproxyServiceProxyTerminalServer{stream})
 }
 
-type TermproxyService_OpenTerminalServer interface {
-	Send(*TerminalBytes) error
-	Recv() (*TerminalBytes, error)
+type TermproxyService_ProxyTerminalServer interface {
+	Send(*ServerMessage) error
+	Recv() (*ClientMessage, error)
 	grpc.ServerStream
 }
 
-type termproxyServiceOpenTerminalServer struct {
+type termproxyServiceProxyTerminalServer struct {
 	grpc.ServerStream
 }
 
-func (x *termproxyServiceOpenTerminalServer) Send(m *TerminalBytes) error {
+func (x *termproxyServiceProxyTerminalServer) Send(m *ServerMessage) error {
 	return x.ServerStream.SendMsg(m)
 }
 
-func (x *termproxyServiceOpenTerminalServer) Recv() (*TerminalBytes, error) {
-	m := new(TerminalBytes)
+func (x *termproxyServiceProxyTerminalServer) Recv() (*ClientMessage, error) {
+	m := new(ClientMessage)
 	if err := x.ServerStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -123,8 +123,8 @@ var TermproxyService_ServiceDesc = grpc.ServiceDesc{
 	Methods:     []grpc.MethodDesc{},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "OpenTerminal",
-			Handler:       _TermproxyService_OpenTerminal_Handler,
+			StreamName:    "ProxyTerminal",
+			Handler:       _TermproxyService_ProxyTerminal_Handler,
 			ServerStreams: true,
 			ClientStreams: true,
 		},

@@ -4,18 +4,18 @@
 import * as termproxy_pb from "./termproxy_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 
-type TermproxyServiceOpenTerminal = {
+type TermproxyServiceProxyTerminal = {
   readonly methodName: string;
   readonly service: typeof TermproxyService;
   readonly requestStream: true;
   readonly responseStream: true;
-  readonly requestType: typeof termproxy_pb.TerminalBytes;
-  readonly responseType: typeof termproxy_pb.TerminalBytes;
+  readonly requestType: typeof termproxy_pb.ClientMessage;
+  readonly responseType: typeof termproxy_pb.ServerMessage;
 };
 
 export class TermproxyService {
   static readonly serviceName: string;
-  static readonly OpenTerminal: TermproxyServiceOpenTerminal;
+  static readonly ProxyTerminal: TermproxyServiceProxyTerminal;
 }
 
 export type ServiceError = { message: string, code: number; metadata: grpc.Metadata }
@@ -50,6 +50,6 @@ export class TermproxyServiceClient {
   readonly serviceHost: string;
 
   constructor(serviceHost: string, options?: grpc.RpcOptions);
-  openTerminal(metadata?: grpc.Metadata): BidirectionalStream<termproxy_pb.TerminalBytes, termproxy_pb.TerminalBytes>;
+  proxyTerminal(metadata?: grpc.Metadata): BidirectionalStream<termproxy_pb.ClientMessage, termproxy_pb.ServerMessage>;
 }
 

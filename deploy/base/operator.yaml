@@ -9,7 +9,7 @@ spec:
   selector:
     matchLabels:
       app: ctf-operator
-  strategy: {}
+  strategy: { }
   template:
     metadata:
       labels:
@@ -17,9 +17,17 @@ spec:
     spec:
       serviceAccountName: operator
       containers:
-      - image: ghcr.io/acasi-ctf/ctf/operator:latest
-        name: operator
-        resources: {}
+        - image: ghcr.io/acasi-ctf/ctf/operator:latest
+          name: operator
+          resources: { }
+          volumeMounts:
+            - name: auth-key-public
+              mountPath: /secrets/auth-key-public
+              readOnly: true
+      volumes:
+        - name: auth-key-public
+          secret:
+            secretName: auth-key-public
 ---
 apiVersion: v1
 kind: Service
@@ -29,8 +37,8 @@ metadata:
   name: operator
 spec:
   ports:
-  - port: 1234
-    protocol: TCP
-    targetPort: 1234
+    - port: 1234
+      protocol: TCP
+      targetPort: 1234
   selector:
     app: ctf-operator

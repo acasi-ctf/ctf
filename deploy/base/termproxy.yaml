@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: termproxy
+  labels:
+    app: ctf-termproxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ctf-termproxy
+  strategy: { }
+  template:
+    metadata:
+      labels:
+        app: ctf-termproxy
+    spec:
+      containers:
+        - image: ghcr.io/acasi-ctf/ctf/termproxy:latest
+          name: termproxy
+          resources: { }
+          volumeMounts:
+            - name: auth-key-private
+              mountPath: /secrets/auth-key-private
+              readOnly: true
+      volumes:
+        - name: auth-key-private
+          secret:
+            secretName: auth-key-private
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: ctf-termproxy
+  name: termproxy
+spec:
+  ports:
+    - name: grpc
+      port: 1234
+      protocol: TCP
+      targetPort: 1234
+    - name: grpc-web
+      port: 1235
+      protocol: TCP
+      targetPort: 1235
+  selector:
+    app: ctf-termproxy

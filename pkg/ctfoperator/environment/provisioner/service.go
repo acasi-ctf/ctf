@@ -1,22 +1,29 @@
-package ctfoperator
+package provisioner
 
 import (
 	"context"
-	"github.com/google/uuid"
+	"fmt"
 	"github.com/acasi-ctf/ctf/pb"
+	"github.com/acasi-ctf/ctf/pb/uuidw"
+	"github.com/acasi-ctf/ctf/pkg/ctfoperator/constants"
+	"github.com/acasi-ctf/ctf/pkg/ctfoperator/model"
+	"github.com/google/uuid"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
+	"google.golang.org/protobuf/types/known/timestamppb"
+	"io/ioutil"
 	core "k8s.io/api/core/v1"
 	meta "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
-	"k8s.io/client-go/rest"
 )
 
-type provisioningService struct {
+type ProvisioningService struct {
 	pb.UnimplementedEnvironmentProvisioningServiceServer
+	EnvDao     *model.EnvironmentDao
+	KubeClient *kubernetes.Clientset
 }
 
-func (s *provisioningService) StartEnvironment(ctx context.Context, _ *pb.StartEnvironmentRequest) (*pb.StartEnvironmentResponse, error) {
+func (s *ProvisioningService) StartEnvironment(ctx context.Context, _ *pb.StartEnvironmentRequest) (*pb.StartEnvironmentResponse, error) {
 	// TODO: All (nil, err) returns need to be using an error response instead.
 	//  This still needs work on the Protobuf side to hash out how error responses
 	//  will work. Just noting this here.
@@ -26,31 +33,39 @@ func (s *provisioningService) StartEnvironment(ctx context.Context, _ *pb.StartE
 	//  reconciliation loop will read database, and "reconcile" the state of the
 	//  cluster into what the database reflects.
 
-	// Create a config to communicate with the Kubernetes API server.
-	config, err := rest.InClusterConfig()
-	if err != nil {
-		return nil, err
-	}
-
-	// Create a client with our config.
-	client, err := kubernetes.NewForConfig(config)
-	if err != nil {
-		return nil, err
-	}
-
 	// Generate a new UUID to uniquely identify this environment.
 	envId, err := uuid.NewRandom()
 	if err != nil {
 		return nil, err
 	}
+	envIdStr := envId.String()
+
+	nowTs := timestamppb.Now()
+	env := &pb.Environment{
+		CreatedTime:     nowTs,
+		LastPingTime:    nowTs,
+		ProvisionerDone: false,
+		ProvisionerType: pb.ProvisionerType_KUBERNETES,
+	}
+
+	err = s.EnvDao.Set(uuidw.GoogleToProto(envId), env)
+	if err != nil {
+		return nil, err
+	}
+
+	publicKeyBytes, err := ioutil.ReadFile("/secrets/auth-key-public/id_rsa.pub")
+	if err != nil {
+		return nil, err
+	}
+	publicKey := string(publicKeyBytes)
 
 	// Create a single penimage pod for testing.
-	pod, err := client.CoreV1().Pods("ctf").Create(ctx, &core.Pod{
+	_, err = s.KubeClient.CoreV1().Pods(constants.KubeNamespace).Create(ctx, &core.Pod{
 		// Specify the names and a sample label for tracking the resource.
 		ObjectMeta: meta.ObjectMeta{
-			Name: "ctf-test-pod",
+			Name: fmt.Sprintf("ctf-penimage-%s", envIdStr),
 			Labels: map[string]string{
-				"ctf-env-id": envId.String(),
+				"ctf-env-id": envIdStr,
 			},
 		},
 		// Pod spec, specify a single container (pods can be *multiple* containers that share
@@ -63,8 +78,15 @@ func (s *provisioningService) StartEnvironment(ctx context.Context, _ *pb.StartE
 					// Image that we want to use for the container.
 					Image: "ghcr.io/acasi-ctf/ctf/penimage:latest",
 					// Image pull policy will determine how to update an image. Always will
-					//  well, always check for the latest version on pod creation.
+					//  always pull a new version, if available, on pod creation.
 					ImagePullPolicy: core.PullAlways,
+					// Add the public key for the SSH server.
+					Env: []core.EnvVar{
+						{
+							Name:  "PUBLIC_KEY",
+							Value: publicKey,
+						},
+					},
 				},
 			},
 		},
@@ -73,22 +95,16 @@ func (s *provisioningService) StartEnvironment(ctx context.Context, _ *pb.StartE
 		return nil, err
 	}
 
-	// This likely isn't filled in yet, as the Kubernetes scheduler probably
-	//  hasn't scheduled it yet, so it's blank usually.
-	println(pod.Status.PodIP)
-
 	// Return a successful response with the new environment ID.
 	return &pb.StartEnvironmentResponse{
 		Response: &pb.StartEnvironmentResponse_Success{
 			Success: &pb.StartEnvironmentSuccessResponse{
-				EnvironmentId: &pb.UUID{
-					Contents: envId.String(),
-				},
+				EnvironmentId: uuidw.ProtoFromString(envIdStr),
 			},
 		},
 	}, nil
 }
 
-func (s *provisioningService) StopEnvironment(context.Context, *pb.StopEnvironmentRequest) (*pb.StopEnvironmentResponse, error) {
+func (s *ProvisioningService) StopEnvironment(context.Context, *pb.StopEnvironmentRequest) (*pb.StopEnvironmentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method StopEnvironment not implemented")
 }

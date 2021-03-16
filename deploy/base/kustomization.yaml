@@ -1,6 +1,14 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+namePrefix: ctf-
 resources:
   - operator.yaml
   - sa.yaml
-namePrefix: ctf-
+  - termproxy.yaml
+secretGenerator:
+  - name: auth-key-private
+    files:
+      - id_rsa
+  - name: auth-key-public
+    files:
+      - id_rsa.pub
