@@ -1,5 +1,8 @@
 {
   "$schema": "../base/challenge.schema.json",
+  "manifestVersion": 1,
+  "id": "f332ab2e-6b10-42e6-8c54-6902f0dc01a4",
+  "slug": "example-challenge",
   "name": "Example Challenge",
   "description": "This is a basic challenge that is used as a Hello World example to creating your own challenges.",
   "version": "1.0.0",
