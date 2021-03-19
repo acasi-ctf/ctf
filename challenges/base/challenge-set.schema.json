@@ -1,0 +1,6 @@
+{
+  "$id": "challenge-set-schema",
+  "$schema": "https://json-schema.org/draft-07/schema",
+  "title": "challenge-set",
+  "description": "Describes a set of challenges"
+}

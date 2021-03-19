@@ -4,16 +4,38 @@
   "title": "challenge",
   "description": "Describes high-level information for a challenge",
   "properties": {
+    "manifestVersion": {
+      "description": "Version of manifest this schema is using, backend will validate this against what it currently supports",
+      "type": "integer",
+      "enum": [
+        1
+      ]
+    },
+    "id": {
+      "description": "UUID for this challenge, must be unique amongst other challenges",
+      "type": "string",
+      "format": "uuid",
+      "pattern": "^[0-9a-fA-F]{8}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{12}$"
+    },
+    "slug": {
+      "description": "URL-friendly name for this challenge, must be unique within a challenge set",
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
     "name": {
+      "description": "Human-facing name of the challenge",
       "type": "string"
     },
     "description": {
+      "description": "Human-facing description of the challenge",
       "type": "string"
     },
     "version": {
+      "description": "Version number for this challenge, should be incremented upon releases or changes",
       "type": "string"
     },
     "provisioner": {
+      "description": "Provisioner-backend that is used to create environments for this challenge",
       "properties": {
         "type": {
           "type": "string",
@@ -28,6 +50,9 @@
     }
   },
   "required": [
+    "manifestVersion",
+    "id",
+    "slug",
     "name",
     "description",
     "version",
