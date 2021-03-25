@@ -47,15 +47,15 @@ set -x \
             && savedAptMark="$(apt-mark showmanual)" \
             \
             && apt-get update \
-            && apt-get build-dep -y $nginxPackages \
+            && apt-get build-dep -y "$nginxPackages" \
             && ( \
                 cd "$tempDir" \
                 && DEB_BUILD_OPTIONS="nocheck parallel=$(nproc)" \
-                    apt-get source --compile $nginxPackages \
+                    apt-get source --compile "$nginxPackages" \
             ) \
             \
             && apt-mark showmanual | xargs apt-mark auto > /dev/null \
-            && { [ -z "$savedAptMark" ] || apt-mark manual $savedAptMark; } \
+            && { [ -z "$savedAptMark" ] || apt-mark manual "$savedAptMark"; } \
             \
             && ls -lAFh "$tempDir" \
             && ( cd "$tempDir" && dpkg-scanpackages . > Packages ) \
@@ -66,7 +66,7 @@ set -x \
     esac \
     \
     && apt-get install --no-install-recommends --no-install-suggests -y \
-                        $nginxPackages \
+                        "$nginxPackages" \
                         gettext-base \
     && apt-get remove --purge --auto-remove -y ca-certificates && rm -rf /var/lib/apt/lists/* /etc/apt/sources.list.d/nginx.list \
     \

@@ -16,6 +16,7 @@ else
     content_server='server {\n'
     content_server=$content_server"    listen ${USE_LISTEN_PORT};\n"
     content_server=$content_server'    location / {\n'
+    # shellcheck disable=SC2016
     content_server=$content_server'        try_files $uri @app;\n'
     content_server=$content_server'    }\n'
     content_server=$content_server'    location @app {\n'
@@ -33,7 +34,7 @@ else
     fi
     content_server=$content_server'}\n'
     # Save generated server /etc/nginx/conf.d/nginx.conf
-    printf "$content_server" > /etc/nginx/conf.d/nginx.conf
+    printf "%s" "$content_server" > /etc/nginx/conf.d/nginx.conf
 fi
 
 # For Alpine:
