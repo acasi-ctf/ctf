@@ -20,7 +20,7 @@ RUN rm /etc/nginx/conf.d/default.conf
 COPY images/frontend/uwsgi.ini /etc/uwsgi/
 
 # Install Supervisord
-RUN apt-get update && apt-get install -y supervisor \
+RUN apt-get update && apt-get install -y --no-install-recommends supervisor \
 && rm -rf /var/lib/apt/lists/*
 # Custom Supervisord config
 COPY images/frontend/supervisord-debian.conf /etc/supervisor/conf.d/supervisord.conf
