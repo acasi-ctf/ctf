@@ -2,5 +2,46 @@
   "$id": "challenge-set-schema",
   "$schema": "https://json-schema.org/draft-07/schema",
   "title": "challenge-set",
-  "description": "Describes a set of challenges"
+  "description": "Describes a set of challenges",
+  "properties": {
+    "$schema": {
+    },
+    "id": {
+      "description": "UUID for this challenge, must be unique amongst other challenge sets",
+      "type": "string",
+      "format": "uuid",
+      "pattern": "^[0-9a-fA-F]{8}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{4}\\b-[0-9a-fA-F]{12}$"
+    },
+    "slug": {
+      "description": "URL-friendly name for this challenge, must be unique amongst other challenge sets",
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "name": {
+      "description": "Human-facing name of the challenge set",
+      "type": "string"
+    },
+    "description": {
+      "description": "Human-facing description of the challenge set",
+      "type": "string"
+    },
+    "version": {
+      "description": "Version number for this challenge set, should be incremented upon releases or changes",
+      "type": "string"
+    },
+    "challenges": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "id",
+    "slug",
+    "name",
+    "description",
+    "version",
+    "challenges"
+  ]
 }
