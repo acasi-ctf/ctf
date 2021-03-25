@@ -6,7 +6,7 @@ IMAGETAG = latest
 all: proto docker
 
 proto: $(PROTOSRC)
-docker: docker_penimage docker_termproxy docker_operator docker_ui
+docker: docker_penimage docker_termproxy docker_operator docker_ui docker_frontend
 
 $(PROTOSRC): %:%.proto
 	mkdir -p pb/
@@ -34,6 +34,12 @@ docker_ui:
 	docker build -t $(IMAGEBASE)/ui:$(IMAGETAG) -f images/ui/Dockerfile .
 ifeq ($(DOCKER_PUSH), 1)
 		docker push $(IMAGEBASE)/ui:$(IMAGETAG)
+endif
+
+docker_frontend:
+	docker build -t $(IMAGEBASE)/frontend:$(IMAGETAG) -f images/frontend/Dockerfile .
+ifeq ($(DOCKER_PUSH), 1)
+		docker push $(IMAGEBASE)/frontend:$(IMAGETAG)
 endif
 
 lint:
