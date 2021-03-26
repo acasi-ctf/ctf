@@ -40,11 +40,24 @@
       ]
     },
     "documentation": {
-      "description": "List of paths to documentation in Markdown format",
+      "description": "List of documentation pages for this challenge in order",
       "type": "array",
       "items": {
-        "type": "string",
-        "format": "path"
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "Short name to be used in the tab",
+            "type": "string"
+          },
+          "path": {
+            "description": "Path to the documentation in Markdown format",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "path"
+        ]
       }
     }
   },
