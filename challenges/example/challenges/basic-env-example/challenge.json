@@ -1,5 +1,5 @@
 {
-  "$schema": "../../../base/challenge.schema.json",
+  "$schema": "../../../schemas/challenge.schema.json",
   "id": "f332ab2e-6b10-42e6-8c54-6902f0dc01a4",
   "slug": "example-challenge",
   "name": "Basic Environment Example",
@@ -8,8 +8,17 @@
     "type": "kubernetes"
   },
   "documentation": [
-    "docs/Hello1.md",
-    "docs/Hello2.md",
-    "docs/Hello3.md"
+    {
+      "name": "Hello 1",
+      "path": "docs/Hello1.md"
+    },
+    {
+      "name": "Hello 2",
+      "path": "docs/Hello2.md"
+    },
+    {
+      "name": "Hello 3",
+      "path": "docs/Hello3.md"
+    }
   ]
 }
