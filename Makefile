@@ -47,3 +47,6 @@ lint:
 		-e VALIDATE_TYPESCRIPT_STANDARD=false -e VALIDATE_GO=false -e VALIDATE_JSCPD=false -e VALIDATE_PYTHON_FLAKE8=false \
 		-e VALIDATE_PYTHON_ISORT=false \
 		-e LOG_LEVEL=WARN -e FILTER_REGEX_EXCLUDE=".*pb.*" -v $(shell pwd):/tmp/lint --rm github/super-linter:latest
+
+gotest:
+	go test ./...

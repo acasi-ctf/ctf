@@ -15,27 +15,33 @@
     "slug": {
       "description": "URL-friendly name for this challenge, must be unique amongst other challenge sets",
       "type": "string",
-      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "minLength": 1
     },
     "name": {
       "description": "Human-facing name of the challenge set",
-      "type": "string"
+      "type": "string",
+      "minLength": 1
     },
     "description": {
       "description": "Human-facing description of the challenge set",
-      "type": "string"
+      "type": "string",
+      "minLength": 1
     },
     "version": {
       "description": "Version number for this challenge set, should be incremented upon releases or changes",
-      "type": "string"
+      "type": "string",
+      "minLength": 1
     },
     "challenges": {
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "minItems": 1
     }
   },
+  "additionalProperties": false,
   "required": [
     "id",
     "slug",

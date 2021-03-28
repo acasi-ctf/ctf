@@ -110,7 +110,7 @@ func TestEnvironmentDao_Set(t *testing.T) {
 
 	// Query the bbolt database to ensure that the key-value pair was inserted
 	// and the contents are what we expect them to be after unmarshalling them.
-	dao.db.View(func(tx *bolt.Tx) error {
+	err = dao.db.View(func(tx *bolt.Tx) error {
 		// Get the environment bucket.
 		b := tx.Bucket(environmentBucket)
 
@@ -134,6 +134,9 @@ func TestEnvironmentDao_Set(t *testing.T) {
 
 		return nil
 	})
+	if err != nil {
+		t.Fatal(err)
+	}
 }
 
 // TestEnvironmentDao_List will create a DAO and test the List operation.
