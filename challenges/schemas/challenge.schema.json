@@ -15,15 +15,18 @@
     "slug": {
       "description": "URL-friendly name for this challenge, must be unique within a challenge set",
       "type": "string",
-      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "minLength": 1
     },
     "name": {
       "description": "Human-facing name of the challenge",
-      "type": "string"
+      "type": "string",
+      "minLength": 1
     },
     "description": {
       "description": "Human-facing description of the challenge",
-      "type": "string"
+      "type": "string",
+      "minLength": 1
     },
     "provisioner": {
       "description": "Provisioner-backend that is used to create environments for this challenge",
