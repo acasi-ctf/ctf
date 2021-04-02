@@ -1,12 +1,23 @@
-openapi: 3.0.3
+openapi: 3.1.0
 info:
-  title: Title
-  description: Title
-  version: 1.0.0
+  title: CTF Frontend API
+  description: Frontend API for querying challenge sets, challenges, etc. from the CTF platform.
+  version: 0.1.0
 servers:
-  - url: 'http://ctf.gorence.io/'
+  - url: '/'
 paths:
-  /api/challenge-set/{challenge-set-slug}:
+  /api/challenge-sets:
+    get:
+      responses:
+        '200':
+          description: List of challenge sets
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ChallengeSet'
+  /api/challenge-sets/{challenge-set-slug}:
     get:
       parameters:
         - name: challenge-set-slug
@@ -23,7 +34,20 @@ paths:
                 $ref: '#/components/schemas/ChallengeSet'
         '404':
           description: Challenge set was not found
-  /api/challenge-set/{challenge-set-slug}/challenge/{challenge-slug}:
+  /api/challenge-sets/{challenge-set-slug}/challenges:
+    get:
+      responses:
+        '200':
+          description: List of challenges for challenge set
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ChallengeSet'
+        '404':
+          description: Challenge set was not found
+  /api/challenge-sets/{challenge-set-slug}/challenges/{challenge-slug}:
     get:
       parameters:
         - name: challenge-set-slug
@@ -45,7 +69,7 @@ paths:
                 $ref: '#/components/schemas/Challenge'
         '404':
           description: Challenge was not found
-  /api/challenge-set/{challenge-set-slug}/challenge/{challenge-slug}/docs/{doc-path}:
+  /api/challenge-sets/{challenge-set-slug}/challenges/{challenge-slug}/docs/{doc-path}:
     get:
       parameters:
         - name: challenge-set-slug
