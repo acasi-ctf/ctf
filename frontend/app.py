@@ -5,7 +5,7 @@ from .extensions import (
     migrate,
 )
 
-from .model.challenge import *
+from .model.challenges import *
 
 
 def create_app(config_object="frontend.settings"):
@@ -30,7 +30,10 @@ def register_extensions(app):
 
 def register_blueprints(app):
     """Register Flask blueprints."""
-    from .routes.api import admin_api_bp
+    from .routes.api import admin_challenges_bp, challenges_bp
 
-    app.register_blueprint(admin_api_bp)
+    app.register_blueprint(challenges_bp, url_prefix="/api/")
+
+    app.register_blueprint(admin_challenges_bp, url_prefix="/api/admin/")
+
     return None

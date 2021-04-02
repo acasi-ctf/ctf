@@ -15,6 +15,7 @@ class ChallengeSet(db.Model):
     slug = Column(
         Text(),
         index=True,
+        unique=True,
         nullable=False
     )
     name = Column(
@@ -39,12 +40,13 @@ class Challenge(db.Model):
         primary_key=True,
         server_default=text("uuid_generate_v4()")
     )
-    parent = Column(UUID(as_uuid=True),
-                    ForeignKey("challenge_set.id", ondelete='CASCADE'),
-                    nullable=False)
     slug = Column(
         Text(),
-        index=True,
+        nullable=False
+    )
+    parent_id = Column(
+        UUID(as_uuid=True),
+        ForeignKey("challenge_set.id", ondelete='CASCADE'),
         nullable=False
     )
     name = Column(

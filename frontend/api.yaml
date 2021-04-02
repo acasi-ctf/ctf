@@ -104,7 +104,6 @@ components:
         - slug
         - name
         - description
-        - version
         - challenges
       properties:
         id:
@@ -116,12 +115,6 @@ components:
           type: string
         description:
           type: string
-        version:
-          type: string
-        challenges:
-          type: array
-          items:
-            type: string
     Challenge:
       type: object
       required:
@@ -129,7 +122,6 @@ components:
         - slug
         - name
         - description
-        - version
         - documentation
       properties:
         id:
