@@ -1,13 +1,13 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, Response
 
 bp = Blueprint("admin_challenges", __name__)
 
 
-@bp.route("/", methods=["GET"])
-def api_admin_challenges_list():
+@bp.route("/challenge-sets", methods=["GET"])
+def api_admin_challenge_sets_list():
     return "[]"
 
 
-@bp.route("/", methods=["POST"])
+@bp.route("/challenge-sets", methods=["POST"])
 def api_admin_challenges_create():
-    return {"test": 123}
+    return Response(status=204)
