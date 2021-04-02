@@ -10,9 +10,11 @@ const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
     },
+
     menuButton: {
         marginRight: theme.spacing(2),
     },
+    
     title: {
         flexGrow: 1,
         display: 'none',
@@ -20,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
             display: 'block',
         },
     },
+
     search: {
         position: 'relative',
         borderRadius: theme.shape.borderRadius,
@@ -34,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
             width: 'auto',
         },
     },
+
     searchIcon: {
         padding: theme.spacing(0, 2),
         height: '100%',
@@ -43,9 +47,11 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         justifyContent: 'center',
     },
+
     inputRoot: {
         color: 'inherit',
     },
+
     inputInput: {
         padding: theme.spacing(1, 1, 1, 0),
         // vertical padding + font size from searchIcon
@@ -68,7 +74,6 @@ export default function ChallengeBar() {
         <div className={classes.root}>
             <AppBar position="static">
                 <Toolbar>
-
                     <Typography className={classes.title} variant="h6" noWrap>
                         Current Challenge: Caesar Cipher
                     </Typography>
