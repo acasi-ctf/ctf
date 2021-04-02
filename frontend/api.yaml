@@ -1,0 +1,129 @@
+openapi: 3.0.3
+info:
+  title: Title
+  description: Title
+  version: 1.0.0
+servers:
+  - url: 'http://ctf.gorence.io/'
+paths:
+  /api/challenge-set/{challenge-set-slug}:
+    get:
+      parameters:
+        - name: challenge-set-slug
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Challenge set was found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChallengeSet'
+        '404':
+          description: Challenge set was not found
+  /api/challenge-set/{challenge-set-slug}/challenge/{challenge-slug}:
+    get:
+      parameters:
+        - name: challenge-set-slug
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: challenge-slug
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Challenge was found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Challenge'
+        '404':
+          description: Challenge was not found
+  /api/challenge-set/{challenge-set-slug}/challenge/{challenge-slug}/docs/{doc-path}:
+    get:
+      parameters:
+        - name: challenge-set-slug
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: challenge-slug
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: doc-path
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Documentation was found
+          content:
+            text/markdown: {}
+        '404':
+          description: Documentation was not found
+
+components:
+  schemas:
+    ChallengeSet:
+      type: object
+      required:
+        - id
+        - slug
+        - name
+        - description
+        - version
+        - challenges
+      properties:
+        id:
+          type: string
+          format: uuid
+        slug:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        version:
+          type: string
+        challenges:
+          type: array
+          items:
+            type: string
+    Challenge:
+      type: object
+      required:
+        - id
+        - slug
+        - name
+        - description
+        - version
+        - documentation
+      properties:
+        id:
+          type: string
+          format: uuid
+        slug:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        documentation:
+          type: array
+          items:
+            type: object
+            items:
+              properties:
+                name:
+                  type: string
+                path:
+                  type: string
