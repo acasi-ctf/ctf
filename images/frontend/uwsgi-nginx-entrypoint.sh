@@ -1,4 +1,5 @@
 #!/usr/bin/env sh
+# shellcheck disable=SC2059
 set -e
 
 # Get the maximum upload file size for Nginx, default to 0: unlimited

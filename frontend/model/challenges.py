@@ -8,60 +8,27 @@ class ChallengeSet(db.Model):
     __tablename__ = "challenge_set"
 
     id = Column(
-        UUID(as_uuid=True),
-        primary_key=True,
-        server_default=text("uuid_generate_v4()")
+        UUID(as_uuid=True), primary_key=True, server_default=text("uuid_generate_v4()")
     )
-    slug = Column(
-        Text(),
-        index=True,
-        unique=True,
-        nullable=False
-    )
-    name = Column(
-        Text(),
-        nullable=False
-    )
-    description = Column(
-        Text(),
-        nullable=False
-    )
-    version = Column(
-        Text(),
-        nullable=False
-    )
+    slug = Column(Text(), index=True, unique=True, nullable=False)
+    name = Column(Text(), nullable=False)
+    description = Column(Text(), nullable=False)
+    version = Column(Text(), nullable=False)
 
 
 class Challenge(db.Model):
     __tablename__ = "challenge"
 
     id = Column(
-        UUID(as_uuid=True),
-        primary_key=True,
-        server_default=text("uuid_generate_v4()")
+        UUID(as_uuid=True), primary_key=True, server_default=text("uuid_generate_v4()")
     )
-    slug = Column(
-        Text(),
-        nullable=False
-    )
+    slug = Column(Text(), nullable=False)
     parent_id = Column(
         UUID(as_uuid=True),
-        ForeignKey("challenge_set.id", ondelete='CASCADE'),
-        nullable=False
+        ForeignKey("challenge_set.id", ondelete="CASCADE"),
+        nullable=False,
     )
-    name = Column(
-        Text(),
-        nullable=False
-    )
-    description = Column(
-        Text(),
-        nullable=False
-    )
-    provisioner = Column(
-        JSONB(),
-        nullable=False
-    )
-    documentation = Column(
-        JSONB(),
-        nullable=False
-    )
+    name = Column(Text(), nullable=False)
+    description = Column(Text(), nullable=False)
+    provisioner = Column(JSONB(), nullable=False)
+    documentation = Column(JSONB(), nullable=False)

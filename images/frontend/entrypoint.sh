@@ -1,4 +1,6 @@
 #! /usr/bin/env sh
+# shellcheck disable=SC2016
+# shellcheck disable=SC2059
 set -e
 
 /uwsgi-nginx-entrypoint.sh
