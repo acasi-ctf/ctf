@@ -42,7 +42,7 @@ else
         content=$content"worker_rlimit_nofile ${NGINX_WORKER_OPEN_FILES};\n"
     fi
     # Save generated /etc/nginx/nginx.conf
-    printf "%s" "$content" > /etc/nginx/nginx.conf
+    printf "$content" > /etc/nginx/nginx.conf
 
     content_server='server {\n'
     content_server=$content_server"    listen ${USE_LISTEN_PORT};\n"
@@ -52,10 +52,10 @@ else
     content_server=$content_server'    }\n'
     content_server=$content_server'}\n'
     # Save generated server /etc/nginx/conf.d/nginx.conf
-    printf "%s" "$content_server" > /etc/nginx/conf.d/nginx.conf
+    printf "$content_server" > /etc/nginx/conf.d/nginx.conf
 
     # Generate Nginx config for maximum upload file size
-    printf "client_max_body_size %s;\n" "$USE_NGINX_MAX_UPLOAD" > /etc/nginx/conf.d/upload.conf
+    printf "client_max_body_size $USE_NGINX_MAX_UPLOAD;\n" > /etc/nginx/conf.d/upload.conf
 
     # Remove default Nginx config from Alpine
     printf "" > /etc/nginx/conf.d/default.conf
