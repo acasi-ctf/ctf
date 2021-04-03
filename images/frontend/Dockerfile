@@ -62,7 +62,7 @@ ENTRYPOINT ["/entrypoint.sh"]
 # And then will start Supervisor, which in turn will start Nginx and uWSGI
 CMD ["/start.sh"]
 
-RUN pip install flask
+RUN pip install flask pipenv
 
 # URL under which static (not modified by Python) files will be requested
 # They will be served by Nginx directly, without being handled by uWSGI
@@ -92,4 +92,9 @@ ENTRYPOINT ["/entrypoint.sh"]
 CMD ["/start.sh"]
 
 COPY images/frontend/app-uwsgi.ini /app/uwsgi.ini
-COPY frontend /app
+COPY frontend /app/frontend
+COPY frontend/main.py /app/main.py
+COPY Pipfile Pipfile.lock /app/
+
+RUN pipenv lock -r > requirements.txt
+RUN pip install -r requirements.txt

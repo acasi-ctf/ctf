@@ -6,6 +6,7 @@ PRE_START_PATH=/app/prestart.sh
 echo "Checking for script in $PRE_START_PATH"
 if [ -f $PRE_START_PATH ] ; then
     echo "Running script $PRE_START_PATH"
+    # shellcheck disable=SC1090
     . $PRE_START_PATH
 else
     echo "There is no script $PRE_START_PATH"

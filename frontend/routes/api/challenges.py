@@ -6,12 +6,7 @@ bp = Blueprint("challenges", __name__)
 
 
 def map_challenge_set(x):
-    return {
-        "id": x.id,
-        "slug": x.slug,
-        "name": x.name,
-        "description": x.description
-    }
+    return {"id": x.id, "slug": x.slug, "name": x.name, "description": x.description}
 
 
 def map_challenge(x):
@@ -20,7 +15,7 @@ def map_challenge(x):
         "slug": x.slug,
         "name": x.name,
         "description": x.description,
-        "documentation": {}
+        "documentation": {},
     }
 
 

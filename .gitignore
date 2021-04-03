@@ -152,5 +152,7 @@ super-linter.log
 # Bolt databases
 *.db
 
+__pycache__
+
 # End of custom
 
