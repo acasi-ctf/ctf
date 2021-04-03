@@ -1,3 +1,1 @@
-SQLALCHEMY_DATABASE_URI = (
-    "postgresql://postgres:postgres@localhost:5432" "/ctf_frontend"
-)
+SQLALCHEMY_DATABASE_URI = "postgresql://postgres:postgres@localhost:5432/ctf_frontend"
