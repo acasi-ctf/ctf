@@ -11,15 +11,16 @@ import {
 } from "./generated/termproxy_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 import {UUID} from "./generated/common_pb";
+import { withWidth } from '@material-ui/core';
 
 const client = new TermproxyServiceClient("https://ctf.gorence.io", {
   transport: grpc.WebsocketTransport()
 });
 
-function Terminal() {
+export default function Terminal() {
   const xtermRef = useRef<XTerm>(null);
-
   useEffect(() => {
+  
     let stream = client.proxyTerminal();
     console.log('Starting stream');
 
@@ -33,7 +34,6 @@ function Terminal() {
     openClientMsg.setOpenConnection(openMsg);
 
     stream.write(openClientMsg);
-
     stream.on('data', message => {
       switch (message.getMessageCase()) {
         case ServerMessage.MessageCase.STDOUT:
@@ -70,10 +70,8 @@ function Terminal() {
   }, []);
 
   return (
-      <div className="App">
-        <XTerm ref={xtermRef}/>
+      <div className="Terminal-Container">
+        <XTerm  ref={xtermRef}/>
       </div>
   );
 }
-
-export default Terminal;
