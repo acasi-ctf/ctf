@@ -1,6 +1,6 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, Response
 
-from frontend.model.challenges import ChallengeSet, Challenge
+from frontend.model.challenges import ChallengeSet, Challenge, Documentation
 
 bp = Blueprint("challenges", __name__)
 
@@ -15,8 +15,12 @@ def map_challenge(x):
         "slug": x.slug,
         "name": x.name,
         "description": x.description,
-        "documentation": {},
+        "documentation": list(map(map_documentation, x.documentation)),
     }
+
+
+def map_documentation(x):
+    return {"path": x.path, "name": x.name, "order": x.order}
 
 
 @bp.route("/challenge-sets")
@@ -43,8 +47,19 @@ def list_challenge_set_challenges(challenge_set_slug):
 
 
 @bp.route("/challenge-sets/<challenge_set_slug>/challenges/<challenge_slug>")
-def get_challenge_set_challenge(challenge_set_slug, challenge_slug):
+def get_challenge(challenge_set_slug, challenge_slug):
     cs = ChallengeSet.query.filter_by(slug=challenge_set_slug).first_or_404()
     c = Challenge.query.filter_by(parent_id=cs.id, slug=challenge_slug).first_or_404()
 
     return jsonify(map_challenge(c))
+
+
+@bp.route(
+    "/challenge-sets/<challenge_set_slug>/challenges/<challenge_slug>/docs/<doc_path>"
+)
+def get_challenge_doc(challenge_set_slug, challenge_slug, doc_path):
+    cs = ChallengeSet.query.filter_by(slug=challenge_set_slug).first_or_404()
+    c = Challenge.query.filter_by(parent_id=cs.id, slug=challenge_slug).first_or_404()
+    d = Documentation.query.filter_by(parent_id=c.id, path=doc_path).first_or_404()
+
+    return Response(d.content, mimetype="text/markdown")
