@@ -143,3 +143,5 @@ components:
                   type: string
                 path:
                   type: string
+                order:
+                  type: integer
