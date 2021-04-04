@@ -29,8 +29,8 @@ metadata:
 spec:
   ports:
     - name: http
-      port: 3000
+      port: http
       protocol: TCP
-      targetPort: 3000
+      targetPort: http
   selector:
     app: ctf-ui
