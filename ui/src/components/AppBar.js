@@ -4,7 +4,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
-import IssueButton from "./Button";
+import AppBarActions from "./AppBarActions";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -77,12 +77,7 @@ export default function ChallengeBar() {
                     <Typography className={classes.title} variant="h6" noWrap>
                         Current Challenge: Caesar Cipher
                     </Typography>
-                    <div className={classes.search}>
-                        <div className={classes.searchIcon}>
-                            <SearchIcon />
-                        </div>
-                        <IssueButton/>
-                    </div>
+                    <AppBarActions/>
                 </Toolbar>
             </AppBar>
         </div>
