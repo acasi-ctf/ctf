@@ -1,0 +1,9 @@
+.subItem{
+    height: 30px;
+    padding-left: 2rem;
+    margin-top: 15px;
+    align-items: center;
+    text-decoration: none;
+    color: #000000;
+    font-size: 15px;
+}

@@ -1,13 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Layout from '../pageLayout.js';
 import ChallengeBar from "./AppBar";
 import * as core from '@material-ui/core';
-
-// import {List1Data, SubList1} from './MenuBarData';
-import * as Data from './MenuBarData';
+import {SubList1,List1Data} from './MenuBarData';
 import {Link} from 'react-router-dom';
-import './Menu.css'
+import SubMenu from './SubMenu.js';
 
 // core(7): Drawer, AppBar, List, Divider, ListItem, ListItemIcon, ListItemText
 // icons(4): Code, Home, Timeline, CollectionsBookmark
@@ -44,9 +42,12 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-export default function PermanentDrawerLeft() {
+export default function MenuBar() {
     const classes = useStyles();
-
+    const [submenu, setSubMenu] = useState(false)
+    const showSubNav = () =>{
+        setSubMenu(!submenu)
+    }
     return (
         <div className={classes.root} >
             <core.AppBar position="fixed" className={classes.appBar} >
@@ -57,52 +58,21 @@ export default function PermanentDrawerLeft() {
                 <core.Divider />
                 {/* LIST 1 */}
                 <core.List>
-                    {Data.List1Data.map((item,index)=>{
-                        return(
-                            <core.ListItem button key={item.index} className={item.cName}>
-                                <Link to={item.path}>
-                                    <core.ListItemIcon>{item.icon}</core.ListItemIcon>
-                                    <core.ListItemText primary={item.title} />   
-                                </Link>
-                            </core.ListItem>
-                        )
+                    {List1Data.map((item,index)=>{
+                        return <SubMenu item={item} key={index} />;
                     })}
                 </core.List>
                 <core.Divider />
                 {/* LIST 2 */}
                 <core.List>
-                    {/* SUBLIST 1 */}
-                    {Data.SubList1.map((item,index)=>{
-                        return(
-                            <core.ListItem button key={item.index} className={item.cName}>
-                                <Link to={item.path}>
-                                    <core.ListItemIcon>{item.icon}</core.ListItemIcon>
-                                    <core.ListItemText primary={item.title} />
-                                </Link>
-                            </core.ListItem>
-                        )
-                    })}
-               
-                    {/* SUBLIST 2 */}
-                    {Data.SubList2.map((item,index)=>{
-                        return(
-                            <core.ListItem button key={item.index} className={item.cName}>
-                                <Link to={item.path}>
-                                    <core.ListItemIcon>{item.icon}</core.ListItemIcon>
-                                    <core.ListItemText primary={item.title} />
-                                </Link>
-                            </core.ListItem>
-                        )
+                    {SubList1.map((item, index)=>{
+                        return <SubMenu item={item} key={index} />;
                     })}
                 </core.List>
+               
 
                 <core.Divider />
             </core.Drawer>
-            {/* <main className={classes.content}>
-                <React.Fragment>
-                <Layout />
-                </React.Fragment>
-            </main> */}
         </div>
     );
 }
