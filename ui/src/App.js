@@ -26,7 +26,7 @@ export default function App() {
                         </div>
 
                         {/* UNCOMMENT THIS TO TURN ON THE TERMINAL */}
-                        <Terminal/>
+                        {/* <Terminal/> */}
 
                     </div>
                 </div>
