@@ -6,7 +6,7 @@ IMAGETAG = latest
 all: proto docker
 
 proto: $(PROTOSRC)
-docker: docker_penimage docker_termproxy docker_operator docker_ui
+docker: docker_penimage docker_termproxy docker_operator docker_ui docker_frontend
 
 $(PROTOSRC): %:%.proto
 	mkdir -p pb/
@@ -36,7 +36,17 @@ ifeq ($(DOCKER_PUSH), 1)
 		docker push $(IMAGEBASE)/ui:$(IMAGETAG)
 endif
 
+docker_frontend:
+	docker build -t $(IMAGEBASE)/frontend:$(IMAGETAG) -f images/frontend/Dockerfile .
+ifeq ($(DOCKER_PUSH), 1)
+		docker push $(IMAGEBASE)/frontend:$(IMAGETAG)
+endif
+
 lint:
 	docker run -e RUN_LOCAL=true -e VALIDATE_DOCKERFILE_HADOLINT=false -e VALIDATE_CSS=false -e VALIDATE_JAVASCRIPT_STANDARD=false \
-		-e VALIDATE_TYPESCRIPT_STANDARD=false -e VALIDATE_GO=false -e VALIDATE_JSCPD=false -e LOG_LEVEL=WARN \
-		-e FILTER_REGEX_EXCLUDE=".*pb.*" -v $(shell pwd):/tmp/lint --rm github/super-linter:latest
+		-e VALIDATE_TYPESCRIPT_STANDARD=false -e VALIDATE_GO=false -e VALIDATE_JSCPD=false -e VALIDATE_PYTHON_FLAKE8=false \
+		-e VALIDATE_PYTHON_ISORT=false \
+		-e LOG_LEVEL=WARN -e FILTER_REGEX_EXCLUDE=".*pb.*|frontend/migrations/*" -v $(shell pwd):/tmp/lint --rm github/super-linter:latest
+
+gotest:
+	go test ./...

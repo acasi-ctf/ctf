@@ -1,0 +1,3 @@
+{
+  "$schema": "../../../schemas/provisioners/kubernetes.schema.json"
+}

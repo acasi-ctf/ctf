@@ -1,0 +1,147 @@
+openapi: 3.1.0
+info:
+  title: CTF Frontend API
+  description: Frontend API for querying challenge sets, challenges, etc. from the CTF platform.
+  version: 0.1.0
+servers:
+  - url: '/'
+paths:
+  /api/challenge-sets:
+    get:
+      responses:
+        '200':
+          description: List of challenge sets
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ChallengeSet'
+  /api/challenge-sets/{challenge-set-slug}:
+    get:
+      parameters:
+        - name: challenge-set-slug
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Challenge set was found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChallengeSet'
+        '404':
+          description: Challenge set was not found
+  /api/challenge-sets/{challenge-set-slug}/challenges:
+    get:
+      responses:
+        '200':
+          description: List of challenges for challenge set
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ChallengeSet'
+        '404':
+          description: Challenge set was not found
+  /api/challenge-sets/{challenge-set-slug}/challenges/{challenge-slug}:
+    get:
+      parameters:
+        - name: challenge-set-slug
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: challenge-slug
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Challenge was found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Challenge'
+        '404':
+          description: Challenge was not found
+  /api/challenge-sets/{challenge-set-slug}/challenges/{challenge-slug}/docs/{doc-path}:
+    get:
+      parameters:
+        - name: challenge-set-slug
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: challenge-slug
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: doc-path
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Documentation was found
+          content:
+            text/markdown: {}
+        '404':
+          description: Documentation was not found
+
+components:
+  schemas:
+    ChallengeSet:
+      type: object
+      required:
+        - id
+        - slug
+        - name
+        - description
+        - challenges
+      properties:
+        id:
+          type: string
+          format: uuid
+        slug:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+    Challenge:
+      type: object
+      required:
+        - id
+        - slug
+        - name
+        - description
+        - documentation
+      properties:
+        id:
+          type: string
+          format: uuid
+        slug:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        documentation:
+          type: array
+          items:
+            type: object
+            items:
+              properties:
+                name:
+                  type: string
+                path:
+                  type: string
+                order:
+                  type: integer
