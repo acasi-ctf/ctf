@@ -5,5 +5,5 @@
     /* display item in middle in term of column  */
     /* for align item to for, must include heigh on the container */
     align-items: center;
-    height: 90vh;
+    height: 89vh;
 }
