@@ -7,32 +7,31 @@ import Home from './Page/Home';
 import leaderboard from './Page/LeaderBoard';
 import ChallengeSet1 from './Page/ChallengeSet1';
 import Terminal from './Terminal';
+import MenuBar from './components/Menu';
 
 
 export default function App() {
-    return (
+  return (
         <>
             <Router>
                 <div className='App'>
-                    <PermanentDrawerLeft/>
+                    <MenuBar/>
                     <div className='contentBackground'>
                         <div className='Content'>
                             <Switch>
                                 <Route path='/' exact component={Home}/>
-                                <Route path='/LeaderBoard'
-                                       component={leaderboard}/>
-                                <Route path='/ChallengeSet1'
-                                       component={ChallengeSet1}/>
+                                <Route path='/LeaderBoard' component={leaderboard}/>
+                                <Route path='/ChallengeSet1/challenge_1' component={ChallengeSet1}/>
                             </Switch>
                         </div>
+
+                        {/* UNCOMMENT THIS TO TURN ON THE TERMINAL */}
+                        {/* <Terminal/> */}
+
                     </div>
-
-                    {/* UNCOMMENT THIS TO TURN ON THE TERMINAL */}
-                    <Terminal/>
-
                 </div>
             </Router>
         </>
-    );
+);
 }
 
