@@ -33,4 +33,4 @@ jobs:
           VALIDATE_JSCPD: false
           # See https://github.com/github/super-linter/issues/143
           VALIDATE_GO: false
-          FILTER_REGEX_EXCLUDE: ".*pb.*|frontend/migrations/*|challenges/.*\.py"
+          FILTER_REGEX_EXCLUDE: ".*pb.*|frontend/migrations/*|challenges/.*\\.py"
