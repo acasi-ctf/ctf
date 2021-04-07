@@ -2,10 +2,10 @@
 Morse code is a time-on and time-off signal code that expresses different English letters, numbers and punctuation marks in different order. It was invented in 1836 by Americans Samuel Morse.
 
 ## Encryption Table
-|  Letter   | Code  | 
-|  ----  | ----  | 
+|  Letter   | Code  |
+|  ----  | ----  |
 | A  | **· -** |
-| B  | **- · · ·** | 
+| B  | **- · · ·** |
 | C  | **- · - ·** |
 | D  | **- · ·** |
 | E  | **·** |
@@ -39,5 +39,3 @@ Code: .... . .-.. .-.. ---
 **. - ..** = L
 **- - -** = O
 Answer = HELLO
-
-
