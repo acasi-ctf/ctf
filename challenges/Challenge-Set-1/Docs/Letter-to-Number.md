@@ -2,10 +2,10 @@
 Letter to number is a very simple cipher. It convert the letter to the number, such as A = 1, B = 2, and so on.
 
 ## Table
-|  Letter   | Number  | 
-|  ----  | ----  | 
+|  Letter   | Number  |
+|  ----  | ----  |
 | A  | 1 |
-| B  | 2 | 
+| B  | 2 |
 | C  | 3 |
 | D  | 4 |
 | E  | 5 |
@@ -34,6 +34,3 @@ Letter to number is a very simple cipher. It convert the letter to the number, s
 ## Example
 Code = "14 21 13 2 5 18"
 Decode = "NUMBER"
-
-
-
