@@ -49,3 +49,7 @@ pkg/ctfoperator/model/environment.go
 pkg/ctfoperator/model/environment_test.go
 pkg/ctfoperator/ctfoperator.go
 ```
+
+### Sprint 2
+To be filled in.
+
