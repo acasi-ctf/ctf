@@ -1,5 +1,5 @@
 # Sprint 2 Retrospective Summary
-[Recording]()
+[Recording](https://emailwsu.sharepoint.com/teams/2021.PULLM.CptS.421.423-F5CTF/Shared%20Documents/F5%20CTF/Retrospective/Retrospective%20Meeting%201.mp4)
 
 ## What went well
 * Demo
