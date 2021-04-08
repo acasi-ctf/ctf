@@ -51,5 +51,34 @@ pkg/ctfoperator/ctfoperator.go
 ```
 
 ### Sprint 2
-To be filled in.
+During our second sprint, we started to implement our first challenges. We started
+implementing various attack strategies with the DVWA (Damn Vulnerable Web Application),
+as well as basic cryptographic challenges that deal with ciphers. Additionally, we
+started to work on out database persistence layer and bootstrap our Frontend API,
+which we will continue to refine and integrate with the user interface during
+sprint 3 and further down the road.
 
+We continued to work on our user interface, which now has routing capabilities
+and is starting to look more refined and ready for actual use for navigation
+between challenges. As mentioned, in future sprints we will integrating this with
+our frontend API for it to dynamically display challenges from the database instead
+of hardcoded values.
+
+#### Demo Meeting
+To be filled in, once it occurs.
+
+#### Tests
+We have added unit tests for our challenge set and challenge schema validator,
+which takes JSON in and ensures that they conform to the JSON Schema files that
+we have written. In addition to the first sprint's tests, you can see the new
+ones in the `pkg/challenges/validators` directory. All Go test files end with
+`_test.go`.
+
+#### File Quality
+I'm providing a list of files below that I would like to submit for review by the
+instructor.
+```bash
+frontend/model/challenges.py
+frontend/routes/api/challenges.py
+frontend/api.yaml # This is a specification of the challenges API (file above) using OpenAPI.
+```
