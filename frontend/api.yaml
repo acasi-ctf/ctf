@@ -1,3 +1,4 @@
+# This file is a specification for our Frontend API using OpenAPI v3.
 openapi: 3.1.0
 info:
   title: CTF Frontend API
