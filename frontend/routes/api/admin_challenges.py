@@ -1,5 +1,11 @@
+"""
+Routes that relate to managing challenges by an administrator.
+"""
 from flask import Blueprint, request, Response
 
+"""
+Blueprint that encapsulates this group of routes.
+"""
 bp = Blueprint("admin_challenges", __name__)
 
 
