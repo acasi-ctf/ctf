@@ -34,6 +34,7 @@ Anatomy of Attack. It should be noted that this was just a rehersal demo and tha
 we had originally been planning on meeting with them Friday 3/19 to do our demo,
 but Renuka and Mudit wanted to do a rehersal before our in class presentation and
 official sponsor demo which is still scheduled for 3/19.
+
 [Demo Meeting Recording](https://emailwsu.sharepoint.com/teams/2021.PULLM.CptS.421.423-F5CTF/Shared%20Documents/F5%20CTF/Meeting%20Notes/Demo%20Recordings/2021-03-15%2015-58-36.mkv)
 
 #### Tests
@@ -65,7 +66,10 @@ our frontend API for it to dynamically display challenges from the database inst
 of hardcoded values.
 
 #### Demo Meeting
-To be filled in, once it occurs.
+Our second demo meeting recording is provided below. The first portion of the video
+is our demo, and the rest is questions or discussions regarding cloud providers, etc.
+
+[Demo Meeting Recording](https://emailwsu.sharepoint.com/teams/2021.PULLM.CptS.421.423-F5CTF/Shared%20Documents/F5%20CTF/Meeting%20Notes/Demo%20Recordings/2021-04-09%2014-08-54.mp4)
 
 #### Tests
 We have added unit tests for our challenge set and challenge schema validator,
