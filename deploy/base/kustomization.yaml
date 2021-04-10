@@ -5,10 +5,6 @@ resources:
   - operator.yaml
   - sa.yaml
   - termproxy.yaml
-secretGenerator:
-  - name: auth-key-private
-    files:
-      - id_rsa
-  - name: auth-key-public
-    files:
-      - id_rsa.pub
+  - frontend.yaml
+  - ui.yaml
+  - ingress.yaml
