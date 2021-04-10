@@ -10,7 +10,7 @@ metadata:
     nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
 spec:
   tls:
-    - hosts: []
+    - hosts: [ ]
       secretName: ctf-certificate
   rules:
     - host: ctf.example.com
@@ -30,10 +30,10 @@ spec:
                 name: ctf-frontend
                 port:
                   name: http
-          #- path: /TermproxyService/
-          #  pathType: Prefix
-          #  backend:
-          #    service:
-          #      name: ctf-termproxy
-          #      port:
-          #        number: 1235
+          - path: /TermproxyService/
+            pathType: Prefix
+            backend:
+              service:
+                name: ctf-termproxy
+                port:
+                  number: 1235
