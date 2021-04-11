@@ -10,7 +10,9 @@ export default function AppBarActions() {
     let authComponent = isAuthenticated ? <>
         <Tooltip title="Logout" aria-label="logout">
             <Avatar src={user.picture} style={authComponentStyle}
-                    onClick={() => logout()}/>
+                    onClick={() => logout({
+                        returnTo: window.location.protocol + '//' + window.location.host
+                    })}/>
         </Tooltip>
     </> : <>
         <Button variant="contained" color="white" disableElevation
