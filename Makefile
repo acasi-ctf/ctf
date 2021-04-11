@@ -45,7 +45,7 @@ endif
 lint:
 	docker run -e RUN_LOCAL=true -e VALIDATE_DOCKERFILE_HADOLINT=false -e VALIDATE_CSS=false -e VALIDATE_JAVASCRIPT_STANDARD=false \
 		-e VALIDATE_TYPESCRIPT_STANDARD=false -e VALIDATE_GO=false -e VALIDATE_JSCPD=false -e VALIDATE_PYTHON_FLAKE8=false \
-		-e VALIDATE_PYTHON_ISORT=false \
+		-e VALIDATE_PYTHON_ISORT=false -e VALIDATE_KUBERNETES_KUBEVAL=false \
 		-e LOG_LEVEL=WARN -e FILTER_REGEX_EXCLUDE=".*pb.*|frontend/migrations/*|challenges/.*\.py" -v $(shell pwd):/tmp/lint --rm github/super-linter:latest
 
 gotest:
