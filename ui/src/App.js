@@ -6,7 +6,7 @@ import PermanentDrawerLeft from "./components/Menu";
 import Home from './Page/Home';
 import leaderboard from './Page/LeaderBoard';
 import ChallengeSet1 from './Page/ChallengeSet1';
-import Terminal from './Terminal';
+import Terminal from './components/Terminal';
 import MenuBar from './components/Menu';
 
 
@@ -24,10 +24,7 @@ export default function App() {
                                 <Route path='/ChallengeSet1/challenge_1' component={ChallengeSet1}/>
                             </Switch>
                         </div>
-
-                        {/* UNCOMMENT THIS TO TURN ON THE TERMINAL */}
-                        {/* <Terminal/> */}
-
+                        <Terminal/>
                     </div>
                 </div>
             </Router>
