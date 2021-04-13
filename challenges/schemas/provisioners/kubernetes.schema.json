@@ -4,10 +4,15 @@
   "description": "Describes how to provision Kubernetes for this challenge environment",
   "properties": {
     "manifests": {
-      "type": "array",
-      "items": {
-        "type": "string",
-        "format": "path"
+      "type": "object",
+      "properties": {
+        "pods": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "path"
+          }
+        }
       }
     }
   }

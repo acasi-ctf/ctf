@@ -20,14 +20,22 @@ spec:
         - image: ghcr.io/acasi-ctf/ctf/operator:latest
           name: operator
           resources: { }
+          env:
+            - name: DB_PATH
+              value: /data/operator.db
           volumeMounts:
             - name: auth-key-public
               mountPath: /secrets/auth-key-public
               readOnly: true
+            - name: database
+              mountPath: /data
       volumes:
         - name: auth-key-public
           secret:
             secretName: auth-key-public
+        - name: database
+          persistentVolumeClaim:
+            claimName: ctf-operator
 ---
 apiVersion: v1
 kind: Service
@@ -42,3 +50,14 @@ spec:
       targetPort: 1234
   selector:
     app: ctf-operator
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ctf-operator
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
