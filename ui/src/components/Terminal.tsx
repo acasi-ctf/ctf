@@ -8,7 +8,7 @@ import {
     ClientMessage,
     ServerMessage,
     StreamMessage,
-    OpenConnectionMessage
+    OpenConnectionMessage, ResizeMessage
 } from "../generated/termproxy_pb";
 import {grpc} from "@improbable-eng/grpc-web";
 import {UUID} from "../generated/common_pb";
@@ -35,15 +35,24 @@ export default function Terminal() {
         openClientMsg.setOpenConnection(openMsg);
 
         stream.write(openClientMsg);
+
+        function writeToConsole(msg: StreamMessage) {
+            let str = atob(msg.getContents_asB64());
+            console.log(`New message: ${str}`);
+            if (xtermRef.current != null) {
+                xtermRef.current.terminal.write(str);
+            }
+        }
         stream.on('data', message => {
             switch (message.getMessageCase()) {
                 case ServerMessage.MessageCase.STDOUT:
-                    let msg = message.getStdout()!;
-                    let str = atob(msg.getContents_asB64());
-                    console.log(`New message: ${str}`);
-                    if (xtermRef.current != null) {
-                        xtermRef.current.terminal.write(str);
-                    }
+                    let stdoutMsg = message.getStdout()!;
+                    writeToConsole(stdoutMsg);
+                    break;
+                case ServerMessage.MessageCase.STDERR:
+                    let stderrMsg = message.getStderr()!;
+                    writeToConsole(stderrMsg);
+                    break;
             }
         });
 
@@ -68,7 +77,12 @@ export default function Terminal() {
                 stream.write(msg);
             });
             xtermRef.current.terminal.onResize(size => {
-                console.log(`${size.cols} ${size.rows}`);
+                let resizeMsg = new ResizeMessage();
+                resizeMsg.setColumns(size.cols);
+                resizeMsg.setRows(size.rows);
+                let msg = new ClientMessage();
+                msg.setResize(resizeMsg);
+                stream.write(msg);
             });
             xtermRef.current.terminal.loadAddon(fitRef.current);
             fitRef.current.fit();
