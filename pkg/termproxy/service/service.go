@@ -128,7 +128,7 @@ func (tp *TermproxyServiceImpl) ProxyTerminal(srv pb.TermproxyService_ProxyTermi
 	// Start read/write goroutines.
 	go sshPipe(srv, clientStdout, errChan)
 	go sshPipe(srv, clientStderr, errChan)
-	go grpcReadLoop(srv, clientStdin, errChan)
+	go grpcReadLoop(srv, client, clientStdin, errChan)
 
 	// Wait until an error occurs, or the client disconnects.
 	select {
@@ -172,7 +172,7 @@ func sshPipe(srv pb.TermproxyService_ProxyTerminalServer, reader io.Reader, errC
 	}
 }
 
-func grpcReadLoop(srv pb.TermproxyService_ProxyTerminalServer, clientStdin io.WriteCloser, errChan chan error) {
+func grpcReadLoop(srv pb.TermproxyService_ProxyTerminalServer, client *ssh.Session, clientStdin io.WriteCloser, errChan chan error) {
 	for {
 		msg, err := srv.Recv()
 		if err == io.EOF {
@@ -198,6 +198,14 @@ func grpcReadLoop(srv pb.TermproxyService_ProxyTerminalServer, clientStdin io.Wr
 			_, err = clientStdin.Write(msg.Contents)
 			if err != nil {
 				log.Printf("Write failure")
+				errChan <- err
+				return
+			}
+		case *pb.ClientMessage_Resize:
+			msg := x.Resize
+			err = client.WindowChange(int(msg.Rows), int(msg.Columns))
+			if err != nil {
+				log.Printf("Resize failure")
 				errChan <- err
 				return
 			}

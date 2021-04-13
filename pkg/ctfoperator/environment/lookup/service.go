@@ -31,7 +31,7 @@ func (s *LookupService) GetEnvironmentInfo(ctx context.Context, req *pb.GetEnvir
 		return nil, err
 	}
 
-	if pods.Size() == 0 {
+	if len(pods.Items) == 0 {
 		return nil, errors.New("no environment was found")
 	}
 

@@ -8,6 +8,7 @@ message ClientMessage {
   oneof message {
     OpenConnectionMessage open_connection = 1;
     StreamMessage stdin = 2;
+    ResizeMessage resize = 3;
   }
 }
 
@@ -24,6 +25,11 @@ message OpenConnectionMessage {
 }
 
 message CloseConnectionMessage {
+}
+
+message ResizeMessage {
+  int32 columns = 1;
+  int32 rows = 2;
 }
 
 message StreamMessage {

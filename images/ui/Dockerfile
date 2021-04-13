@@ -5,7 +5,7 @@ WORKDIR /app
 COPY ui/package.json /app
 COPY ui/package-lock.json /app
 RUN npm install -g npm
-RUN npm install --force
+RUN npm install
 
 # Copy over entire app source.
 COPY ui/ /app

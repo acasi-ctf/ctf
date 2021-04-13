@@ -15,6 +15,11 @@ export class ClientMessage extends jspb.Message {
   getStdin(): StreamMessage | undefined;
   setStdin(value?: StreamMessage): void;
 
+  hasResize(): boolean;
+  clearResize(): void;
+  getResize(): ResizeMessage | undefined;
+  setResize(value?: ResizeMessage): void;
+
   getMessageCase(): ClientMessage.MessageCase;
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): ClientMessage.AsObject;
@@ -30,12 +35,14 @@ export namespace ClientMessage {
   export type AsObject = {
     openConnection?: OpenConnectionMessage.AsObject,
     stdin?: StreamMessage.AsObject,
+    resize?: ResizeMessage.AsObject,
   }
 
   export enum MessageCase {
     MESSAGE_NOT_SET = 0,
     OPEN_CONNECTION = 1,
     STDIN = 2,
+    RESIZE = 3,
   }
 }
 
@@ -116,6 +123,30 @@ export class CloseConnectionMessage extends jspb.Message {
 
 export namespace CloseConnectionMessage {
   export type AsObject = {
+  }
+}
+
+export class ResizeMessage extends jspb.Message {
+  getColumns(): number;
+  setColumns(value: number): void;
+
+  getRows(): number;
+  setRows(value: number): void;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): ResizeMessage.AsObject;
+  static toObject(includeInstance: boolean, msg: ResizeMessage): ResizeMessage.AsObject;
+  static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+  static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+  static serializeBinaryToWriter(message: ResizeMessage, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): ResizeMessage;
+  static deserializeBinaryFromReader(message: ResizeMessage, reader: jspb.BinaryReader): ResizeMessage;
+}
+
+export namespace ResizeMessage {
+  export type AsObject = {
+    columns: number,
+    rows: number,
   }
 }
 
