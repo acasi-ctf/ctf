@@ -6,6 +6,7 @@
   "description": "Example challenge set to be used for reference while developing new challenge sets",
   "version": "0.1.0",
   "challenges": [
-    "basic-env-example"
+    "basic-env-example",
+    "dvwa-example"
   ]
 }
