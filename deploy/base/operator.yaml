@@ -17,7 +17,7 @@ spec:
     spec:
       serviceAccountName: operator
       containers:
-        - image: ghcr.io/acasi-ctf/ctf/operator:latest
+        - image: ghcr.io/acasi-ctf/ctf/operatorkt:latest
           name: operator
           resources: { }
           env:
@@ -54,7 +54,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: ctf-operator
+  name: operator
 spec:
   accessModes:
     - ReadWriteOnce

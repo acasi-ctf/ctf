@@ -5,6 +5,7 @@ package ctf;
 import "common.proto";
 
 option go_package = "github.com/acasi-ctf/ctf/pb";
+option java_package = "org.acasictf.ctf.proto";
 
 /**
  * Request message for starting a new environment.

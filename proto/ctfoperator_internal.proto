@@ -10,6 +10,7 @@ import "common.proto";
 import "google/protobuf/timestamp.proto";
 
 option go_package = "github.com/acasi-ctf/ctf/pb";
+option java_package = "org.acasictf.ctf.proto";
 
 /**
  * Indicates which provisioner was used in this environment.
