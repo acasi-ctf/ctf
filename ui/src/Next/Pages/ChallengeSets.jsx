@@ -3,21 +3,20 @@ import useFetch from "../Services/useFetch";
 import ChallengeCard from "../Components/ChallengeCard";
 
 export default function ChallengeSets() {
-  const [size, setSize] = useState("");
   const { data: challengeSets, loading, error } = useFetch(
-    "https://ctf.gorence.io/api/challenge-sets"
+    "/api/challenge-sets"
   );
-  debugger;
-  function renderChallengeSetCard(cs) {
+
+  function renderChallengeSetCard() {
     return (
       <div>
         <ul>
-          {challengeSets}
-          {/*{challengeSets.map((cs) => {
-            return <ChallengeCard props={cs} />;*/}
+          {challengeSets.map((cs) => {
+            return <ChallengeCard data={cs} />;
           })}
         </ul>
       </div>
     );
   }
+  return renderChallengeSetCard(challengeSets);
 }
