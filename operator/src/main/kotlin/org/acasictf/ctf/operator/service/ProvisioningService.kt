@@ -35,8 +35,7 @@ EnvironmentProvisioningServiceCoroutineImplBase() {
 
         envDao.set(envId, env)
 
-        //val publicKey = File("/secrets/auth-key-public/id_rsa.pub").readText()
-        val publicKey = File("/home/lgorence/.ssh/id_rsa.pub").readText()
+        val publicKey = File("/secrets/auth-key-public/id_rsa.pub").readText()
 
         val pod = Pod()
         pod.apply {
@@ -45,6 +44,7 @@ EnvironmentProvisioningServiceCoroutineImplBase() {
 
             metadata.labels = mutableMapOf()
             metadata.labels["ctf-env-id"] = envIdStr
+            metadata.labels["ctf-env-label"] = "penimage"
 
             val container = Container().apply {
                 name = "penimage"
