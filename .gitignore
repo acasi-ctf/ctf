@@ -171,5 +171,8 @@ super-linter.log
 # Python cache directories
 __pycache__
 
+# Operator data directory
+data/
+
 # End of custom
 

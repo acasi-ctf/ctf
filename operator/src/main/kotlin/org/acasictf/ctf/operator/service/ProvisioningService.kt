@@ -7,11 +7,9 @@ import io.fabric8.kubernetes.client.KubernetesClient
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
-import org.acasictf.ctf.operator.createDir
-import org.acasictf.ctf.operator.empty
-import org.acasictf.ctf.operator.getDataDir
-import org.acasictf.ctf.operator.managed
+import org.acasictf.ctf.operator.*
 import org.acasictf.ctf.operator.model.ChallengeSet
+import org.acasictf.ctf.operator.persistence.ChallengeTemplate
 import org.acasictf.ctf.operator.persistence.EnvironmentDao
 import org.acasictf.ctf.proto.Common
 import org.acasictf.ctf.proto.Ctfoperator
@@ -90,25 +88,21 @@ EnvironmentProvisioningServiceCoroutineImplBase() {
     }
 
     override suspend fun uploadEnvironmentTemplate(request: Ctfoperator.UploadEnvironmentTemplateRequest): Empty = managed {
-        val (tempFile, zipFile) = withContext(Dispatchers.IO) {
+        val (tempFile, challengeTemplate) = withContext(Dispatchers.IO) {
             val tempFile = createTempFile("ctf", ".zip")
             tempFile.writeBytes(request.envZip.toByteArray())
-            Pair(tempFile, ZipFile(tempFile))
+            Pair(tempFile, ChallengeTemplate(json, tempFile))
         }
-        val csEntry = zipFile.getEntry("challenge-set.json")
-        val csStream = zipFile.getInputStream(csEntry)
-        val csStr = csStream.readAllBytes().toString(StandardCharsets.UTF_8)
 
-        val cs = json.decodeFromString(ChallengeSet.serializer(), csStr)
+        val slug = challengeTemplate.challengeSet.slug
 
-        val slug = cs.slug
-
-        zipFile.close()
         tempFile.delete()
 
         val challengeZipFile = File(createDir("${getDataDir()}/challenges"), "$slug.zip")
         challengeZipFile.createNewFile()
         challengeZipFile.writeBytes(request.envZip.toByteArray())
+
+        logger.info("New challenge template uploaded: $challengeZipFile")
 
         empty()
     }
