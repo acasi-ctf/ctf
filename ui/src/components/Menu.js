@@ -48,25 +48,33 @@ export default function MenuBar() {
     const showSubNav = () =>{
         setSubMenu(!submenu)
     }
+
+    const [title, setTitle] = useState("home");
     return (
         <div className={classes.root} >
-            <core.AppBar position="fixed" className={classes.appBar} >
-                <ChallengeBar/>
+            <core.AppBar position="fixed" className={classes.appBar}>
+                <ChallengeBar name={title}/>
             </core.AppBar>
+
+
             <core.Drawer className={classes.drawer} variant="permanent" classes={{ paper: classes.drawerPaper }} anchor="left" >
                 <div className={classes.toolbar} />
+                
                 <core.Divider />
                 {/* LIST 1 */}
+
                 <core.List>
                     {List1Data.map((item,index)=>{
-                        return <SubMenu item={item} key={index} />;
+                        return <SubMenu item={item} key={index} changeTitle={title => setTitle(title)}/>;
                     })}
                 </core.List>
+
                 <core.Divider />
+
                 {/* LIST 2 */}
-                <core.List>
+                <core.List >    
                     {SubList1.map((item, index)=>{
-                        return <SubMenu item={item} key={index} />;
+                        return <SubMenu item={item} key={index} changeTitle={title => setTitle(title)}/>;
                     })}
                 </core.List>
                

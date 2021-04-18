@@ -10,16 +10,16 @@
 }
 
 .box1{
-    height: 44vh;
+    height: 84vh;
     width: 100%;
     border-style: groove;
 }
 
-.box2{
+/* .box2{
     height: 35vh;
     width: 100%;
     border-style: groove;
-}
+} */
 
 
 /* SUM of heigh from box1 and box2 should be 87vh */

@@ -1,6 +1,6 @@
 import './App.css';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import PermanentDrawerLeft from "./components/Menu";
+// import PermanentDrawerLeft from "./components/Menu";
 
 //ADD PAGES.
 import Home from './Page/Home';
@@ -21,9 +21,10 @@ export default function App() {
                             <Switch>
                                 <Route path='/' exact component={Home}/>
                                 <Route path='/LeaderBoard' component={leaderboard}/>
-                                <Route path='/ChallengeSet1/challenge_1' component={ChallengeSet1}/>
+                                <Route path='/challenge_1' component={ChallengeSet1}/>
                             </Switch>
                         </div>
+
                         <Terminal/>
                     </div>
                 </div>

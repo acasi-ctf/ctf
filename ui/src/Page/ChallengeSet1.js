@@ -54,9 +54,6 @@ export default function ChallengeSet1() {
                 <TabPanel className='box1' value={value} index={value} style={{overflowY: 'scroll'}}>
                     {ChallengeSet1Data[value].itembox1}
                 </TabPanel>
-                <TabPanel className='box2' value={value} index={value} style={{overflowY: 'scroll'}}>
-                    {ChallengeSet1Data[value].itembox2}
-                </TabPanel>
             </div>
         </div>
     )
