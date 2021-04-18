@@ -27,6 +27,7 @@ jobs:
           VALIDATE_CSS: false
           VALIDATE_DOCKERFILE_HADOLINT: false
           VALIDATE_JAVASCRIPT_STANDARD: false
+          VALIDATE_KOTLIN: false
           VALIDATE_KUBERNETES_KUBEVAL: false
           VALIDATE_PYTHON_FLAKE8: false
           VALIDATE_PYTHON_ISORT: false
@@ -34,4 +35,4 @@ jobs:
           VALIDATE_JSCPD: false
           # See https://github.com/github/super-linter/issues/143
           VALIDATE_GO: false
-          FILTER_REGEX_EXCLUDE: ".*pb.*|frontend/migrations/*|challenges/.*\\.py"
+          FILTER_REGEX_EXCLUDE: ".*pb.*|frontend/migrations/*|challenges/.*\\.py|gradlew*"

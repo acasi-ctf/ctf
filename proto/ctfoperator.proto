@@ -13,9 +13,14 @@ option java_package = "org.acasictf.ctf.proto";
  */
 message StartEnvironmentRequest {
   /**
-   * Slug name of the environment template.
+   * Slug name of the challenge set.
    */
-  string template_slug = 1;
+  string challenge_set_slug = 1;
+
+  /**
+   * Slug name of the challenge template.
+   */
+  string challenge_slug = 2;
 }
 
 /**
@@ -55,7 +60,7 @@ message StopEnvironmentResponse {
  * Request message for uploading a challenge template.
  */
 message UploadEnvironmentTemplateRequest {
-  bytes envZip = 1;
+  bytes env_zip = 1;
 }
 
 /**

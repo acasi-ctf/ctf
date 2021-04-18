@@ -9,8 +9,10 @@ flask = "1.1.2"
 flask-sqlalchemy = "2.5.1"
 flask-migrate = "2.7.0"
 psycopg2 = "2.8.6"
+grpcio = "1.37.0"
 
 [dev-packages]
+grpcio-tools = "1.37.0"
 
 [requires]
 python_version = "3.9"
