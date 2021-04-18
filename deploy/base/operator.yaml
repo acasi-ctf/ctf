@@ -21,8 +21,8 @@ spec:
           name: operator
           resources: { }
           env:
-            - name: DB_PATH
-              value: /data/operator.db
+            - name: DATA_PATH
+              value: /data
           volumeMounts:
             - name: auth-key-public
               mountPath: /secrets/auth-key-public

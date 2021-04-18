@@ -7,6 +7,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -20,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion7
 type EnvironmentProvisioningServiceClient interface {
 	StartEnvironment(ctx context.Context, in *StartEnvironmentRequest, opts ...grpc.CallOption) (*StartEnvironmentResponse, error)
 	StopEnvironment(ctx context.Context, in *StopEnvironmentRequest, opts ...grpc.CallOption) (*StopEnvironmentResponse, error)
+	UploadEnvironmentTemplate(ctx context.Context, in *UploadEnvironmentTemplateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type environmentProvisioningServiceClient struct {
@@ -48,12 +50,22 @@ func (c *environmentProvisioningServiceClient) StopEnvironment(ctx context.Conte
 	return out, nil
 }
 
+func (c *environmentProvisioningServiceClient) UploadEnvironmentTemplate(ctx context.Context, in *UploadEnvironmentTemplateRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, "/ctf.EnvironmentProvisioningService/UploadEnvironmentTemplate", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // EnvironmentProvisioningServiceServer is the server API for EnvironmentProvisioningService service.
 // All implementations must embed UnimplementedEnvironmentProvisioningServiceServer
 // for forward compatibility
 type EnvironmentProvisioningServiceServer interface {
 	StartEnvironment(context.Context, *StartEnvironmentRequest) (*StartEnvironmentResponse, error)
 	StopEnvironment(context.Context, *StopEnvironmentRequest) (*StopEnvironmentResponse, error)
+	UploadEnvironmentTemplate(context.Context, *UploadEnvironmentTemplateRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedEnvironmentProvisioningServiceServer()
 }
 
@@ -66,6 +78,9 @@ func (UnimplementedEnvironmentProvisioningServiceServer) StartEnvironment(contex
 }
 func (UnimplementedEnvironmentProvisioningServiceServer) StopEnvironment(context.Context, *StopEnvironmentRequest) (*StopEnvironmentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method StopEnvironment not implemented")
+}
+func (UnimplementedEnvironmentProvisioningServiceServer) UploadEnvironmentTemplate(context.Context, *UploadEnvironmentTemplateRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UploadEnvironmentTemplate not implemented")
 }
 func (UnimplementedEnvironmentProvisioningServiceServer) mustEmbedUnimplementedEnvironmentProvisioningServiceServer() {
 }
@@ -117,6 +132,24 @@ func _EnvironmentProvisioningService_StopEnvironment_Handler(srv interface{}, ct
 	return interceptor(ctx, in, info, handler)
 }
 
+func _EnvironmentProvisioningService_UploadEnvironmentTemplate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UploadEnvironmentTemplateRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EnvironmentProvisioningServiceServer).UploadEnvironmentTemplate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ctf.EnvironmentProvisioningService/UploadEnvironmentTemplate",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EnvironmentProvisioningServiceServer).UploadEnvironmentTemplate(ctx, req.(*UploadEnvironmentTemplateRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // EnvironmentProvisioningService_ServiceDesc is the grpc.ServiceDesc for EnvironmentProvisioningService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -131,6 +164,10 @@ var EnvironmentProvisioningService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "StopEnvironment",
 			Handler:    _EnvironmentProvisioningService_StopEnvironment_Handler,
+		},
+		{
+			MethodName: "UploadEnvironmentTemplate",
+			Handler:    _EnvironmentProvisioningService_UploadEnvironmentTemplate_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

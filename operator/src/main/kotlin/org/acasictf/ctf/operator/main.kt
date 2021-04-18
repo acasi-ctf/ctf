@@ -8,11 +8,11 @@ import org.acasictf.ctf.operator.service.LookupService
 import org.acasictf.ctf.operator.service.ProvisioningService
 import org.mapdb.DBMaker
 
-private val logger = KotlinLogging.logger {}
+val logger = KotlinLogging.logger {}
 
 fun main() {
     val client = DefaultKubernetesClient()
-    val dbPath = System.getenv("DB_PATH") ?: "operator.db"
+    val dbPath = "${getDataDir()}/operator.db"
     val db = DBMaker.fileDB(dbPath)
             .closeOnJvmShutdown()
             .make()

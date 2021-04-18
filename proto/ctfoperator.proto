@@ -3,6 +3,7 @@ syntax = "proto3";
 package ctf;
 
 import "common.proto";
+import "google/protobuf/empty.proto";
 
 option go_package = "github.com/acasi-ctf/ctf/pb";
 option java_package = "org.acasictf.ctf.proto";
@@ -51,12 +52,21 @@ message StopEnvironmentResponse {
 }
 
 /**
+ * Request message for uploading a challenge template.
+ */
+message UploadEnvironmentTemplateRequest {
+  bytes envZip = 1;
+}
+
+/**
  * gRPC service used to provision environments.
  */
 service EnvironmentProvisioningService {
   rpc StartEnvironment(StartEnvironmentRequest)
     returns (StartEnvironmentResponse);
   rpc StopEnvironment(StopEnvironmentRequest) returns (StopEnvironmentResponse);
+  rpc UploadEnvironmentTemplate(UploadEnvironmentTemplateRequest)
+    returns (google.protobuf.Empty);
 }
 
 message IsEnvironmentReadyRequest {

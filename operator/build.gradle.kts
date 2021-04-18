@@ -4,6 +4,7 @@ plugins {
     application
     `java-library`
     kotlin("jvm") version "1.4.32"
+    kotlin("plugin.serialization") version "1.4.32"
     id("com.google.protobuf") version "0.8.15"
     id("idea")
 }
@@ -25,6 +26,8 @@ dependencies {
 
     implementation("io.grpc:grpc-kotlin-stub:1.0.0")
     runtimeOnly("io.grpc:grpc-netty:1.37.0")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.1.0")
 
     implementation("io.fabric8:kubernetes-client:5.3.0")
 
