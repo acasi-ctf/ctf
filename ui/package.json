@@ -62,6 +62,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-router-dom": "^5.1.7",
     "prop-types": "^15.7.2"
   },
   "proxy": "https://ctf.gorence.io"
