@@ -26,7 +26,7 @@ const useStyles = makeStyles({
 
 export default function ChallengeCard(props) {
   const classes = useStyles();
-  const { name } = useParams();
+  const { ChallengeSet } = useParams();
   const navigate = useNavitate();
 
   return (
@@ -37,7 +37,7 @@ export default function ChallengeCard(props) {
           color="textSecondary"
           gutterBottom
         >
-          {name}
+          {ChallengeSet}
         </Typography>
       </CardContent>
       <CardActions>
