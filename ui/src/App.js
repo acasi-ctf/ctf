@@ -7,8 +7,8 @@ import leaderboard from "./Page/LeaderBoard";
 import ChallengeSet1 from "./Page/ChallengeSet1";
 import Terminal from "./components/Terminal";
 import MenuBar from "./components/Menu";
-import ChallengeSets from "./Page/ChallengeSets";
-import ErrorBoundary from "./Services/ErrorBoundary";
+import ChallengeSets from "./Next/Pages/ChallengeSets";
+import ErrorBoundary from "./Next/Services/ErrorBoundary";
 
 export default function App() {
   return (
