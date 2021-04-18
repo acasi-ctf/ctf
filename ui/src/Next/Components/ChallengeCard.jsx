@@ -5,7 +5,7 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import { useParams, useNavitate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
@@ -27,7 +27,6 @@ const useStyles = makeStyles({
 export default function ChallengeCard(props) {
   const classes = useStyles();
   const { ChallengeSet } = useParams();
-  const navigate = useNavitate();
 
   return (
     <Card className={classes.root}>
