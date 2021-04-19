@@ -1,5 +1,5 @@
 # Reverse
-Reverse is a simple cipher. It just output the string from back to start.
+Reverse is a simple cipher. You simply reverse the order of the characters to break the cipher.
 
 ## Example
 Code = "DNATSREDNU"
