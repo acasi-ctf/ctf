@@ -1,5 +1,6 @@
-# Mix_Challenge_1
-This is the mix challenge for classical cipher, so you will use your knowledge about classical cipher.
+# Mixed Challenge
+This is the combined challenge for classical ciphers.
+You will use what you have previously learned to complete this comprehensive challenge.
 
 ## Recall
 ### Letter to Number
