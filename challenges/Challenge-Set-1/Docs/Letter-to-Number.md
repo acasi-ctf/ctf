@@ -1,5 +1,5 @@
 # Letter to Number
-Letter to number is a very simple cipher. It convert the letter to the number, such as A = 1, B = 2, and so on.
+The letter to number cipher is very simple. It converts a letter to a number, such as A = 1, B = 2, and so on.
 
 ## Table
 |  Letter   | Number  |
