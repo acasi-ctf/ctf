@@ -62,5 +62,6 @@
   },
   "devDependencies": {
     "prop-types": "^15.7.2"
-  }
+  },
+  "proxy": "https://ctf.gorence.io"
 }

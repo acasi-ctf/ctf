@@ -67,16 +67,23 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function ChallengeBar() {
+export default function ChallengeBar(props) {
     const classes = useStyles();
-
+    var bannerTitle = "";
+    if(props.name.includes("Challenge") && !props.name.includes("Set") && props.name.length <= 11){
+        bannerTitle = "Current Challenge: " + props.name
+    }else{
+        bannerTitle = props.name
+    }
     return (
         <div className={classes.root}>
             <AppBar position="static">
                 <Toolbar>
                     <Typography className={classes.title} variant="h6" noWrap>
-                        Current Challenge: Caesar Cipher
+                        {bannerTitle}
                     </Typography>
+
+                    {/* the bellow is for credential login and survey button */}
                     <AppBarActions/>
                 </Toolbar>
             </AppBar>

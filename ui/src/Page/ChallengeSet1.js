@@ -4,6 +4,7 @@ import * as core from '@material-ui/core';
 import {ChallengeSet1Data} from './ChallengeSet1Data';
 import {useLocation, Link, useParams} from 'react-router-dom';
 import PropTypes from 'prop-types';
+import Terminal from '../components/Terminal';
 
 function a11yProps(index) {
     return {
@@ -38,7 +39,7 @@ export default function ChallengeSet1() {
     };
 
     return (
-        <div>
+        <div style={{display:'flex', flexDirection:'row', position:'fixed'}}>
             <div className='ChallengeSet1'>
                 <core.AppBar position="static" color="default">
                     <core.Tabs value={value} onChange={handleChange} indicatorColor="primary" textColor="primary" variant="scrollable" scrollButtons="auto" aria-label="simple auto tabs example">
@@ -51,13 +52,11 @@ export default function ChallengeSet1() {
                     </core.Tabs>
                 </core.AppBar>
 
-                <TabPanel className='box1' value={value} index={value} style={{overflowY: 'scroll'}}>
+                <TabPanel className='box1' value={value} index={value} style={{overflowY: 'scroll', marginTop:'5px', marginLeft: '5px'}}>
                     {ChallengeSet1Data[value].itembox1}
                 </TabPanel>
-                <TabPanel className='box2' value={value} index={value} style={{overflowY: 'scroll'}}>
-                    {ChallengeSet1Data[value].itembox2}
-                </TabPanel>
             </div>
+            <Terminal />
         </div>
     )
 }
