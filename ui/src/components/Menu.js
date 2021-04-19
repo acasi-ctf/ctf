@@ -49,7 +49,7 @@ export default function MenuBar() {
         setSubMenu(!submenu)
     }
 
-    const [title, setTitle] = useState("home");
+    const [title, setTitle] = useState("Home");
     return (
         <div className={classes.root} >
             <core.AppBar position="fixed" className={classes.appBar}>
