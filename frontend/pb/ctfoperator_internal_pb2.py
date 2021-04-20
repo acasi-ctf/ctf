@@ -23,7 +23,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
     syntax="proto3",
     serialized_options=b"\n\026org.acasictf.ctf.protoZ\033github.com/acasi-ctf/ctf/pb",
     create_key=_descriptor._internal_create_key,
-    serialized_pb=b'\n\x1a\x63tfoperator_internal.proto\x12\x03\x63tf\x1a\x0c\x63ommon.proto\x1a\x1fgoogle/protobuf/timestamp.proto"\xbd\x01\n\x0b\x45nvironment\x12\x30\n\x0c\x63reated_time\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x32\n\x0elast_ping_time\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x18\n\x10provisioner_done\x18\x03 \x01(\x08\x12.\n\x10provisioner_type\x18\x04 \x01(\x0e\x32\x14.ctf.ProvisionerType*<\n\x0fProvisionerType\x12\x0f\n\x0bUNSPECIFIED\x10\x00\x12\x08\n\x04NONE\x10\x01\x12\x0e\n\nKUBERNETES\x10\x02\x42\x35\n\x16org.acasictf.ctf.protoZ\x1bgithub.com/acasi-ctf/ctf/pbb\x06proto3',
+    serialized_pb=b'\n\x1a\x63tfoperator_internal.proto\x12\x03\x63tf\x1a\x0c\x63ommon.proto\x1a\x1fgoogle/protobuf/timestamp.proto"\xa0\x02\n\x0b\x45nvironment\x12\x30\n\x0c\x63reated_time\x18\x01 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x32\n\x0elast_ping_time\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x18\n\x10provisioner_done\x18\x03 \x01(\x08\x12.\n\x10provisioner_type\x18\x04 \x01(\x0e\x32\x14.ctf.ProvisionerType\x12\x1b\n\x08owner_id\x18\x05 \x01(\x0b\x32\t.ctf.UUID\x12#\n\x10\x63hallenge_set_id\x18\x06 \x01(\x0b\x32\t.ctf.UUID\x12\x1f\n\x0c\x63hallenge_id\x18\x07 \x01(\x0b\x32\t.ctf.UUID*<\n\x0fProvisionerType\x12\x0f\n\x0bUNSPECIFIED\x10\x00\x12\x08\n\x04NONE\x10\x01\x12\x0e\n\nKUBERNETES\x10\x02\x42\x35\n\x16org.acasictf.ctf.protoZ\x1bgithub.com/acasi-ctf/ctf/pbb\x06proto3',
     dependencies=[
         common__pb2.DESCRIPTOR,
         google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,
@@ -64,8 +64,8 @@ _PROVISIONERTYPE = _descriptor.EnumDescriptor(
     ],
     containing_type=None,
     serialized_options=None,
-    serialized_start=274,
-    serialized_end=334,
+    serialized_start=373,
+    serialized_end=433,
 )
 _sym_db.RegisterEnumDescriptor(_PROVISIONERTYPE)
 
@@ -159,6 +159,63 @@ _ENVIRONMENT = _descriptor.Descriptor(
             file=DESCRIPTOR,
             create_key=_descriptor._internal_create_key,
         ),
+        _descriptor.FieldDescriptor(
+            name="owner_id",
+            full_name="ctf.Environment.owner_id",
+            index=4,
+            number=5,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="challenge_set_id",
+            full_name="ctf.Environment.challenge_set_id",
+            index=5,
+            number=6,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
+        _descriptor.FieldDescriptor(
+            name="challenge_id",
+            full_name="ctf.Environment.challenge_id",
+            index=6,
+            number=7,
+            type=11,
+            cpp_type=10,
+            label=1,
+            has_default_value=False,
+            default_value=None,
+            message_type=None,
+            enum_type=None,
+            containing_type=None,
+            is_extension=False,
+            extension_scope=None,
+            serialized_options=None,
+            file=DESCRIPTOR,
+            create_key=_descriptor._internal_create_key,
+        ),
     ],
     extensions=[],
     nested_types=[],
@@ -169,7 +226,7 @@ _ENVIRONMENT = _descriptor.Descriptor(
     extension_ranges=[],
     oneofs=[],
     serialized_start=83,
-    serialized_end=272,
+    serialized_end=371,
 )
 
 _ENVIRONMENT.fields_by_name[
@@ -179,6 +236,9 @@ _ENVIRONMENT.fields_by_name[
     "last_ping_time"
 ].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 _ENVIRONMENT.fields_by_name["provisioner_type"].enum_type = _PROVISIONERTYPE
+_ENVIRONMENT.fields_by_name["owner_id"].message_type = common__pb2._UUID
+_ENVIRONMENT.fields_by_name["challenge_set_id"].message_type = common__pb2._UUID
+_ENVIRONMENT.fields_by_name["challenge_id"].message_type = common__pb2._UUID
 DESCRIPTOR.message_types_by_name["Environment"] = _ENVIRONMENT
 DESCRIPTOR.enum_types_by_name["ProvisionerType"] = _PROVISIONERTYPE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)

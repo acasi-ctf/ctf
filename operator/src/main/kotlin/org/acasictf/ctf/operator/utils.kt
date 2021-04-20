@@ -11,6 +11,7 @@ fun createDir(path: String): String {
 }
 
 fun getDataDir() = System.getenv("DATA_PATH") ?: createDir("data")
+fun getChallengesDir() = "${getDataDir()}/challenges"
 
 suspend fun <T> managed(f: suspend () -> T) =
         try {

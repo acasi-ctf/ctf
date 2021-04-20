@@ -19,7 +19,7 @@ fun main() {
     val envDao = EnvironmentDao(db)
     val server = ServerBuilder.forPort(1234)
             .addService(ProvisioningService(envDao, client))
-            .addService(LookupService(client))
+            .addService(LookupService(envDao, client))
             .build()
 
     Runtime.getRuntime().addShutdownHook(Thread {

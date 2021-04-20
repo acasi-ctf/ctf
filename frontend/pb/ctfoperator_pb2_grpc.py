@@ -195,6 +195,11 @@ class EnvironmentLookupServiceStub(object):
             request_serializer=ctfoperator__pb2.GetEnvironmentInfoRequest.SerializeToString,
             response_deserializer=ctfoperator__pb2.GetEnvironmentInfoResponse.FromString,
         )
+        self.ListUserEnvironments = channel.unary_unary(
+            "/ctf.EnvironmentLookupService/ListUserEnvironments",
+            request_serializer=ctfoperator__pb2.ListUserEnvironmentsRequest.SerializeToString,
+            response_deserializer=ctfoperator__pb2.ListUserEnvironmentsResponse.FromString,
+        )
 
 
 class EnvironmentLookupServiceServicer(object):
@@ -212,6 +217,12 @@ class EnvironmentLookupServiceServicer(object):
         context.set_details("Method not implemented!")
         raise NotImplementedError("Method not implemented!")
 
+    def ListUserEnvironments(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details("Method not implemented!")
+        raise NotImplementedError("Method not implemented!")
+
 
 def add_EnvironmentLookupServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -224,6 +235,11 @@ def add_EnvironmentLookupServiceServicer_to_server(servicer, server):
             servicer.GetEnvironmentInfo,
             request_deserializer=ctfoperator__pb2.GetEnvironmentInfoRequest.FromString,
             response_serializer=ctfoperator__pb2.GetEnvironmentInfoResponse.SerializeToString,
+        ),
+        "ListUserEnvironments": grpc.unary_unary_rpc_method_handler(
+            servicer.ListUserEnvironments,
+            request_deserializer=ctfoperator__pb2.ListUserEnvironmentsRequest.FromString,
+            response_serializer=ctfoperator__pb2.ListUserEnvironmentsResponse.SerializeToString,
         ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -284,6 +300,35 @@ class EnvironmentLookupService(object):
             "/ctf.EnvironmentLookupService/GetEnvironmentInfo",
             ctfoperator__pb2.GetEnvironmentInfoRequest.SerializeToString,
             ctfoperator__pb2.GetEnvironmentInfoResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+        )
+
+    @staticmethod
+    def ListUserEnvironments(
+        request,
+        target,
+        options=(),
+        channel_credentials=None,
+        call_credentials=None,
+        insecure=False,
+        compression=None,
+        wait_for_ready=None,
+        timeout=None,
+        metadata=None,
+    ):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            "/ctf.EnvironmentLookupService/ListUserEnvironments",
+            ctfoperator__pb2.ListUserEnvironmentsRequest.SerializeToString,
+            ctfoperator__pb2.ListUserEnvironmentsResponse.FromString,
             options,
             channel_credentials,
             insecure,

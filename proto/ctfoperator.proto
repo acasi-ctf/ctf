@@ -13,14 +13,19 @@ option java_package = "org.acasictf.ctf.proto";
  */
 message StartEnvironmentRequest {
   /**
-   * Slug name of the challenge set.
+   * ID of the challenge set.
    */
-  string challenge_set_slug = 1;
+  UUID challenge_set_id = 1;
 
   /**
-   * Slug name of the challenge template.
+   * ID of the challenge template.
    */
-  string challenge_slug = 2;
+  UUID challenge_id = 2;
+
+  /**
+   * UUID of the owner of this environment.
+   */
+  UUID challenge_owner = 3;
 }
 
 /**
@@ -68,10 +73,10 @@ message UploadEnvironmentTemplateRequest {
  */
 service EnvironmentProvisioningService {
   rpc StartEnvironment(StartEnvironmentRequest)
-    returns (StartEnvironmentResponse);
+      returns (StartEnvironmentResponse);
   rpc StopEnvironment(StopEnvironmentRequest) returns (StopEnvironmentResponse);
   rpc UploadEnvironmentTemplate(UploadEnvironmentTemplateRequest)
-    returns (google.protobuf.Empty);
+      returns (google.protobuf.Empty);
 }
 
 message IsEnvironmentReadyRequest {
@@ -91,9 +96,25 @@ message GetEnvironmentInfoResponse {
   int32 ssh_port = 2;
 }
 
+message ListUserEnvironmentsRequest {
+  UUID user_id = 1;
+}
+
+message UserEnvironmentInfo {
+  UUID env_id = 1;
+  UUID challenge_set_id = 2;
+  UUID challenge_id = 3;
+}
+
+message ListUserEnvironmentsResponse {
+  repeated UserEnvironmentInfo environments = 1;
+}
+
 service EnvironmentLookupService {
   rpc IsEnvironmentReady(IsEnvironmentReadyRequest) returns
       (IsEnvironmentReadyResponse);
   rpc GetEnvironmentInfo(GetEnvironmentInfoRequest) returns
       (GetEnvironmentInfoResponse);
+  rpc ListUserEnvironments(ListUserEnvironmentsRequest) returns
+      (ListUserEnvironmentsResponse);
 }

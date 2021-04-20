@@ -29,6 +29,8 @@ func BuildPackage(source string, destination string) error {
 		fmt.Printf("Validated '%s' challenge file\n", challenge.Slug)
 	}
 
+	// TODO: Validate challenge slug is equal to challenge directory name.
+
 	return ArchiveChallenge(source, destination)
 }
 

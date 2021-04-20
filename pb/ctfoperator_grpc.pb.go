@@ -180,6 +180,7 @@ var EnvironmentProvisioningService_ServiceDesc = grpc.ServiceDesc{
 type EnvironmentLookupServiceClient interface {
 	IsEnvironmentReady(ctx context.Context, in *IsEnvironmentReadyRequest, opts ...grpc.CallOption) (*IsEnvironmentReadyResponse, error)
 	GetEnvironmentInfo(ctx context.Context, in *GetEnvironmentInfoRequest, opts ...grpc.CallOption) (*GetEnvironmentInfoResponse, error)
+	ListUserEnvironments(ctx context.Context, in *ListUserEnvironmentsRequest, opts ...grpc.CallOption) (*ListUserEnvironmentsResponse, error)
 }
 
 type environmentLookupServiceClient struct {
@@ -208,12 +209,22 @@ func (c *environmentLookupServiceClient) GetEnvironmentInfo(ctx context.Context,
 	return out, nil
 }
 
+func (c *environmentLookupServiceClient) ListUserEnvironments(ctx context.Context, in *ListUserEnvironmentsRequest, opts ...grpc.CallOption) (*ListUserEnvironmentsResponse, error) {
+	out := new(ListUserEnvironmentsResponse)
+	err := c.cc.Invoke(ctx, "/ctf.EnvironmentLookupService/ListUserEnvironments", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // EnvironmentLookupServiceServer is the server API for EnvironmentLookupService service.
 // All implementations must embed UnimplementedEnvironmentLookupServiceServer
 // for forward compatibility
 type EnvironmentLookupServiceServer interface {
 	IsEnvironmentReady(context.Context, *IsEnvironmentReadyRequest) (*IsEnvironmentReadyResponse, error)
 	GetEnvironmentInfo(context.Context, *GetEnvironmentInfoRequest) (*GetEnvironmentInfoResponse, error)
+	ListUserEnvironments(context.Context, *ListUserEnvironmentsRequest) (*ListUserEnvironmentsResponse, error)
 	mustEmbedUnimplementedEnvironmentLookupServiceServer()
 }
 
@@ -226,6 +237,9 @@ func (UnimplementedEnvironmentLookupServiceServer) IsEnvironmentReady(context.Co
 }
 func (UnimplementedEnvironmentLookupServiceServer) GetEnvironmentInfo(context.Context, *GetEnvironmentInfoRequest) (*GetEnvironmentInfoResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetEnvironmentInfo not implemented")
+}
+func (UnimplementedEnvironmentLookupServiceServer) ListUserEnvironments(context.Context, *ListUserEnvironmentsRequest) (*ListUserEnvironmentsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListUserEnvironments not implemented")
 }
 func (UnimplementedEnvironmentLookupServiceServer) mustEmbedUnimplementedEnvironmentLookupServiceServer() {
 }
@@ -277,6 +291,24 @@ func _EnvironmentLookupService_GetEnvironmentInfo_Handler(srv interface{}, ctx c
 	return interceptor(ctx, in, info, handler)
 }
 
+func _EnvironmentLookupService_ListUserEnvironments_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListUserEnvironmentsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EnvironmentLookupServiceServer).ListUserEnvironments(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/ctf.EnvironmentLookupService/ListUserEnvironments",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EnvironmentLookupServiceServer).ListUserEnvironments(ctx, req.(*ListUserEnvironmentsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // EnvironmentLookupService_ServiceDesc is the grpc.ServiceDesc for EnvironmentLookupService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -291,6 +323,10 @@ var EnvironmentLookupService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetEnvironmentInfo",
 			Handler:    _EnvironmentLookupService_GetEnvironmentInfo_Handler,
+		},
+		{
+			MethodName: "ListUserEnvironments",
+			Handler:    _EnvironmentLookupService_ListUserEnvironments_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

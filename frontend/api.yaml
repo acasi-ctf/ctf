@@ -95,6 +95,19 @@ paths:
             text/markdown: {}
         '404':
           description: Documentation was not found
+  /api/user/environments:
+    get:
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: List of environments running for this user
+          content:
+            application/json:
+              schema:
+                type: 'array'
+                items:
+                  $ref: '#/components/schemas/Environment'
 
 components:
   schemas:
@@ -138,11 +151,26 @@ components:
           type: array
           items:
             type: object
-            items:
-              properties:
-                name:
-                  type: string
-                path:
-                  type: string
-                order:
-                  type: integer
+            properties:
+              name:
+                type: string
+              path:
+                type: string
+              order:
+                type: integer
+    Environment:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        challengeSetSlug:
+          type: string
+        challengeSlug:
+          type: string
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

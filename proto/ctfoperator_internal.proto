@@ -45,4 +45,19 @@ message Environment {
    * Type of provisioner that is used for this environment.
    */
   ProvisionerType provisioner_type = 4;
+
+  /**
+   * The ID of the user that owns this environment.
+   */
+  UUID owner_id = 5;
+
+  /**
+   * The ID of the challenge set.
+   */
+  UUID challenge_set_id = 6;
+
+  /**
+   * The ID of the challenge.
+   */
+  UUID challenge_id = 7;
 }
