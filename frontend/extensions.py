@@ -7,6 +7,8 @@ import grpc
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 
+from frontend.pb import EnvironmentLookupServiceStub
+
 operator_channel_target = "localhost:1234"
 if os.getenv("OPERATOR_HOST"):
     host = os.getenv("OPERATOR_HOST")
@@ -15,3 +17,4 @@ if os.getenv("OPERATOR_HOST"):
 db = SQLAlchemy()
 migrate = Migrate()
 operator_channel = grpc.insecure_channel(operator_channel_target)
+lookup_service = EnvironmentLookupServiceStub(operator_channel)

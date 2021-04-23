@@ -107,7 +107,7 @@ paths:
               schema:
                 type: 'array'
                 items:
-                  $ref: '#/components/schemas/Environment'
+                  $ref: '#/components/schemas/UserEnvironmentInfo'
 
 components:
   schemas:
@@ -158,7 +158,7 @@ components:
                 type: string
               order:
                 type: integer
-    Environment:
+    UserEnvironmentInfo:
       type: object
       properties:
         id:

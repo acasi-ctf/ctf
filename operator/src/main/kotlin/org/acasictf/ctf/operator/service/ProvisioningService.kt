@@ -93,33 +93,6 @@ EnvironmentProvisioningServiceCoroutineImplBase() {
             kube.pods().inNamespace(kubeNamespace).create(pod)
         }
 
-        /*val pod = Pod()
-        pod.apply {
-            metadata = ObjectMeta()
-            metadata.name = "ctf-penimage-$envIdStr"
-
-            metadata.labels = mutableMapOf()
-            metadata.labels["ctf-env-id"] = envIdStr
-            metadata.labels["ctf-env-label"] = "penimage"
-
-            val container = Container().apply {
-                name = "penimage"
-                image = "ghcr.io/acasi-ctf/ctf/penimage:latest"
-                imagePullPolicy = "Always"
-
-                setEnv(mutableListOf())
-                getEnv().add(EnvVar().apply {
-                    name = "PUBLIC_KEY"
-                    value = publicKey
-                })
-            }
-
-            spec = PodSpec()
-            spec.containers.add(container)
-        }
-
-        kube.pods().create(pod)*/
-
         return@managed Ctfoperator.StartEnvironmentResponse.newBuilder().apply {
             successBuilder.apply {
                 environmentIdBuilder.apply {

@@ -1,7 +1,9 @@
 """
 This file constructs the Flask application and registers extensions / routes.
 """
-from flask import Flask
+import sys
+
+from flask import Flask, jsonify
 
 from .extensions import (
     db,

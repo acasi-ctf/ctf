@@ -7,9 +7,10 @@ import org.acasictf.ctf.operator.persistence.EnvironmentDao
 import org.acasictf.ctf.proto.Ctfoperator
 import org.acasictf.ctf.proto.EnvironmentLookupServiceGrpcKt
 
-class LookupService(private val envDao: EnvironmentDao,
-                    private val kube: KubernetesClient)
-    : EnvironmentLookupServiceGrpcKt.
+class LookupService(
+    private val envDao: EnvironmentDao,
+    private val kube: KubernetesClient
+) : EnvironmentLookupServiceGrpcKt.
 EnvironmentLookupServiceCoroutineImplBase() {
     override suspend fun getEnvironmentInfo(request: Ctfoperator.GetEnvironmentInfoRequest): Ctfoperator.GetEnvironmentInfoResponse {
         val envIdStr = request.environmentId.contents
@@ -33,7 +34,7 @@ EnvironmentLookupServiceCoroutineImplBase() {
     }
 
     override suspend fun listUserEnvironments(request: Ctfoperator.ListUserEnvironmentsRequest): Ctfoperator.ListUserEnvironmentsResponse {
-        envDao.list().filterValues {
+        val environments = envDao.list().filterValues {
             it.ownerId.contents == request.userId.contents
         }.map {
             Ctfoperator.UserEnvironmentInfo.newBuilder().apply {
@@ -42,10 +43,11 @@ EnvironmentLookupServiceCoroutineImplBase() {
                 envId = key
                 challengeSetId = env.challengeSetId
                 challengeId = env.challengeId
-            }
+            }.build()
         }
 
-        // TODO:
-        return super.listUserEnvironments(request)
+        return Ctfoperator.ListUserEnvironmentsResponse.newBuilder().apply {
+            addAllEnvironments(environments)
+        }.build()
     }
 }

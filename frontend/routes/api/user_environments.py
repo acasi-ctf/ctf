@@ -1,7 +1,10 @@
 """
 Routes that relate to managing user environments.
 """
-from flask import Blueprint, jsonify, Response
+from flask import Blueprint, jsonify
+from frontend.extensions import lookup_service
+from frontend.pb import ListUserEnvironmentsRequest
+from frontend.routes.decorators import requires_auth, get_user_id
 
 """
 Blueprint that encapsulates this group of routes.
@@ -10,13 +13,20 @@ bp = Blueprint("user_environments", __name__)
 
 
 @bp.route("/environments")
+@requires_auth
 def list_user_environments():
-    return jsonify(
-        [
-            {
-                "id": "880e579a-a40e-4ffa-b806-997f49b4286a",
-                "challengeSetSlug": "example",
-                "challengeSlug": "basic-env-example",
-            }
-        ]
-    )
+    user_id = get_user_id()
+
+    r = ListUserEnvironmentsRequest()
+    r.user_id.contents = user_id
+    resp = lookup_service.ListUserEnvironments(r)
+
+    def map_env(env):
+        return {
+            "id": env.env_id.contents,
+            "challengeSetId": env.challenge_set_id.contents,
+            "challengeId": env.challenge_id.contents,
+        }
+
+    environments = list(map(map_env, resp.environments))
+    return jsonify(environments)
