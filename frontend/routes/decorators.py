@@ -27,6 +27,33 @@ def requires_scope(required_scope):
     return False
 
 
+def requires_permission(required_permission):
+    """
+    Determines if the required permission is present in the Access Token
+    Args:
+        required_permission (str): The permission required to access the resource
+    """
+    token = get_token_auth_header()
+    unverified_claims = jwt.get_unverified_claims(token)
+    if unverified_claims.get("permissions"):
+        token_permissions = unverified_claims["permissions"]
+        for token_permission in token_permissions:
+            if token_permission == required_permission:
+                return True
+    return False
+
+
+def requires_permission_raise(required_permission):
+    if not requires_permission(required_permission):
+        raise AuthError(
+            {
+                "code": "missing_permission",
+                "description": "User does not have necessary permission for this resource",
+            },
+            403,
+        )
+
+
 def get_user_id():
     token = get_token_auth_header()
     unverified_claims = jwt.get_unverified_claims(token)

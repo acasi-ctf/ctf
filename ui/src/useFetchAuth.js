@@ -39,7 +39,7 @@ export default function useFetchAuth(url) {
                 init();
             }
         }
-    }, [isAuthenticated, running, loading]);
+    }, [url, getAccessTokenSilently, isAuthenticated, running, loading]);
 
     return { data, error, loading };
 }
