@@ -108,6 +108,22 @@ paths:
                 type: 'array'
                 items:
                   $ref: '#/components/schemas/UserEnvironmentInfo'
+    post:
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateEnvironmentRequest'
+      responses:
+        '200':
+          description: Environment was created for user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateEnvironmentResponse'
 
 components:
   schemas:
@@ -168,6 +184,24 @@ components:
           type: string
         challengeSlug:
           type: string
+    CreateEnvironmentRequest:
+      type: object
+      properties:
+        challengeSetSlug:
+          type: string
+        challengeSlug:
+          type: string
+      required:
+        - challengeSetSlug
+        - challengeSlug
+    CreateEnvironmentResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+      required:
+        - id
 
   securitySchemes:
     bearerAuth:
