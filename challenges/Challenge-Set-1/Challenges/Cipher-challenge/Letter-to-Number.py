@@ -31,20 +31,20 @@ def Convert_number(string):
 def main():
     string = random_alphabet()
     code = Convert_number(string)
-    print("This is Letter to number Challenge!")
+    print("This is a letter to number challenge!")
     print("The code is:")
     print(code)
     print()
 
     while(True):
-        strs = input("The decode text is: ")
+        strs = input("The deciphered text is: ")
         if strs == string:
             break
         else:
-            print("Nope!Try Again!")
+            print("Nope... Try Again!")
             continue
 
-    print("Congrarulations! You get 10 point!")
+    print("Congratulations! You get 10 points!")
     
 
 if __name__ == "__main__":
