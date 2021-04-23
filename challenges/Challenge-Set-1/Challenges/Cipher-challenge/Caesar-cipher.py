@@ -44,7 +44,7 @@ def main():
     print()
 
     while(True):
-        strs = input("The decoded text is: ")
+        strs = input("The deciphered text is: ")
         if strs == string:
             break
         else:
