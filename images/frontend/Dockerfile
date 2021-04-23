@@ -20,7 +20,7 @@ RUN rm /etc/nginx/conf.d/default.conf
 COPY images/frontend/uwsgi.ini /etc/uwsgi/
 
 # Install Supervisord
-RUN apt-get update && apt-get install -y --no-install-recommends supervisor \
+RUN apt-get update && apt-get install -y --no-install-recommends --reinstall supervisor ca-certificates \
 && rm -rf /var/lib/apt/lists/*
 # Custom Supervisord config
 COPY images/frontend/supervisord-debian.conf /etc/supervisor/conf.d/supervisord.conf
@@ -92,9 +92,12 @@ ENTRYPOINT ["/entrypoint.sh"]
 CMD ["/start.sh"]
 
 COPY images/frontend/app-uwsgi.ini /app/uwsgi.ini
-COPY frontend /app/frontend
-COPY frontend/main.py /app/main.py
+
 COPY Pipfile Pipfile.lock /app/
 
 RUN pipenv lock -r > requirements.txt
 RUN pip install -r requirements.txt
+
+COPY frontend /app/frontend
+COPY frontend/main.py /app/main.py
+

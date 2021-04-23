@@ -10,8 +10,8 @@ from flask_sqlalchemy import SQLAlchemy
 from frontend.pb import EnvironmentLookupServiceStub, EnvironmentProvisioningServiceStub
 
 operator_channel_target = "localhost:1234"
-if os.getenv("OPERATOR_HOST"):
-    host = os.getenv("OPERATOR_HOST")
+if os.getenv("CTF_OPERATOR_SERVICE_HOST"):
+    host = os.getenv("CTF_OPERATOR_SERVICE_HOST")
     operator_channel_target = f"{host}:1234"
 
 db = SQLAlchemy()
