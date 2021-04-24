@@ -21,12 +21,12 @@ Let us examine a simple example:
 
 All HTML documents will begin with ```!DOCTYPE html```, this declares this document as an HTML document. The remaining items are **elements** , and you will notice they always wrap the items they are affecting. You can determine an elements closing tag by the prepended ```/```.
 
--The ```<html>``` element is the root element of an HTML page.
--The ```<head>``` element contains meta information about the HTML page.
--The ```<title>``` element specifies a title for the HTML page (which is shown in the browser's title bar or in the page's tab).
--The ```<body>``` element defines the document's body, and is a container for all the visible contents, such as headings, paragraphs, images, hyperlinks, tables, lists, etc.
--The ```<h1>``` element defines a large heading.
--The ```<p>``` element defines a paragraph.
+- The ```<html>``` element is the root element of an HTML page.
+- The ```<head>``` element contains meta information about the HTML page.
+- The ```<title>``` element specifies a title for the HTML page (which is shown in the browser's title bar or in the page's tab).
+- The ```<body>``` element defines the document's body, and is a container for all the visible contents, such as headings, paragraphs, images, hyperlinks, tables, lists, etc.
+- The ```<h1>``` element defines a large heading.
+- The ```<p>``` element defines a paragraph.
 
 
 Another tool in HTML are **attributes**. Attributes are placed within the element tag to modify elements characteristics. For example, lets assume we have an ```<p>``` (paragraph element) and we want to change its character size. One attribute we could us is ```style``` which would allow us to set the font-size &quot;Text&quot; to 10 px.
