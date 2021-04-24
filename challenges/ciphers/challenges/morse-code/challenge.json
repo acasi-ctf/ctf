@@ -9,10 +9,6 @@
   },
   "documentation": [
     {
-      "name": "Cryptography",
-      "path": "docs/1-Cryptography.md"
-    },
-    {
       "name": "Morse code",
       "path": "docs/Morse_code.md"
     }

@@ -96,7 +96,7 @@ def get_challenge(challenge_set_slug, challenge_slug):
 
 
 @bp.route(
-    "/challenge-sets/<challenge_set_slug>/challenges/<challenge_slug>/docs/<doc_path>"
+    "/challenge-sets/<challenge_set_slug>/challenges/<challenge_slug>/docs/<path:doc_path>"
 )
 def get_challenge_doc(challenge_set_slug, challenge_slug, doc_path):
     """
