@@ -36,22 +36,22 @@ def main():
     string = random_alphabet()
     code = Caesar(string,number)
     hint = Caesar("FLAG",number)
-    print("This is Caesar cipher Challenge!")
-    print("Hint for this challenge is:")
+    print("This is a Caesar Cipher challenge!")
+    print("The hint for this challenge is:")
     print(hint + " = \"FLAG\"")
     print("The code is:")
     print(code)
     print()
 
     while(True):
-        strs = input("The decode text is: ")
+        strs = input("The deciphered text is: ")
         if strs == string:
             break
         else:
             print("Nope!Try Again!")
             continue
 
-    print("Congrarulations! You get 10 point!")
+    print("Congratulations! You get 10 points!")
 
 if __name__ == "__main__":
     main()

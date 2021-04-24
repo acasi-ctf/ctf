@@ -62,7 +62,7 @@ def Convert_number(r_flag):
 
 if __name__ == "__main__":
     
-    print("This is Classical Cipher mixed Challenge!")
+    print("This is a mixed classical cipher challenge!")
     
     c_flag = Caesar(flag)
     r_flag = Reverse(c_flag)
@@ -70,12 +70,12 @@ if __name__ == "__main__":
 
     print("")
 
-    print("Number and Alphabat have their own connection.")
-    print("The first code is: " + number_flag)
+    print("Numbers and alphabetic characters have an inherent relation.")
+    print("The first ciphered text is: " + number_flag)
 
     ans1 = 0
     while(ans1 == 0):
-        strs = input("The decode is: ")
+        strs = input("The decoded text is: ")
         if strs == r_flag:
             ans1 = 1
         else:
@@ -83,15 +83,15 @@ if __name__ == "__main__":
             continue
 
     print(" ")
-    print("You find out the connection between number and letter!")
-    print("The little hint before you do it is GALF = FLAG")
-    print("Let's move to next step:")
+    print("Find the link between the numbers and letters!")
+    print("A little hint before you start: GALF = FLAG")
+    print("Let's move to the next step:")
     print(r_flag)
 
 
     ans2 = 0
     while(ans2 == 0):
-        strs = input("The decode is: ")
+        strs = input("The deciphered text is: ")
         if strs == c_flag:
             ans2 = 1
         else:
@@ -99,20 +99,20 @@ if __name__ == "__main__":
             continue
 
     print(" ")
-    print("Looks like you got the hint - \"Think backwards\"!")
-    print("Let's move to fininal step")
-    print("Before you do it, there is a hint Jepk = Flag")
+    print("Looks like you need a hint - \"Think backwards\"!")
+    print("Let's move to final step")
+    print("Before you do it, here is a hint: Jepk = Flag")
     print(c_flag)
 
 
     ans3 = 0
     while(ans3 == 0):
-        strs = input("The decode is: ")
+        strs = input("The deciphered text is: ")
         if strs == flag:
             ans3 = 1
         else:
-            print("Nope!")
+            print("Nope... Try again!")
             continue
         
     print(" ")
-    print("Congrarulations! You get 100 point!")
+    print("Congratulations! You get 100 points!")
