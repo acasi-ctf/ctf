@@ -1,0 +1,20 @@
+{
+  "$schema": "../../../schemas/challenge.schema.json",
+  "id": "344158ff-769b-498b-984a-994efec951d9",
+  "slug": "reverse-cipher",
+  "name": "Reverse cipher",
+  "description": "This is a challenge that demonstrates reverse cipher",
+  "provisioner": {
+    "type": "kubernetes"
+  },
+  "documentation": [
+    {
+      "name": "Cryptography",
+      "path": "docs/1-Cryptography.md"
+    },
+    {
+      "name": "Reverse cipher",
+      "path": "docs/Reverse.md"
+    }
+  ]
+}
