@@ -50,7 +50,6 @@ EnvironmentProvisioningServiceCoroutineImplBase() {
 
         envDao.set(envId, env)
 
-        //val publicKey = File("/secrets/auth-key-public/id_rsa.pub").readText()
         val failureResponse = Ctfoperator.StartEnvironmentResponse
                 .newBuilder().apply {
                     // TODO: Add reason.
@@ -78,6 +77,7 @@ EnvironmentProvisioningServiceCoroutineImplBase() {
         provisioner.manifests.pods.forEachIndexed { i, it ->
             val podFile = ct.readChallengeFile(c, it)
             val pod = kube.pods().inNamespace(kubeNamespace).load(podFile.getInputStream()).get()
+            val isPenimage = pod.metadata?.name == "penimage"
             if (pod.metadata == null) {
                 pod.metadata = ObjectMeta()
             }
@@ -89,6 +89,27 @@ EnvironmentProvisioningServiceCoroutineImplBase() {
             pod.metadata.labels["ctf-env-id"] = envIdStr
 
             // TODO: Inject public key for penimage
+            if (isPenimage) {
+                if (pod.spec != null && pod.spec.containers != null) {
+                    val publicKeyFile = File("/secrets/auth-key-public/id_rsa.pub")
+                    val publicKey = if (publicKeyFile.exists()) {
+                        publicKeyFile.readText()
+                    } else {
+                        logger.warn("Failed to find public key secret")
+                        ""
+                    }
+                    val envVar = EnvVar().apply {
+                        name = "PUBLIC_KEY"
+                        value = publicKey
+                    }
+                    pod.spec.containers.forEach {
+                        if (it.env == null) {
+                            it.env = mutableListOf()
+                        }
+                        it.env.add(envVar)
+                    }
+                }
+            }
 
             kube.pods().inNamespace(kubeNamespace).create(pod)
         }

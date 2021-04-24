@@ -1,7 +1,8 @@
 PROTOSRC = proto/common proto/termproxy proto/ctfoperator proto/ctfoperator_internal
 
-IMAGEBASE = ghcr.io/acasi-ctf/ctf
-IMAGETAG = latest
+IMAGE_CTF_BASE = ghcr.io/acasi-ctf/ctf
+IMAGE_CHALLENGES_BASE = ghcr.io/acasi-ctf/challenges
+IMAGE_TAG = latest
 
 all: proto docker
 
@@ -16,39 +17,45 @@ $(PROTOSRC): %:%.proto
 	pipenv run python -m grpc_tools.protoc --python_out=frontend/pb --grpc_python_out=frontend/pb -I proto/ $<
 
 docker_penimage:
-	docker build -t $(IMAGEBASE)/penimage:$(IMAGETAG) images/penimage
+	docker build -t $(IMAGE_CTF_BASE)/penimage:$(IMAGE_TAG) images/penimage
 ifeq ($(DOCKER_PUSH), 1)
-		docker push $(IMAGEBASE)/penimage:$(IMAGETAG)
+		docker push $(IMAGE_CTF_BASE)/penimage:$(IMAGE_TAG)
 endif
 
 docker_termproxy:
-	docker build -t $(IMAGEBASE)/termproxy:$(IMAGETAG) -f images/termproxy/Dockerfile .
+	docker build -t $(IMAGE_CTF_BASE)/termproxy:$(IMAGE_TAG) -f images/termproxy/Dockerfile .
 ifeq ($(DOCKER_PUSH), 1)
-		docker push $(IMAGEBASE)/termproxy:$(IMAGETAG)
+		docker push $(IMAGE_CTF_BASE)/termproxy:$(IMAGE_TAG)
 endif
 
 docker_operator:
-	docker build -t $(IMAGEBASE)/operator:$(IMAGETAG) -f images/operator/Dockerfile .
+	docker build -t $(IMAGE_CTF_BASE)/operator:$(IMAGE_TAG) -f images/operator/Dockerfile .
 ifeq ($(DOCKER_PUSH), 1)
-		docker push $(IMAGEBASE)/operator:$(IMAGETAG)
+		docker push $(IMAGE_CTF_BASE)/operator:$(IMAGE_TAG)
 endif
 
 docker_operatorkt:
-	docker build -t $(IMAGEBASE)/operatorkt:$(IMAGETAG) -f images/operatorkt/Dockerfile .
+	docker build -t $(IMAGE_CTF_BASE)/operatorkt:$(IMAGE_TAG) -f images/operatorkt/Dockerfile .
 ifeq ($(DOCKER_PUSH), 1)
-		docker push $(IMAGEBASE)/operatorkt:$(IMAGETAG)
+		docker push $(IMAGE_CTF_BASE)/operatorkt:$(IMAGE_TAG)
 endif
 
 docker_ui:
-	docker build -t $(IMAGEBASE)/ui:$(IMAGETAG) -f images/ui/Dockerfile .
+	docker build -t $(IMAGE_CTF_BASE)/ui:$(IMAGE_TAG) -f images/ui/Dockerfile .
 ifeq ($(DOCKER_PUSH), 1)
-		docker push $(IMAGEBASE)/ui:$(IMAGETAG)
+		docker push $(IMAGE_CTF_BASE)/ui:$(IMAGE_TAG)
 endif
 
 docker_frontend:
-	docker build -t $(IMAGEBASE)/frontend:$(IMAGETAG) -f images/frontend/Dockerfile .
+	docker build -t $(IMAGE_CTF_BASE)/frontend:$(IMAGE_TAG) -f images/frontend/Dockerfile .
 ifeq ($(DOCKER_PUSH), 1)
-		docker push $(IMAGEBASE)/frontend:$(IMAGETAG)
+		docker push $(IMAGE_CTF_BASE)/frontend:$(IMAGE_TAG)
+endif
+
+docker_challenge_cipher:
+	docker build -t $(IMAGE_CHALLENGES_BASE)/ciphers:$(IMAGE_TAG) -f images/challenges/ciphers/Dockerfile .
+ifeq ($(DOCKER_PUSH), 1)
+		docker push $(IMAGE_CHALLENGES_BASE)/ciphers:$(IMAGE_TAG)
 endif
 
 lint:
