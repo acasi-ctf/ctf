@@ -6,7 +6,7 @@ In close accordance with HTML, designers utilize CSS to define styles for your w
 
     ```<p style= “color: blue”> BlueText </p>```
 
-2. External – Declaring all CSS formatting within an external CSS file and connecting it to your HTML file. Below we have the contents of and HTML file (page.html) and a CSS file (style.css). In the page.html ```<head>``` element we declare a ```link``` to an external CSS file and using the attribute ```rel``` and ```href``` to declare the type of relationship and the file name. 
+2. External – Declaring all CSS formatting within an external CSS file and connecting it to your HTML file. Below we have the contents of and HTML file (page.html) and a CSS file (style.css). In the page.html ```<head>``` element we declare a ```link``` to an external CSS file and using the attribute ```rel``` and ```href``` to declare the type of relationship and the file name.
 In style.css you notice an object ```p``` representing our element ```<p>``` in page.html. With the object ```p``` we declare color is blue and thus state that all ```<p>``` elements in page.html will have blue text.
 
 page.html
