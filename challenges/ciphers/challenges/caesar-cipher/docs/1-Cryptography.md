@@ -6,7 +6,7 @@
 The different between Classical Cryptography and Modern Cryptography is encoding and deciphering of classical cryptography usually relies on the creativity and skill of the designer and the adversary, and exists as a practical art. Modern Cryptography is base on a number of theories, and those theories are making modern cryptography a science that can be studied systematically and rigorously.
 
 ## Classical Cryptography
-Classical Cryptography are one type of cryptography, most of which use alternate or transpositive ciphers, or sometimes a combination of the two. Usually the cyrpto will be a classic password is based on A pinyin letter (like A-Z), a manual operation, or a simple device.
+Classical Cryptography is one type of cryptography, many of which use alternating or transposition ciphers, or sometimes a combination of the two. Usually the cyrpto will be a classic password is based on A pinyin letter (like A-Z), a manual operation, or a simple device.
 ### Examples of classical cryptography
 Alberti
 ADFGVX
