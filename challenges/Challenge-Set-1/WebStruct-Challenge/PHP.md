@@ -5,7 +5,7 @@ PHP is a server-side scripting language, used to develop both Static and Dynamic
 A PHP script starts with ```<?php``` and ends with ```?>```. For example, below we have a HTML file (generator.html) that contains a PHP script. Using the command ```echo```, PHP is declaring that the result of its script will be displayed onto the page. The script than calls ```rand(1,100)``` to generate a random number between 1 and 100 to display.
 
 generator.html
-```
+```html
 <!DOCTYPE html>
 <html>
 <body>
@@ -17,7 +17,7 @@ generator.html
 </html>
 ```
 It is important to note that while you can see HTML code on a webpage by viewing its source code. You will not be able to view the PHP code because it is executed on the server and only its basic HTML results are pushed to the webpage. So even if you are examining a PHP file it will only possess the HTML aspects that are present on the webpage. An inspection of generator.html would display:
-```
+```html
 <!DOCTYPE html>
 <html>
 <body>
