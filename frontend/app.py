@@ -1,7 +1,9 @@
 """
 This file constructs the Flask application and registers extensions / routes.
 """
-from flask import Flask
+import sys
+
+from flask import Flask, jsonify
 
 from .extensions import (
     db,
@@ -38,9 +40,10 @@ def register_blueprints(app):
     """
     Register Flask blueprints.
     """
-    from .routes.api import admin_challenges_bp, challenges_bp
+    from .routes.api import admin_challenges_bp, challenges_bp, user_environments_bp
 
     app.register_blueprint(challenges_bp, url_prefix="/api/")
     app.register_blueprint(admin_challenges_bp, url_prefix="/api/admin/")
+    app.register_blueprint(user_environments_bp, url_prefix="/api/user/")
 
     return None

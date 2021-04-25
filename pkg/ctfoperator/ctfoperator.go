@@ -13,6 +13,7 @@ import (
 	"k8s.io/client-go/rest"
 	"log"
 	"net"
+	"os"
 )
 
 // StartOperator will start the gRPC servers and services that are necessary to
@@ -30,8 +31,14 @@ func StartOperator() error {
 		return err
 	}
 
+	// Determine path of DB, if DB_PATH env var is specified, use it instead.
+	dbPath := "operator.db"
+	if dbPathEnv := os.Getenv("DB_PATH"); len(dbPathEnv) > 0 {
+		dbPath = dbPathEnv
+	}
+
 	// Open a bbolt database for the operator.
-	db, err := bolt.Open("operator.db", 0666, nil)
+	db, err := bolt.Open(dbPath, 0666, nil)
 	if err != nil {
 		return err
 	}

@@ -34,6 +34,7 @@
         "type": {
           "type": "string",
           "enum": [
+            "none",
             "kubernetes"
           ]
         }

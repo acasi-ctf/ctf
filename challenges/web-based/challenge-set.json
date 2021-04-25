@@ -1,0 +1,12 @@
+{
+  "$schema": "../schemas/challenge-set.schema.json",
+  "id": "316eb256-810c-4a5b-a615-88f1fc24320f",
+  "slug": "web-based",
+  "name": "Web",
+  "description": "Challenge set that focuses on web knowledge",
+  "version": "0.1.0",
+  "challenges": [
+    "directory-traversal",
+    "web-structure"
+  ]
+}

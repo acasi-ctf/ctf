@@ -1,0 +1,11 @@
+{
+  "$schema": "../../../schemas/challenge.schema.json",
+  "id": "d8ca2e9d-b062-4388-a3f4-c2328906f95d",
+  "slug": "dvwa-example",
+  "name": "DVWA Challenge",
+  "description": "This is an example challenge to demonstrate using DVWA",
+  "provisioner": {
+    "type": "kubernetes"
+  },
+  "documentation": []
+}

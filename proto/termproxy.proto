@@ -3,6 +3,7 @@ syntax = "proto3";
 import "common.proto";
 
 option go_package = "github.com/acasi-ctf/ctf/pb";
+option java_package = "org.acasictf.ctf.proto";
 
 message ClientMessage {
   oneof message {

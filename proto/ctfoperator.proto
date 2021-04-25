@@ -3,17 +3,29 @@ syntax = "proto3";
 package ctf;
 
 import "common.proto";
+import "google/protobuf/empty.proto";
 
 option go_package = "github.com/acasi-ctf/ctf/pb";
+option java_package = "org.acasictf.ctf.proto";
 
 /**
  * Request message for starting a new environment.
  */
 message StartEnvironmentRequest {
   /**
-   * Slug name of the environment template.
+   * ID of the challenge set.
    */
-  string template_slug = 1;
+  UUID challenge_set_id = 1;
+
+  /**
+   * ID of the challenge template.
+   */
+  UUID challenge_id = 2;
+
+  /**
+   * UUID of the owner of this environment.
+   */
+  UUID challenge_owner = 3;
 }
 
 /**
@@ -50,12 +62,21 @@ message StopEnvironmentResponse {
 }
 
 /**
+ * Request message for uploading a challenge template.
+ */
+message UploadEnvironmentTemplateRequest {
+  bytes env_zip = 1;
+}
+
+/**
  * gRPC service used to provision environments.
  */
 service EnvironmentProvisioningService {
   rpc StartEnvironment(StartEnvironmentRequest)
-    returns (StartEnvironmentResponse);
+      returns (StartEnvironmentResponse);
   rpc StopEnvironment(StopEnvironmentRequest) returns (StopEnvironmentResponse);
+  rpc UploadEnvironmentTemplate(UploadEnvironmentTemplateRequest)
+      returns (google.protobuf.Empty);
 }
 
 message IsEnvironmentReadyRequest {
@@ -75,9 +96,25 @@ message GetEnvironmentInfoResponse {
   int32 ssh_port = 2;
 }
 
+message ListUserEnvironmentsRequest {
+  UUID user_id = 1;
+}
+
+message UserEnvironmentInfo {
+  UUID env_id = 1;
+  UUID challenge_set_id = 2;
+  UUID challenge_id = 3;
+}
+
+message ListUserEnvironmentsResponse {
+  repeated UserEnvironmentInfo environments = 1;
+}
+
 service EnvironmentLookupService {
   rpc IsEnvironmentReady(IsEnvironmentReadyRequest) returns
       (IsEnvironmentReadyResponse);
   rpc GetEnvironmentInfo(GetEnvironmentInfoRequest) returns
       (GetEnvironmentInfoResponse);
+  rpc ListUserEnvironments(ListUserEnvironmentsRequest) returns
+      (ListUserEnvironmentsResponse);
 }

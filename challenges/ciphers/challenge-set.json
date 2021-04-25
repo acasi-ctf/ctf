@@ -1,0 +1,15 @@
+{
+  "$schema": "../schemas/challenge-set.schema.json",
+  "id": "bb98d361-b2e0-4324-b2d7-a7a9d603c9e9",
+  "slug": "ciphers",
+  "name": "Ciphers",
+  "description": "Challenge set that focuses on ciphers",
+  "version": "0.1.0",
+  "challenges": [
+    "reverse-cipher",
+    "letter-to-number",
+    "caesar-cipher",
+    "morse-code",
+    "comprehensive-challenge"
+  ]
+}

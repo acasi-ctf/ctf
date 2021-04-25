@@ -1,0 +1,5 @@
+permission_write_challenges = "write:challenges"
+permission_read_user_environments = "read:user_environments"
+permission_write_user_environments = "write:user_environments"
+permission_read_environments = "read:environments"
+permission_write_environments = "write:environments"

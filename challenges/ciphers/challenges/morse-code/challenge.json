@@ -1,0 +1,16 @@
+{
+  "$schema": "../../../schemas/challenge.schema.json",
+  "id": "46e5c752-94d8-404d-9ab9-97d0655d1df3",
+  "slug": "morse-code",
+  "name": "Morse code",
+  "description": "This is a challenge that demonstrates morse code cipher",
+  "provisioner": {
+    "type": "kubernetes"
+  },
+  "documentation": [
+    {
+      "name": "Morse code",
+      "path": "docs/Morse_code.md"
+    }
+  ]
+}
