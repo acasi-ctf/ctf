@@ -1,16 +1,17 @@
 import React from "react";
 import "./Home.css";
-import useFetchAuth from "../useFetchAuth";
-import GenericErrorPage from "./error-pages/genericErrorPage";
-import Spinner from "../components/Spinner";
 import UserNotAuthorized from "./error-pages/userNotAuthorized";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Home() {
-  const { data: authorizationInfo, error, loading } = useFetchAuth();
+  const { isAuthenticated, getAccessTokenSilently } = useAuth0();
   debugger;
-  if (error) return GenericErrorPage;
-  if (loading) return Spinner;
-  if (authorizationInfo.length === 0) return UserNotAuthorized;
+  if (!isAuthenticated)
+    return (
+      <div className="Home">
+        <UserNotAuthorized />
+      </div>
+    );
 
   return (
     <div>
