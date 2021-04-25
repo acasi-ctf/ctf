@@ -32,7 +32,6 @@ TabPanel.propTypes = {
 };
 
 export default function ChallengeSet1() {
-
     const [value, setValue] = React.useState(0);
     const handleChange = (event, newValue) => {
         setValue(newValue);

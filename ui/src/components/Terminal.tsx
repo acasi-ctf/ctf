@@ -17,7 +17,11 @@ const client = new TermproxyServiceClient("https://ctf.gorence.io", {
     transport: grpc.WebsocketTransport()
 });
 
-export default function Terminal() {
+interface TerminalOptions {
+    id: string;
+}
+
+export default function Terminal(props: TerminalOptions) {
     const xtermRef = useRef<XTerm>(null);
     const fitRef = useRef<FitAddon>(new FitAddon());
 
@@ -26,7 +30,7 @@ export default function Terminal() {
         console.log('Starting stream');
 
         let envId = new UUID();
-        envId.setContents(window.location.hash.substr(1).trim());
+        envId.setContents(props.id);
 
         let openMsg = new OpenConnectionMessage();
         openMsg.setEnvironmentId(envId);

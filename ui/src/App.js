@@ -9,6 +9,8 @@ import ChallengeSet1 from './Page/ChallengeSet1';
 import Selection from './Page/Selection';
 
 import MenuBar from './components/Menu';
+import ChallengeSetPage from "./Page/ChallengeSetPage";
+import EnvironmentPage from "./Page/EnvironmentPage";
 
 
 export default function App() {
@@ -24,6 +26,8 @@ export default function App() {
                                 <Route path='/LeaderBoard' component={leaderboard}/>
                                 <Route path='/selection' component={Selection}/>
                                 <Route path='/challenge_1' component={ChallengeSet1}/>
+                                <Route path='/set/:cs_slug' component={ChallengeSetPage}/>
+                                <Route path='/env/:env_id' component={EnvironmentPage}/>
                             </Switch>
                         </div>
                     </div>
