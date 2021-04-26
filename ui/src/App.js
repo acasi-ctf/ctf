@@ -11,8 +11,25 @@ import Selection from "./pages/Selection";
 import MenuBar from "./components/Menu";
 import ChallengeSetPage from "./pages/ChallengeSetPage";
 import EnvironmentPage from "./pages/EnvironmentPage";
+import { useAuth0 } from "@auth0/auth0-react";
+import UserNotAuthorized from "./pages/error-pages/userNotAuthorized";
+import React from "react";
+import { AppBar } from "@material-ui/core";
+import ChallengeBar from "./components/AppBar";
 
 export default function App() {
+  const { isAuthenticated, getAccessTokenSilently } = useAuth0();
+
+  if (!isAuthenticated)
+    return (
+      <>
+        <div>
+          <ChallengeBar name="Welcome to Capture the Flag" />
+          <UserNotAuthorized />
+        </div>
+      </>
+    );
+
   return (
     <>
       <Router>

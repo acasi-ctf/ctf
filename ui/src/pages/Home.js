@@ -5,14 +5,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Home() {
   const { isAuthenticated, getAccessTokenSilently } = useAuth0();
-  debugger;
-  if (!isAuthenticated)
-    return (
-      <div className="Home">
-        <UserNotAuthorized />
-      </div>
-    );
 
+  if (!isAuthenticated) return <UserNotAuthorized />;
   return (
     <div>
       <div className="Home">
