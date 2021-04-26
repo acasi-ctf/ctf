@@ -17,7 +17,7 @@ export default function useFetchAuth(url, method = "GET", body = {}) {
         const options = {
           method: method,
           headers: {
-            Authorization: `Bearer ${accessToken}`,
+            "Authorization": `Bearer ${accessToken}`,
           }
         };
         switch (method) {
@@ -25,6 +25,7 @@ export default function useFetchAuth(url, method = "GET", body = {}) {
           case "PUT":
           case "PATCH":
             options.body = JSON.stringify(body);
+            options.headers["Content-Type"] = "application/json";
             break;
           default:
             break;
