@@ -1,7 +1,7 @@
 import React from 'react'
 import './Selection.css'
 import {Link} from 'react-router-dom'
-import * as core from '@material-ui/core';
+// import * as core from '@material-ui/core';
 
 export default function Selection() {
     return (

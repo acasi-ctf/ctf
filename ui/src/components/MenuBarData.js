@@ -9,7 +9,7 @@ export const List1Data = [
 
 export const SubList1 = [
     {
-        title:'Challenge Set 1', 
+        title:'Cipher', 
         path:'#', //consider to this would make more sense
         icon: <UI.CollectionsBookmark/>, 
         cName:'nav-text',
@@ -17,24 +17,34 @@ export const SubList1 = [
         iconOpened: <UI.ArrowDropUp/>,
         subMenu:[
             {
-                title: 'Challenge 1',
-                path: '/challenge_1',
+                title: 'Caesar Cipher',
+                path: '/caesar',
                 icon: <UI.Assignment/>
             },
             {
-                title: 'Challenge 2',
-                path: '/challenge_2',
+                title: 'Letter To Number',
+                path: '/letter-to-number',
                 icon: <UI.Assignment/>
             },
             {
-                title: 'Challenge 3',
-                path: '/challenge_3',
+                title: 'Morse Code',
+                path: '/morse-code',
+                icon: <UI.Assignment/>
+            },
+            {
+                title: 'Reverse Cipher',
+                path: '/reverse-cipher',
+                icon: <UI.Assignment/>
+            },
+            {
+                title: 'Comprehensive Challenge',
+                path: '/comprehensive-challenge',
                 icon: <UI.Assignment/>
             }
         ]
     },
     {
-        title:'Challenge Set 2', 
+        title:'Web-Based', 
         path:'#', 
         icon: <UI.CollectionsBookmark/>, 
         cName:'nav-text',
@@ -42,23 +52,17 @@ export const SubList1 = [
         iconOpened: <UI.ArrowDropUp/>,
         subMenu:[
             {
-                title: 'Challenge 1',
-                path: '/challenge_4',
+                title: 'Directory Traversal',
+                path: '/directory-traversal',
                 icon: <UI.Assignment/>
             },
             {
-                title: 'Challenge 2',
-                path: '/challenge_5',
-                icon: <UI.Assignment/>
-            },
-            {
-                title: 'Challenge 3',
-                path: '/challenge_6',
+                title: 'Web Structure',
+                path: '/web-structure',
                 icon: <UI.Assignment/>
             }
         ]
     },
-    {title:'Challenge Set 3', path:'#', icon: <UI.CollectionsBookmark/>, cName:'nav-text'},
 ]
 
 

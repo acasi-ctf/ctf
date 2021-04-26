@@ -4,7 +4,7 @@ import * as core from '@material-ui/core';
 //FIX THIS DATA FOR EACH FILE
 //CHALLENGE 1 = CAESAR CHALLENGE
 /*----------------------------------------------------------------------------- */
-import {ChallengeSet1Data} from './ChallengeSet1Data';
+import {Challengedata} from './DirectoryTraversalData';
 /*----------------------------------------------------------------------------- */
 // import {useLocation, Link, useParams} from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -40,12 +40,12 @@ TabPanel.propTypes = {
     value: PropTypes.any.isRequired,
 };
 
-export default function ChallengeSet1() {
+export default function DirectoryTraversal() {
 
     const [value, setValue] = React.useState(0);
     const handleChange = (events, newValue) => {
         setValue(newValue);
-        setPath(ChallengeSet1Data[newValue].itembox1);
+        setPath(Challengedata[newValue].itembox1);
     };
 
 
@@ -64,7 +64,7 @@ export default function ChallengeSet1() {
     }, [path]);
     //this is to set first frim rendering for mardown. Without this, it will redner html on first run
     if(!first){
-        setPath(ChallengeSet1Data[0].itembox1 );
+        setPath(Challengedata[0].itembox1 );
         setfirst(first+1);
     }
     return (
@@ -72,7 +72,7 @@ export default function ChallengeSet1() {
             <div className='ChallengeSet1'>
                 <core.AppBar position="static" color="default">
                     <core.Tabs value={value} onChange={handleChange} indicatorColor="primary" textColor="primary" variant="scrollable" scrollButtons="auto" aria-label="simple auto tabs example">
-                        {ChallengeSet1Data.map((item,index)=>{
+                        {Challengedata.map((item,index)=>{
                             return(
                                 // <core.Tab key={item.index} label={item.label} {...a11yProps(item.index)} component={Link} to={`${item.topic}/${item.label}`} />
                                 <core.Tab key={index} label={item.label} {...a11yProps(item.index)}/>
@@ -81,10 +81,10 @@ export default function ChallengeSet1() {
                     </core.Tabs>
                 </core.AppBar>
                 
-                {/* <ReactMarkdown source={ChallengeSet1Data[value].itembox1}/> */}
+                {/* <ReactMarkdown source={Challengedata[value].itembox1}/> */}
      
                 <TabPanel className='box1' value={value} index={value} style={{overflowY: 'scroll', marginTop:'5px', marginLeft: '5px'}}>
-                    {/* {ChallengeSet1Data[value].itembox1}  */}
+                    {/* {Challengedata[value].itembox1}  */}
                     <ReactMarkdown remarkPlugins={[gfm]} children={txt} style={{marginLeft:'10px'}}/>
                 </TabPanel>
 

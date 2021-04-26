@@ -5,9 +5,17 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 //ADD PAGES.
 import Home from './Page/Home';
 import leaderboard from './Page/LeaderBoard';
-import ChallengeSet1 from './Page/ChallengeSet1';
-import Selection from './Page/Selection';
+/********************************************** Cipher Challenge Pages **************************************************************/
+import ChallengeSet1 from './Page/ChallengeSet1';//challengeSet1=caesar challenge
+import LetterToNumber from './Page/LetterToNumber';
+import MorseCode from './Page/MorseCode';
+import ReverseCipher from './Page/ReverseCipher';
+import ComprehensiveChallenge from './Page/ComprehensiveChallenge.js';
+/********************************************** Web-Based Challenge Pages **************************************************************/
+import DirectoryTraversal from './Page/DirectoryTraversal';
+import WebStructure from './Page/WebStructure';
 
+import Selection from './Page/Selection';
 import MenuBar from './components/Menu';
 
 
@@ -23,7 +31,13 @@ export default function App() {
                                 <Route path='/' exact component={Home}/>
                                 <Route path='/LeaderBoard' component={leaderboard}/>
                                 <Route path='/selection' component={Selection}/>
-                                <Route path='/challenge_1' component={ChallengeSet1}/>
+                                <Route path='/caesar' component={ChallengeSet1}/>
+                                <Route path='/letter-to-number' component={LetterToNumber}/>
+                                <Route path='/morse-code' component={MorseCode}/>
+                                <Route path='/reverse-cipher' component={ReverseCipher}/>
+                                <Route path='/comprehensive-challenge' component={ComprehensiveChallenge}/>
+                                <Route path='/directory-traversal' component={DirectoryTraversal}/>
+                                <Route path='/web-structure' component={WebStructure}/>
                             </Switch>
                         </div>
                     </div>
