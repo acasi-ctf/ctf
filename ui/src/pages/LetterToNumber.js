@@ -56,7 +56,7 @@ export default function LetterToNumber() {
   //USEEFFECT HOOK WILL TRIGGER THE WHEN THE VARIABLE AT THE [] AT BOTTOM IS UPDATE. IN THIS CASE IS "PATH VARIABLE"
   const [txt, setMarkdown] = useState("");
   const [path, setPath] = useState("");
-  const [first, setfirst] = useState(0);
+  const [first, setFirst] = useState(0);
   useEffect(() => {
     fetch(path)
       .then((res) => res.text())
@@ -64,10 +64,11 @@ export default function LetterToNumber() {
         setMarkdown(text);
       });
   }, [path]);
+
   //this is to set first frim rendering for mardown. Without this, it will redner html on first run
   if (!first) {
     setPath(Challengedata[0].itembox1);
-    setfirst(first + 1);
+    setFirst(first + 1);
   }
   return (
     <div style={{ display: "flex", flexDirection: "row", position: "fixed" }}>
@@ -84,7 +85,6 @@ export default function LetterToNumber() {
           >
             {Challengedata.map((item, index) => {
               return (
-                // <core.Tab key={item.index} label={item.label} {...a11yProps(item.index)} component={Link} to={`${item.topic}/${item.label}`} />
                 <core.Tab
                   key={index}
                   label={item.label}
@@ -95,15 +95,12 @@ export default function LetterToNumber() {
           </core.Tabs>
         </core.AppBar>
 
-        {/* <ReactMarkdown source={Challengedata[value].itembox1}/> */}
-
         <TabPanel
           className="box1"
           value={value}
           index={value}
           style={{ overflowY: "scroll", marginTop: "5px", marginLeft: "5px" }}
         >
-          {/* {Challengedata[value].itembox1}  */}
           <ReactMarkdown
             remarkPlugins={[gfm]}
             children={txt}

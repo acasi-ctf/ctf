@@ -6,10 +6,10 @@ import * as core from "@material-ui/core";
 /*----------------------------------------------------------------------------- */
 import { ChallengeSet1Data } from "./ChallengeSet1Data";
 /*----------------------------------------------------------------------------- */
-// import {useLocation, Link, useParams} from 'react-router-dom';
+
 import PropTypes from "prop-types";
 import Terminal from "../components/Terminal";
-import marked from "marked";
+
 import gfm from "remark-gfm";
 import ReactMarkdown from "react-markdown";
 
@@ -84,7 +84,6 @@ export default function CaeserCipher() {
           >
             {ChallengeSet1Data.map((item, index) => {
               return (
-                // <core.Tab key={item.index} label={item.label} {...a11yProps(item.index)} component={Link} to={`${item.topic}/${item.label}`} />
                 <core.Tab
                   key={index}
                   label={item.label}
@@ -95,15 +94,12 @@ export default function CaeserCipher() {
           </core.Tabs>
         </core.AppBar>
 
-        {/* <ReactMarkdown source={ChallengeSet1Data[value].itembox1}/> */}
-
         <TabPanel
           className="box1"
           value={value}
           index={value}
           style={{ overflowY: "scroll", marginTop: "5px", marginLeft: "5px" }}
         >
-          {/* {ChallengeSet1Data[value].itembox1}  */}
           <ReactMarkdown
             remarkPlugins={[gfm]}
             children={txt}
