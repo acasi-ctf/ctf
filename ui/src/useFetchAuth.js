@@ -13,13 +13,24 @@ export default function useFetchAuth(url, method = "GET", body = {}) {
       try {
         const accessToken = await getAccessTokenSilently();
         console.log(accessToken);
-        const response = await fetch(url, {
+
+        const options = {
           method: method,
-          body: JSON.stringify(body),
           headers: {
             Authorization: `Bearer ${accessToken}`,
-          },
-        });
+          }
+        };
+        switch (method) {
+          case "POST":
+          case "PUT":
+          case "PATCH":
+            options.body = JSON.stringify(body);
+            break;
+          default:
+            break;
+        }
+
+        const response = await fetch(url, options);
         if (response.ok) {
           const json = await response.json();
           setData(json);
@@ -40,7 +51,7 @@ export default function useFetchAuth(url, method = "GET", body = {}) {
         init();
       }
     }
-  }, [url, getAccessTokenSilently, isAuthenticated, running, loading]);
+  }, [url, method, body, getAccessTokenSilently, isAuthenticated, running, loading]);
 
   return { data, error, loading };
 }
