@@ -9,19 +9,13 @@ export default function Selection() {
             <div className="selection">
                 {/* coding like this just to show that the element does wrap around */}
                 {/* map data to this button format */}
-                <Link to={'./challenge_1'} className='cards'>challenge 1</Link>
-                <Link to={'./challenge_1'} className='cards'>challenge 2</Link>
-                <Link to={'./challenge_1'} className='cards'>challenge 3</Link>
-                <Link to={'./challenge_1'} className='cards'>challenge 4</Link>
-                <Link to={'./challenge_1'} className='cards'>challenge 5</Link>
-                <Link to={'./challenge_1'} className='cards'>challenge 6</Link>
-                <Link to={'./challenge_1'} className='cards'>challenge 7</Link>
-                <Link to={'./challenge_1'} className='cards'>challenge 8</Link>
-                <Link to={'./challenge_1'} className='cards'>challenge 9</Link>
-                <Link to={'./challenge_1'} className='cards'>challenge 10</Link>
-                <Link to={'./challenge_1'} className='cards'>challenge 11</Link>
-                <Link to={'./challenge_1'} className='cards'>challenge 12</Link>
-                <Link to={'./challenge_1'} className='cards'>challenge 13</Link>
+                <Link to={'./caesar'} className='cards'>Caesar Cipher</Link>
+                <Link to={'./letter-to-number'} className='cards'>Letter to Number Cipher</Link>
+                <Link to={'./morse-code'} className='cards'>Morse Code Cipher</Link>
+                <Link to={'./reverse-cipher'} className='cards'>Reverse Cipher</Link>
+                <Link to={'./comprehensive-challenge'} className='cards'>Comprehensive Cipher</Link>
+                <Link to={'./directory-traversal'} className='cards'>Directory Traversal</Link>
+                <Link to={'./web-structure'} className='cards'>Web Structure</Link>
             </div>
         </div>
     )
