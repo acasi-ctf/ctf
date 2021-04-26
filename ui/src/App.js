@@ -7,19 +7,18 @@ import { useAuth0 } from "@auth0/auth0-react";
 import UserNotAuthorized from "./pages/error-pages/userNotAuthorized";
 import React from "react";
 import ChallengeBar from "./components/AppBar";
-import Home from "./Page/Home";
-import leaderboard from "./Page/LeaderBoard";
+import Home from "./pages/Home";
+import leaderboard from "./pages/LeaderBoard";
 /********************************************** Cipher Challenge Pages **************************************************************/
-import ChallengeSet1 from "./Page/ChallengeSet1"; //challengeSet1=caesar challenge
-import LetterToNumber from "./Page/LetterToNumber";
-import MorseCode from "./Page/MorseCode";
-import ReverseCipher from "./Page/ReverseCipher";
-import ComprehensiveChallenge from "./Page/ComprehensiveChallenge.js";
+import ChallengeSet1 from "./pages/ChallengeSet1"; //challengeSet1=caesar challenge
+import LetterToNumber from "./pages/LetterToNumber";
+import MorseCode from "./pages/MorseCode";
+import ReverseCipher from "./pages/ReverseCipher";
+import ComprehensiveChallenge from "./pages/ComprehensiveChallenge.js";
 /********************************************** Web-Based Challenge Pages **************************************************************/
-import DirectoryTraversal from "./Page/DirectoryTraversal";
-import WebStructure from "./Page/WebStructure";
-import Selection from "./Page/Selection";
-import MenuBar from "./components/Menu";
+import DirectoryTraversal from "./pages/DirectoryTraversal";
+import WebStructure from "./pages/WebStructure";
+import Selection from "./pages/Selection";
 
 export default function App() {
   const { isAuthenticated, getAccessTokenSilently } = useAuth0();
