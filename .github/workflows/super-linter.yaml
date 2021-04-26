@@ -29,8 +29,10 @@ jobs:
           VALIDATE_JAVASCRIPT_STANDARD: false
           VALIDATE_KOTLIN: false
           VALIDATE_KUBERNETES_KUBEVAL: false
+          VALIDATE_PROTOBUF: false
           VALIDATE_PYTHON_FLAKE8: false
           VALIDATE_PYTHON_ISORT: false
+          VALIDATE_PYTHON_MYPY: false
           VALIDATE_TYPESCRIPT_STANDARD: false
           VALIDATE_JSCPD: false
           # See https://github.com/github/super-linter/issues/143
