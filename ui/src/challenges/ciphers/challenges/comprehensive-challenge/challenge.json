@@ -1,0 +1,20 @@
+{
+  "$schema": "../../../schemas/challenge.schema.json",
+  "id": "1542ad92-2e24-4530-a123-e5741c6dde78",
+  "slug": "comprehensive-challenge",
+  "name": "Comprehensive Challenge",
+  "description": "This is a challenge that tests your knowledge in ciphers",
+  "provisioner": {
+    "type": "kubernetes"
+  },
+  "documentation": [
+    {
+      "name": "Cryptography",
+      "path": "docs/1-Cryptography.md"
+    },
+    {
+      "name": "Mixed challenge",
+      "path": "docs/Mixed-Challenge-1.md"
+    }
+  ]
+}

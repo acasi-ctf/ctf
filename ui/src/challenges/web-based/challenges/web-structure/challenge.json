@@ -1,0 +1,32 @@
+{
+  "$schema": "../../../schemas/challenge.schema.json",
+  "id": "c1f72137-9871-4d9d-8411-08bb3bd1ab8f",
+  "slug": "web-structure",
+  "name": "Web structure",
+  "description": "Challenge that demonstrates web structure",
+  "provisioner": {
+    "type": "none"
+  },
+  "documentation": [
+    {
+      "name": "HTML",
+      "path": "docs/HTML.md"
+    },
+    {
+      "name": "CSS",
+      "path": "docs/CSS.md"
+    },
+    {
+      "name": "Browser Tools",
+      "path": "docs/BrowserTools.md"
+    },
+    {
+      "name": "PHP",
+      "path": "docs/PHP.md"
+    },
+    {
+      "name": "Challenge Description",
+      "path": "docs/WebStructureDescript.md"
+    }
+  ]
+}

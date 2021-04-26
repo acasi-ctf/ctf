@@ -1,0 +1,24 @@
+{
+  "$schema": "../../../schemas/challenge.schema.json",
+  "id": "f332ab2e-6b10-42e6-8c54-6902f0dc01a4",
+  "slug": "example-challenge",
+  "name": "Basic Environment Example",
+  "description": "This is an example challenge to demonstrate basic environments",
+  "provisioner": {
+    "type": "kubernetes"
+  },
+  "documentation": [
+    {
+      "name": "Hello 1",
+      "path": "docs/Hello1.md"
+    },
+    {
+      "name": "Hello 2",
+      "path": "docs/Hello2.md"
+    },
+    {
+      "name": "Hello 3",
+      "path": "docs/Hello3.md"
+    }
+  ]
+}

@@ -1,41 +1,25 @@
-import * as UI from '@material-ui/icons'; 
+import * as UI from '@material-ui/icons';
+import React, { useState, useEffect } from "react";
+import ReactMarkdown from 'react-markdown';
+import gfm from 'remark-gfm';
+import marked from 'marked';
+import fs from 'fs';
+
+//**********************************************cipher challenge set*****************************************
+//import '../../../challenges';// ceasar challenge
+// import '../challenges/ciphers/challenges/letter-to-number/docs/Letter-to-Number.md';//letter to number challenge
+//comprehensive-challenge
+//morse-code challenge
+//reverse-cipher challenge
 
 export const ChallengeSet1Data = [
-    {label: 'Challenge Description', cName:'tab', 
-    itembox1:   
-        <div>
-            <p style={{marginTop:'10px', marginLeft:'10px'}}  >
-                This is challenge description
-            </p>
-        </div>,
+    {label: 'Introduction',  cName:'tab', 
+    itembox1:  '../challenges/ciphers/challenges/letter-to-number/docs/Letter-to-Number.md',
+        // <p style={{marginTop:'10px', marginLeft:'10px'}}  >
+        //     {/* <ReactMarkdown remarkPlugins={[gfm]} children={markdown1} /> */}
+        // </p>, 
     },//END ITEM 1
 
-    {label: 'Document 1',  cName:'tab', 
-    itembox1:  
-        <div >
-            <p style={{marginTop:'10px', marginLeft:'10px'}}  >
-                This is document 1
-            </p>
-        </div>, 
-    },//END ITEM 2
-
-    {label: 'Document 2',  cName:'tab', 
-    itembox1:  
-        <div >
-            <p style={{marginTop:'10px', marginLeft:'10px'}}  >
-                This is document 2
-            </p>
-        </div>, 
-    },//END ITEM 3
-
-
-    {label: 'Document 3',  cName:'tab', 
-    itembox1:  
-        <div >
-            <p style={{marginTop:'10px', marginLeft:'10px'}}  >
-                This is document 3
-            </p>
-        </div>, 
-    },//END ITEM 4
+    
 ]
 
