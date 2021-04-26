@@ -12,6 +12,8 @@ import Terminal from "../components/Terminal";
 import marked from "marked";
 import gfm from "remark-gfm";
 import ReactMarkdown from "react-markdown";
+import useFetchAuth from "../useFetchAuth";
+import GenericErrorPage from "./error-pages/genericErrorPage";
 
 function a11yProps(index) {
   return {
@@ -51,12 +53,19 @@ export default function ComprehensiveChallenge() {
     setPath(Challengedata[newValue].itembox1);
   };
 
-  //LEARN THIS FOR FUTURE WORK:
-  //USESTATE HOOK WILL TRIGGER WHEN THE ASSIGNED FUNCTION IS CALL (EXAMPLE BELOW IS SETMARKDOWN/ SETPATH)
-  //USEEFFECT HOOK WILL TRIGGER THE WHEN THE VARIABLE AT THE [] AT BOTTOM IS UPDATE. IN THIS CASE IS "PATH VARIABLE"
+  const { data, error, loading } = useFetchAuth(
+    "api/user/environments",
+    "POST",
+    { challengeSetSlug: "ciphers", challengeSlug: "comprehensive-challenge" }
+  );
   const [txt, setMarkdown] = useState("");
   const [path, setPath] = useState("");
   const [first, setFirst] = useState(0);
+
+  //LEARN THIS FOR FUTURE WORK:
+  //USESTATE HOOK WILL TRIGGER WHEN THE ASSIGNED FUNCTION IS CALL (EXAMPLE BELOW IS SETMARKDOWN/ SETPATH)
+  //USEEFFECT HOOK WILL TRIGGER THE WHEN THE VARIABLE AT THE [] AT BOTTOM IS UPDATE. IN THIS CASE IS "PATH VARIABLE"
+
   useEffect(() => {
     fetch(path)
       .then((res) => res.text())
@@ -65,6 +74,7 @@ export default function ComprehensiveChallenge() {
       });
   }, [path]);
   //this is to set first frim rendering for mardown. Without this, it will redner html on first run
+  if (loading) return <GenericErrorPage />;
   if (!first) {
     setPath(Challengedata[0].itembox1);
     setFirst(first + 1);
@@ -111,7 +121,7 @@ export default function ComprehensiveChallenge() {
           />
         </TabPanel>
       </div>
-      {/*<Terminal ID={} />*/}
+      <Terminal id={data.id} />
     </div>
   );
 }
