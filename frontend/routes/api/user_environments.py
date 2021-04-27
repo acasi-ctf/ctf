@@ -33,10 +33,17 @@ def list_user_environments():
     resp = lookup_service.ListUserEnvironments(r)
 
     def map_env(env):
+        cs_id = env.challenge_set_id.contents
+        c_id = env.challenge_id.contents
+        cs = ChallengeSet.query.filter_by(id=cs_id).first()
+        c = Challenge.query.filter_by(id=c_id).first()
+
         return {
             "id": env.env_id.contents,
             "challengeSetId": env.challenge_set_id.contents,
             "challengeId": env.challenge_id.contents,
+            "challengeSetSlug": cs.slug,
+            "challengeSlug": c.slug,
         }
 
     environments = list(map(map_env, resp.environments))
