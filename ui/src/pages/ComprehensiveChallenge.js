@@ -9,11 +9,11 @@ import { Challengedata } from "./ComprehensiveChallengeData";
 // import {useLocation, Link, useParams} from 'react-router-dom';
 import PropTypes from "prop-types";
 import Terminal from "../components/Terminal";
-import marked from "marked";
 import gfm from "remark-gfm";
 import ReactMarkdown from "react-markdown";
 import useFetchAuth from "../useFetchAuth";
 import GenericErrorPage from "./error-pages/genericErrorPage";
+import Spinner from "../components/Spinner";
 
 function a11yProps(index) {
   return {
@@ -74,7 +74,8 @@ export default function ComprehensiveChallenge() {
       });
   }, [path]);
   //this is to set first frim rendering for mardown. Without this, it will redner html on first run
-  if (loading) return <GenericErrorPage />;
+  if (loading) return <Spinner />;
+  if (error) return <GenericErrorPage />;
   if (!first) {
     setPath(Challengedata[0].itembox1);
     setFirst(first + 1);

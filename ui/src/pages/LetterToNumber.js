@@ -12,6 +12,8 @@ import Terminal from "../components/Terminal";
 import marked from "marked";
 import gfm from "remark-gfm";
 import ReactMarkdown from "react-markdown";
+import useFetchAuth from "../useFetchAuth";
+import Spinner from "../components/Spinner";
 
 function a11yProps(index) {
   return {
@@ -50,7 +52,11 @@ export default function LetterToNumber() {
     setValue(newValue);
     setPath(Challengedata[newValue].itembox1);
   };
-
+  const { data, error, loading } = useFetchAuth(
+    "api/user/environments",
+    "POST",
+    { challengeSetSlug: "ciphers", challengeSlug: "letter-to-number" }
+  );
   //LEARN THIS FOR FUTURE WORK:
   //USESTATE HOOK WILL TRIGGER WHEN THE ASSIGNED FUNCTION IS CALL (EXAMPLE BELOW IS SETMARKDOWN/ SETPATH)
   //USEEFFECT HOOK WILL TRIGGER THE WHEN THE VARIABLE AT THE [] AT BOTTOM IS UPDATE. IN THIS CASE IS "PATH VARIABLE"
@@ -66,6 +72,7 @@ export default function LetterToNumber() {
   }, [path]);
 
   //this is to set first frim rendering for mardown. Without this, it will redner html on first run
+  if (loading) return <Spinner />;
   if (!first) {
     setPath(Challengedata[0].itembox1);
     setFirst(first + 1);
@@ -108,7 +115,7 @@ export default function LetterToNumber() {
           />
         </TabPanel>
       </div>
-      {/*<Terminal />*/}
+      <Terminal id={data.id} />
     </div>
   );
 }

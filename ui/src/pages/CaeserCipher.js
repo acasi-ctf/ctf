@@ -12,6 +12,7 @@ import Terminal from "../components/Terminal";
 
 import gfm from "remark-gfm";
 import ReactMarkdown from "react-markdown";
+import useFetchAuth from "../useFetchAuth";
 
 function a11yProps(index) {
   return {
@@ -50,7 +51,11 @@ export default function CaeserCipher() {
     setValue(newValue);
     setPath(ChallengeSet1Data[newValue].itembox1);
   };
-
+  const { data, error, loading } = useFetchAuth(
+    "api/user/environments",
+    "POST",
+    { challengeSetSlug: "ciphers", challengeSlug: "letter-to-number" }
+  );
   //LEARN THIS FOR FUTURE WORK:
   //USESTATE HOOK WILL TRIGGER WHEN THE ASSIGNED FUNCTION IS CALL (EXAMPLE BELOW IS SETMARKDOWN/ SETPATH)
   //USEEFFECT HOOK WILL TRIGGER THE WHEN THE VARIABLE AT THE [] AT BOTTOM IS UPDATE. IN THIS CASE IS "PATH VARIABLE"
@@ -107,7 +112,7 @@ export default function CaeserCipher() {
           />
         </TabPanel>
       </div>
-      {/*<Terminal />*/}
+      <Terminal id={data.id} />
     </div>
   );
 }

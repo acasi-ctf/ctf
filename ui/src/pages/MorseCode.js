@@ -12,6 +12,7 @@ import Terminal from "../components/Terminal";
 import marked from "marked";
 import gfm from "remark-gfm";
 import ReactMarkdown from "react-markdown";
+import useFetchAuth from "../useFetchAuth";
 
 function a11yProps(index) {
   return {
@@ -57,6 +58,12 @@ export default function MorseCode() {
   const [txt, setMarkdown] = useState("");
   const [path, setPath] = useState("");
   const [first, setfirst] = useState(0);
+  const { data, error, loading } = useFetchAuth(
+    "api/user/environments",
+    "POST",
+    { challengeSetSlug: "ciphers", challengeSlug: "letter-to-number" }
+  );
+
   useEffect(() => {
     fetch(path)
       .then((res) => res.text())
@@ -111,7 +118,7 @@ export default function MorseCode() {
           />
         </TabPanel>
       </div>
-      {/*<Terminal />*/}
+      <Terminal id={data.id} />
     </div>
   );
 }
