@@ -6,21 +6,24 @@
 // import fs from 'fs';
 
 //**********************************************cipher challenge set*****************************************
-import reverse from '../challenges/ciphers/challenges/reverse-cipher/docs/Reverse.md';
-import crypto from '../challenges/ciphers/challenges/reverse-cipher/docs/1-Cryptography.md';
+import reverse from "../challenges/ciphers/challenges/reverse-cipher/docs/Reverse.md";
+import crypto from "../challenges/ciphers/challenges/reverse-cipher/docs/1-Cryptography.md";
 
 export const Challengedata = [
-    {label: 'Challenge Description',  cName:'tab', 
+  {
+    label: "Challenge Description",
+    cName: "tab",
     itembox1: reverse,
-        // <p style={{marginTop:'10px', marginLeft:'10px'}}  >
-        //     {/* <ReactMarkdown remarkPlugins={[gfm]} children={markdown1} /> */}
-        // </p>, 
-    },
-    {label: 'Document 1',  cName:'tab', 
+    // <p style={{marginTop:'10px', marginLeft:'10px'}}  >
+    //     {/* <ReactMarkdown remarkPlugins={[gfm]} children={markdown1} /> */}
+    // </p>,
+  },
+  {
+    label: "Cryptography",
+    cName: "tab",
     itembox1: crypto,
-        // <p style={{marginTop:'10px', marginLeft:'10px'}}  >
-        //     {/* <ReactMarkdown remarkPlugins={[gfm]} children={markdown1} /> */}
-        // </p>, 
-    },
-]
-
+    // <p style={{marginTop:'10px', marginLeft:'10px'}}  >
+    //     {/* <ReactMarkdown remarkPlugins={[gfm]} children={markdown1} /> */}
+    // </p>,
+  },
+];

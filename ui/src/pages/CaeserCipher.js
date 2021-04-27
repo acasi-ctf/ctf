@@ -13,6 +13,8 @@ import Terminal from "../components/Terminal";
 import gfm from "remark-gfm";
 import ReactMarkdown from "react-markdown";
 import useFetchAuth from "../useFetchAuth";
+import Spinner from "../components/Spinner";
+import GenericErrorPage from "./error-pages/genericErrorPage";
 
 function a11yProps(index) {
   return {
@@ -69,6 +71,8 @@ export default function CaeserCipher() {
         setMarkdown(text);
       });
   }, [path]);
+  if (loading) return <Spinner />;
+  if (error) return <GenericErrorPage />;
   //this is to set first frim rendering for mardown. Without this, it will redner html on first run
   if (!first) {
     setPath(ChallengeSet1Data[0].itembox1);

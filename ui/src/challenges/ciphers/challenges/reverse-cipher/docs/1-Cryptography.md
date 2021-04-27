@@ -8,16 +8,16 @@ The different between Classical Cryptography and Modern Cryptography is encoding
 ## Classical Cryptography
 Classical Cryptography is one type of cryptography, many of which use alternating or transposition ciphers, or sometimes a combination of the two. Usually the cyrpto will be a classic password is based on A pinyin letter (like A-Z), a manual operation, or a simple device.
 ### Examples of classical cryptography
-Alberti
-ADFGVX
-ROT13
-Two-square
-
+Alberti  
+ADFGVX  
+ROT13  
+Two-square  
+  
 ## Modern Cryptography
 Modern cryptography attaches great importance to the research and application of block cipher and stream cipher. Block ciphers are, in a sense, a modernization of Alberti's multi-character encryption. Block cipher takes a block of plaintext and a key and outputs a ciphertext block of the same size. Since messages are often longer than a single block, there are ways to weave contiguous blocks together.
-
+  
 ### Example of modern cryptography
-RSA
-ElGamal
-MD5
-SHA-256
+RSA  
+ElGamal  
+MD5  
+SHA-256  
