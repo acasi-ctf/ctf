@@ -29,7 +29,8 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.1.0")
 
-    implementation("io.fabric8:kubernetes-client:5.3.0")
+    implementation("io.fabric8:kubernetes-client:5.3.1")
+    testImplementation("io.fabric8:kubernetes-server-mock:5.3.1")
 
     implementation("org.mapdb:mapdb:3.0.8")
 
@@ -37,6 +38,11 @@ dependencies {
 
     implementation("org.slf4j:slf4j-simple:1.7.29")
     implementation("io.github.microutils:kotlin-logging-jvm:2.0.6")
+
+    testImplementation(kotlin("test-common"))
+    testImplementation(kotlin("test-annotations-common"))
+    testImplementation(kotlin("test-junit"))
+    testImplementation("io.mockk:mockk:1.11.0")
 }
 
 java {

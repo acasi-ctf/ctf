@@ -1,0 +1,11 @@
+{
+  "id": "d59f2c81-39fe-4e8c-8a7a-427041758a1d",
+  "slug": "example",
+  "name": "Example challenge set",
+  "description": "Example challenge set to be used for reference while developing new challenge sets",
+  "version": "0.1.0",
+  "challenges": [
+    "basic-env-example",
+    "dvwa-example"
+  ]
+}

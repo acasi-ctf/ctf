@@ -1,0 +1,21 @@
+name: Operator Build/Test
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up AdoptOpenJDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: '15'
+          distribution: 'adopt'
+      - name: Build
+        env:
+          NO_PROXY: localhost,127.0.0.1
+        run: |
+          cd operator
+          ./gradlew --no-daemon build
