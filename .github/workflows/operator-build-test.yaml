@@ -1,7 +1,10 @@
 name: Operator Build and Test
 
-on: [push, pull_request]
-
+on:
+  push:
+    branches:
+      - main
+  pull_request:
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,7 +22,7 @@ jobs:
           ./gradlew --no-daemon build jacocoTestReport
       - uses: codecov/codecov-action@v1
         with:
-          files: ./operator/build/jacoco/test.exec
+          files: ./build/reports/jacoco/test/jacocoTestReport.xml
           flags: unittests
           fail_ci_if_error: true
           verbose: true
