@@ -5,6 +5,7 @@ plugins {
     `java-library`
     kotlin("jvm") version "1.4.32"
     kotlin("plugin.serialization") version "1.4.32"
+    jacoco
     id("com.google.protobuf") version "0.8.15"
     id("idea")
 }
@@ -86,4 +87,12 @@ protobuf {
             }
         }
     }
+}
+
+tasks.test {
+    finalizedBy(tasks.jacocoTestReport)
+}
+
+tasks.jacocoTestReport {
+    dependsOn(tasks.test)
 }

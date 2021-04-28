@@ -1,4 +1,4 @@
-name: Operator Build/Test
+name: Operator Build and Test
 
 on: [push, pull_request]
 
@@ -13,9 +13,13 @@ jobs:
         with:
           java-version: '15'
           distribution: 'adopt'
-      - name: Build
-        env:
-          NO_PROXY: localhost,127.0.0.1
+      - name: Build and Test
         run: |
           cd operator
-          ./gradlew --no-daemon build
+          ./gradlew --no-daemon build jacocoTestReport
+      - uses: codecov/codecov-action@v1
+        with:
+          files: ./operator/build/jacoco/test.exec
+          flags: unittests
+          fail_ci_if_error: true
+          verbose: true
