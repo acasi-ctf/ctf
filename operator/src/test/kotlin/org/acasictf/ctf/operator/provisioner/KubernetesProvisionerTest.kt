@@ -3,6 +3,7 @@ package org.acasictf.ctf.operator.provisioner
 import org.acasictf.ctf.operator.createUuidStr
 import org.acasictf.ctf.operator.k8sCrud
 import org.acasictf.ctf.operator.kubeNamespace
+import org.acasictf.ctf.operator.persistence.FakeChallengeTemplate
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

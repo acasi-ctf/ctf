@@ -1,7 +1,5 @@
-package org.acasictf.ctf.operator.provisioner
+package org.acasictf.ctf.operator.persistence
 
-import org.acasictf.ctf.operator.persistence.ChallengeTemplate
-import org.acasictf.ctf.operator.persistence.ChallengeTemplateFile
 import java.io.InputStream
 
 class FakeChallengeTemplate(private val basePath: String) :
