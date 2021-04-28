@@ -1,9 +1,5 @@
 package org.acasictf.ctf.operator.provisioner
 
-import io.fabric8.kubernetes.client.server.mock.KubernetesServer
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.runBlocking
-import org.acasictf.ctf.operator.createKubernetesMock
 import org.acasictf.ctf.operator.createUuidStr
 import org.acasictf.ctf.operator.k8sCrud
 import org.acasictf.ctf.operator.kubeNamespace
@@ -21,7 +17,8 @@ class KubernetesProvisionerTest {
     fun `provision environment with single pod`() = k8sCrud { server ->
         val client = server.client
         val envId = createUuidStr()
-        val challengeTemplate = FakeChallengeTemplate("655081bb-aa0b-43c1-a099-f1c04177ba0c")
+        val challengeTemplate =
+            FakeChallengeTemplate("655081bb-aa0b-43c1-a099-f1c04177ba0c")
         challengeTemplate.init()
         val provisioner =
             KubernetesProvisioner(client, envId, challengeTemplate)

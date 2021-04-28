@@ -20,8 +20,7 @@ class ProvisioningServiceTest {
                 Ctfoperator.StartEnvironmentRequest.newBuilder().apply {
                     challengeSetIdBuilder.contents =
                         "655081bb-aa0b-43c1-a099-f1c04177ba0c"
-                    challengeIdBuilder.contents =
-                        "d8ca2e9d-b062-4388-a3f4-c2328906f95d"
+                    challengeIdBuilder.contents = "d8ca2e9d-b062-4388-a3f4-c2328906f95d"
                 }.build()
             val response = service.startEnvironment(request)
 

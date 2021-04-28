@@ -9,7 +9,6 @@ class FakePersistenceLayer : PersistenceLayer {
     private val db = DBMaker.memoryDB().closeOnJvmShutdown().make()
 
     override fun database() = db
-
     override fun createChallengeTemplate(csId: String): ChallengeTemplate {
         return FakeChallengeTemplate(csId)
     }

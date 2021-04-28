@@ -11,8 +11,8 @@ class PersistenceLayerImpl(
     private val challengesDir: String
 ) : PersistenceLayer {
     private val db = DBMaker.fileDB("$dataDir/operator.db")
-            .closeOnJvmShutdown()
-            .make()
+        .closeOnJvmShutdown()
+        .make()
 
     override fun database() = db
 
