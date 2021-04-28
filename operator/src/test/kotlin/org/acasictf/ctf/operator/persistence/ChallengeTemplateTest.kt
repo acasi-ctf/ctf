@@ -9,6 +9,42 @@ class ChallengeTemplateTest {
     private val challengeTemplate =
         FakeChallengeTemplate("655081bb-aa0b-43c1-a099-f1c04177ba0c")
 
+    init {
+        challengeTemplate.init()
+    }
+
+    @Test
+    fun `validate challenge set data`() {
+        val cs = challengeTemplate.challengeSet
+        assertEquals(
+            "655081bb-aa0b-43c1-a099-f1c04177ba0c",
+            cs.id
+        )
+        assertEquals(
+            "example",
+            cs.slug
+        )
+        assertEquals(
+            "Example challenge set",
+            cs.name
+        )
+        assertEquals(
+            "Example challenge set to be used for reference while developing new challenge sets",
+            cs.description
+        )
+        assertEquals(
+            "0.1.0",
+            cs.version
+        )
+        assertEquals(
+            listOf(
+                "basic-env-example",
+                "dvwa-example"
+            ),
+            cs.challenges
+        )
+    }
+
     @Test
     fun `read challenge kubernetes json`() {
         val kubernetesJson = challengeTemplate.readChallengeJson(
