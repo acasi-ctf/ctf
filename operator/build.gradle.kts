@@ -6,7 +6,7 @@ plugins {
     kotlin("jvm") version "1.4.32"
     kotlin("plugin.serialization") version "1.4.32"
     jacoco
-    id("com.google.protobuf") version "0.8.15"
+    id("com.google.protobuf") version "0.8.16"
     id("idea")
 }
 
