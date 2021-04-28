@@ -6,10 +6,10 @@ import io.fabric8.kubernetes.api.model.*
 import io.fabric8.kubernetes.client.KubernetesClient
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import kotlinx.serialization.json.Json
 import org.acasictf.ctf.operator.*
-import org.acasictf.ctf.operator.persistence.ZipChallengeTemplate
+import org.acasictf.ctf.operator.abstractions.PersistenceLayer
 import org.acasictf.ctf.operator.persistence.EnvironmentDao
+import org.acasictf.ctf.operator.persistence.ZipChallengeTemplate
 import org.acasictf.ctf.operator.provisioner.KubernetesProvisioner
 import org.acasictf.ctf.proto.Common
 import org.acasictf.ctf.proto.Ctfoperator
@@ -21,10 +21,12 @@ import java.time.Instant
 import java.util.*
 
 class ProvisioningService(
-    private val envDao: EnvironmentDao,
-    private val kube: KubernetesClient
+    private val kube: KubernetesClient,
+    private val persistenceLayer: PersistenceLayer
 ) : EnvironmentProvisioningServiceGrpcKt.
 EnvironmentProvisioningServiceCoroutineImplBase() {
+    private val envDao = EnvironmentDao(persistenceLayer.database())
+
     override suspend fun startEnvironment(request: Ctfoperator.StartEnvironmentRequest):
             Ctfoperator.StartEnvironmentResponse = managed {
         val envIdStr = UUID.randomUUID().toString()
@@ -55,14 +57,15 @@ EnvironmentProvisioningServiceCoroutineImplBase() {
                 failureBuilder.apply {}
             }.build()
 
-        val ctFile =
-            File(getChallengesDir()).resolve("${request.challengeSetId.contents}.zip")
-        if (!ctFile.exists()) {
+        val ct = try {
+            persistenceLayer.createChallengeTemplate(
+                request.challengeSetId.contents
+            ).apply {
+                init()
+            }
+        } catch (e: Exception) {
             return@managed failureResponse
         }
-
-        val ct = ZipChallengeTemplate(ctFile)
-        ct.init()
 
         // Check whether we have the correct challenge, if not throw a failure response.
         val c = ct.challenges.firstOrNull {
