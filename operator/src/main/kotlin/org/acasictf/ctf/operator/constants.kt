@@ -1,3 +1,3 @@
 package org.acasictf.ctf.operator
 
-val kubeNamespace = "ctf"
+const val kubeNamespace = "ctf"

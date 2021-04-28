@@ -1,0 +1,28 @@
+name: Operator Build and Test
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up AdoptOpenJDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: '15'
+          distribution: 'adopt'
+      - name: Build and Test
+        run: |
+          cd operator
+          ./gradlew --no-daemon build jacocoTestReport
+      - uses: codecov/codecov-action@v1
+        with:
+          files: ./operator/build/reports/jacoco/test/jacocoTestReport.xml
+          flags: unittests
+          fail_ci_if_error: true
+          verbose: true

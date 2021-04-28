@@ -1,0 +1,11 @@
+{
+  "id": "f332ab2e-6b10-42e6-8c54-6902f0dc01a4",
+  "slug": "example-challenge",
+  "name": "Basic Environment Example",
+  "description": "This is an example challenge to demonstrate basic environments",
+  "provisioner": {
+    "type": "kubernetes"
+  },
+  "documentation": [
+  ]
+}

@@ -6,8 +6,10 @@ import org.mapdb.DB
 import org.mapdb.Serializer
 
 class EnvironmentDao(private val db: DB) {
-    private val environments = db.hashMap("environments",
-            Serializer.BYTE_ARRAY, Serializer.BYTE_ARRAY).createOrOpen()
+    private val environments = db.hashMap(
+        "environments",
+        Serializer.BYTE_ARRAY, Serializer.BYTE_ARRAY
+    ).createOrOpen()
 
     fun set(uuid: Common.UUID, env: CtfoperatorInternal.Environment) {
         val uuidBytes = uuid.toByteArray()
@@ -30,8 +32,8 @@ class EnvironmentDao(private val db: DB) {
     }
 
     fun list(): Map<Common.UUID, CtfoperatorInternal.Environment> =
-            environments.map {
-                Common.UUID.parseFrom(it.key) to
-                        CtfoperatorInternal.Environment.parseFrom(it.value)
-            }.toMap()
+        environments.map {
+            Common.UUID.parseFrom(it.key) to
+                    CtfoperatorInternal.Environment.parseFrom(it.value)
+        }.toMap()
 }

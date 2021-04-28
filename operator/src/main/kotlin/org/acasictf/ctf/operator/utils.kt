@@ -13,10 +13,10 @@ fun createDir(path: String): String {
 fun getDataDir() = System.getenv("DATA_PATH") ?: createDir("data")
 fun getChallengesDir() = "${getDataDir()}/challenges"
 
-suspend fun <T> managed(f: suspend () -> T) =
-        try {
-            f()
-        } catch (e: Exception) {
-            logger.warn("gRPC call failed!", e)
-            throw e
-        }
+suspend inline fun <T> managed(f: suspend () -> T) =
+    try {
+        f()
+    } catch (e: Exception) {
+        logger.warn("gRPC call failed!", e)
+        throw e
+    }
