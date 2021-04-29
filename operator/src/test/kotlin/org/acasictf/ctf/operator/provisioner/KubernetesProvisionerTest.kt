@@ -13,6 +13,9 @@ import org.acasictf.ctf.operator.persistence.ChallengeTemplate
 import org.acasictf.ctf.operator.persistence.ProxyPublicKey
 import org.acasictf.ctf.operator.persistence.ResourceChallengeTemplate
 import org.acasictf.ctf.operator.persistence.StringChallengeTemplateFile
+import org.acasictf.ctf.operator.testutil.createUuidStr
+import org.acasictf.ctf.operator.testutil.k8sCrud
+import org.acasictf.ctf.operator.testutil.k8sExpect
 import kotlin.test.*
 
 private const val mockPublicKey = "MOCK_PUBLIC_KEY"
