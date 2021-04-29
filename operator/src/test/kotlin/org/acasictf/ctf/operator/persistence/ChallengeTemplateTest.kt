@@ -7,7 +7,7 @@ import kotlin.test.assertNotNull
 
 class ChallengeTemplateTest {
     private val challengeTemplate =
-        FakeChallengeTemplate("655081bb-aa0b-43c1-a099-f1c04177ba0c")
+        ResourceChallengeTemplate("655081bb-aa0b-43c1-a099-f1c04177ba0c")
 
     init {
         challengeTemplate.init()

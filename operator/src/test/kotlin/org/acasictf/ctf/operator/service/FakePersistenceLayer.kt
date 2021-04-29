@@ -2,7 +2,7 @@ package org.acasictf.ctf.operator.service
 
 import org.acasictf.ctf.operator.abstractions.PersistenceLayer
 import org.acasictf.ctf.operator.persistence.ChallengeTemplate
-import org.acasictf.ctf.operator.persistence.FakeChallengeTemplate
+import org.acasictf.ctf.operator.persistence.ResourceChallengeTemplate
 import org.mapdb.DBMaker
 
 class FakePersistenceLayer : PersistenceLayer {
@@ -10,6 +10,6 @@ class FakePersistenceLayer : PersistenceLayer {
 
     override fun database() = db
     override fun createChallengeTemplate(csId: String): ChallengeTemplate {
-        return FakeChallengeTemplate(csId)
+        return ResourceChallengeTemplate(csId)
     }
 }

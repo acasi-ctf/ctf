@@ -1,13 +1,35 @@
 package org.acasictf.ctf.operator.provisioner
 
-import org.acasictf.ctf.operator.createUuidStr
-import org.acasictf.ctf.operator.k8sCrud
-import org.acasictf.ctf.operator.kubeNamespace
-import org.acasictf.ctf.operator.persistence.FakeChallengeTemplate
+import io.mockk.every
+import io.mockk.mockk
+import org.acasictf.ctf.operator.*
+import org.acasictf.ctf.operator.model.Challenge
+import org.acasictf.ctf.operator.model.Kubernetes
+import org.acasictf.ctf.operator.persistence.ChallengeTemplate
+import org.acasictf.ctf.operator.persistence.ResourceChallengeTemplate
+import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFails
 
 class KubernetesProvisionerTest {
+    private lateinit var envId: String
+    private lateinit var validChallengeTemplate: ChallengeTemplate
+    private lateinit var validDvwaChallenge: Challenge
+    private lateinit var mockChallengeTemplate: ChallengeTemplate
+
+    @BeforeTest
+    fun beforeTest() {
+        envId = createUuidStr()
+        validChallengeTemplate =
+            ResourceChallengeTemplate(TestChallengeId.validChallengeId)
+        validChallengeTemplate.init()
+        validDvwaChallenge =
+            validChallengeTemplate.challenges.first { it.slug == "dvwa-example" }
+
+        mockChallengeTemplate = mockk()
+    }
+
     /**
      * Provisions a challenge that requires a single pod to be created. Ensures
      * that the pod is created by first calling provision(challenge) then
@@ -17,16 +39,10 @@ class KubernetesProvisionerTest {
     @Test
     fun `provision environment with single pod`() = k8sCrud { server ->
         val client = server.client
-        val envId = createUuidStr()
-        val challengeTemplate =
-            FakeChallengeTemplate("655081bb-aa0b-43c1-a099-f1c04177ba0c")
-        challengeTemplate.init()
         val provisioner =
-            KubernetesProvisioner(client, envId, challengeTemplate)
-        val challenge =
-            challengeTemplate.challenges.first { it.slug == "dvwa-example" }
+            KubernetesProvisioner(client, envId, validChallengeTemplate)
 
-        provisioner.provision(challenge)
+        provisioner.provision(validDvwaChallenge)
 
         val podList = client.pods().inNamespace(kubeNamespace).list()
         assertEquals(1, podList.items.size)
@@ -36,5 +52,46 @@ class KubernetesProvisionerTest {
         assertEquals(kubeNamespace, pod.metadata.namespace)
         assertEquals(envId, pod.metadata.labels["ctf-env-id"])
         assertEquals("dvwa", pod.metadata.labels["ctf-env-label"])
+    }
+
+    @Test
+    fun `provision environment with missing k8s json`() = k8sCrud { server ->
+        every {
+            mockChallengeTemplate.readChallengeJson(
+                any(),
+                any(),
+                Kubernetes.serializer()
+            )
+        } returns null
+
+        val client = server.client
+        val provisioner =
+            KubernetesProvisioner(client, envId, mockChallengeTemplate)
+
+        assertFails {
+            provisioner.provision(validDvwaChallenge)
+        }
+    }
+
+    /**
+     * Provisions a challenge that simulates having a bad Pod definition YAML.
+     * The Kubernetes API server returns a 422 Unprocessable Entity status code
+     * if a server dry run fails. Our provision call should throw an exception.
+     */
+    @Test
+    fun `provision environment with bad pod dry run`() = k8sExpect { server ->
+        server.expect()
+            .post()
+            .withPath("/api/v1/namespaces/ctf/pods?dryRun=All")
+            .andReturn(422, "Unprocessable Entity")
+            .once()
+
+        val client = server.client
+        val provisioner =
+            KubernetesProvisioner(client, envId, validChallengeTemplate)
+
+        assertFails {
+            provisioner.provision(validDvwaChallenge)
+        }
     }
 }

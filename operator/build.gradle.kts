@@ -1,4 +1,5 @@
 import com.google.protobuf.gradle.*
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     application
@@ -55,6 +56,10 @@ java {
             }
         }
     }
+}
+
+tasks.withType<KotlinCompile> {
+    kotlinOptions.jvmTarget = "1.8"
 }
 
 tasks.register<Copy>("copyProto") {
