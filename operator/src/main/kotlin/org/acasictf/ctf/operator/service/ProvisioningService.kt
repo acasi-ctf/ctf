@@ -12,8 +12,9 @@ import org.acasictf.ctf.operator.persistence.EnvironmentDao
 import org.acasictf.ctf.operator.persistence.ZipChallengeTemplate
 import org.acasictf.ctf.operator.provisioner.KubernetesProvisioner
 import org.acasictf.ctf.proto.Common
-import org.acasictf.ctf.proto.Ctfoperator
-import org.acasictf.ctf.proto.CtfoperatorInternal
+import org.acasictf.ctf.proto.Ctfoperator.*
+import org.acasictf.ctf.proto.CtfoperatorInternal.Environment
+import org.acasictf.ctf.proto.CtfoperatorInternal.ProvisionerType
 import org.acasictf.ctf.proto.EnvironmentProvisioningServiceGrpcKt
 import java.io.File
 import java.io.File.createTempFile
@@ -27,8 +28,8 @@ class ProvisioningService(
 EnvironmentProvisioningServiceCoroutineImplBase() {
     private val envDao = EnvironmentDao(persistenceLayer.database())
 
-    override suspend fun startEnvironment(request: Ctfoperator.StartEnvironmentRequest):
-            Ctfoperator.StartEnvironmentResponse = managed {
+    override suspend fun startEnvironment(request: StartEnvironmentRequest):
+            StartEnvironmentResponse = managed {
         val envIdStr = UUID.randomUUID().toString()
         val envId = Common.UUID.newBuilder().apply {
             contents = envIdStr
@@ -39,11 +40,11 @@ EnvironmentProvisioningServiceCoroutineImplBase() {
             nanos = now.nano
         }.build()
 
-        val env = CtfoperatorInternal.Environment.newBuilder().apply {
+        val env = Environment.newBuilder().apply {
             createdTime = ts
             lastPingTime = ts
             provisionerDone = false
-            provisionerType = CtfoperatorInternal.ProvisionerType.KUBERNETES
+            provisionerType = ProvisionerType.KUBERNETES
             ownerId = request.challengeOwner
             challengeSetId = request.challengeSetId
             challengeId = request.challengeId
@@ -51,7 +52,7 @@ EnvironmentProvisioningServiceCoroutineImplBase() {
 
         envDao.set(envId, env)
 
-        val failureResponse = Ctfoperator.StartEnvironmentResponse
+        val failureResponse = StartEnvironmentResponse
             .newBuilder().apply {
                 // TODO: Add reason.
                 failureBuilder.apply {}
@@ -81,7 +82,7 @@ EnvironmentProvisioningServiceCoroutineImplBase() {
             return@managed failureResponse
         }
 
-        return@managed Ctfoperator.StartEnvironmentResponse.newBuilder().apply {
+        return@managed StartEnvironmentResponse.newBuilder().apply {
             successBuilder.apply {
                 environmentIdBuilder.apply {
                     contents = envIdStr
@@ -90,7 +91,7 @@ EnvironmentProvisioningServiceCoroutineImplBase() {
         }.build()
     }
 
-    override suspend fun stopEnvironment(request: Ctfoperator.StopEnvironmentRequest): Ctfoperator.StopEnvironmentResponse =
+    override suspend fun stopEnvironment(request: StopEnvironmentRequest): StopEnvironmentResponse =
         managed {
             envDao.get(request.environmentId)
                 ?: throw Exception("Missing environment")
@@ -107,12 +108,12 @@ EnvironmentProvisioningServiceCoroutineImplBase() {
             logger.info("Deleting persistent environment $envIdStr")
             envDao.remove(request.environmentId)
 
-            return@managed Ctfoperator.StopEnvironmentResponse.newBuilder()
+            return@managed StopEnvironmentResponse.newBuilder()
                 .apply {
                 }.build()
         }
 
-    override suspend fun uploadEnvironmentTemplate(request: Ctfoperator.UploadEnvironmentTemplateRequest): Empty =
+    override suspend fun uploadEnvironmentTemplate(request: UploadEnvironmentTemplateRequest): Empty =
         managed {
             val (tempFile, challengeTemplate) = withContext(Dispatchers.IO) {
                 val tempFile = createTempFile("ctf", ".zip")

@@ -1,7 +1,7 @@
 package org.acasictf.ctf.operator.service
 
 import kotlinx.coroutines.runBlocking
-import org.acasictf.ctf.operator.k8sCrud
+import org.acasictf.ctf.operator.testutil.k8sCrud
 import org.acasictf.ctf.proto.Ctfoperator
 import org.junit.jupiter.api.assertDoesNotThrow
 import java.util.*

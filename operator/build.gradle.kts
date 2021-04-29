@@ -1,4 +1,5 @@
 import com.google.protobuf.gradle.*
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     application
@@ -6,7 +7,7 @@ plugins {
     kotlin("jvm") version "1.4.32"
     kotlin("plugin.serialization") version "1.4.32"
     jacoco
-    id("com.google.protobuf") version "0.8.15"
+    id("com.google.protobuf") version "0.8.16"
     id("idea")
 }
 
@@ -55,6 +56,10 @@ java {
             }
         }
     }
+}
+
+tasks.withType<KotlinCompile> {
+    kotlinOptions.jvmTarget = "1.8"
 }
 
 tasks.register<Copy>("copyProto") {

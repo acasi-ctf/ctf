@@ -1,7 +1,9 @@
 package org.acasictf.ctf.operator
 
 import com.google.protobuf.Empty
+import org.acasictf.ctf.proto.Common
 import java.io.File
+import java.util.*
 
 fun empty() = Empty.newBuilder().build()
 
@@ -17,6 +19,10 @@ suspend inline fun <T> managed(f: suspend () -> T) =
     try {
         f()
     } catch (e: Exception) {
-        logger.warn("gRPC call failed!", e)
+        logger.warn("Code in managed call failed!", e)
         throw e
     }
+
+fun generateProtoUuid() = Common.UUID.newBuilder().apply {
+    contents = UUID.randomUUID().toString()
+}.build()
