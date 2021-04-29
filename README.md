@@ -1,4 +1,6 @@
 # CTF
+[![codecov](https://codecov.io/gh/acasi-ctf/ctf/branch/main/graph/badge.svg?token=LHDORJRILA)](https://codecov.io/gh/acasi-ctf/ctf)
+
 Capture the Flag is usually a competition between highly skilled individuals to
 see who can breach a computer system first. With our CTF platform, we want to
 make it easy for beginners (ideally high school or early college) to get started
