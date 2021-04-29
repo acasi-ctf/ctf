@@ -90,7 +90,7 @@ frontend/api.yaml # This is a specification of the challenges API (file above) u
 During our third sprint, we put all the components of our project together and got them functioning. Our challenge team
 made further progress on their challenge sets. We had enough cipher challenges to convert it ot a challenge set of its
 own and make the remaining challenges a second challenge set which we named web-based as all the challenges there are
-targeted towards teaching the user how a directory traversal or similar web-based attack works. 
+targeted towards teaching the user how a directory traversal or similar web-based attack works.
 
 For the UI we managed to implement a 3rd party library that converts markdown into HTML for being able to display
 documents that are more easily written to the screen as an HTML object. Additionally, we implemented a special useFetch
@@ -103,11 +103,12 @@ yet, but does use some of them, such as the creation of the user-isolated enviro
 that we have already started working on to utilize these APIs to dynamically create the challenges, including
 the documentation required for each.
 
-#### Team Chat
+#### Team Communication
 We chose to use the MS Teams chat functionality more than the message board. Because of this it makes it seem like we do
 not communicate very frequently, but in reality this is not the case. The team leader is messaging individual members
 via direct message in teams frequently as well as GitHub issues to communicate with team members. Below is a link to the
-chat log of our team chat during the sprint 3 period.  
+chat log of our team chat during the sprint 3 period.
+
 [Chat Log](https://emailwsu.sharepoint.com/:x:/r/teams/2021.PULLM.CptS.421.423-F5CTF/Shared%20Documents/F5%20CTF/ChatLogs/sprint3_Teams_Chat_log.csv?d=w8be7b9899e974d668b65b2f93ebd782f&csf=1&web=1&e=tpwg9E)
 
 #### Demo Meeting
