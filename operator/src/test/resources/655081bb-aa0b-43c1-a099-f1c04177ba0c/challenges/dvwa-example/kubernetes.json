@@ -1,0 +1,7 @@
+{
+  "manifests": {
+    "pods": [
+      "dvwa.yaml"
+    ]
+  }
+}

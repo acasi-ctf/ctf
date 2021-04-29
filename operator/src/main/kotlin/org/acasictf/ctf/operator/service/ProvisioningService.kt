@@ -6,11 +6,11 @@ import io.fabric8.kubernetes.api.model.*
 import io.fabric8.kubernetes.client.KubernetesClient
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import kotlinx.serialization.json.Json
 import org.acasictf.ctf.operator.*
-import org.acasictf.ctf.operator.model.Kubernetes
-import org.acasictf.ctf.operator.persistence.ChallengeTemplate
+import org.acasictf.ctf.operator.abstractions.PersistenceLayer
 import org.acasictf.ctf.operator.persistence.EnvironmentDao
+import org.acasictf.ctf.operator.persistence.ZipChallengeTemplate
+import org.acasictf.ctf.operator.provisioner.KubernetesProvisioner
 import org.acasictf.ctf.proto.Common
 import org.acasictf.ctf.proto.Ctfoperator
 import org.acasictf.ctf.proto.CtfoperatorInternal
@@ -20,14 +20,15 @@ import java.io.File.createTempFile
 import java.time.Instant
 import java.util.*
 
-class ProvisioningService(private val envDao: EnvironmentDao, private val kube: KubernetesClient)
-    : EnvironmentProvisioningServiceGrpcKt.
+class ProvisioningService(
+    private val kube: KubernetesClient,
+    private val persistenceLayer: PersistenceLayer
+) : EnvironmentProvisioningServiceGrpcKt.
 EnvironmentProvisioningServiceCoroutineImplBase() {
-    private val json = Json {
-        ignoreUnknownKeys = true
-    }
+    private val envDao = EnvironmentDao(persistenceLayer.database())
 
-    override suspend fun startEnvironment(request: Ctfoperator.StartEnvironmentRequest): Ctfoperator.StartEnvironmentResponse = managed {
+    override suspend fun startEnvironment(request: Ctfoperator.StartEnvironmentRequest):
+            Ctfoperator.StartEnvironmentResponse = managed {
         val envIdStr = UUID.randomUUID().toString()
         val envId = Common.UUID.newBuilder().apply {
             contents = envIdStr
@@ -51,67 +52,33 @@ EnvironmentProvisioningServiceCoroutineImplBase() {
         envDao.set(envId, env)
 
         val failureResponse = Ctfoperator.StartEnvironmentResponse
-                .newBuilder().apply {
-                    // TODO: Add reason.
-                    failureBuilder.apply {}
-                }.build()
+            .newBuilder().apply {
+                // TODO: Add reason.
+                failureBuilder.apply {}
+            }.build()
 
-        val ctFile = File(getChallengesDir()).resolve("${request.challengeSetId.contents}.zip")
-        if (!ctFile.exists()) {
+        val ct = try {
+            persistenceLayer.createChallengeTemplate(
+                request.challengeSetId.contents
+            ).apply {
+                init()
+            }
+        } catch (e: Exception) {
             return@managed failureResponse
         }
-
-        val ct = ChallengeTemplate(json, ctFile)
 
         // Check whether we have the correct challenge, if not throw a failure response.
         val c = ct.challenges.firstOrNull {
             it.id == request.challengeId.contents
         } ?: return@managed failureResponse
 
-        // TODO: Assuming it's Kubernetes... Pull this out into reconcile loop.
-        val provisioner = ct.readChallengeJson(c, "kubernetes.json", Kubernetes.serializer())
-                ?: return@managed failureResponse
-
-        // TODO: Validate all manifests prior to creation.
-
-        provisioner.manifests.pods.forEachIndexed { i, it ->
-            val podFile = ct.readChallengeFile(c, it)
-            val pod = kube.pods().inNamespace(kubeNamespace).load(podFile.getInputStream()).get()
-            val isPenimage = pod.metadata?.name == "penimage"
-            if (pod.metadata == null) {
-                pod.metadata = ObjectMeta()
-            }
-            if (pod.metadata.labels == null) {
-                pod.metadata.labels = mutableMapOf()
-            }
-            pod.metadata.name = "ctf-$envIdStr-$i"
-            pod.metadata.namespace = kubeNamespace
-            pod.metadata.labels["ctf-env-id"] = envIdStr
-
-            // TODO: Inject public key for penimage
-            if (isPenimage) {
-                if (pod.spec != null && pod.spec.containers != null) {
-                    val publicKeyFile = File("/secrets/auth-key-public/id_rsa.pub")
-                    val publicKey = if (publicKeyFile.exists()) {
-                        publicKeyFile.readText()
-                    } else {
-                        logger.warn("Failed to find public key secret")
-                        ""
-                    }
-                    val envVar = EnvVar().apply {
-                        name = "PUBLIC_KEY"
-                        value = publicKey
-                    }
-                    pod.spec.containers.forEach {
-                        if (it.env == null) {
-                            it.env = mutableListOf()
-                        }
-                        it.env.add(envVar)
-                    }
-                }
-            }
-
-            kube.pods().inNamespace(kubeNamespace).create(pod)
+        // TODO: Assuming Kubernetes-only.
+        val prov = KubernetesProvisioner(kube, envIdStr, ct)
+        try {
+            prov.provision(c)
+        } catch (e: Exception) {
+            logger.error("Failed to provision resources for $envIdStr")
+            return@managed failureResponse
         }
 
         return@managed Ctfoperator.StartEnvironmentResponse.newBuilder().apply {
@@ -123,43 +90,46 @@ EnvironmentProvisioningServiceCoroutineImplBase() {
         }.build()
     }
 
-    override suspend fun stopEnvironment(request: Ctfoperator.StopEnvironmentRequest): Ctfoperator.StopEnvironmentResponse = managed {
-        envDao.get(request.environmentId)
+    override suspend fun stopEnvironment(request: Ctfoperator.StopEnvironmentRequest): Ctfoperator.StopEnvironmentResponse =
+        managed {
+            envDao.get(request.environmentId)
                 ?: throw Exception("Missing environment")
-        val envIdStr = request.environmentId.contents
+            val envIdStr = request.environmentId.contents
 
-        val listOptions = ListOptions().apply {
-            labelSelector = "ctf-env-id=$envIdStr"
-        }
-        val pods = kube.pods().inNamespace(kubeNamespace).list(listOptions)
+            val listOptions = ListOptions().apply {
+                labelSelector = "ctf-env-id=$envIdStr"
+            }
+            val pods = kube.pods().inNamespace(kubeNamespace).list(listOptions)
 
-        logger.info("Deleting ${pods.items.size} pods for environment $envIdStr")
-        kube.pods().inNamespace(kubeNamespace).delete(pods.items)
+            logger.info("Deleting ${pods.items.size} pods for environment $envIdStr")
+            kube.pods().inNamespace(kubeNamespace).delete(pods.items)
 
-        logger.info("Deleting persistent environment $envIdStr")
-        envDao.remove(request.environmentId)
+            logger.info("Deleting persistent environment $envIdStr")
+            envDao.remove(request.environmentId)
 
-        return@managed Ctfoperator.StopEnvironmentResponse.newBuilder().apply {
-        }.build()
-    }
-
-    override suspend fun uploadEnvironmentTemplate(request: Ctfoperator.UploadEnvironmentTemplateRequest): Empty = managed {
-        val (tempFile, challengeTemplate) = withContext(Dispatchers.IO) {
-            val tempFile = createTempFile("ctf", ".zip")
-            tempFile.writeBytes(request.envZip.toByteArray())
-            Pair(tempFile, ChallengeTemplate(json, tempFile))
+            return@managed Ctfoperator.StopEnvironmentResponse.newBuilder()
+                .apply {
+                }.build()
         }
 
-        val id = challengeTemplate.challengeSet.id
+    override suspend fun uploadEnvironmentTemplate(request: Ctfoperator.UploadEnvironmentTemplateRequest): Empty =
+        managed {
+            val (tempFile, challengeTemplate) = withContext(Dispatchers.IO) {
+                val tempFile = createTempFile("ctf", ".zip")
+                tempFile.writeBytes(request.envZip.toByteArray())
+                Pair(tempFile, ZipChallengeTemplate(tempFile))
+            }
 
-        tempFile.delete()
+            val id = challengeTemplate.challengeSet.id
 
-        val challengeZipFile = File(getChallengesDir(), "$id.zip")
-        challengeZipFile.createNewFile()
-        challengeZipFile.writeBytes(request.envZip.toByteArray())
+            tempFile.delete()
 
-        logger.info("New challenge template uploaded: $challengeZipFile")
+            val challengeZipFile = File(getChallengesDir(), "$id.zip")
+            challengeZipFile.createNewFile()
+            challengeZipFile.writeBytes(request.envZip.toByteArray())
 
-        empty()
-    }
+            logger.info("New challenge template uploaded: $challengeZipFile")
+
+            empty()
+        }
 }
