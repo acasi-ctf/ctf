@@ -14,6 +14,9 @@ class ChallengeTemplateTest {
         challengeTemplate.init()
     }
 
+    /**
+     * Validate that the challenge set data is what we expect it to be.
+     */
     @Test
     fun `validate challenge set data`() {
         val cs = challengeTemplate.challengeSet
@@ -46,6 +49,10 @@ class ChallengeTemplateTest {
         )
     }
 
+    /**
+     * Read the kubernetes.json file from the challenge template and ensure
+     * that the deserialized data class is what we expect it to be.
+     */
     @Test
     fun `read challenge kubernetes json`() {
         val kubernetesJson = challengeTemplate.readChallengeJson(
@@ -59,6 +66,10 @@ class ChallengeTemplateTest {
         assertEquals("dvwa.yaml", kubernetesJson.manifests.pods[0])
     }
 
+    /**
+     * Try to read a nonexistent JSON file for the challenge template, and
+     * ensure that the returned value is null.
+     */
     @Test
     fun `try to read nonexistent json file`() {
         val json = challengeTemplate.readJson(
