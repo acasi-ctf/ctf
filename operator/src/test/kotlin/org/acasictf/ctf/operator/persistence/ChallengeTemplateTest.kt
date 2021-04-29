@@ -4,6 +4,7 @@ import org.acasictf.ctf.operator.model.Kubernetes
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
+import kotlin.test.assertNull
 
 class ChallengeTemplateTest {
     private val challengeTemplate =
@@ -56,5 +57,14 @@ class ChallengeTemplateTest {
         assertNotNull(kubernetesJson)
         assertEquals(1, kubernetesJson.manifests.pods.size)
         assertEquals("dvwa.yaml", kubernetesJson.manifests.pods[0])
+    }
+
+    @Test
+    fun `try to read nonexistent json file`() {
+        val json = challengeTemplate.readJson(
+            "test.json",
+            Kubernetes.serializer()
+        )
+        assertNull(json)
     }
 }

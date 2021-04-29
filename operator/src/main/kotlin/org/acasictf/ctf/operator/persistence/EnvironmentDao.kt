@@ -1,7 +1,7 @@
 package org.acasictf.ctf.operator.persistence
 
 import org.acasictf.ctf.proto.Common
-import org.acasictf.ctf.proto.CtfoperatorInternal
+import org.acasictf.ctf.proto.CtfoperatorInternal.Environment
 import org.mapdb.DB
 import org.mapdb.Serializer
 
@@ -11,7 +11,7 @@ class EnvironmentDao(private val db: DB) {
         Serializer.BYTE_ARRAY, Serializer.BYTE_ARRAY
     ).createOrOpen()
 
-    fun set(uuid: Common.UUID, env: CtfoperatorInternal.Environment) {
+    fun set(uuid: Common.UUID, env: Environment) {
         val uuidBytes = uuid.toByteArray()
         val envBytes = env.toByteArray()
 
@@ -19,11 +19,11 @@ class EnvironmentDao(private val db: DB) {
         db.commit()
     }
 
-    fun get(uuid: Common.UUID): CtfoperatorInternal.Environment? {
+    fun get(uuid: Common.UUID): Environment? {
         val uuidBytes = uuid.toByteArray()
         val envBytes = environments[uuidBytes] ?: return null
 
-        return CtfoperatorInternal.Environment.parseFrom(envBytes)
+        return Environment.parseFrom(envBytes)
     }
 
     fun remove(uuid: Common.UUID) {
@@ -31,9 +31,8 @@ class EnvironmentDao(private val db: DB) {
         environments.remove(uuidBytes)
     }
 
-    fun list(): Map<Common.UUID, CtfoperatorInternal.Environment> =
+    fun list(): Map<Common.UUID, Environment> =
         environments.map {
-            Common.UUID.parseFrom(it.key) to
-                    CtfoperatorInternal.Environment.parseFrom(it.value)
+            Common.UUID.parseFrom(it.key) to Environment.parseFrom(it.value)
         }.toMap()
 }
