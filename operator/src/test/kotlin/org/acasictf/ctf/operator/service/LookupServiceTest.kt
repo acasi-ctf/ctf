@@ -10,6 +10,7 @@ import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
 import org.acasictf.ctf.operator.generateProtoUuid
 import org.acasictf.ctf.operator.persistence.EnvironmentDao
+import org.acasictf.ctf.operator.testutil.assertFailsBlocking
 import org.acasictf.ctf.operator.testutil.k8sExpect
 import org.acasictf.ctf.proto.Ctfoperator.GetEnvironmentInfoRequest
 import org.acasictf.ctf.proto.Ctfoperator.ListUserEnvironmentsRequest
@@ -17,6 +18,10 @@ import org.acasictf.ctf.proto.CtfoperatorInternal.Environment
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
+private fun getPenimagePod(envId: String) =
+    "/api/v1/namespaces/ctf/pods?labelSelector=" + Utils.toUrlEncoded(
+        "ctf-env-id=$envId,ctf-env-label=penimage"
+    )
 
 class LookupServiceTest {
     @MockK
@@ -41,11 +46,9 @@ class LookupServiceTest {
             )
             .build()
 
-        server.expect().get().withPath(
-            "/api/v1/namespaces/ctf/pods?labelSelector=" + Utils.toUrlEncoded(
-                "ctf-env-id=${envId.contents},ctf-env-label=penimage"
-            )
-        )
+        server.expect()
+            .get()
+            .withPath(getPenimagePod(envId.contents))
             .andReturn(200, PodListBuilder().withItems(pod).build())
             .once()
 
@@ -61,6 +64,32 @@ class LookupServiceTest {
 
         assertEquals(sshHost, response.sshHost)
         assertEquals(sshPort, response.sshPort)
+    }
+
+    /**
+     * Gets the environment info, which is only used for Termproxy right now.
+     * Ensures that the gRPC response contains the correct SSH host and SSH
+     * port.
+     */
+    @Test
+    fun `get environment info with missing pod`() = k8sExpect { server ->
+        val envId = generateProtoUuid()
+
+        server.expect()
+            .get()
+            .withPath(getPenimagePod(envId.contents))
+            .andReturn(200, PodListBuilder().build())
+            .once()
+
+        val service = LookupService(environmentDao, server.client)
+
+        assertFailsBlocking {
+            service.getEnvironmentInfo(
+                GetEnvironmentInfoRequest.newBuilder().apply {
+                    environmentId = envId
+                }.build()
+            )
+        }
     }
 
     /**
