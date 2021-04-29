@@ -103,6 +103,12 @@ yet, but does use some of them, such as the creation of the user-isolated enviro
 that we have already started working on to utilize these APIs to dynamically create the challenges, including
 the documentation required for each.
 
+#### Team Chat
+We chose to use the MS Teams chat functionality more than the message board. Because of this it makes it seem like we do
+not communicate very frequently, but in reality this is not the case. The team leader is messaging individual members
+via direct message in teams frequently as well as GitHub issues to communicate with team members. Below is a link to the
+chat log of our team chat during the sprint 3 period.  
+[Chat Log](https://emailwsu.sharepoint.com/:x:/r/teams/2021.PULLM.CptS.421.423-F5CTF/Shared%20Documents/F5%20CTF/ChatLogs/sprint3_Teams_Chat_log.csv?d=w8be7b9899e974d668b65b2f93ebd782f&csf=1&web=1&e=tpwg9E)
 
 #### Demo Meeting
 Our third demo meeting recording is provided below. Our we discussed summer milestones with our sponsor after this but
