@@ -86,3 +86,35 @@ frontend/model/challenges.py
 frontend/routes/api/challenges.py
 frontend/api.yaml # This is a specification of the challenges API (file above) using OpenAPI.
 ```
+### Sprint 3
+During our third sprint, we put all the components of our project together and got them functioning. Our challenge team
+made further progress on their challenge sets. We had enough cipher challenges to convert it to a challenge set of its
+own and make the remaining challenges a second challenge set which we named web-based as all the challenges there are
+targeted towards teaching the user how a directory traversal or similar web-based attack works.
+
+For the UI, we utilized the third-party react-markdown library to render Markdown text as HTML, which we can then insert
+into the page and style it accordingly. Additionally, we implemented a special useFetch
+call in React that creates isolated environments based on the user token, challenge-set and challenge slugs. Finally,
+to ensure that the user was unable to generate an environment without being logged in, we prevented anything from being
+accessible until the user is logged in.
+
+For the backend, we created the REST APIs that the UI talks with. Currently, the UI does not fully utilize these APIs
+yet, but does use some of them, such as the creation of the user-isolated environments. The user tokens are created and
+issued by auth0 to protect sensitive information. We have started working on a branch of the project
+to utilize these APIs to dynamically create the challenges, including
+the documentation required for each.
+
+#### Team Communication
+We chose to use the MS Teams chat functionality more than the message board. Because of this it makes it seem like we do
+not communicate very frequently, but in reality this is not the case. The team leader is messaging individual members
+via direct message in teams frequently as well as GitHub issues to communicate with team members. Below is a link to the
+chat log of our team chat during the sprint 3 period.
+
+[Chat Log](https://emailwsu.sharepoint.com/:x:/r/teams/2021.PULLM.CptS.421.423-F5CTF/Shared%20Documents/F5%20CTF/ChatLogs/sprint3_Teams_Chat_log.csv?d=w8be7b9899e974d668b65b2f93ebd782f&csf=1&web=1&e=tpwg9E)
+
+#### Demo Meeting
+Our third demo meeting recording is provided below. We discussed summer milestones with our sponsor after this but
+not all team members are able to contribute, so we are unsure how to proceed at this point.
+
+[Demo Meeting Recording](https://emailwsu.sharepoint.com/:v:/r/teams/2021.PULLM.CptS.421.423-F5CTF/Shared%20Documents/F5%20CTF/Meeting%20Notes/Demo%20Recordings/Sponsor_Demo_Sprint_3.mp4?csf=1&web=1&e=bgDNeF)
+
