@@ -133,4 +133,9 @@ operator/src/test/kotlin/org/acasictf/ctf/operator/persistence/EnvironmentDaoTes
 #### Tests
 We have written fairly extensive tests for our new implementation of the
 operator. They are all implemented in Kotlin and located in the
-`operator/src/test/kotlin/org/acasictf/ctf/operator` directory.
+`operator/src/test/kotlin/org/acasictf/ctf/operator` directory. Also, it should
+be noted that we have started to work on code coverage. Currently, the only area
+that is covered is the operator code, but we plan on adding more reporting to
+our GitHub checks and tracking the coverage over time. The code currently being
+tested and reported is 66% covered. There is a Codecov badge at the top of this
+README file, click it to go to our codecov.io page.
