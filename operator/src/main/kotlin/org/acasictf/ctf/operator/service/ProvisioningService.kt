@@ -2,7 +2,7 @@ package org.acasictf.ctf.operator.service
 
 import com.google.protobuf.Empty
 import com.google.protobuf.Timestamp
-import io.fabric8.kubernetes.api.model.*
+import io.fabric8.kubernetes.api.model.ListOptions
 import io.fabric8.kubernetes.client.KubernetesClient
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -91,46 +91,46 @@ EnvironmentProvisioningServiceCoroutineImplBase() {
         }.build()
     }
 
-    override suspend fun stopEnvironment(request: StopEnvironmentRequest): StopEnvironmentResponse =
-        managed {
-            envDao.get(request.environmentId)
-                ?: throw Exception("Missing environment")
-            val envIdStr = request.environmentId.contents
+    override suspend fun stopEnvironment(request: StopEnvironmentRequest)
+            : StopEnvironmentResponse = managed {
+        envDao.get(request.environmentId)
+            ?: throw Exception("Missing environment")
+        val envIdStr = request.environmentId.contents
 
-            val listOptions = ListOptions().apply {
-                labelSelector = "ctf-env-id=$envIdStr"
-            }
-            val pods = kube.pods().inNamespace(kubeNamespace).list(listOptions)
+        val listOptions = ListOptions().apply {
+            labelSelector = "ctf-env-id=$envIdStr"
+        }
+        val pods = kube.pods().inNamespace(kubeNamespace).list(listOptions)
 
-            logger.info("Deleting ${pods.items.size} pods for environment $envIdStr")
-            kube.pods().inNamespace(kubeNamespace).delete(pods.items)
+        logger.info("Deleting ${pods.items.size} pods for environment $envIdStr")
+        kube.pods().inNamespace(kubeNamespace).delete(pods.items)
 
-            logger.info("Deleting persistent environment $envIdStr")
-            envDao.remove(request.environmentId)
+        logger.info("Deleting persistent environment $envIdStr")
+        envDao.remove(request.environmentId)
 
-            return@managed StopEnvironmentResponse.newBuilder()
-                .apply {
-                }.build()
+        return@managed StopEnvironmentResponse.newBuilder()
+            .apply {
+            }.build()
+    }
+
+    override suspend fun uploadEnvironmentTemplate(request: UploadEnvironmentTemplateRequest)
+            : Empty = managed {
+        val (tempFile, challengeTemplate) = withContext(Dispatchers.IO) {
+            val tempFile = createTempFile("ctf", ".zip")
+            tempFile.writeBytes(request.envZip.toByteArray())
+            Pair(tempFile, ZipChallengeTemplate(tempFile))
         }
 
-    override suspend fun uploadEnvironmentTemplate(request: UploadEnvironmentTemplateRequest): Empty =
-        managed {
-            val (tempFile, challengeTemplate) = withContext(Dispatchers.IO) {
-                val tempFile = createTempFile("ctf", ".zip")
-                tempFile.writeBytes(request.envZip.toByteArray())
-                Pair(tempFile, ZipChallengeTemplate(tempFile))
-            }
+        val id = challengeTemplate.challengeSet.id
 
-            val id = challengeTemplate.challengeSet.id
+        tempFile.delete()
 
-            tempFile.delete()
+        val challengeZipFile = File(getChallengesDir(), "$id.zip")
+        challengeZipFile.createNewFile()
+        challengeZipFile.writeBytes(request.envZip.toByteArray())
 
-            val challengeZipFile = File(getChallengesDir(), "$id.zip")
-            challengeZipFile.createNewFile()
-            challengeZipFile.writeBytes(request.envZip.toByteArray())
+        logger.info("New challenge template uploaded: $challengeZipFile")
 
-            logger.info("New challenge template uploaded: $challengeZipFile")
-
-            empty()
-        }
+        empty()
+    }
 }

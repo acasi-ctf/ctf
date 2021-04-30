@@ -120,3 +120,22 @@ not all team members are able to contribute, so we are unsure how to proceed at 
 
 [Demo Meeting Recording](https://emailwsu.sharepoint.com/:v:/r/teams/2021.PULLM.CptS.421.423-F5CTF/Shared%20Documents/F5%20CTF/Meeting%20Notes/Demo%20Recordings/Sponsor_Demo_Sprint_3.mp4?csf=1&web=1&e=bgDNeF)
 
+#### File Quality
+I'm providing a list of files below that I would like to submit for review by
+the instructor.
+
+```text
+operator/src/test/kotlin/org/acasictf/ctf/operator/provisioner/KubernetesProvisionerTest.kt
+operator/src/test/kotlin/org/acasictf/ctf/operator/service/LookupServiceTest.kt
+operator/src/test/kotlin/org/acasictf/ctf/operator/persistence/EnvironmentDaoTest.kt
+```
+
+#### Tests
+We have written fairly extensive tests for our new implementation of the
+operator. They are all implemented in Kotlin and located in the
+`operator/src/test/kotlin/org/acasictf/ctf/operator` directory. Also, it should
+be noted that we have started to work on code coverage. Currently, the only area
+that is covered is the operator code, but we plan on adding more reporting to
+our GitHub checks and tracking the coverage over time. The code currently being
+tested and reported is 66% covered. There is a Codecov badge at the top of this
+README file, click it to go to our codecov.io page.
