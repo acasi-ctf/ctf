@@ -52,6 +52,8 @@ func RunService() {
 	wrappedGrpc := grpcweb.WrapServer(grpcServer, grpcWrapperOpts...)
 	httpServer.Handler = http.HandlerFunc(func(resp http.ResponseWriter, req *http.Request) {
 		switch {
+		case req.URL.Path == "/":
+			resp.WriteHeader(http.StatusOK)
 		case wrappedGrpc.IsGrpcWebRequest(req):
 			wrappedGrpc.ServeHTTP(resp, req)
 		case strings.ToLower(req.Header.Get("Upgrade")) == "websocket":
