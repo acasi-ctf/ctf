@@ -13,6 +13,8 @@ import Terminal from "../components/Terminal";
 import gfm from "remark-gfm";
 import ReactMarkdown from "react-markdown";
 import useFetchAuth from "../useFetchAuth";
+import Spinner from "../components/Spinner";
+import GenericErrorPage from "./error-pages/genericErrorPage";
 
 function a11yProps(index) {
   return {
@@ -72,7 +74,8 @@ export default function MorseCode() {
       });
   }, [path]);
   //this is to set first from rendering for markdown. Without this, it will render html on first run
-  
+  if (loading) return <Spinner />;
+  if (error) return <GenericErrorPage />;
   if (!first) {
     setPath(Challengedata[0].itembox1);
     setfirst(first + 1);
