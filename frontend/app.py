@@ -40,7 +40,10 @@ def register_blueprints(app):
     """
     Register Flask blueprints.
     """
+    from .routes import root_bp
     from .routes.api import admin_challenges_bp, challenges_bp, user_environments_bp
+
+    app.register_blueprint(root_bp, url_prefix="/")
 
     app.register_blueprint(challenges_bp, url_prefix="/api/")
     app.register_blueprint(admin_challenges_bp, url_prefix="/api/admin/")
