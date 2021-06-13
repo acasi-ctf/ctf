@@ -9,7 +9,7 @@ import { Challengedata } from "./MorseCodeData";
 // import {useLocation, Link, useParams} from 'react-router-dom';
 import PropTypes from "prop-types";
 import Terminal from "../components/Terminal";
-import marked from "marked";
+// import marked from "marked";
 import gfm from "remark-gfm";
 import ReactMarkdown from "react-markdown";
 import useFetchAuth from "../useFetchAuth";
@@ -71,7 +71,8 @@ export default function MorseCode() {
         setMarkdown(text);
       });
   }, [path]);
-  //this is to set first frim rendering for mardown. Without this, it will redner html on first run
+  //this is to set first from rendering for markdown. Without this, it will render html on first run
+  
   if (!first) {
     setPath(Challengedata[0].itembox1);
     setfirst(first + 1);

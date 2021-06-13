@@ -8,8 +8,14 @@
 //**********************************************cipher challenge set*****************************************
 import ltn from "../challenges/ciphers/challenges/letter-to-number/docs/Letter-to-Number.md";
 import crypto from "../challenges/ciphers/challenges/letter-to-number/docs/1-Cryptography.md";
+import term from "../challenges/ciphers/challenges/caesar-cipher/docs/Terminal_Use.md";
 
 export const Challengedata = [
+  {
+    label: "Basic Terminal Commands",
+    cName: "tab",
+    itembox1: term,
+  },
   {
     label: "Challenge Description",
     cName: "tab",
