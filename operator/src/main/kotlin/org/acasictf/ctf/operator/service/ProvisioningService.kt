@@ -78,7 +78,7 @@ EnvironmentProvisioningServiceCoroutineImplBase() {
         try {
             prov.provision(c)
         } catch (e: Exception) {
-            logger.error("Failed to provision resources for $envIdStr")
+            logger.error("Failed to provision resources for $envIdStr", e)
             return@managed failureResponse
         }
 
@@ -120,6 +120,7 @@ EnvironmentProvisioningServiceCoroutineImplBase() {
             tempFile.writeBytes(request.envZip.toByteArray())
             Pair(tempFile, ZipChallengeTemplate(tempFile))
         }
+        challengeTemplate.init()
 
         val id = challengeTemplate.challengeSet.id
 
