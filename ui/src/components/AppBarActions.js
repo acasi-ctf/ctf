@@ -66,6 +66,7 @@ export default function AppBarActions() {
         {" "}
         Report Issue
       </Button>
+
       <Button
         variant="contained"
         color="white"
