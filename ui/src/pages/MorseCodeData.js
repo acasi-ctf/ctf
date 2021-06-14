@@ -8,8 +8,13 @@
 //**********************************************cipher challenge set*****************************************
 import morsecode from "../challenges/ciphers/challenges/morse-code/docs/Morse_code.md";
 import crypto from "../challenges/ciphers/challenges/letter-to-number/docs/1-Cryptography.md";
-
+import term from "../challenges/ciphers/challenges/caesar-cipher/docs/Terminal_Use.md";
 export const Challengedata = [
+  {
+    label: "Basic Terminal Commands",
+    cName: "tab",
+    itembox1: term,
+  },
   {
     label: "Challenge Description",
     cName: "tab",
