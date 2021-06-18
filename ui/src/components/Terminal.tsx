@@ -18,7 +18,7 @@ import {grpc} from "@improbable-eng/grpc-web";
 import {UUID} from "../generated/common_pb";
 import * as termproxy_pb from "../generated/termproxy_pb";
 
-const client = new TermproxyServiceClient("https://ctf.gorence.io", {
+const client = new TermproxyServiceClient(`https://${window.location.host}`, {
   transport: grpc.WebsocketTransport(),
 });
 

@@ -25,6 +25,8 @@ fun main() {
         .addService(LookupService(envDao, client))
         .build()
 
+    kubeNamespace = client.namespace
+
     Runtime.getRuntime().addShutdownHook(Thread {
         server.shutdown()
     })

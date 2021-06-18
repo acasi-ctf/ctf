@@ -1,7 +1,12 @@
 FROM openjdk:11-jdk-buster AS builder
+WORKDIR /src
+
+COPY operator/gradlew /src
+COPY operator/gradle /src/gradle
+
+RUN ./gradlew tasks --no-daemon; exit 0
 
 COPY operator/ /src
-WORKDIR /src
 
 RUN ./gradlew distZip --no-daemon
 
