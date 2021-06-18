@@ -10,8 +10,14 @@ import comprehensive from "../challenges/ciphers/challenges/comprehensive-challe
 import crypto from "../challenges/ciphers/challenges/comprehensive-challenge/docs/1-Cryptography.md";
 import morse from "../challenges/ciphers/challenges/morse-code/docs/Morse_code.md";
 import alphaTable from "../challenges/ciphers/challenges/letter-to-number/docs/Letter-to-Number.md";
+import term from "../challenges/ciphers/challenges/caesar-cipher/docs/Terminal_Use.md";
 
 export const Challengedata = [
+  {
+    label: "Basic Terminal Commands",
+    cName: "tab",
+    itembox1: term,
+  },
   {
     label: "Challenge Description",
     cName: "tab",

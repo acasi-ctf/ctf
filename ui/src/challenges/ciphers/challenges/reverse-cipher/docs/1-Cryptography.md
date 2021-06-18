@@ -7,6 +7,7 @@ The different between Classical Cryptography and Modern Cryptography is encoding
 
 ## Classical Cryptography
 Classical Cryptography is one type of cryptography, many of which use alternating or transposition ciphers, or sometimes a combination of the two. Usually the cyrpto will be a classic password is based on A pinyin letter (like A-Z), a manual operation, or a simple device.
+
 ### Examples of classical cryptography
 Alberti  
 ADFGVX  
