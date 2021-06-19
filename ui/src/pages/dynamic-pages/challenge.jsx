@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./ChallengeSet1.css";
 import * as core from "@material-ui/core";
-
-import { Challengedata } from "./ReverseCipherData";
-
+import { ChallengeSet1Data } from "./ChallengeSet1Data";
 import PropTypes from "prop-types";
 import Terminal from "../components/Terminal";
-
 import gfm from "remark-gfm";
 import ReactMarkdown from "react-markdown";
 import useFetchAuth from "../useFetchAuth";
@@ -44,11 +41,11 @@ TabPanel.propTypes = {
   value: PropTypes.any.isRequired,
 };
 
-export default function ReverseCipher() {
+export default function challenge() {
   const [value, setValue] = React.useState(0);
   const handleChange = (events, newValue) => {
     setValue(newValue);
-    setPath(Challengedata[newValue].itembox1);
+    setPath(ChallengeSet1Data[newValue].itembox1);
   };
   const { data, error, loading } = useFetchAuth(
     "api/user/environments",
@@ -68,12 +65,11 @@ export default function ReverseCipher() {
         setMarkdown(text);
       });
   }, [path]);
-
   if (loading) return <Spinner />;
   if (error) return <GenericErrorPage />;
   //this is to set first frim rendering for mardown. Without this, it will redner html on first run
   if (!first) {
-    setPath(Challengedata[0].itembox1);
+    setPath(ChallengeSet1Data[0].itembox1);
     setfirst(first + 1);
   }
   return (
@@ -89,9 +85,8 @@ export default function ReverseCipher() {
             scrollButtons="auto"
             aria-label="simple auto tabs example"
           >
-            {Challengedata.map((item, index) => {
+            {ChallengeSet1Data.map((item, index) => {
               return (
-                // <core.Tab key={item.index} label={item.label} {...a11yProps(item.index)} component={Link} to={`${item.topic}/${item.label}`} />
                 <core.Tab
                   key={index}
                   label={item.label}
@@ -102,15 +97,12 @@ export default function ReverseCipher() {
           </core.Tabs>
         </core.AppBar>
 
-        {/* <ReactMarkdown source={Challengedata[value].itembox1}/> */}
-
         <TabPanel
           className="box1"
           value={value}
           index={value}
           style={{ overflowY: "scroll", marginTop: "5px", marginLeft: "5px" }}
         >
-          {/* {Challengedata[value].itembox1}  */}
           <ReactMarkdown
             remarkPlugins={[gfm]}
             children={txt}
