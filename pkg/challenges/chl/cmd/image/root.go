@@ -1,25 +1,25 @@
-package cmd
+package image
 
 import (
-	"github.com/acasi-ctf/ctf/pkg/challenges/chl/cmd/image"
 	"github.com/spf13/cobra"
+
 	"github.com/spf13/viper"
 )
 
-// rootCmd represents the base command when called without any subcommands
-var rootCmd = &cobra.Command{
-	Use: "chl",
+// Command represents the base command when called without any subcommands
+var Command = &cobra.Command{
+	Use:   "image",
+	Short: "Manage challenge images",
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
-// This is called by main.main(). It only needs to happen once to the rootCmd.
+// This is called by main.main(). It only needs to happen once to the Command.
 func Execute() {
-	cobra.CheckErr(rootCmd.Execute())
+	cobra.CheckErr(Command.Execute())
 }
 
 func init() {
 	cobra.OnInitialize(initConfig)
-	rootCmd.AddCommand(image.Command)
 }
 
 // initConfig reads in config file and ENV variables if set.
