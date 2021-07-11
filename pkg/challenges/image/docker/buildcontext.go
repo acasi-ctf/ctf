@@ -13,10 +13,10 @@ import (
 )
 
 type BuildContextOptions struct {
-	Dockerfile string
-	Patterns   []string
-	Arguments  map[string]string
-	Tag        string
+	Dockerfile string            `json:"dockerfile"`
+	Patterns   []string          `json:"patterns"`
+	Arguments  map[string]string `json:"arguments"`
+	Tag        string            `json:"tag"`
 }
 
 type BuildContext struct {
