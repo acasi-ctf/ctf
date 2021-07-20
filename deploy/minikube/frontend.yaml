@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+spec:
+  template:
+    spec:
+      containers:
+        - name: frontend
+          env:
+            # Could extract these out into a secret / config map and just refer
+            # to them in our base layer.
+            - name: POSTGRES_HOST
+              value: postgres-postgresql
+            - name: POSTGRES_PASSWORD
+              value: DZtDUsM4kT6ZjLjTubawjRPqPdwRepvC

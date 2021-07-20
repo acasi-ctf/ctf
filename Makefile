@@ -6,8 +6,10 @@ IMAGE_TAG = latest
 
 all: proto docker
 
-proto: $(PROTOSRC)
-docker: docker_penimage docker_termproxy docker_ui docker_frontend docker_operatorkt
+proto: $(PROTOSRC) copyproto
+copyproto:
+	cp proto/*.proto operator/src/main/proto
+docker: copyproto docker_penimage docker_termproxy docker_ui docker_frontend docker_operatorkt
 
 $(PROTOSRC): %:%.proto
 	mkdir -p pb/

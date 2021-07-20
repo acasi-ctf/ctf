@@ -174,5 +174,11 @@ __pycache__
 # Operator data directory
 data/
 
+# Built Kustomize manifest files.
+deploy/*.yaml
+
+# Kustomize SSH keys.
+deploy/*/id_rsa*
+
 # End of custom
 

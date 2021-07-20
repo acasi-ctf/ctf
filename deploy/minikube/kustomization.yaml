@@ -1,0 +1,19 @@
+resources:
+  - ../base
+namespace: ctf
+patchesStrategicMerge:
+  - frontend.yaml
+patches:
+  - path: ingress-patch.json
+    target:
+      group: networking.k8s.io
+      version: v1
+      kind: Ingress
+      name: ingress
+secretGenerator:
+  - name: auth-key-private
+    files:
+      - id_rsa
+  - name: auth-key-public
+    files:
+      - id_rsa.pub
