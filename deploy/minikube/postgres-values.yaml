@@ -20,6 +20,11 @@ postgresqlPassword: DZtDUsM4kT6ZjLjTubawjRPqPdwRepvC
 ##
 postgresqlDatabase: ctf_frontend
 
+initdbScripts:
+  init.sql: |
+     \c ctf_frontend
+     CREATE EXTENSION "uuid-ossp";
+
 ## PostgreSQL service configuration
 ##
 service:
