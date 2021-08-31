@@ -1,0 +1,23 @@
+<html>
+<head>
+</head>
+<body>
+
+<form action="/" method="post">
+  <input id="query" name="query" type="text" placeholder="Search query"/>
+  <button type="submit">Submit</button>
+</form>
+
+{{ if .}}
+  <table>
+      {{ range .}}
+        <tr>
+          <td>
+              {{ print . }}
+          </td>
+        </tr>
+      {{ end }}
+  </table>
+{{ end }}
+</body>
+</html>
