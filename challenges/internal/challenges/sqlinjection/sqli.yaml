@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dvwa
+  labels:
+    ctf-env-label: dvwa
+spec:
+  containers:
+  - name: mysql
+    image: ghcr.io/acasi-ctf/challenges/internal/sqlinjection:latest
