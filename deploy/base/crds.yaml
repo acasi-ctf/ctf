@@ -1,0 +1,57 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: envtemplates.ctf.acasi.info
+spec:
+  group: ctf.acasi.info
+  names:
+    kind: EnvTemplate
+    plural: envtemplates
+    singular: envtemplate
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            containers:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                required:
+                  - name
+          required:
+            - containers
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: environments.ctf.acasi.info
+spec:
+  group: ctf.acasi.info
+  names:
+    kind: Environment
+    plural: environments
+    singular: environment
+    shortNames:
+      - env
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          required:
+            - spec
+          properties:
+            spec:
+              type: object
+              properties: {}

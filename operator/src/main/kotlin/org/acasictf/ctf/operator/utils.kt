@@ -23,6 +23,8 @@ suspend inline fun <T> managed(f: suspend () -> T) =
         throw e
     }
 
-fun generateProtoUuid() = Common.UUID.newBuilder().apply {
-    contents = UUID.randomUUID().toString()
+fun parseUuid(uuid: String) = Common.UUID.newBuilder().apply {
+    contents = uuid
 }.build()
+
+fun generateProtoUuid() = parseUuid(UUID.randomUUID().toString())

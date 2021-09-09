@@ -1,6 +1,8 @@
 {
   "$schema": "../../../schemas/provisioners/kubernetes.schema.json",
   "manifests": {
-    "pods": []
+    "pods": [
+      "sqli.yaml"
+    ]
   }
 }

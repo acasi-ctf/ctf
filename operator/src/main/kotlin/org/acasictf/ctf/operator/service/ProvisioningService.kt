@@ -108,9 +108,7 @@ EnvironmentProvisioningServiceCoroutineImplBase() {
         logger.info("Deleting persistent environment $envIdStr")
         envDao.remove(request.environmentId)
 
-        return@managed StopEnvironmentResponse.newBuilder()
-            .apply {
-            }.build()
+        return@managed StopEnvironmentResponse.newBuilder().build()
     }
 
     override suspend fun uploadEnvironmentTemplate(request: UploadEnvironmentTemplateRequest)

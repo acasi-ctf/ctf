@@ -13,8 +13,12 @@ import java.io.File
 val logger = KotlinLogging.logger {}
 
 fun main() {
-    ProxyPublicKey.publicKey =
+    ProxyPublicKey.publicKey = if (System.getProperty("ctf.magic.operator.disableKey") == "true") {
+        ""
+    } else {
         File("/secrets/auth-key-public/id_rsa.pub").readText()
+    }
+
     val client = DefaultKubernetesClient()
     val persistenceLayer =
         PersistenceLayerImpl(getDataDir(), getChallengesDir())
