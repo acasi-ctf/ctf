@@ -37,7 +37,6 @@ class KubernetesProvisioner(
             }
 
             val isPenimage = pod.metadata?.name == "penimage"
-            val hasIngress = pod.metadata.labels["ctf-svc-type"] == "ingress"
             if (pod.metadata == null) {
                 pod.metadata = ObjectMeta()
             }
@@ -56,9 +55,6 @@ class KubernetesProvisioner(
                 pod.spec.containers.forEach {
                     it.env.add(envVar)
                 }
-            }
-            if (hasIngress) {
-
             }
 
             try {
