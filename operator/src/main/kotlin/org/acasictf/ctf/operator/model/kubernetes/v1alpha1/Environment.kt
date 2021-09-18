@@ -9,14 +9,14 @@ import io.fabric8.kubernetes.model.annotation.Version
 
 @Group("ctf.acasi.info")
 @Version("v1alpha1")
-@Singular("envtemplate")
-@Plural("envtemplates")
-class EnvTemplate : CustomResource<EnvTemplateSpec, EnvTemplateStatus>(), Namespaced {
+@Singular("environment")
+@Plural("environments")
+class Environment : CustomResource<EnvironmentSpec, EnvironmentStatus>(), Namespaced {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as EnvTemplate
+        other as Environment
 
         if (isMarkedForDeletion != other.isMarkedForDeletion) return false
         if (spec != other.spec) return false

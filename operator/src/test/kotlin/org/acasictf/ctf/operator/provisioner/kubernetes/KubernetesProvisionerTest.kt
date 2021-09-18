@@ -1,4 +1,4 @@
-package org.acasictf.ctf.operator.provisioner
+package org.acasictf.ctf.operator.provisioner.kubernetes
 
 import io.fabric8.kubernetes.client.KubernetesClient
 import io.mockk.every
@@ -13,6 +13,7 @@ import org.acasictf.ctf.operator.persistence.ChallengeTemplate
 import org.acasictf.ctf.operator.persistence.ProxyPublicKey
 import org.acasictf.ctf.operator.persistence.ResourceChallengeTemplate
 import org.acasictf.ctf.operator.persistence.StringChallengeTemplateFile
+import org.acasictf.ctf.operator.provisioner.kubernetes.KubernetesProvisioner
 import org.acasictf.ctf.operator.testutil.createUuidStr
 import org.acasictf.ctf.operator.testutil.k8sCrud
 import org.acasictf.ctf.operator.testutil.k8sExpect

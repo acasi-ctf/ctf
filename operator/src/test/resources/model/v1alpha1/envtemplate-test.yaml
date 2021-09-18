@@ -10,7 +10,8 @@ spec:
           app: nginx
       spec:
         containers:
-          - image: nginx:latest
+          - name: nginx
+            image: nginx:latest
   services:
     - metadata:
         name: nginx
