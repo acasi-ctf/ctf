@@ -1,4 +1,4 @@
-package org.acasictf.ctf.operator.provisioner.kubernetes
+package org.acasictf.ctf.operator.provisioner.kubernetes.creator
 
 import io.fabric8.kubernetes.client.KubernetesClient
 import org.acasictf.ctf.operator.model.kubernetes.v1alpha1.EnvTemplate
@@ -6,7 +6,9 @@ import org.acasictf.ctf.operator.model.kubernetes.v1alpha1.Environment
 
 class EnvCreator(env: Environment, envTemplate: EnvTemplate, client: KubernetesClient) : Creator {
     private val podCreator = PodCreator(env, envTemplate, client.pods())
-    private val creators = listOf(podCreator)
+    private val serviceCreator = ServiceCreator(env, envTemplate, client.services())
+    private val ingressCreator = IngressCreator(env, envTemplate, client.network().v1().ingresses())
+    private val creators = listOf(podCreator, serviceCreator, ingressCreator)
 
     override fun create(dryRun: Boolean) {
         creators.forEach {

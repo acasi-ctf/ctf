@@ -7,6 +7,7 @@ import org.acasictf.ctf.operator.logger
 import org.acasictf.ctf.operator.model.kubernetes.v1alpha1.EnvTemplate
 import org.acasictf.ctf.operator.model.kubernetes.v1alpha1.EnvTemplateList
 import org.acasictf.ctf.operator.model.kubernetes.v1alpha1.Environment
+import org.acasictf.ctf.operator.provisioner.kubernetes.creator.EnvCreator
 
 class EnvListener(private val client: KubernetesClient, private val informer: SharedIndexInformer<Environment>) :
     ResourceEventHandler<Environment> {
@@ -30,6 +31,10 @@ class EnvListener(private val client: KubernetesClient, private val informer: Sh
             return
         }
 
+        // Dry run
+        creator.create(true)
+
+        // Actual create
         creator.create(false)
     }
 

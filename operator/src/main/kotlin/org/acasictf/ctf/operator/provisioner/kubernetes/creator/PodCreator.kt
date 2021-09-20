@@ -1,4 +1,4 @@
-package org.acasictf.ctf.operator.provisioner.kubernetes
+package org.acasictf.ctf.operator.provisioner.kubernetes.creator
 
 import io.fabric8.kubernetes.api.model.Pod
 import io.fabric8.kubernetes.api.model.PodList

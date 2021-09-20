@@ -1,4 +1,4 @@
-package org.acasictf.ctf.operator.provisioner.kubernetes
+package org.acasictf.ctf.operator.provisioner.kubernetes.creator
 
 interface Creator {
     fun create(dryRun: Boolean)
