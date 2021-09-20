@@ -1,5 +1,6 @@
 package org.acasictf.ctf.operator.model.kubernetes.v1alpha1
 
+import com.google.common.base.Objects
 import io.fabric8.kubernetes.api.model.Namespaced
 import io.fabric8.kubernetes.client.CustomResource
 import io.fabric8.kubernetes.model.annotation.Group
@@ -25,6 +26,6 @@ class Environment : CustomResource<EnvironmentSpec, EnvironmentStatus>(), Namesp
     }
 
     override fun hashCode(): Int {
-        return javaClass.hashCode()
+        return Objects.hashCode(javaClass, spec)
     }
 }
