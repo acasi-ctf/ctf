@@ -24,7 +24,7 @@ class ServiceCreator(
                 name = "${env.metadata.name}-${it.metadata.name}"
             }
             spec = serviceSpec {
-                selector = it.spec.selector
+                selector = remapLabels(env, it.spec.selector)
                 ports = it.spec.ports.map { portDef ->
                     port {
                         name = portDef.name
