@@ -10,10 +10,9 @@ import org.acasictf.ctf.operator.model.Challenge
 import org.acasictf.ctf.operator.model.Kubernetes
 import org.acasictf.ctf.operator.model.Manifests
 import org.acasictf.ctf.operator.persistence.ChallengeTemplate
-import org.acasictf.ctf.operator.persistence.ProxyPublicKey
+import org.acasictf.ctf.operator.persistence.GlobalConfig
 import org.acasictf.ctf.operator.persistence.ResourceChallengeTemplate
 import org.acasictf.ctf.operator.persistence.StringChallengeTemplateFile
-import org.acasictf.ctf.operator.provisioner.kubernetes.KubernetesProvisioner
 import org.acasictf.ctf.operator.testutil.createUuidStr
 import org.acasictf.ctf.operator.testutil.k8sCrud
 import org.acasictf.ctf.operator.testutil.k8sExpect
@@ -90,15 +89,15 @@ class KubernetesProvisionerTest {
      * Mock the ProxyPublicKey object and make it return mockPublicKey.
      */
     private fun mockPublicKey() {
-        mockkObject(ProxyPublicKey)
-        every { ProxyPublicKey.publicKey } returns mockPublicKey
+        mockkObject(GlobalConfig)
+        every { GlobalConfig.publicKey } returns mockPublicKey
     }
 
     /**
      * Unmock the ProxyPublicKey object.
      */
     private fun unmockPublicKey() {
-        unmockkObject(ProxyPublicKey)
+        unmockkObject(GlobalConfig)
     }
 
     /**

@@ -7,6 +7,7 @@ import org.acasictf.ctf.operator.*
 import org.acasictf.ctf.operator.model.kubernetes.v1alpha1.EnvTemplate
 import org.acasictf.ctf.operator.model.kubernetes.v1alpha1.EnvTemplateIngressPathType
 import org.acasictf.ctf.operator.model.kubernetes.v1alpha1.Environment
+import org.acasictf.ctf.operator.persistence.GlobalConfig
 
 class IngressCreator(
     private val env: Environment,
@@ -17,12 +18,14 @@ class IngressCreator(
         ingress {
             metadata = meta {
                 name = "${env.metadata.name}-${it.metadata.name}"
+                annotations = mapOf(
+                    "nginx.ingress.kubernetes.io/ssl-redirect" to "false"
+                )
             }
             spec = ingressSpec {
                 rules = listOf(
                     ingressRule {
-                        // TODO: Allow top level domain to be configured.
-                        host = "${env.metadata.name}.ctf.example.com"
+                        host = "${env.metadata.name}-${it.metadata.name}.${GlobalConfig.baseUrl}"
                         http = ingressHttp {
                             paths = listOf(
                                 ingressHttpPath {

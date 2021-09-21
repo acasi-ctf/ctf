@@ -22,6 +22,8 @@ class EnvListener(private val client: KubernetesClient, private val informer: Sh
         return EnvCreator(environment, envTemplate, client)
     }
 
+    // TODO: Implement and use finalizers!
+
     override fun onAdd(obj: Environment) {
         logger.info("EnvListener onAdd")
 
@@ -45,10 +47,34 @@ class EnvListener(private val client: KubernetesClient, private val informer: Sh
             logger.info("${oldObj.javaClass.name} oldObj == newObj")
             return
         }
+
+        val creator = creator(newObj)
+        if (creator == null) {
+            logger.warn("Failed to create creator!")
+            return
+        }
+
+        // Dry run
+        creator.create(true)
+
+        // Actual create
+        creator.create(false)
     }
 
     override fun onDelete(obj: Environment, deletedFinalStateUnknown: Boolean) {
         logger.info("EnvListener onDelete")
+
+        val creator = creator(obj)
+        if (creator == null) {
+            logger.warn("Failed to create creator!")
+            return
+        }
+
+        // Dry run
+        creator.delete(true)
+
+        // Actual create
+        creator.delete(false)
     }
 
     fun init() {

@@ -4,7 +4,7 @@ import io.mockk.mockkObject
 import io.mockk.unmockkObject
 import kotlin.test.*
 
-class ProxyPublicKeyTest {
+class GlobalConfigTest {
     private val publicKeyText = "PROXY_PUBLIC_KEY_TEST"
 
     /**
@@ -12,7 +12,7 @@ class ProxyPublicKeyTest {
      */
     @BeforeTest
     fun beforeTest() {
-        mockkObject(ProxyPublicKey)
+        mockkObject(GlobalConfig)
     }
 
     /**
@@ -20,7 +20,7 @@ class ProxyPublicKeyTest {
      */
     @AfterTest
     fun afterTest() {
-        unmockkObject(ProxyPublicKey)
+        unmockkObject(GlobalConfig)
     }
 
     /**
@@ -28,9 +28,9 @@ class ProxyPublicKeyTest {
      * correct value.
      */
     @Test
-    fun `get with set`() {
-        ProxyPublicKey.publicKey = publicKeyText
-        assertEquals(publicKeyText, ProxyPublicKey.publicKey)
+    fun `get key with set`() {
+        GlobalConfig.publicKey = publicKeyText
+        assertEquals(publicKeyText, GlobalConfig.publicKey)
     }
 
     /**
@@ -38,9 +38,9 @@ class ProxyPublicKeyTest {
      * not been set at runtime.
      */
     @Test
-    fun `get without set`() {
+    fun `get key without set`() {
         assertFails {
-            ProxyPublicKey.publicKey
+            GlobalConfig.publicKey
         }
     }
 }

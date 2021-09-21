@@ -7,7 +7,7 @@ import org.acasictf.ctf.operator.model.kubernetes.v1alpha1.Environment
 import org.acasictf.ctf.operator.model.kubernetes.v1alpha1.EnvironmentList
 import org.acasictf.ctf.operator.persistence.EnvironmentDao
 import org.acasictf.ctf.operator.persistence.PersistenceLayerImpl
-import org.acasictf.ctf.operator.persistence.ProxyPublicKey
+import org.acasictf.ctf.operator.persistence.GlobalConfig
 import org.acasictf.ctf.operator.provisioner.kubernetes.EnvListener
 import org.acasictf.ctf.operator.service.LookupService
 import org.acasictf.ctf.operator.service.ProvisioningService
@@ -17,11 +17,12 @@ import java.time.Duration
 val logger = KotlinLogging.logger("CtfOperator")
 
 fun main() {
-    ProxyPublicKey.publicKey = if (System.getProperty("ctf.magic.operator.disableKey") == "true") {
+    GlobalConfig.publicKey = if (System.getProperty("ctf.magic.operator.disableKey") == "true") {
         ""
     } else {
         File("/secrets/auth-key-public/id_rsa.pub").readText()
     }
+    GlobalConfig.baseUrl = System.getenv("BASE_URL") ?: "ctf.example.com"
 
     val client = DefaultKubernetesClient()
     val persistenceLayer =

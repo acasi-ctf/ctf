@@ -7,7 +7,7 @@ import org.acasictf.ctf.operator.kubeNamespace
 import org.acasictf.ctf.operator.model.Challenge
 import org.acasictf.ctf.operator.model.Kubernetes
 import org.acasictf.ctf.operator.persistence.ChallengeTemplate
-import org.acasictf.ctf.operator.persistence.ProxyPublicKey
+import org.acasictf.ctf.operator.persistence.GlobalConfig
 import org.acasictf.ctf.operator.provisioner.Provisioner
 
 class KubernetesProvisioner(
@@ -49,7 +49,7 @@ class KubernetesProvisioner(
             if (isPenimage) {
                 val envVar = EnvVar().apply {
                     name = "PUBLIC_KEY"
-                    value = ProxyPublicKey.publicKey
+                    value = GlobalConfig.publicKey
                 }
                 pod.spec.containers.forEach {
                     it.env.add(envVar)
