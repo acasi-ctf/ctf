@@ -7,7 +7,7 @@ IMAGE_TAG = latest
 all: proto docker
 
 proto: $(PROTOSRC)
-docker: docker_penimage docker_termproxy docker_operator docker_ui docker_frontend docker_operatorkt
+docker: docker_penimage docker_termproxy docker_ui docker_frontend docker_operatorkt
 
 $(PROTOSRC): %:%.proto
 	mkdir -p pb/
@@ -26,12 +26,6 @@ docker_termproxy:
 	docker build -t $(IMAGE_CTF_BASE)/termproxy:$(IMAGE_TAG) -f images/termproxy/Dockerfile .
 ifeq ($(DOCKER_PUSH), 1)
 		docker push $(IMAGE_CTF_BASE)/termproxy:$(IMAGE_TAG)
-endif
-
-docker_operator:
-	docker build -t $(IMAGE_CTF_BASE)/operator:$(IMAGE_TAG) -f images/operator/Dockerfile .
-ifeq ($(DOCKER_PUSH), 1)
-		docker push $(IMAGE_CTF_BASE)/operator:$(IMAGE_TAG)
 endif
 
 docker_operatorkt:

@@ -2,40 +2,33 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ingress
-  annotations: {}
+  annotations: { }
 spec:
   tls:
     - hosts: [ ]
+      secretName: ctf-cert-secret
   rules:
     - host: ctf.example.com
       http:
         paths:
-          - path: /*
+          - path: /
             pathType: Prefix
             backend:
               service:
                 name: ctf-ui
                 port:
                   name: http
-          - path: /api/*
+          - path: /api/
             pathType: Prefix
             backend:
               service:
                 name: ctf-frontend
                 port:
                   name: http
-          - path: /TermproxyService/*
+          - path: /TermproxyService/
             pathType: Prefix
             backend:
               service:
                 name: ctf-termproxy
                 port:
                   number: 1235
----
-apiVersion: networking.gke.io/v1
-kind: ManagedCertificate
-metadata:
-  name: acasi-cert
-spec:
-  domains:
-    - acasi.gorence.io
