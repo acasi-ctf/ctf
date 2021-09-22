@@ -22,10 +22,10 @@ class StatefulSetCreator(
                     matchLabels = remapLabels(env, it.metadata.labels)
                 }
                 template = podTemplateSpec {
+                    metadata = meta {
+                        labels = remapLabels(env, it.metadata.labels)
+                    }
                     spec = podSpec {
-                        metadata = meta {
-                            labels = remapLabels(env, it.metadata.labels)
-                        }
                         containers = it.spec.containers.map { c ->
                             container {
                                 name = c.name
