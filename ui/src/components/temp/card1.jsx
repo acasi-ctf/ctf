@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -10,11 +10,12 @@ import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import { red } from '@material-ui/core/colors';
+import {red} from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import {link} from "fs";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -48,7 +49,9 @@ export default function Card1() {
     };
 
     return (
-        <Card className={classes.root}>
+        <Card className={classes.root} onClick={function () {
+            window.location.href = "/caesar";
+        }}>
             <CardHeader
                 avatar={
                     <Avatar aria-label="challenge" className={classes.avatar}>
@@ -57,7 +60,7 @@ export default function Card1() {
                 }
                 action={
                     <IconButton aria-label="settings">
-                        <MoreVertIcon />
+                        <MoreVertIcon/>
                     </IconButton>
                 }
                 title="Caesar"
@@ -70,15 +73,15 @@ export default function Card1() {
             />
             <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">
-                    #1
+                    Caesar Cipher, the original cipher.
                 </Typography>
             </CardContent>
             <CardActions disableSpacing>
                 <IconButton aria-label="add to favorites">
-                    <FavoriteIcon />
+                    <FavoriteIcon/>
                 </IconButton>
                 <IconButton aria-label="share">
-                    <ShareIcon />
+                    <ShareIcon/>
                 </IconButton>
                 <IconButton
                     className={clsx(classes.expand, {
@@ -88,16 +91,12 @@ export default function Card1() {
                     aria-expanded={expanded}
                     aria-label="show more"
                 >
-                    <ExpandMoreIcon />
+                    <ExpandMoreIcon/>
                 </IconButton>
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
                     <Typography paragraph>Challenge:</Typography>
-                    <Typography paragraph>
-                        Caesar Cipher
-                    </Typography>
-
                 </CardContent>
             </Collapse>
         </Card>

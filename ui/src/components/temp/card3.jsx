@@ -48,7 +48,9 @@ export default function Card3() {
     };
 
     return (
-        <Card className={classes.root}>
+        <Card className={classes.root} onClick={function () {
+            window.location.href = "/morse-code";
+        }}>
             <CardHeader
                 avatar={
                     <Avatar aria-label="challenge" className={classes.avatar}>
@@ -70,7 +72,7 @@ export default function Card3() {
             />
             <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">
-                    #3
+                    Crack some morse code ciphers!
                 </Typography>
             </CardContent>
             <CardActions disableSpacing>
@@ -93,11 +95,7 @@ export default function Card3() {
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
-                    <Typography paragraph>Method:</Typography>
-                    <Typography paragraph>
-                        Crack some more code ciphers!
-                    </Typography>
-
+                    <Typography paragraph>Cryptography</Typography>
                 </CardContent>
             </Collapse>
         </Card>
