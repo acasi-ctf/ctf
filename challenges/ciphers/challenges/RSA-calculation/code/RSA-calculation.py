@@ -5,9 +5,9 @@ import math
 #get two prime number
 def RandomNumber():
 
-    #create a list that has all the prime number between 1 - 200
+    #create a list that has all the prime number between 2 - 99
     primeList = []    
-    for n in range(1, 200):
+    for n in range(2, 99):
         isPrime = True
 
         for num in range(2, n):
@@ -22,13 +22,19 @@ def RandomNumber():
     primeTwo = n[1]
 
     return primeOne, primeTwo
+
+def computeD(r,e):
+
+    d = 0
+    while(True):
+        if (e * d) % r == 1:
+            return d
+        d += 1
     
 #the main method
 def main():
     
-    #p, q = RandomNumber()
-    p = 11
-    q = 3
+    p, q = RandomNumber()
     print("You have two prime numbers")
     print("The p is: " + str(p))
     print("The q is: " + str(q))
@@ -64,12 +70,12 @@ def main():
                     continue
             else:
                 print("e must smaller than r.")
-
+    
     #get the final d
     while(True):
         d = input("Please enter the value of d: ")
         if d.isdigit():
-            if int(d) == round((int(r) + 1) / int(e)):
+            if int(d) == computeD(int(r),int(e)):
                 break
             else:
                 print("You get the wrong answer.")
