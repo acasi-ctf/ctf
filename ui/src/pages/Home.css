@@ -1,22 +1,26 @@
-#Home{
 
-}
 
 .introText {
-    background-color: darkslategrey;
-    color: white;
+    background-color: #2f4f4f;
+    color: #ffffff;
     display: flex;
     /* display item in middle in term of row */
     justify-content: center;
     /* display item in middle in term of column  */
     /* for align item to for, must include heigh on the container */
     align-items: center;
-    padding:50px;
+    padding-top: 5%;
+    padding-bottom: 5%;
     width: 100%;
 }
 
 .trendingTitle {
-    margin-left: 25px;
-    margin-top: 25px;
-    margin-bottom: 10px;
+    padding-left: 25px;
+    padding-top: 25px;
+    padding-bottom: 10px;
+}
+
+#trendingChallengeCards {
+    background-color: #2f4f4f;
+    color: #ffffff;
 }
