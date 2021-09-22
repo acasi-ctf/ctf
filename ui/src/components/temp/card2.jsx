@@ -48,7 +48,9 @@ export default function Card2() {
     };
 
     return (
-        <Card className={classes.root}>
+        <Card className={classes.root} onClick={function () {
+            window.location.href = "/letter-to-number";
+        }}>
             <CardHeader
                 avatar={
                     <Avatar aria-label="recipe" className={classes.avatar}>
@@ -70,7 +72,8 @@ export default function Card2() {
             />
             <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">
-                   #2
+                    Crack a letter to number cipher.
+
                 </Typography>
             </CardContent>
             <CardActions disableSpacing>
@@ -93,10 +96,7 @@ export default function Card2() {
             </CardActions>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
-                    <Typography paragraph>Method:</Typography>
-                    <Typography paragraph>
-                       Crack a letter to number cipher.
-                    </Typography>
+                    <Typography paragraph>Cryptography</Typography>
                 </CardContent>
             </Collapse>
         </Card>
