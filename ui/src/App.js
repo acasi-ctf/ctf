@@ -1,4 +1,4 @@
-import "./App.css";
+import "./style/App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import MenuBar from "./components/Menu";
 import ChallengeSetPage from "./pages/ChallengeSetPage";
