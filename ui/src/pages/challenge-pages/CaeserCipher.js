@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../../style/ChallengeSet1.css";
+import "../ChallengeSet1.css";
 import * as core from "@material-ui/core";
 //FIX THIS DATA FOR EACH FILE
 //CHALLENGE 1 = CAESAR CHALLENGE
@@ -53,16 +53,11 @@ export default function CaeserCipher() {
     setValue(newValue);
     setPath(ChallengeSet1Data[newValue].itembox1);
   };
-
-  // API POST REQUEST TO THE SERVER
   const { data, error, loading } = useFetchAuth(
     "api/user/environments",
     "POST",
     { challengeSetSlug: "ciphers", challengeSlug: "letter-to-number" }
   );
-
-
-
   //LEARN THIS FOR FUTURE WORK:
   //USESTATE HOOK WILL TRIGGER WHEN THE ASSIGNED FUNCTION IS CALL (EXAMPLE BELOW IS SETMARKDOWN/ SETPATH)
   //USEEFFECT HOOK WILL TRIGGER THE WHEN THE VARIABLE AT THE [] AT BOTTOM IS UPDATE. IN THIS CASE IS "PATH VARIABLE"

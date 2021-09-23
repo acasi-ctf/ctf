@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../../style/ChallengeSet1.css";
+import "../ChallengeSet1.css";
 import * as core from "@material-ui/core";
 //FIX THIS DATA FOR EACH FILE
 //CHALLENGE 1 = CAESAR CHALLENGE
