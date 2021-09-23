@@ -9,6 +9,11 @@ import org.acasictf.ctf.operator.model.kubernetes.v1alpha1.EnvTemplateIngressPat
 import org.acasictf.ctf.operator.model.kubernetes.v1alpha1.Environment
 import org.acasictf.ctf.operator.persistence.GlobalConfig
 
+/**
+ * Implementation of [ResourceCreator] that will create the
+ * ingress resources for an environment which is based off
+ * of an environment template.
+ */
 class IngressCreator(
     private val env: Environment,
     private val envTemplate: EnvTemplate,

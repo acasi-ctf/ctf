@@ -7,6 +7,11 @@ import org.acasictf.ctf.operator.*
 import org.acasictf.ctf.operator.model.kubernetes.v1alpha1.EnvTemplate
 import org.acasictf.ctf.operator.model.kubernetes.v1alpha1.Environment
 
+/**
+ * Implementation of [ResourceCreator] that will create the
+ * stateful set resources for an environment which is based off
+ * of an environment template.
+ */
 class StatefulSetCreator(
     private val env: Environment,
     private val envTemplate: EnvTemplate,

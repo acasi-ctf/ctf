@@ -13,6 +13,11 @@ import org.acasictf.ctf.operator.port
 import org.acasictf.ctf.operator.service
 import org.acasictf.ctf.operator.serviceSpec
 
+/**
+ * Implementation of [ResourceCreator] that will create the
+ * service resources for an environment which is based off
+ * of an environment template.
+ */
 class ServiceCreator(
     private val env: Environment,
     private val envTemplate: EnvTemplate,

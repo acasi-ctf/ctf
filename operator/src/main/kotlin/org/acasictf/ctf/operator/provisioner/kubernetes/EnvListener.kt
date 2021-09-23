@@ -9,6 +9,13 @@ import org.acasictf.ctf.operator.model.kubernetes.v1alpha1.EnvTemplateList
 import org.acasictf.ctf.operator.model.kubernetes.v1alpha1.Environment
 import org.acasictf.ctf.operator.provisioner.kubernetes.creator.EnvCreator
 
+/**
+ * This class is essentially a wrapper for a concept that is provided by Kubernetes called an informer.
+ * An informer is used by an application to subscribe to one type of resource, and the Kubernetes API
+ * server will notify upon addition, update, or deletion of each resource. This will delegate out to an
+ * instance of EnvCreator to perform the mapping and transformations from our custom resource to standard
+ * resources that Kubernetes can do something real with!
+ */
 class EnvListener(private val client: KubernetesClient, private val informer: SharedIndexInformer<Environment>) :
     ResourceEventHandler<Environment> {
     private val envTemplates = client.customResources(EnvTemplate::class.java, EnvTemplateList::class.java)
@@ -24,6 +31,10 @@ class EnvListener(private val client: KubernetesClient, private val informer: Sh
 
     // TODO: Implement and use finalizers!
 
+    /**
+     * When the Kubernetes API server receives a new resource, this callback will be invoked with the respective
+     * resource contents.
+     */
     override fun onAdd(obj: Environment) {
         logger.info("EnvListener onAdd")
 
@@ -40,6 +51,10 @@ class EnvListener(private val client: KubernetesClient, private val informer: Sh
         creator.create(false)
     }
 
+    /**
+     * When the Kubernetes API server receives an update to a resource, this callback will be invoked with the
+     * old and new copies for the respective resource's contents.
+     */
     override fun onUpdate(oldObj: Environment, newObj: Environment) {
         logger.info("EnvListener onUpdate")
 
@@ -61,6 +76,10 @@ class EnvListener(private val client: KubernetesClient, private val informer: Sh
         creator.create(false)
     }
 
+    /**
+     * When the Kubernetes API server receives a request to delete a resource, this callback will be invoked with the
+     * respective resource's contents.
+     */
     override fun onDelete(obj: Environment, deletedFinalStateUnknown: Boolean) {
         logger.info("EnvListener onDelete")
 
@@ -77,6 +96,9 @@ class EnvListener(private val client: KubernetesClient, private val informer: Sh
         creator.delete(false)
     }
 
+    /**
+     * Initialize and sync the informer, then log to the console and notify that this process has completed.
+     */
     fun init() {
         if (!informer.hasSynced()) {
             Thread.sleep(1)

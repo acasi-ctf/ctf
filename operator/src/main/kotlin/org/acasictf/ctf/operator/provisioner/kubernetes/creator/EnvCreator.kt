@@ -4,6 +4,14 @@ import io.fabric8.kubernetes.client.KubernetesClient
 import org.acasictf.ctf.operator.model.kubernetes.v1alpha1.EnvTemplate
 import org.acasictf.ctf.operator.model.kubernetes.v1alpha1.Environment
 
+/**
+ * Wrapper for creating all the different resources for an
+ * individual environment. Currently, it calls out to the
+ * [StatefulSetCreator], [ServiceCreator], and [IngressCreator].
+ * It also implements the [Creator] interface, which will
+ * delegate out the calls in order to all the child creator
+ * implementations as listed above.
+ */
 class EnvCreator(env: Environment, envTemplate: EnvTemplate, client: KubernetesClient) : Creator {
     private val statefulSetCreator = StatefulSetCreator(env, envTemplate, client.apps().statefulSets())
     private val serviceCreator = ServiceCreator(env, envTemplate, client.services())
