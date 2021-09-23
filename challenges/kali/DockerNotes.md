@@ -150,11 +150,12 @@ Not all shells support the -o pipefail option.
 
 In cases such as the dash shell on Debian-based images, consider using the exec form of RUN to explicitly choose a shell that does support the pipefail option. For example:
 ```dockerfile
-RUN [&quot;/bin/bash&quot;, &quot;-c&quot;, &quot;set -o pipefail &amp;&amp; wget -O - https://some.site | wc -l \&gt; /number
+RUN [&quot;/bin/bash&quot;, &quot;-c&quot;, &quot;set -o pipefail &amp;&amp; wget -O - <https://some.site> | wc -l \&gt; /number
 ```
 ## ADD or COPY
 
-Although ADD and COPY are functionally similar, generally speaking, COPY is preferred. That&#39;s because it&#39;s more transparent than ADD. COPY only supports the basic copying of local files into the container, while ADD has some features (like local-only tar extraction and remote URL support) that are not immediately obvious. Consequently, the best use for ADD is local tar file auto-extraction into the image, as in ADD rootfs.tar.xz /.
+Although ADD and COPY are functionally similar, generally speaking, COPY is preferred. That&#39;s because it&#39;s more transparent than ADD. COPY only supports the basic copying of local files into the container, while ADD has some features (like local-only tar extraction and remote URL support) that are not immediately obvious. 
+Consequently, the best use for ADD is local tar file auto-extraction into the image, as in ADD rootfs.tar.xz /.
 
 If you have multiple Dockerfile steps that use different files from your context, COPY them individually, rather than all at once. This ensures that each step&#39;s build cache is only invalidated (forcing the step to be re-run) if the specifically required files change.
 
@@ -169,8 +170,8 @@ COPY . /tmp/
 Results in fewer cache invalidations for the RUN step, than if you put the COPY . /tmp/ before it.
 
 Because image size matters, using ADD to fetch packages from remote URLs is strongly discouraged; you should use curl or wget instead. That way you can delete the files you no longer need after they&#39;ve been extracted, and you don&#39;t have to add another layer in your image. For example, you should avoid doing things like:
-````
-ADD https://example.com/big.tar.xz /usr/src/things/
+```dockerfile
+ADD <https://example.com/big.tar.xz> /usr/src/things/
 
 RUN tar-xJf /usr/src/things/big.tar.xz -C /usr/src/things
 
@@ -180,7 +181,7 @@ And instead, do something like:
 
 RUN mkdir -p /usr/src/things \
 
-&amp;&amp; curl -SL https://example.com/big.tar.xz \
+&amp;&amp; curl -SL <https://example.com/big.tar.xz> \
 
 | tar-xJC /usr/src/things \
 
