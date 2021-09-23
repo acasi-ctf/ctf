@@ -49,9 +49,7 @@ export default function Card1() {
     };
 
     return (
-        <Card className={classes.root} onClick={function () {
-            window.location.href = "/caesar";
-        }}>
+        <Card className={classes.root} component={link} to={"/caesar"}>
             <CardHeader
                 avatar={
                     <Avatar aria-label="challenge" className={classes.avatar}>
