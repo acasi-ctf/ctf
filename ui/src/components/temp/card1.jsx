@@ -68,7 +68,7 @@ export default function Card1() {
             />
             <CardMedia
                 className={classes.media}
-                image="/SVG/skullCode.svg"
+                image="/SVG/skullCode.png"
                 title="skullCode"
             />
             <CardContent>
