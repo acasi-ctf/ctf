@@ -1,5 +1,5 @@
 import React from 'react'
-import './Selection.css'
+import '../style/Selection.css'
 import {Link} from 'react-router-dom'
 // import * as core from '@material-ui/core';
 
