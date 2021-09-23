@@ -2,17 +2,17 @@
 
 Ethan Isakson
 
-# FROM
+## FROM
 
 Whenever possible, use current official images as the basis for your images. We recommend the Alpine image as it is tightly controlled and small in size (currently under 6 MB), while still being a full Linux distribution.
 
-# LABEL
+## LABEL
 
 You can add labels to your image to help organize images by project, record licensing information, to aid in automation, or for other reasons. For each label, add a line beginning with LABEL and with one or more key-value pairs. The following examples show the different acceptable formats. Explanatory comments are included inline.
 
 Strings with spaces must be quoted or the spaces must be escaped. Inner quote characters (&quot;), must also be escaped.
 
-# Set one or more individual labels
+### Set one or more individual labels
 ````
 LABEL com.example.version=&quot;0.0.1-beta&quot;
 
@@ -26,13 +26,13 @@ LABEL com.example.version.is-production=&quot;&quot;
 ````
 An image can have more than one label. Prior to Docker 1.10, it was recommended to combine all labels into a single LABEL instruction, to prevent extra layers from being created. This is no longer necessary, but combining labels is still supported.
 
-# Set multiple labels on one line
+### Set multiple labels on one line
 ````
 LABEL com.example.version=&quot;0.0.1-beta&quot; com.example.release-date=&quot;2015-02-12&quot;
 ````
 The above can also be written as:
 
-# Set multiple labels at once, using line-continuation characters to break long lines
+### Set multiple labels at once, using line-continuation characters to break long lines
 ````
 LABEL vendor=ACME\ Incorporated \
 
@@ -46,11 +46,11 @@ com.example.release-date=&quot;2015-02-12&quot;
 ````
 For information about querying labels, refer to the items related to filtering in Managing labels on objects.
 
-# RUN
+## RUN
 
 Split long or complex RUN statements on multiple lines separated with backslashes to make your Dockerfile more readable, understandable, and maintainable.
 
-## apt-get
+### apt-get
 
 Probably the most common use-case for RUN is an application of apt-get. Because it installs packages, the RUN apt-get command has several gotchas to look out for.
 
@@ -68,7 +68,7 @@ package-foo \
 ````
 Using apt-get update alone in a RUN statement causes caching issues and subsequent apt-get install instructions fail. For example, say you have a Dockerfile:
 
-# syntax=docker/dockerfile:1
+### syntax=docker/dockerfile:1
 ````
 FROM ubuntu:18.04
 
@@ -78,7 +78,7 @@ RUN apt-get install -y curl
 ````
 After building the image, all layers are in the Docker cache. Suppose you later modify apt-get install by adding extra package:
 
-# syntax=docker/dockerfile:1
+### syntax=docker/dockerfile:1
 ````
 FROM ubuntu:18.04
 
@@ -134,7 +134,7 @@ The s3cmd argument specifies a version 1.1.\*. If the image previously used an o
 
 In addition, when you clean up the apt cache by removing /var/lib/apt/lists it reduces the image size, since the apt cache is not stored in a layer. Since the RUN statement starts with apt-get update, the package cache is always refreshed prior to apt-get install.
 
-## Using pipes
+### Using pipes
 
 Some RUN commands depend on the ability to pipe the output of one command into another, using the pipe character (|), as in the following example:
 ````
@@ -152,7 +152,7 @@ In cases such as the dash shell on Debian-based images, consider using the exec 
 ````
 RUN [&quot;/bin/bash&quot;, &quot;-c&quot;, &quot;set -o pipefail &amp;&amp; wget -O - https://some.site | wc -l \&gt; /number
 ````
-# ADD or COPY
+## ADD or COPY
 
 Although ADD and COPY are functionally similar, generally speaking, COPY is preferred. That&#39;s because it&#39;s more transparent than ADD. COPY only supports the basic copying of local files into the container, while ADD has some features (like local-only tar extraction and remote URL support) that are not immediately obvious. Consequently, the best use for ADD is local tar file auto-extraction into the image, as in ADD rootfs.tar.xz /.
 
