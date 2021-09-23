@@ -7,6 +7,7 @@ import Box from '@material-ui/core/Box';
 import Card1 from "../components/temp/card1";
 import Card2 from "../components/temp/card2";
 import Card3 from "../components/temp/card3";
+import {link} from "fs";
 
 export default function Home() {
     const {isAuthenticated, getAccessTokenSilently} = useAuth0();
