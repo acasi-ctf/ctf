@@ -6,29 +6,22 @@
 // import fs from 'fs';
 
 //**********************************************cipher challenge set*****************************************
-import ltn from "../challenges/ciphers/challenges/letter-to-number/docs/Letter-to-Number.md";
-import crypto from "../challenges/ciphers/challenges/letter-to-number/docs/1-Cryptography.md";
-import term from "../challenges/ciphers/challenges/caesar-cipher/docs/Terminal_Use.md";
+import dirtraverse from "../../challenges/web-based/challenges/directory-traversal/docs/DirTrav.md";
+import dirtraverseDescription from "../../challenges/web-based/challenges/directory-traversal/docs/DirTravDescription.md";
 
 export const Challengedata = [
   {
-    label: "Basic Terminal Commands",
-    cName: "tab",
-    itembox1: term,
-  },
-  {
     label: "Challenge Description",
     cName: "tab",
-    itembox1: ltn,
+    itembox1: dirtraverseDescription,
     // <p style={{marginTop:'10px', marginLeft:'10px'}}  >
     //     {/* <ReactMarkdown remarkPlugins={[gfm]} children={markdown1} /> */}
     // </p>,
   },
-
   {
-    label: "Cryptography",
+    label: "Directory Traversal",
     cName: "tab",
-    itembox1: crypto,
+    itembox1: dirtraverse,
     // <p style={{marginTop:'10px', marginLeft:'10px'}}  >
     //     {/* <ReactMarkdown remarkPlugins={[gfm]} children={markdown1} /> */}
     // </p>,

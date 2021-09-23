@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react";
-import "./ChallengeSet1.css";
+import "../ChallengeSet1.css";
 import * as core from "@material-ui/core";
 //FIX THIS DATA FOR EACH FILE
 //CHALLENGE 1 = CAESAR CHALLENGE
 /*----------------------------------------------------------------------------- */
-import { Challengedata } from "./LetterToNumberData";
+import { ChallengeSet1Data } from "../challenge-data/ChallengeSet1Data";
 /*----------------------------------------------------------------------------- */
-// import {useLocation, Link, useParams} from 'react-router-dom';
+
 import PropTypes from "prop-types";
-import Terminal from "../components/Terminal";
-import marked from "marked";
+import Terminal from "../../components/Terminal";
+
 import gfm from "remark-gfm";
 import ReactMarkdown from "react-markdown";
-import useFetchAuth from "../useFetchAuth";
-import Spinner from "../components/Spinner";
-import GenericErrorPage from "./error-pages/genericErrorPage";
+import useFetchAuth from "../../useFetchAuth";
+import Spinner from "../../components/Spinner";
+import GenericErrorPage from "../error-pages/genericErrorPage";
 
 function a11yProps(index) {
   return {
@@ -47,11 +47,11 @@ TabPanel.propTypes = {
   value: PropTypes.any.isRequired,
 };
 
-export default function LetterToNumber() {
+export default function CaeserCipher() {
   const [value, setValue] = React.useState(0);
   const handleChange = (events, newValue) => {
     setValue(newValue);
-    setPath(Challengedata[newValue].itembox1);
+    setPath(ChallengeSet1Data[newValue].itembox1);
   };
   const { data, error, loading } = useFetchAuth(
     "api/user/environments",
@@ -63,7 +63,7 @@ export default function LetterToNumber() {
   //USEEFFECT HOOK WILL TRIGGER THE WHEN THE VARIABLE AT THE [] AT BOTTOM IS UPDATE. IN THIS CASE IS "PATH VARIABLE"
   const [txt, setMarkdown] = useState("");
   const [path, setPath] = useState("");
-  const [first, setFirst] = useState(0);
+  const [first, setfirst] = useState(0);
   useEffect(() => {
     fetch(path)
       .then((res) => res.text())
@@ -71,13 +71,12 @@ export default function LetterToNumber() {
         setMarkdown(text);
       });
   }, [path]);
-
-  //this is to set first frim rendering for mardown. Without this, it will redner html on first run
   if (loading) return <Spinner />;
   if (error) return <GenericErrorPage />;
+  //this is to set first frim rendering for mardown. Without this, it will redner html on first run
   if (!first) {
-    setPath(Challengedata[0].itembox1);
-    setFirst(first + 1);
+    setPath(ChallengeSet1Data[0].itembox1);
+    setfirst(first + 1);
   }
   return (
     <div style={{ display: "flex", flexDirection: "row", position: "fixed" }}>
@@ -92,7 +91,7 @@ export default function LetterToNumber() {
             scrollButtons="auto"
             aria-label="simple auto tabs example"
           >
-            {Challengedata.map((item, index) => {
+            {ChallengeSet1Data.map((item, index) => {
               return (
                 <core.Tab
                   key={index}

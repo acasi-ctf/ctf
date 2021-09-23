@@ -10,14 +10,14 @@ import ChallengeBar from "./components/AppBar";
 import Home from "./pages/Home";
 import leaderboard from "./pages/LeaderBoard";
 /********************************************** Cipher Challenge Pages **************************************************************/
-import CaeserCipher from "./pages/CaeserCipher"; //challengeSet1=caesar challenge
-import LetterToNumber from "./pages/LetterToNumber";
-import MorseCode from "./pages/MorseCode";
-import ReverseCipher from "./pages/ReverseCipher";
-import ComprehensiveChallenge from "./pages/ComprehensiveChallenge.js";
+import CaeserCipher from "./pages/challenge-pages/CaeserCipher"; //challengeSet1=caesar challenge
+import LetterToNumber from "./pages/challenge-pages/LetterToNumber";
+import MorseCode from "./pages/challenge-pages/MorseCode";
+import ReverseCipher from "./pages/challenge-pages/ReverseCipher";
+import ComprehensiveChallenge from "./pages/challenge-pages/ComprehensiveChallenge.js";
 /********************************************** Web-Based Challenge Pages **************************************************************/
-import DirectoryTraversal from "./pages/DirectoryTraversal";
-import WebStructure from "./pages/WebStructure";
+import DirectoryTraversal from "./pages/challenge-pages/DirectoryTraversal";
+import WebStructure from "./pages/challenge-pages/WebStructure";
 import Selection from "./pages/Selection";
 
 export default function App() {

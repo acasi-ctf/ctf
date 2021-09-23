@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react";
-import "./ChallengeSet1.css";
+import "../ChallengeSet1.css";
 import * as core from "@material-ui/core";
 //FIX THIS DATA FOR EACH FILE
 //CHALLENGE 1 = CAESAR CHALLENGE
 /*----------------------------------------------------------------------------- */
-import { Challengedata } from "./MorseCodeData";
+import { Challengedata } from "../challenge-data/MorseCodeData";
 /*----------------------------------------------------------------------------- */
 // import {useLocation, Link, useParams} from 'react-router-dom';
 import PropTypes from "prop-types";
-import Terminal from "../components/Terminal";
+import Terminal from "../../components/Terminal";
 // import marked from "marked";
 import gfm from "remark-gfm";
 import ReactMarkdown from "react-markdown";
-import useFetchAuth from "../useFetchAuth";
-import Spinner from "../components/Spinner";
-import GenericErrorPage from "./error-pages/genericErrorPage";
+import useFetchAuth from "../../useFetchAuth";
+import Spinner from "../../components/Spinner";
+import GenericErrorPage from "../error-pages/genericErrorPage";
 
 function a11yProps(index) {
   return {

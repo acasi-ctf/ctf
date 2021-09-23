@@ -6,11 +6,11 @@
 // import fs from 'fs';
 
 //**********************************************cipher challenge set*****************************************
-import WebStructureDescript from '../challenges/web-based/challenges/web-structure/docs/WebStructureDescript.md'
-import BrowserTools from '../challenges/web-based/challenges/web-structure/docs/BrowserTools.md';
-import CSS from '../challenges/web-based/challenges/web-structure/docs/CSS.md'
-import HTML from '../challenges/web-based/challenges/web-structure/docs/HTML.md'
-import PHP from '../challenges/web-based/challenges/web-structure/docs/PHP.md'
+import WebStructureDescript from '../../challenges/web-based/challenges/web-structure/docs/WebStructureDescript.md'
+import BrowserTools from '../../challenges/web-based/challenges/web-structure/docs/BrowserTools.md';
+import CSS from '../../challenges/web-based/challenges/web-structure/docs/CSS.md'
+import HTML from '../../challenges/web-based/challenges/web-structure/docs/HTML.md'
+import PHP from '../../challenges/web-based/challenges/web-structure/docs/PHP.md'
 
 
 

@@ -1,14 +1,14 @@
 import React,{useState, useEffect} from 'react';
-import './ChallengeSet1.css';
+import '../ChallengeSet1.css';
 import * as core from '@material-ui/core';
 //FIX THIS DATA FOR EACH FILE
 //CHALLENGE 1 = CAESAR CHALLENGE
 /*----------------------------------------------------------------------------- */
-import {Challengedata} from './WebStructureData';
+import {Challengedata} from '../challenge-data/DirectoryTraversalData';
 /*----------------------------------------------------------------------------- */
 // import {useLocation, Link, useParams} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Terminal from '../components/Terminal';
+import Terminal from '../../components/Terminal';
 import marked from 'marked';
 import gfm from 'remark-gfm';
 import ReactMarkdown from 'react-markdown';
@@ -40,7 +40,7 @@ TabPanel.propTypes = {
     value: PropTypes.any.isRequired,
 };
 
-export default function WebStructure() {
+export default function DirectoryTraversal() {
 
     const [value, setValue] = React.useState(0);
     const handleChange = (events, newValue) => {
