@@ -78,7 +78,8 @@ RUN apt-get install -y curl
 ```
 After building the image, all layers are in the Docker cache. Suppose you later modify apt-get install by adding extra package:
 
-### syntax=docker/dockerfile:1
+syntax=docker/dockerfile:1
+
 ```dockerfile
 FROM ubuntu:18.04
 
@@ -153,7 +154,6 @@ In cases such as the dash shell on Debian-based images, consider using the exec 
 RUN [&quot;/bin/bash&quot;, &quot;-c&quot;, &quot;set -o pipefail &amp;&amp; wget -O - <https://some.site> | wc -l \&gt; /number
 ```
 ## ADD or COPY
-
 Although ADD and COPY are functionally similar, generally speaking, COPY is preferred. That&#39;s because it&#39;s more transparent than ADD. COPY only supports the basic copying of local files into the container, while ADD has some features (like local-only tar extraction and remote URL support) that are not immediately obvious. 
 Consequently, the best use for ADD is local tar file auto-extraction into the image, as in ADD rootfs.tar.xz /.
 
@@ -190,4 +190,4 @@ RUN mkdir -p /usr/src/things \
 For other items (files, directories) that do not require ADD&#39;s tar auto-extraction capability, you should always use COPY.
 
 
-Cite: -https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
+Cite:-<https://docs.docker.com/develop/develop-images/dockerfile_best-practices/>
