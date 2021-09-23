@@ -13,7 +13,7 @@ You can add labels to your image to help organize images by project, record lice
 Strings with spaces must be quoted or the spaces must be escaped. Inner quote characters (&quot;), must also be escaped.
 
 # Set one or more individual labels
-
+````
 LABEL com.example.version=&quot;0.0.1-beta&quot;
 
 LABEL vendor1=&quot;ACME Incorporated&quot;
@@ -23,7 +23,7 @@ LABEL vendor2=ZENITH\ Incorporated
 LABEL com.example.release-date=&quot;2015-02-12&quot;
 
 LABEL com.example.version.is-production=&quot;&quot;
-
+````
 An image can have more than one label. Prior to Docker 1.10, it was recommended to combine all labels into a single LABEL instruction, to prevent extra layers from being created. This is no longer necessary, but combining labels is still supported.
 
 # Set multiple labels on one line
