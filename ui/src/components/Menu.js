@@ -6,12 +6,14 @@ import * as core from '@material-ui/core';
 import {SubList1,List1Data} from './MenuBarData';
 import {Link} from 'react-router-dom';
 import SubMenu from './SubMenu.js';
+import useFetchAuth from "../useFetchAuth";
 
 // core(7): Drawer, AppBar, List, Divider, ListItem, ListItemIcon, ListItemText
 // icons(4): Code, Home, Timeline, CollectionsBookmark
 
 const drawerWidth = 240;
 const appBarHeight = 0;
+const path = 'api/challenge-sets';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -42,6 +44,8 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+
+
 export default function MenuBar() {
     const classes = useStyles();
     const [submenu, setSubMenu] = useState(false)
@@ -50,6 +54,10 @@ export default function MenuBar() {
     }
 
     const [title, setTitle] = useState("Home");
+
+    //   API GET REQUEST For items that shows up in the mneu list
+    const { data, error, loading } = useFetchAuth("api/challenge-sets/ciphers/challenges");
+
     return (
         <div className={classes.root} >
             <core.AppBar position="fixed" className={classes.appBar}>
@@ -78,7 +86,6 @@ export default function MenuBar() {
                     })}
                 </core.List>
                
-
                 <core.Divider />
             </core.Drawer>
         </div>
