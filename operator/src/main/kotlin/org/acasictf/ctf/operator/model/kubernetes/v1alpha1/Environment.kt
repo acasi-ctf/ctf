@@ -8,6 +8,10 @@ import io.fabric8.kubernetes.model.annotation.Plural
 import io.fabric8.kubernetes.model.annotation.Singular
 import io.fabric8.kubernetes.model.annotation.Version
 
+/**
+ * An Environment is very simple, it references an EnvTemplate, then the Operator will create the resources
+ * defined by the template.
+ */
 @Group("ctf.acasi.info")
 @Version("v1alpha1")
 @Singular("environment")
