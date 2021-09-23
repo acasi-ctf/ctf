@@ -187,3 +187,6 @@ RUN mkdir -p /usr/src/things \
 &amp;&amp; make -C /usr/src/things all
 ````
 For other items (files, directories) that do not require ADD&#39;s tar auto-extraction capability, you should always use COPY.
+
+
+Cite: -https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
