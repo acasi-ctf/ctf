@@ -1,0 +1,11 @@
+{
+  "$schema": "../schemas/challenge-set.schema.json",
+  "id": "62b33ff3-4a2f-47df-a5dc-877c0ee6d870",
+  "slug": "internal",
+  "name": "Internal challenges",
+  "description": "Internal test challenge sets",
+  "version": "0.1.0",
+  "challenges": [
+    "sqlinjection"
+  ]
+}
