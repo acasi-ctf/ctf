@@ -49,7 +49,7 @@ export default function Card1() {
     };
 
     return (
-        <Card className={classes.root} component={link} to={"/caesar"}>
+        <Card className={classes.root} >
             <CardHeader
                 avatar={
                     <Avatar aria-label="challenge" className={classes.avatar}>
