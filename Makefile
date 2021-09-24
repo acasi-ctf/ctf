@@ -57,7 +57,7 @@ lint:
 		-e VALIDATE_TYPESCRIPT_STANDARD=false -e VALIDATE_GO=false -e VALIDATE_JSCPD=false -e VALIDATE_PYTHON_FLAKE8=false \
 		-e VALIDATE_PYTHON_ISORT=false -e VALIDATE_KUBERNETES_KUBEVAL=false -e VALIDATE_KOTLIN=false -e VALIDATE_PROTOBUF=false \
 		-e VALIDATE_PYTHON_MYPY=false \
-		-e LOG_LEVEL=WARN -e FILTER_REGEX_EXCLUDE=".*pb.*|frontend/migrations/*|challenges/.*\.py|gradlew*" -v $(shell pwd):/tmp/lint --rm github/super-linter:latest
+		-e LOG_LEVEL=WARN -e FILTER_REGEX_EXCLUDE=".*pb.*|frontend/migrations/*|challenges/.*|gradlew*" -v $(shell pwd):/tmp/lint --rm github/super-linter:latest
 
 gotest:
 	go test ./...
