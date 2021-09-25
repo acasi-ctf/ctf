@@ -71,15 +71,15 @@ Please review the following code files, which were actively developed during thi
 ## Retrospective Summary
 Here's what went well:
 * Reacted well to scope change due to the flexibility of the team and original project design which allowed us to
-  incorporate our original project into th overall design very easily. 
+  incorporate our original project into th overall design very easily.
 * Team members weren't starting from ground zero with the tools that they had to use. Some students picked up new skill
   sets during the summer that were able to help contribute to the project.
 * Richard felt he was able to get much more familiar using APIs to create the dynamic UI because of help from Colby and 
-  Logan. 
+  Logan.
 * The switch to discord for team communication was a massive boon to the team's communication.
 * Team finally started using git more actively towards the end of the sprint making it easier to view overall team
   progress and help teammates with their code due to the ability to quickly swap branches and look directly at the code
-  in our own personal dev environment. 
+  in our own personal dev environment.
 
 Here's what we'd like to improve:
 * Item 1
