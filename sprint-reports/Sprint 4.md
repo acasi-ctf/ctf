@@ -82,9 +82,15 @@ Here's what went well:
   in our own personal dev environment.
 
 Here's what we'd like to improve:
-* Item 1
-* Item 2
-* Item x
+* Some team members took a while to get back on track and had to relearn some stuff before they could get back to work
+  on the project.
+* Some team members were not addressing GitHub issues reliably. This meant that there is no way to QC any work being
+  until the end of the sprint which is not an effective way to do things. Leads to big bang situations like we have now
+  where we have a lot of merge conflicts keeping us from putting our combined work together. They can be resolved, but
+  it will be more time-consuming than if people were actively using git.
+* The overall use of git for the sprint was very bad. This is the most important thing that we did wrong because the use
+  of git to track team member progress and to be able to help one another quickly and efficiently. Allows for no
+  no overseeing of the project from any standpoint.
   
 Here are changes we plan to implement in the next sprint:
 * Item 1
