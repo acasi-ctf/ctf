@@ -2,6 +2,7 @@
 
 ## What's New (User Facing)
 * New landing page
+* Page Routing is almost completely dynamic
 * More work on challenges
   * Cipher
   * Kali Linux
@@ -14,6 +15,10 @@ the Kubernetes Operator. The [before and after video](https://www.youtube.com/wa
 more depth. The work is not complete for the intended goal of these backend changes yet, but it lays down a solid
 foundation for going into the next sprint, by allowing us to replace the old implementation.
 
+There has also been work done towards making the UI dynamic using API calls based on challenge sets rather than having
+static menu. Additionally, we started styling the site and added a landing page, but had to stop style work because of
+new scope of project explained below.4
+
 ## Unfinished Work
 > If applicable, explain the work you did not finish in this sprint. For issues/user stories in the current sprint that
 > have not been closed, (a) any progress toward completion of the issues has been clearly tracked (by checking the checkboxes
@@ -25,6 +30,11 @@ As stated in the previous section, the work towards getting our Kubernetes Opera
 implementation (while also being much cleaner and easier to maintain), is a multi-sprint goal to achieve.
 Next sprint, we will continue working on this and hope to have it completed by then. These subtasks are
 being tracked in [issue #100](https://github.com/acasi-ctf/ctf/issues/100).
+
+Due to our sponsor changing the scope of the project, the UI theme and color schema are being blocked. The scope of the
+new project requires that our theme and color scheme match that of the overall site that is being branded Cyber Literacy
+for All. Our original project is 1/3 of the new scope, but we are waiting on contractors hired by our sponsor to be
+selected and to give us a design document to work with.
 
 ## Completed Issues / User Stories
 |Issue URL | Before/After Video URL|
