@@ -15,12 +15,16 @@ more depth. The work is not complete for the intended goal of these backend chan
 foundation for going into the next sprint, by allowing us to replace the old implementation.
 
 ## Unfinished Work
-> If applicable, explain the work you did not finish in this sprint. For issues/user stories in the current sprint that have not been closed, (a) any progress toward completion of the issues has been clearly tracked (by checking the checkboxes of  acceptance criteria), (b) a comment has been added to the issue to explain why the issue could not be completed (e.g., "we ran out of time" or "we did not anticipate it would be so much work"), and (c) the issue is added to a subsequent sprint, so that it can be addressed later.
+> If applicable, explain the work you did not finish in this sprint. For issues/user stories in the current sprint that
+> have not been closed, (a) any progress toward completion of the issues has been clearly tracked (by checking the checkboxes
+> of acceptance criteria), (b) a comment has been added to the issue to explain why the issue could not be completed
+> (e.g., "we ran out of time" or "we did not anticipate it would be so much work"), and (c) the issue is added to a subsequent
+> sprint, so that it can be addressed later.
 
 As stated in the previous section, the work towards getting our Kubernetes Operator to be a more traditional
 implementation (while also being much cleaner and easier to maintain), is a multi-sprint goal to achieve.
 Next sprint, we will continue working on this and hope to have it completed by then. These subtasks are
-being tracked in https://github.com/acasi-ctf/ctf/issues/100.
+being tracked in [issue #100](https://github.com/acasi-ctf/ctf/issues/100).
 
 ## Completed Issues / User Stories
 |Issue URL | Before/After Video URL|
@@ -30,36 +34,36 @@ being tracked in https://github.com/acasi-ctf/ctf/issues/100.
 |[Issue #z](https://github.com/your_repo/file_extension)   | [Video](https://youtube.com/file_extension)
 
 > Reminders (Remove this section when you save the file):
->  * Each issue should be assigned to a milestone
->  * Each completed issue should be assigned to a pull request
->  * Each completed pull request should include a link to a "Before and After" video
->  * All team members who contributed to the issue should be assigned to it on GitHub
->  * Each issue should be assigned story points using a label
->  * Story points contribution of each team member should be indicated in a comment
- 
+> * Each issue should be assigned to a milestone
+> * Each completed issue should be assigned to a pull request
+> * Each completed pull request should include a link to a "Before and After" video
+> * All team members who contributed to the issue should be assigned to it on GitHub
+> * Each issue should be assigned story points using a label
+> * Story points contribution of each team member should be indicated in a comment
+
 ## Incomplete Issues / User Stories
 * URL of issue 1 <<One sentence explanation of why issue was not completed>>
 * URL of issue 2 <<One sentence explanation of why issue was not completed>>
 * URL of issue n <<One sentence explanation of why issue was not completed>>
 
 Examples of explanations (Remove this section when you save the file):
-* "We ran into a complication we did not anticipate (explain briefly)." 
+* "We ran into a complication we did not anticipate (explain briefly)."
 * "We decided that the feature did not add sufficient value for us to work on it in this sprint (explain briefly)."
 * "We could not reproduce the bug" (explain briefly).
 * "We did not get to this issue because..." (explain briefly)
 
 ## Code Files for Review
 Please review the following code files, which were actively developed during this sprint, for quality:
-* https://github.com/acasi-ctf/ctf/blob/main/operator/src/main/kotlin/org/acasictf/ctf/operator/provisioner/kubernetes/EnvListener.kt
-* https://github.com/acasi-ctf/ctf/blob/main/operator/src/main/kotlin/org/acasictf/ctf/operator/provisioner/kubernetes/creator/EnvCreator.kt
-* https://github.com/acasi-ctf/ctf/blob/main/operator/src/main/kotlin/org/acasictf/ctf/operator/provisioner/kubernetes/creator/StatefulSetCreator.kt
- 
+* [https://github.com/acasi-ctf/ctf/blob/main/operator/src/main/kotlin/org/acasictf/ctf/operator/provisioner/kubernetes/EnvListener.kt](EnvListener.kt)
+* [https://github.com/acasi-ctf/ctf/blob/main/operator/src/main/kotlin/org/acasictf/ctf/operator/provisioner/kubernetes/creator/EnvCreator.kt](EnvCreator.kt)
+* [https://github.com/acasi-ctf/ctf/blob/main/operator/src/main/kotlin/org/acasictf/ctf/operator/provisioner/kubernetes/creator/StatefulSetCreator.kt](StatefulSetCreator.kt)
+
 ## Retrospective Summary
 Here's what went well:
 * Item 1
 * Item 2
 * Item x
- 
+
 Here's what we'd like to improve:
 * Item 1
 * Item 2
