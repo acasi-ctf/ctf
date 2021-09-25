@@ -93,6 +93,15 @@ Here's what we'd like to improve:
   no overseeing of the project from any standpoint.
   
 Here are changes we plan to implement in the next sprint:
-* Item 1
-* Item 2
-* Item x
+* We essentially decided that the key to solving our problems was a team was to make the use of git and committing
+  habitual. 
+  * From this it would be easy to see how team members are progressing on work in case they need a reminder that
+    there is work to be done or to give them a hand if they need assistance.
+  * We can try and attempt to regularly avoid merge conflicts by ensuring that we are checking out the most recent
+    branch on main when working on our feature branches.
+  * Allows for overall better communication of the team. Especially when using GitHub issues to track progress because
+    it provides important information to teammates of what is going on. These are especially important when you and a
+    team member may be working on the same portion of the project at different times.
+  * It allows for easier grading because it is easier to see what work has been done by whom, which in a work
+    environment, translates to how well team members are pulling their weight. It's not an infallible tool, but a good
+    gauge of effort.
