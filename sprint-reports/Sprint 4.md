@@ -10,7 +10,7 @@
 > Provide a one paragraph synposis of what your team accomplished this sprint. Don't repeat the "What's New" list of features. Instead, help the instructor understand how you went about the work described there, any barriers you overcame, and any significant learnings for your team.
 
 The backend changes consisted of a pretty large refactoring and rewrite of the relevant components to provisioning in
-the Kubernetes Operator. The [https://www.youtube.com/watch?v=_wIl-tk9EAM](before and after video) goes into this in
+the Kubernetes Operator. The [before and after video](https://www.youtube.com/watch?v=_wIl-tk9EAM) goes into this in
 more depth. The work is not complete for the intended goal of these backend changes yet, but it lays down a solid
 foundation for going into the next sprint, by allowing us to replace the old implementation.
 
@@ -54,9 +54,9 @@ Examples of explanations (Remove this section when you save the file):
 
 ## Code Files for Review
 Please review the following code files, which were actively developed during this sprint, for quality:
-* [https://github.com/acasi-ctf/ctf/blob/main/operator/src/main/kotlin/org/acasictf/ctf/operator/provisioner/kubernetes/EnvListener.kt](EnvListener.kt)
-* [https://github.com/acasi-ctf/ctf/blob/main/operator/src/main/kotlin/org/acasictf/ctf/operator/provisioner/kubernetes/creator/EnvCreator.kt](EnvCreator.kt)
-* [https://github.com/acasi-ctf/ctf/blob/main/operator/src/main/kotlin/org/acasictf/ctf/operator/provisioner/kubernetes/creator/StatefulSetCreator.kt](StatefulSetCreator.kt)
+* [EnvListener.kt](https://github.com/acasi-ctf/ctf/blob/main/operator/src/main/kotlin/org/acasictf/ctf/operator/provisioner/kubernetes/EnvListener.kt)
+* [EnvCreator.kt](https://github.com/acasi-ctf/ctf/blob/main/operator/src/main/kotlin/org/acasictf/ctf/operator/provisioner/kubernetes/creator/EnvCreator.kt)
+* [StatefulSetCreator.kt](https://github.com/acasi-ctf/ctf/blob/main/operator/src/main/kotlin/org/acasictf/ctf/operator/provisioner/kubernetes/creator/StatefulSetCreator.kt)
 
 ## Retrospective Summary
 Here's what went well:
