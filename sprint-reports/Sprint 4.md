@@ -52,15 +52,12 @@ selected and to give us a design document to work with.
 > * Story points contribution of each team member should be indicated in a comment
 
 ## Incomplete Issues / User Stories
-* URL of issue 1 <<One sentence explanation of why issue was not completed>>
-* URL of issue 2 <<One sentence explanation of why issue was not completed>>
-* URL of issue n <<One sentence explanation of why issue was not completed>>
-
-Examples of explanations (Remove this section when you save the file):
-* "We ran into a complication we did not anticipate (explain briefly)."
-* "We decided that the feature did not add sufficient value for us to work on it in this sprint (explain briefly)."
-* "We could not reproduce the bug" (explain briefly).
-* "We did not get to this issue because..." (explain briefly)
+* [Issue 1](https://github.com/acasi-ctf/ctf/issues/105) Waiting on contractors being hired by F5 to continue with
+  agreed upon theme and color pallet. 
+* [Issue 2](https://github.com/acasi-ctf/ctf/issues/106) Have been waiting to talk with contractors, but meeting
+  scheduled for 9:00PM PST on Sunday 9/26.
+* [Issue 3](https://github.com/acasi-ctf/ctf/issues/110) Ethan unable to get dicker images running on cluster due to
+  lack of experience with Kubernetes, but Logan can assist in next sprint.
 
 ## Code Files for Review
 Please review the following code files, which were actively developed during this sprint, for quality:
