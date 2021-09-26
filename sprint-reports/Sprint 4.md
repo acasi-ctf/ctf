@@ -39,9 +39,10 @@ selected and to give us a design document to work with.
 ## Completed Issues / User Stories
 |Issue URL | Before/After Video URL|
 |----------|-----------------------|
-|[Issue #101](https://github.com/acasi-ctf/ctf/issues/101) | [Video](https://www.youtube.com/watch?v=_wIl-tk9EAM)
-|[Issue #121](https://github.com/acasi-ctf/ctf/issues/121) | [Video](https://www.youtube.com/watch?v=FOuDwQRuFCQ)
-|[Issue #107](https://github.com/acasi-ctf/ctf/issues/107) | [Video](https://www.youtube.com/watch?v=Be2aLsa0dB8)
+|[Issue #101](https://github.com/acasi-ctf/ctf/issues/101) | [Video](https://www.youtube.com/watch?v=_wIl-tk9EAM)|
+|[Issue #121](https://github.com/acasi-ctf/ctf/issues/121) | [Video](https://www.youtube.com/watch?v=FOuDwQRuFCQ)|
+|[Issue #107](https://github.com/acasi-ctf/ctf/issues/107) | [Video](https://www.youtube.com/watch?v=Be2aLsa0dB8)|
+|[Issue #104](https://github.com/acasi-ctf/ctf/issues/104) | [Video](https://www.youtube.com/watch?v=hg7XCsO3LI4)|
 
 > Reminders (Remove this section when you save the file):
 > * Each issue should be assigned to a milestone
