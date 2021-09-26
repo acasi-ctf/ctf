@@ -44,10 +44,10 @@ export default function App() {
                 <Route path="/" exact component={Home} />
                 <Route path="/LeaderBoard" component={leaderboard} />
                 <Route path="/selection" component={Selection} />
-                <Route path="/caesar" component={CaeserCipher} />
+                {/* <Route path="/caesar" component={CaeserCipher} />
                 <Route path="/letter-to-number" component={LetterToNumber} />
                 <Route path="/morse-code" component={MorseCode} />
-                <Route path="/reverse-cipher" component={ReverseCipher} />
+                <Route path="/reverse-cipher" component={ReverseCipher} /> */}
                 <Route
                   path="/comprehensive-challenge"
                   component={ComprehensiveChallenge}
@@ -56,10 +56,10 @@ export default function App() {
                   path="/directory-traversal"
                   component={DirectoryTraversal}
                 />
-                <Route path="/web-structure" component={WebStructure} />
+                {/* <Route path="/web-structure" component={WebStructure} />
                 <Route path="/challenge_1" component={CaeserCipher} />
                 <Route path="/set/:cs_slug" component={ChallengeSetPage} />
-                <Route path="/env/:env_id" component={EnvironmentPage} />
+                <Route path="/env/:env_id" component={EnvironmentPage} /> */}
               </Switch>
             </div>
           </div>

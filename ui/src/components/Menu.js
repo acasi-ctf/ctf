@@ -3,15 +3,18 @@ import { makeStyles } from '@material-ui/core/styles';
 import Layout from '../pageLayout.js';
 import ChallengeBar from "./AppBar";
 import * as core from '@material-ui/core';
-import {SubList1,List1Data} from './MenuBarData';
+import {List1Data} from './MenuBarData';
 import {Link} from 'react-router-dom';
 import SubMenu from './SubMenu.js';
+import useFetchAuth from "../useFetchAuth";
+
 
 // core(7): Drawer, AppBar, List, Divider, ListItem, ListItemIcon, ListItemText
 // icons(4): Code, Home, Timeline, CollectionsBookmark
 
 const drawerWidth = 240;
 const appBarHeight = 0;
+const APIpath = 'api/challenge-sets';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -42,18 +45,24 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+
+
 export default function MenuBar() {
     const classes = useStyles();
-    const [submenu, setSubMenu] = useState(false)
-    const showSubNav = () =>{
-        setSubMenu(!submenu)
-    }
+    // const [submenu, setSubMenu] = useState(false);
+    // const showSubNav = () =>{
+    //     setSubMenu(!submenu)
+    // }
 
     const [title, setTitle] = useState("Home");
+
+    //   API GET REQUEST For items that shows up in the mneu list
+    const { data, error, loading } = useFetchAuth(APIpath);
+
     return (
         <div className={classes.root} >
             <core.AppBar position="fixed" className={classes.appBar}>
-                <ChallengeBar name={title}/>
+                <ChallengeBar name={"Testing"}/>
             </core.AppBar>
 
 
@@ -62,23 +71,25 @@ export default function MenuBar() {
                 
                 <core.Divider />
                 {/* LIST 1 */}
-
+                {/* Leave this alone for now */}
                 <core.List>
                     {List1Data.map((item,index)=>{
-                        return <SubMenu item={item} key={index} changeTitle={title => setTitle(title)}/>;
+                        // return <SubMenu item={item} key={index} changeTitle={title => setTitle(title)}/>;
+                        return <SubMenu item={item} key={index} />;
                     })}
                 </core.List>
 
                 <core.Divider />
 
                 {/* LIST 2 */}
+                {/* FOCUSSSSSSSSSSSSS */}
                 <core.List >    
-                    {SubList1.map((item, index)=>{
-                        return <SubMenu item={item} key={index} changeTitle={title => setTitle(title)}/>;
+                    {data.map((item)=>{
+                        // return <SubMenu path={APIpath} item={item} key={item.id} changeTitle={title => setTitle(title)}/>;
+                        return <SubMenu path={APIpath} item={item} key={item.id}/>;
                     })}
                 </core.List>
                
-
                 <core.Divider />
             </core.Drawer>
         </div>

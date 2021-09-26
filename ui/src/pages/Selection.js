@@ -9,7 +9,7 @@ export default function Selection() {
             <div className="selection">
                 {/* coding like this just to show that the element does wrap around */}
                 {/* map data to this button format */}
-                <Link to={'./caesar'} className='cards'>Caesar Cipher</Link>
+                <Link to={'./caesar'}           className='cards'>Caesar Cipher</Link>
                 <Link to={'./letter-to-number'} className='cards'>Letter to Number Cipher</Link>
                 <Link to={'./morse-code'} className='cards'>Morse Code Cipher</Link>
                 <Link to={'./reverse-cipher'} className='cards'>Reverse Cipher</Link>
