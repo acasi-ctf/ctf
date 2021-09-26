@@ -1,0 +1,172 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: envtemplates.ctf.acasi.info
+spec:
+  group: ctf.acasi.info
+  names:
+    kind: EnvTemplate
+    plural: envtemplates
+    singular: envtemplate
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                pods:
+                  type: array
+                  minItems: 1
+                  items:
+                    type: object
+                    properties:
+                      metadata:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                          labels:
+                            type: object
+                            additionalProperties: true
+                        required:
+                          - name
+                      spec:
+                        type: object
+                        properties:
+                          containers:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                name:
+                                  type: string
+                                image:
+                                  type: string
+                              required:
+                                - image
+                        required:
+                          - containers
+                services:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      metadata:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                        required:
+                          - name
+                      spec:
+                        type: object
+                        properties:
+                          ports:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                name:
+                                  type: string
+                                port:
+                                  type: integer
+                                targetPort:
+                                  type: integer
+                                protocol:
+                                  type: string
+                                  enum:
+                                    - TCP
+                                    - UDP
+                              required:
+                                - port
+                          selector:
+                            type: object
+                            additionalProperties: true
+                        required:
+                          - ports
+                          - selector
+                ingresses:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      metadata:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                        required:
+                          - name
+                      spec:
+                        type: object
+                        properties:
+                          path:
+                            type: string
+                          pathType:
+                            type: string
+                            enum:
+                              - Prefix
+                              - Exact
+                              - ImplementationSpecific
+                          backend:
+                            type: object
+                            properties:
+                              service:
+                                type: object
+                                properties:
+                                  name:
+                                    type: string
+                                  port:
+                                    type: object
+                                    properties:
+                                      name:
+                                        type: string
+                                      number:
+                                        type: integer
+                                required:
+                                  - name
+                                  - port
+                        required:
+                          - path
+                          - pathType
+                          - backend
+                    required:
+                      - metadata
+                      - spec
+              required:
+                - pods
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: environments.ctf.acasi.info
+spec:
+  group: ctf.acasi.info
+  names:
+    kind: Environment
+    plural: environments
+    singular: environment
+    shortNames:
+      - env
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                templateName:
+                  type: string
+              required:
+                - templateName

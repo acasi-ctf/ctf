@@ -1,0 +1,13 @@
+#DockerRunFile Draft - Kali Linux
+
+FROM kalilinux/kali-rolling:latest
+
+WORKDIR /home/
+
+RUN apt update -y \
+	apt dist-upgrade -y\
+	apt autoremove \
+	apt clean \
+	apt install kali-tools-top10 -y\
+
+COPY challenge /challenges

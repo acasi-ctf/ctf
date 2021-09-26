@@ -1,4 +1,5 @@
 import com.google.protobuf.gradle.*
+import org.gradle.internal.os.OperatingSystem
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -73,12 +74,17 @@ protobuf {
             dependsOn("copyProto")
         }
     }
+
+    val isAppleSilicon = OperatingSystem.current() == OperatingSystem.MAC_OS &&
+            System.getProperty("os.arch").startsWith("aarch64")
+    val suffix = if (isAppleSilicon) ":osx-x86_64" else ""
+
     protoc {
-        artifact = "com.google.protobuf:protoc:3.15.8"
+        artifact = "com.google.protobuf:protoc:3.15.8$suffix"
     }
     plugins {
         id("grpc") {
-            artifact = "io.grpc:protoc-gen-grpc-java:1.37.0"
+            artifact = "io.grpc:protoc-gen-grpc-java:1.37.0$suffix"
         }
         id("grpckt") {
             artifact = "io.grpc:protoc-gen-grpc-kotlin:1.0.0:jdk7@jar"
