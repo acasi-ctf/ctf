@@ -68,7 +68,7 @@ Please review the following code files, which were actively developed during thi
 * [StatefulSetCreator.kt](https://github.com/acasi-ctf/ctf/blob/main/operator/src/main/kotlin/org/acasictf/ctf/operator/provisioner/kubernetes/creator/StatefulSetCreator.kt)
 
 ## Retrospective Summary
-### Here's what went well:
+### Here's what went well
 * Reacted well to scope change due to the flexibility of the team and original project design which allowed us to
   incorporate our original project into th overall design very easily.
 * Team members weren't starting from ground zero with the tools that they had to use. Some students picked up new skill
@@ -80,7 +80,7 @@ Please review the following code files, which were actively developed during thi
   progress and help teammates with their code due to the ability to quickly swap branches and look directly at the code
   in our own personal dev environment.
 
-### Here's what we'd like to improve:
+### Here's what we'd like to improve
 * Some team members took a while to get back on track and had to relearn some stuff before they could get back to work
   on the project.
 * Some team members were not addressing GitHub issues reliably. This meant that there is no way to QC any work being
@@ -91,7 +91,7 @@ Please review the following code files, which were actively developed during thi
   of git to track team member progress and to be able to help one another quickly and efficiently. Allows for no
   no overseeing of the project from any standpoint.
   
-### Here are changes we plan to implement in the next sprint:
+### Here are changes we plan to implement in the next sprint
 * We essentially decided that the key to solving our problems was a team was to make the use of git and committing
   habitual.
   * From this it would be easy to see how team members are progressing on work in case they need a reminder that
