@@ -1,15 +1,29 @@
 # Sprint 4 Report (8/26/21 - 9/24/2021)
 
 ## What's New (User Facing)
-* New landing page
 * Page Routing is almost completely dynamic
 * More work on challenges
   * Cipher
   * Kali Linux
 
-## Work Summary (Developer Facing)
-> Provide a one paragraph synposis of what your team accomplished this sprint. Don't repeat the "What's New" list of features. Instead, help the instructor understand how you went about the work described there, any barriers you overcame, and any significant learnings for your team.
+One very large change that I would like to mention is that the overall scope of our project is changing.
+Our sponsor wants to take what we have completed for them and use it as approximately 1/3rd of the new project concept.
+Due to this, we suddenly had a large blocker on many issues because we not only had to wait for F5 to hire contractors,
+but we also then had to wait for that contracting firm to select people to work with F5 based on the desired roles F5
+needs. Additionally, one of the roles is a designer so that F5 can make sure the theme and color pallet of all 3
+subdomains of the new project look like they belong together. Due to this chain of delaying events, not as much as able
+to be completed on the UI as expected.
 
+We switched from using MS Teams to Discord as a primary means of communication. Our sponsor has stated that they find
+communication via discord sufficient communication for the most part and would only like to have meetings at the start
+of each sprint unless otherwise directed. This is also where we will be communicating with the contractors outside of
+meetings.
+
+Neither the template nor the rubric asked us to include our transcripts anywhere. Since there was no direction on this,
+we are prepared to share them if requested, but would rather not for the same reason we are no longer sharing the
+retrospective videos.
+
+## Work Summary (Developer Facing)
 The backend changes consisted of a pretty large refactoring and rewrite of the relevant components to provisioning in
 the Kubernetes Operator. The [respective before and after video](https://www.youtube.com/watch?v=_wIl-tk9EAM) goes into
 this in more depth. The work is not complete for the intended goal of these backend changes yet, but it lays down a solid
@@ -20,12 +34,6 @@ static menu. Additionally, we started styling the site and added a landing page,
 new scope of project explained below.4
 
 ## Unfinished Work
-> If applicable, explain the work you did not finish in this sprint. For issues/user stories in the current sprint that
-> have not been closed, (a) any progress toward completion of the issues has been clearly tracked (by checking the checkboxes
-> of acceptance criteria), (b) a comment has been added to the issue to explain why the issue could not be completed
-> (e.g., "we ran out of time" or "we did not anticipate it would be so much work"), and (c) the issue is added to a subsequent
-> sprint, so that it can be addressed later.
-
 As stated in the previous section, the work towards getting our Kubernetes Operator to be a more traditional
 implementation (while also being much cleaner and easier to maintain), is a multi-sprint goal to achieve.
 Next sprint, we will continue working on this and hope to have it completed by then. These subtasks are
@@ -44,21 +52,14 @@ selected and to give us a design document to work with.
 |[Issue #107](https://github.com/acasi-ctf/ctf/issues/107) | [Video](https://www.youtube.com/watch?v=Be2aLsa0dB8)|
 |[Issue #104](https://github.com/acasi-ctf/ctf/issues/104) | [Video](https://www.youtube.com/watch?v=hg7XCsO3LI4)|
 
-> Reminders (Remove this section when you save the file):
-> * Each issue should be assigned to a milestone
-> * Each completed issue should be assigned to a pull request
-> * Each completed pull request should include a link to a "Before and After" video
-> * All team members who contributed to the issue should be assigned to it on GitHub
-> * Each issue should be assigned story points using a label
-> * Story points contribution of each team member should be indicated in a comment
+
 
 ## Incomplete Issues / User Stories
-* [Issue 1](https://github.com/acasi-ctf/ctf/issues/105) Waiting on contractors being hired by F5 to continue with
-  agreed upon theme and color pallet.
-* [Issue 2](https://github.com/acasi-ctf/ctf/issues/106) Have been waiting to talk with contractors, but meeting
-  scheduled for 9:00PM PST on Sunday 9/26.
-* [Issue 3](https://github.com/acasi-ctf/ctf/issues/110) Ethan unable to get Docker images running on cluster due to
-  lack of experience with Kubernetes, but Logan can assist in next sprint.
+|Issue | Blocker|
+|------|-----------------------------------------------------------------------|
+|[Issue 105](https://github.com/acasi-ctf/ctf/issues/105) | Waiting on contractors being hired by F5 to continue with agreed upon theme and color pallet.|
+|[Issue 106](https://github.com/acasi-ctf/ctf/issues/106) | Have been waiting to talk with contractors, but meeting scheduled for 9:00PM PST on Sunday 9/26.|
+|[Issue 110](https://github.com/acasi-ctf/ctf/issues/110) | Ethan unable to get Docker images running on cluster due to lack of experience with Kubernetes, but Logan can assist in next sprint.|
 
 ## Code Files for Review
 Please review the following code files, which were actively developed during this sprint, for quality:
@@ -67,7 +68,7 @@ Please review the following code files, which were actively developed during thi
 * [StatefulSetCreator.kt](https://github.com/acasi-ctf/ctf/blob/main/operator/src/main/kotlin/org/acasictf/ctf/operator/provisioner/kubernetes/creator/StatefulSetCreator.kt)
 
 ## Retrospective Summary
-Here's what went well:
+### Here's what went well:
 * Reacted well to scope change due to the flexibility of the team and original project design which allowed us to
   incorporate our original project into th overall design very easily.
 * Team members weren't starting from ground zero with the tools that they had to use. Some students picked up new skill
@@ -79,7 +80,7 @@ Here's what went well:
   progress and help teammates with their code due to the ability to quickly swap branches and look directly at the code
   in our own personal dev environment.
 
-Here's what we'd like to improve:
+### Here's what we'd like to improve:
 * Some team members took a while to get back on track and had to relearn some stuff before they could get back to work
   on the project.
 * Some team members were not addressing GitHub issues reliably. This meant that there is no way to QC any work being
@@ -90,7 +91,7 @@ Here's what we'd like to improve:
   of git to track team member progress and to be able to help one another quickly and efficiently. Allows for no
   no overseeing of the project from any standpoint.
   
-Here are changes we plan to implement in the next sprint:
+### Here are changes we plan to implement in the next sprint:
 * We essentially decided that the key to solving our problems was a team was to make the use of git and committing
   habitual.
   * From this it would be easy to see how team members are progressing on work in case they need a reminder that
