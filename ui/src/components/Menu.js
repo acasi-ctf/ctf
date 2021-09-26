@@ -62,7 +62,7 @@ export default function MenuBar() {
     return (
         <div className={classes.root} >
             <core.AppBar position="fixed" className={classes.appBar}>
-                <ChallengeBar name={"Testing"}/>
+                <ChallengeBar name={title}/>
             </core.AppBar>
 
 
@@ -72,21 +72,20 @@ export default function MenuBar() {
                 <core.Divider />
                 {/* LIST 1 */}
                 {/* Leave this alone for now */}
+                {/* Data in this list is read from local file */}
                 <core.List>
                     {List1Data.map((item,index)=>{
-                        // return <SubMenu item={item} key={index} changeTitle={title => setTitle(title)}/>;
-                        return <SubMenu item={item} key={index} />;
+                        return <SubMenu listItem={item} key={index} changeTitle={title => setTitle(title)}/>;
                     })}
                 </core.List>
 
                 <core.Divider />
 
                 {/* LIST 2 */}
-                {/* FOCUSSSSSSSSSSSSS */}
+                {/* Data in this list is read over API */}
                 <core.List >    
                     {data.map((item)=>{
-                        // return <SubMenu path={APIpath} item={item} key={item.id} changeTitle={title => setTitle(title)}/>;
-                        return <SubMenu path={APIpath} item={item} key={item.id}/>;
+                        return <SubMenu path={APIpath} listItem={item} key={item.id} changeTitle={title => setTitle(title)}/>;
                     })}
                 </core.List>
                
