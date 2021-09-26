@@ -1,5 +1,5 @@
 import React, {useEffect, useRef} from "react";
-import "./Terminal.css";
+import "../style/Terminal.css";
 import {XTerm} from "xterm-for-react";
 import {FitAddon} from "xterm-addon-fit";
 

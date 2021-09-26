@@ -6,9 +6,9 @@
 // import fs from 'fs';
 
 //**********************************************cipher challenge set*****************************************
-import reverse from "../challenges/ciphers/challenges/reverse-cipher/docs/Reverse.md";
-import crypto from "../challenges/ciphers/challenges/reverse-cipher/docs/1-Cryptography.md";
-import term from "../challenges/ciphers/challenges/caesar-cipher/docs/Terminal_Use.md";
+import reverse from "../../challenges/ciphers/challenges/reverse-cipher/docs/Reverse.md";
+import crypto from "../../challenges/ciphers/challenges/reverse-cipher/docs/1-Cryptography.md";
+import term from "../../challenges/ciphers/challenges/caesar-cipher/docs/Terminal_Use.md";
 
 export const Challengedata = [
   {

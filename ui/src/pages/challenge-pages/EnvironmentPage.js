@@ -1,4 +1,4 @@
-import Terminal from "../components/Terminal";
+import Terminal from "../../components/Terminal";
 
 export default function EnvironmentPage({match}) {
     const envId = match.params['env_id'];
