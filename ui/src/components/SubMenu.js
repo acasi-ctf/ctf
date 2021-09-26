@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import {Link} from 'react-router-dom';
 import * as core from '@material-ui/core';
-import './SubMenu.css';
+import '../style/SubMenu.css';
 import useFetchAuth from "../useFetchAuth";
 import * as UI from '@material-ui/icons';
 

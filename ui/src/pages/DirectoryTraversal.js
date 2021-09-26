@@ -1,10 +1,10 @@
 import React,{useState, useEffect} from 'react';
-import './ChallengeSet1.css';
+import '../style/ChallengeSet1.css';
 import * as core from '@material-ui/core';
 //FIX THIS DATA FOR EACH FILE
 //CHALLENGE 1 = CAESAR CHALLENGE
 /*----------------------------------------------------------------------------- */
-import {Challengedata} from './DirectoryTraversalData';
+import {Challengedata} from './challenge-data/DirectoryTraversalData';
 /*----------------------------------------------------------------------------- */
 // import {useLocation, Link, useParams} from 'react-router-dom';
 import PropTypes from 'prop-types';

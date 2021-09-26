@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from "react";
-import "./ChallengeSet1.css";
+import "../../style/ChallengeSet1.css";
 import * as core from "@material-ui/core";
-
-import { Challengedata } from "./ReverseCipherData";
-
+//FIX THIS DATA FOR EACH FILE
+//CHALLENGE 1 = CAESAR CHALLENGE
+/*----------------------------------------------------------------------------- */
+import { Challengedata } from "../challenge-data/LetterToNumberData";
+/*----------------------------------------------------------------------------- */
+// import {useLocation, Link, useParams} from 'react-router-dom';
 import PropTypes from "prop-types";
-import Terminal from "../components/Terminal";
-
+import Terminal from "../../components/Terminal";
+import marked from "marked";
 import gfm from "remark-gfm";
 import ReactMarkdown from "react-markdown";
-import useFetchAuth from "../useFetchAuth";
-import Spinner from "../components/Spinner";
-import GenericErrorPage from "./error-pages/genericErrorPage";
+import useFetchAuth from "../../useFetchAuth";
+import Spinner from "../../components/Spinner";
+import GenericErrorPage from "../error-pages/genericErrorPage";
 
 function a11yProps(index) {
   return {
@@ -44,7 +47,7 @@ TabPanel.propTypes = {
   value: PropTypes.any.isRequired,
 };
 
-export default function ReverseCipher() {
+export default function LetterToNumber() {
   const [value, setValue] = React.useState(0);
   const handleChange = (events, newValue) => {
     setValue(newValue);
@@ -60,7 +63,7 @@ export default function ReverseCipher() {
   //USEEFFECT HOOK WILL TRIGGER THE WHEN THE VARIABLE AT THE [] AT BOTTOM IS UPDATE. IN THIS CASE IS "PATH VARIABLE"
   const [txt, setMarkdown] = useState("");
   const [path, setPath] = useState("");
-  const [first, setfirst] = useState(0);
+  const [first, setFirst] = useState(0);
   useEffect(() => {
     fetch(path)
       .then((res) => res.text())
@@ -69,12 +72,12 @@ export default function ReverseCipher() {
       });
   }, [path]);
 
+  //this is to set first frim rendering for mardown. Without this, it will redner html on first run
   if (loading) return <Spinner />;
   if (error) return <GenericErrorPage />;
-  //this is to set first frim rendering for mardown. Without this, it will redner html on first run
   if (!first) {
     setPath(Challengedata[0].itembox1);
-    setfirst(first + 1);
+    setFirst(first + 1);
   }
   return (
     <div style={{ display: "flex", flexDirection: "row", position: "fixed" }}>
@@ -91,7 +94,6 @@ export default function ReverseCipher() {
           >
             {Challengedata.map((item, index) => {
               return (
-                // <core.Tab key={item.index} label={item.label} {...a11yProps(item.index)} component={Link} to={`${item.topic}/${item.label}`} />
                 <core.Tab
                   key={index}
                   label={item.label}
@@ -102,15 +104,12 @@ export default function ReverseCipher() {
           </core.Tabs>
         </core.AppBar>
 
-        {/* <ReactMarkdown source={Challengedata[value].itembox1}/> */}
-
         <TabPanel
           className="box1"
           value={value}
           index={value}
           style={{ overflowY: "scroll", marginTop: "5px", marginLeft: "5px" }}
         >
-          {/* {Challengedata[value].itembox1}  */}
           <ReactMarkdown
             remarkPlugins={[gfm]}
             children={txt}
