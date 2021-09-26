@@ -11,8 +11,8 @@
 > Provide a one paragraph synposis of what your team accomplished this sprint. Don't repeat the "What's New" list of features. Instead, help the instructor understand how you went about the work described there, any barriers you overcame, and any significant learnings for your team.
 
 The backend changes consisted of a pretty large refactoring and rewrite of the relevant components to provisioning in
-the Kubernetes Operator. The [before and after video](https://www.youtube.com/watch?v=_wIl-tk9EAM) goes into this in
-more depth. The work is not complete for the intended goal of these backend changes yet, but it lays down a solid
+the Kubernetes Operator. The [respective before and after video](https://www.youtube.com/watch?v=_wIl-tk9EAM) goes into
+this in more depth. The work is not complete for the intended goal of these backend changes yet, but it lays down a solid
 foundation for going into the next sprint, by allowing us to replace the old implementation.
 
 There has also been work done towards making the UI dynamic using API calls based on challenge sets rather than having
@@ -39,9 +39,10 @@ selected and to give us a design document to work with.
 ## Completed Issues / User Stories
 |Issue URL | Before/After Video URL|
 |----------|-----------------------|
-|[Issue #101](https://github.com/acasi-ctf/ctf/issues/101) | [Video](https://www.youtube.com/watch?v=_wIl-tk9EAM)
-|[Issue #y](https://github.com/your_repo/file_extension)   | [Video](https://youtube.com/file_extension)
-|[Issue #z](https://github.com/your_repo/file_extension)   | [Video](https://youtube.com/file_extension)
+|[Issue #101](https://github.com/acasi-ctf/ctf/issues/101) | [Video](https://www.youtube.com/watch?v=_wIl-tk9EAM)|
+|[Issue #121](https://github.com/acasi-ctf/ctf/issues/121) | [Video](https://www.youtube.com/watch?v=FOuDwQRuFCQ)|
+|[Issue #107](https://github.com/acasi-ctf/ctf/issues/107) | [Video](https://www.youtube.com/watch?v=Be2aLsa0dB8)|
+|[Issue #104](https://github.com/acasi-ctf/ctf/issues/104) | [Video](https://www.youtube.com/watch?v=hg7XCsO3LI4)|
 
 > Reminders (Remove this section when you save the file):
 > * Each issue should be assigned to a milestone
@@ -53,10 +54,10 @@ selected and to give us a design document to work with.
 
 ## Incomplete Issues / User Stories
 * [Issue 1](https://github.com/acasi-ctf/ctf/issues/105) Waiting on contractors being hired by F5 to continue with
-  agreed upon theme and color pallet. 
+  agreed upon theme and color pallet.
 * [Issue 2](https://github.com/acasi-ctf/ctf/issues/106) Have been waiting to talk with contractors, but meeting
   scheduled for 9:00PM PST on Sunday 9/26.
-* [Issue 3](https://github.com/acasi-ctf/ctf/issues/110) Ethan unable to get dicker images running on cluster due to
+* [Issue 3](https://github.com/acasi-ctf/ctf/issues/110) Ethan unable to get Docker images running on cluster due to
   lack of experience with Kubernetes, but Logan can assist in next sprint.
 
 ## Code Files for Review
@@ -71,7 +72,7 @@ Here's what went well:
   incorporate our original project into th overall design very easily.
 * Team members weren't starting from ground zero with the tools that they had to use. Some students picked up new skill
   sets during the summer that were able to help contribute to the project.
-* Richard felt he was able to get much more familiar using APIs to create the dynamic UI because of help from Colby and 
+* Richard felt he was able to get much more familiar using APIs to create the dynamic UI because of help from Colby and
   Logan.
 * The switch to discord for team communication was a massive boon to the team's communication.
 * Team finally started using git more actively towards the end of the sprint making it easier to view overall team
@@ -91,7 +92,7 @@ Here's what we'd like to improve:
   
 Here are changes we plan to implement in the next sprint:
 * We essentially decided that the key to solving our problems was a team was to make the use of git and committing
-  habitual. 
+  habitual.
   * From this it would be easy to see how team members are progressing on work in case they need a reminder that
     there is work to be done or to give them a hand if they need assistance.
   * We can try and attempt to regularly avoid merge conflicts by ensuring that we are checking out the most recent
