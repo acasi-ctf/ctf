@@ -1,0 +1,4 @@
+ignore:
+  # Ignoring this directory, there is a very large number of equals/hashCode implementations
+  #  which are very difficult and time-consuming to test.
+  - operator/src/main/kotlin/org/acasictf/ctf/operator/model/kubernetes

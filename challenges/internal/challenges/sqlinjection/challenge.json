@@ -1,0 +1,11 @@
+{
+  "$schema": "../../../schemas/challenge.schema.json",
+  "id": "d927f959-67aa-4e4b-8da2-f65ed17fa915",
+  "slug": "sqlinjection",
+  "name": "Basic Environment Example",
+  "description": "This is an example challenge to demonstrate basic environments",
+  "provisioner": {
+    "type": "kubernetes"
+  },
+  "documentation": []
+}

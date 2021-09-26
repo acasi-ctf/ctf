@@ -23,6 +23,11 @@ spec:
           env:
             - name: DATA_PATH
               value: /data
+            - name: BASE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: config
+                  key: baseUrl
           volumeMounts:
             - name: auth-key-public
               mountPath: /secrets/auth-key-public

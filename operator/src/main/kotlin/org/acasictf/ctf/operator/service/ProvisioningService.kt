@@ -10,7 +10,7 @@ import org.acasictf.ctf.operator.*
 import org.acasictf.ctf.operator.abstractions.PersistenceLayer
 import org.acasictf.ctf.operator.persistence.EnvironmentDao
 import org.acasictf.ctf.operator.persistence.ZipChallengeTemplate
-import org.acasictf.ctf.operator.provisioner.KubernetesProvisioner
+import org.acasictf.ctf.operator.provisioner.kubernetes.KubernetesProvisioner
 import org.acasictf.ctf.proto.Common
 import org.acasictf.ctf.proto.Ctfoperator.*
 import org.acasictf.ctf.proto.CtfoperatorInternal.Environment
@@ -108,9 +108,7 @@ EnvironmentProvisioningServiceCoroutineImplBase() {
         logger.info("Deleting persistent environment $envIdStr")
         envDao.remove(request.environmentId)
 
-        return@managed StopEnvironmentResponse.newBuilder()
-            .apply {
-            }.build()
+        return@managed StopEnvironmentResponse.newBuilder().build()
     }
 
     override suspend fun uploadEnvironmentTemplate(request: UploadEnvironmentTemplateRequest)
