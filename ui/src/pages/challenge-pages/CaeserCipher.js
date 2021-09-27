@@ -67,7 +67,7 @@ export default function CaeserCipher() {
 	const {data, error, loading} = temp;
 	console.log(data);
 
-	//Testing git commit
+	//Testing git commit for automatically add initials
 
 	//LEARN THIS FOR FUTURE WORK:
 	//USESTATE HOOK WILL TRIGGER WHEN THE ASSIGNED FUNCTION IS CALL (EXAMPLE BELOW IS SETMARKDOWN/ SETPATH)
