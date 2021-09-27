@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import "../../style/ChallengeSet1.css";
 import * as core from "@material-ui/core";
 import {useGetAPI,useSetAPI} from '../../APIContext';
@@ -49,20 +49,24 @@ TabPanel.propTypes = {
 };	
 
 export default function CaeserCipher() {
+	//value variable control which is the chosen/selected tab in appbar
 	const [value, setValue] = React.useState(0);
 	const handleChange = (events, newValue) => {
 		setValue(newValue);
 		setPath(ChallengeSet1Data[newValue].itembox1);
 	};
 
+	//ERROR WITH THIS, NOT ABLE TO FETCH AFTER THE FIRST FETCH.
+	//ANYTHING COMES AFTER THE FIRST FETCH IS THE SAME AS THE FIRST
+	//APIpath is updatable
+	let APIpath =useGetAPI();	
 	// API POST REQUEST TO THE SERVER
-	// const { data, error, loading } = useFetchAuth(
-	//   "api/user/environments",
-	//   "POST",
-	//   { challengeSetSlug: "ciphers", challengeSlug: "letter-to-number" }
-	// );
-	console.log("testing");
-	console.log(useGetAPI());
+	// when this page in activate (during display), fetch will constantly load
+	console.log("Current API path is: ", APIpath);
+	const temp = useFetchAuth( APIpath);
+	const {data, error, loading} = temp;
+	console.log(data);
+
 
 
 	//LEARN THIS FOR FUTURE WORK:
@@ -80,11 +84,14 @@ export default function CaeserCipher() {
 	}, [path]);
 	// if (loading) return <Spinner />;
 	// if (error) return <GenericErrorPage />;
-	//this is to set first frim rendering for mardown. Without this, it will redner html on first run
+
+	//this is to set first time rendering for mardown. Without this, it will redner html on first run
 	if (!first) {
 		setPath(ChallengeSet1Data[0].itembox1);
 		setfirst(first + 1);
 	}
+
+
 	return (
 		<div style={{ display: "flex", flexDirection: "row", position: "fixed" }}>
 			<div className="ChallengeSet1">

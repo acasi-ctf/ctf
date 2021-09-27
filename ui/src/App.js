@@ -21,7 +21,11 @@ import WebStructure from "./pages/challenge-pages/WebStructure";
 import Selection from "./pages/Selection";
 
 /***************************************************************************************************************************************/
-import {APIPathProvider} from "./APIContext.js";
+//this is for set + get API path globally
+import {APIPathProvider} from "./APIContext";
+
+
+
 
 export default function App() {
 	const { isAuthenticated, getAccessTokenSilently } = useAuth0();
