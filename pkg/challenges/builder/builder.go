@@ -98,6 +98,40 @@ func readAndValidateChallenge(challengeDirPath string) (*model.Challenge, error)
 	}
 
 	// TODO: Validate provisioner
+	if c.Provisioner.Type == "kubernetes" {
+		err = validateKubernetesProvisioner(challengeDirPath)
+		if err != nil {
+			return nil, err
+		}
+	}
 
 	return c, nil
+}
+
+func validateKubernetesProvisioner(challengeDirPath string) error {
+	jsonPath := path.Join(challengeDirPath, "kubernetes.json")
+
+	file, err := os.Open(jsonPath)
+	if err != nil {
+		return err
+	}
+	defer file.Close()
+
+	bytes, err := ioutil.ReadAll(file)
+	if err != nil {
+		return err
+	}
+
+	msgs, err := validator.ValidateKubernetesProvisioner(bytes)
+	if err != nil {
+		return err
+	}
+	if len(msgs) > 0 {
+		for _, msg := range msgs {
+			fmt.Printf("Kubernetes Provisioner Error: %s\n", msg)
+		}
+		return errors.New("provisioner failed to validate")
+	}
+
+	return nil
 }
