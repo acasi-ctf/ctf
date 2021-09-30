@@ -1,6 +1,5 @@
 package org.acasictf.ctf.operator.service
 
-import io.fabric8.kubernetes.api.model.ObjectMeta
 import io.fabric8.kubernetes.api.model.PodBuilder
 import io.fabric8.kubernetes.api.model.PodListBuilder
 import io.fabric8.kubernetes.api.model.PodStatus

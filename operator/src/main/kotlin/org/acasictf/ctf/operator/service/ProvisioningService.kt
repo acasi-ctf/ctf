@@ -74,7 +74,7 @@ EnvironmentProvisioningServiceCoroutineImplBase() {
         } ?: return@managed failureResponse
 
         // TODO: Assuming Kubernetes-only.
-        val prov = KubernetesProvisioner(kube, envIdStr, ct)
+        val prov = KubernetesProvisioner(envIdStr, kube)
         try {
             prov.provision(c)
         } catch (e: Exception) {
