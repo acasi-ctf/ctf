@@ -47,8 +47,14 @@ internal class EnvListenerTest {
         envListener = spyk(el)
 
         envCreator = mockk(relaxed = true)
+    }
 
+    private fun mockCreator() {
         every { envListener["creator"](any<Environment>()) } returns envCreator
+    }
+
+    private fun mockCreatorNull() {
+        every { envListener["creator"](any<Environment>()) } returns null
     }
 
     @AfterTest
@@ -58,6 +64,8 @@ internal class EnvListenerTest {
 
     @Test
     fun onAdd() {
+        mockCreator()
+
         envListener.onAdd(env)
 
         verify { envCreator.create(true) }
@@ -65,7 +73,18 @@ internal class EnvListenerTest {
     }
 
     @Test
+    fun onAddFail() {
+        mockCreatorNull()
+
+        envListener.onAdd(env)
+
+        verify(exactly = 0) { envCreator.create(true) }
+    }
+
+    @Test
     fun onUpdateEquals() {
+        mockCreator()
+
         envListener.onUpdate(env, env)
 
         verify(exactly = 0) { envCreator.create(true) }
@@ -74,6 +93,8 @@ internal class EnvListenerTest {
 
     @Test
     fun onUpdateNotEquals() {
+        mockCreator()
+
         envListener.onUpdate(env, env2)
 
         verify { envCreator.create(true) }
@@ -81,10 +102,30 @@ internal class EnvListenerTest {
     }
 
     @Test
+    fun onUpdateFail() {
+        mockCreatorNull()
+
+        envListener.onUpdate(env, env2)
+
+        verify(exactly = 0) { envCreator.create(true) }
+    }
+
+    @Test
     fun onDelete() {
+        mockCreator()
+
         envListener.onDelete(env, false)
 
         verify { envCreator.delete(true) }
         verify { envCreator.delete(false) }
+    }
+
+    @Test
+    fun onDeleteFail() {
+        mockCreatorNull()
+
+        envListener.onDelete(env, false)
+
+        verify(exactly = 0) { envCreator.delete(true) }
     }
 }
