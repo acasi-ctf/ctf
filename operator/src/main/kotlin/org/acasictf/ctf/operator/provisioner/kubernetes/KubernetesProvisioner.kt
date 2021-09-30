@@ -23,7 +23,7 @@ class KubernetesProvisioner(
                 Kubernetes.serializer()
             ) ?: throw Exception("Failed to read challenge provisioner config")
 
-        val pods = provisioner.manifests.pods.mapIndexed { i, it ->
+        /*val pods = provisioner.manifests.pods.mapIndexed { i, it ->
             val podFile = challengeTemplate.readChallengeFile(c.slug, it)
             val pod = kube.pods().inNamespace(kubeNamespace)
                 .load(podFile.getInputStream()).get()
@@ -67,6 +67,6 @@ class KubernetesProvisioner(
 
         pods.forEach {
             kube.pods().inNamespace(kubeNamespace).create(it)
-        }
+        }*/
     }
 }

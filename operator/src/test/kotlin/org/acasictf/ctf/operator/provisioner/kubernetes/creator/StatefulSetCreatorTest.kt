@@ -1,5 +1,6 @@
 package org.acasictf.ctf.operator.provisioner.kubernetes.creator
 
+import io.fabric8.kubernetes.api.model.EnvVar
 import io.mockk.mockkObject
 import io.mockk.unmockkObject
 import org.acasictf.ctf.operator.meta
@@ -59,5 +60,6 @@ internal class StatefulSetCreatorTest {
     val c = t.spec.containers[0]
     assertEquals("nginx", c.name)
     assertEquals("nginx:latest", c.image)
+    assertEquals(listOf(EnvVar("ENV_VAR", "VALUE", null)), c.env)
   }
 }

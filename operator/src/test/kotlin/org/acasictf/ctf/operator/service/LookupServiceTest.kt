@@ -1,5 +1,6 @@
 package org.acasictf.ctf.operator.service
 
+import io.fabric8.kubernetes.api.model.ObjectMeta
 import io.fabric8.kubernetes.api.model.PodBuilder
 import io.fabric8.kubernetes.api.model.PodListBuilder
 import io.fabric8.kubernetes.api.model.PodStatus
@@ -9,6 +10,8 @@ import io.mockk.impl.annotations.MockK
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
 import org.acasictf.ctf.operator.generateProtoUuid
+import org.acasictf.ctf.operator.kubeNamespace
+import org.acasictf.ctf.operator.meta
 import org.acasictf.ctf.operator.persistence.EnvironmentDao
 import org.acasictf.ctf.operator.testutil.assertFailsBlocking
 import org.acasictf.ctf.operator.testutil.k8sExpect
@@ -39,6 +42,9 @@ class LookupServiceTest {
         val envId = generateProtoUuid()
 
         val pod = PodBuilder()
+            .withMetadata(meta {
+                namespace = kubeNamespace
+            })
             .withStatus(
                 PodStatus().apply {
                     podIP = sshHost

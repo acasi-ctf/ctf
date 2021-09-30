@@ -8,7 +8,6 @@ import io.mockk.unmockkObject
 import org.acasictf.ctf.operator.*
 import org.acasictf.ctf.operator.model.Challenge
 import org.acasictf.ctf.operator.model.Kubernetes
-import org.acasictf.ctf.operator.model.Manifests
 import org.acasictf.ctf.operator.persistence.ChallengeTemplate
 import org.acasictf.ctf.operator.persistence.GlobalConfig
 import org.acasictf.ctf.operator.persistence.ResourceChallengeTemplate
@@ -64,11 +63,8 @@ class KubernetesProvisionerTest {
                 Kubernetes.serializer()
             )
         } returns Kubernetes(
-            Manifests(
-                listOf(
-                    "test.yaml"
-                )
-            )
+            "test.yaml",
+            "v1alpha1"
         )
     }
 

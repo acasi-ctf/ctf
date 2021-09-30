@@ -1,30 +1,30 @@
-apiVersion: v1
-kind: Pod
-metadata:
-  name: dvwa
-  labels:
-    ctf-env-label: dvwa
+apiVersion: ctf.acasi.info/v1alpha1
+kind: EnvTemplate
 spec:
-  containers:
-    - name: dvwa
-      image: cytopia/dvwa:php-7.2
-      env:
-        - name: MYSQL_HOSTNAME
-          value: 127.0.0.1
-        - name: MYSQL_DATABASE
-          value: dvwa
-        - name: MYSQL_USERNAME
-          value: dvwa
-        - name: MYSQL_PASSWORD
-          value: dvwa1234
-    - name: mysql
-      image: mariadb:10.4
-      env:
-        - name: MYSQL_DATABASE
-          value: dvwa
-        - name: MYSQL_USER
-          value: dvwa
-        - name: MYSQL_PASSWORD
-          value: dvwa1234
-        - name: MYSQL_RANDOM_ROOT_PASSWORD
-          value: 'true'
+  pods:
+    - metadata:
+        name: dvwa
+      spec:
+        containers:
+          - name: dvwa
+            image: cytopia/dvwa:php-7.2
+            env:
+              - name: MYSQL_HOSTNAME
+                value: 127.0.0.1
+              - name: MYSQL_DATABASE
+                value: dvwa
+              - name: MYSQL_USERNAME
+                value: dvwa
+              - name: MYSQL_PASSWORD
+                value: dvwa1234
+          - name: mysql
+            image: mariadb:10.4
+            env:
+              - name: MYSQL_DATABASE
+                value: dvwa
+              - name: MYSQL_USER
+                value: dvwa
+              - name: MYSQL_PASSWORD
+                value: dvwa1234
+              - name: MYSQL_RANDOM_ROOT_PASSWORD
+                value: 'true'

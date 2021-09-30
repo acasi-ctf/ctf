@@ -1,4 +1,5 @@
 import json
+import os
 from functools import wraps
 from urllib.request import urlopen
 
@@ -10,6 +11,10 @@ from frontend.autherror import AuthError
 AUTH0_DOMAIN = "acasictf-dev-lg.us.auth0.com"
 API_AUDIENCE = "https://ctf.gorence.io/api"
 ALGORITHMS = ["RS256"]
+AUTH_DISABLED = os.getenv("AUTH_DISABLE") == "true"
+
+if AUTH_DISABLED:
+    print("Warning: auth is disabled!")
 
 
 def requires_scope(required_scope):
@@ -17,6 +22,8 @@ def requires_scope(required_scope):
     Args:
         required_scope (str): The scope required to access the resource
     """
+    if AUTH_DISABLED:
+        return True
     token = get_token_auth_header()
     unverified_claims = jwt.get_unverified_claims(token)
     if unverified_claims.get("scope"):
@@ -33,6 +40,8 @@ def requires_permission(required_permission):
     Args:
         required_permission (str): The permission required to access the resource
     """
+    if AUTH_DISABLED:
+        return True
     token = get_token_auth_header()
     unverified_claims = jwt.get_unverified_claims(token)
     if unverified_claims.get("permissions"):
@@ -55,6 +64,8 @@ def requires_permission_raise(required_permission):
 
 
 def get_user_id():
+    if AUTH_DISABLED:
+        return "82a74aeb-aeb4-465c-a014-d097ee346d63"
     token = get_token_auth_header()
     unverified_claims = jwt.get_unverified_claims(token)
     if unverified_claims.get("http://acasictf.org/user-id"):
@@ -109,6 +120,8 @@ def get_token_auth_header():
 
 def requires_auth(f):
     """Determines if the Access Token is valid"""
+    if AUTH_DISABLED:
+        return f
 
     @wraps(f)
     def decorated(*args, **kwargs):
@@ -144,7 +157,7 @@ def requires_auth(f):
                     {
                         "code": "invalid_claims",
                         "description": "incorrect claims,"
-                        "please check the audience and issuer",
+                                       "please check the audience and issuer",
                     },
                     401,
                 )

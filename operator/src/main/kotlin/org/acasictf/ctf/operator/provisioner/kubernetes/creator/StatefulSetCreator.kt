@@ -1,5 +1,6 @@
 package org.acasictf.ctf.operator.provisioner.kubernetes.creator
 
+import io.fabric8.kubernetes.api.model.EnvVar
 import io.fabric8.kubernetes.api.model.apps.StatefulSet
 import io.fabric8.kubernetes.api.model.apps.StatefulSetList
 import io.fabric8.kubernetes.client.dsl.MixedOperation
@@ -35,6 +36,12 @@ class StatefulSetCreator(
                             container {
                                 name = c.name
                                 image = c.image
+                                env = c.env.map { ev ->
+                                    EnvVar().apply {
+                                        name = ev.name
+                                        value = ev.value
+                                    }
+                                }
                             }
                         }
                     }

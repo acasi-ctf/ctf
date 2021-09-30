@@ -96,6 +96,7 @@ class EnvTemplatePodSpec {
 class EnvTemplatePodSpecContainer {
     lateinit var name: String
     lateinit var image: String
+    var env: List<EnvTemplatePodSpecContainerEnv> = listOf()
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -105,13 +106,38 @@ class EnvTemplatePodSpecContainer {
 
         if (name != other.name) return false
         if (image != other.image) return false
+        if (env != other.env) return false
 
         return true
     }
 
     override fun hashCode(): Int {
-        var result = name?.hashCode() ?: 0
+        var result = name.hashCode()
         result = 31 * result + image.hashCode()
+        result = 31 * result + env.hashCode()
+        return result
+    }
+}
+
+class EnvTemplatePodSpecContainerEnv {
+    lateinit var name: String
+    lateinit var value: String
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as EnvTemplatePodSpecContainerEnv
+
+        if (name != other.name) return false
+        if (value != other.value) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = name.hashCode()
+        result = 31 * result + value.hashCode()
         return result
     }
 }

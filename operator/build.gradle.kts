@@ -32,8 +32,8 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.1.0")
 
-    implementation("io.fabric8:kubernetes-client:5.3.1")
-    testImplementation("io.fabric8:kubernetes-server-mock:5.3.1")
+    implementation("io.fabric8:kubernetes-client:5.8.0")
+    testImplementation("io.fabric8:kubernetes-server-mock:5.8.0")
 
     implementation("org.mapdb:mapdb:3.0.8")
 
