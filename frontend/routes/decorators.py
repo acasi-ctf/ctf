@@ -157,7 +157,7 @@ def requires_auth(f):
                     {
                         "code": "invalid_claims",
                         "description": "incorrect claims,"
-                                       "please check the audience and issuer",
+                        "please check the audience and issuer",
                     },
                     401,
                 )
