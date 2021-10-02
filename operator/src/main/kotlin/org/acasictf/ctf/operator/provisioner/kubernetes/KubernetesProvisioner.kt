@@ -20,7 +20,7 @@ class KubernetesProvisioner(
     override fun provision(c: Challenge) {
         val env = Environment().apply {
             metadata = meta {
-                name = envId
+                name = "chl-$envId"
             }
             spec = EnvironmentSpec().apply {
                 templateName = c.id

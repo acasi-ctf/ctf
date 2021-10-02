@@ -87,7 +87,7 @@ EnvironmentProvisioningServiceCoroutineImplBase() {
         return@managed StartEnvironmentResponse.newBuilder().apply {
             successBuilder.apply {
                 environmentIdBuilder.apply {
-                    contents = "chl-$envIdStr"
+                    contents = envIdStr
                 }
             }
         }.build()
