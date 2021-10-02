@@ -8,7 +8,7 @@ plugins {
     kotlin("jvm") version "1.5.31"
     kotlin("plugin.serialization") version "1.5.31"
     jacoco
-    id("com.google.protobuf") version "0.8.17"
+    id("com.google.protobuf") version "0.8.16"
     id("idea")
 }
 
@@ -102,6 +102,10 @@ protobuf {
 
 tasks.test {
     finalizedBy(tasks.jacocoTestReport)
+}
+
+jacoco {
+    toolVersion = "0.8.7"
 }
 
 tasks.jacocoTestReport {
