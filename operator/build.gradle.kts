@@ -5,10 +5,10 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     application
     `java-library`
-    kotlin("jvm") version "1.4.32"
-    kotlin("plugin.serialization") version "1.4.32"
+    kotlin("jvm") version "1.5.31"
+    kotlin("plugin.serialization") version "1.5.31"
     jacoco
-    id("com.google.protobuf") version "0.8.16"
+    id("com.google.protobuf") version "0.8.17"
     id("idea")
 }
 
@@ -25,12 +25,12 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib"))
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
 
     implementation("io.grpc:grpc-kotlin-stub:1.0.0")
     runtimeOnly("io.grpc:grpc-netty:1.37.0")
 
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.1.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.0")
 
     implementation("io.fabric8:kubernetes-client:5.8.0")
     testImplementation("io.fabric8:kubernetes-server-mock:5.8.0")
@@ -39,13 +39,13 @@ dependencies {
 
     implementation("javax.annotation:javax.annotation-api:1.3.2")
 
-    implementation("org.slf4j:slf4j-simple:1.7.29")
-    implementation("io.github.microutils:kotlin-logging-jvm:2.0.6")
+    implementation("org.slf4j:slf4j-simple:1.7.32")
+    implementation("io.github.microutils:kotlin-logging-jvm:2.0.11")
 
     testImplementation(kotlin("test-common"))
     testImplementation(kotlin("test-annotations-common"))
     testImplementation(kotlin("test-junit"))
-    testImplementation("io.mockk:mockk:1.11.0")
+    testImplementation("io.mockk:mockk:1.12.0")
 }
 
 java {
