@@ -78,14 +78,17 @@ export default function ChallengeBar(props) {
     return (
         <div className={classes.root}>
             <AppBar position="static">
-                <Toolbar>
-                    <Typography className={classes.title} variant="h6" noWrap>
-                        {bannerTitle}
-                    </Typography>
+                <div className="container">
+                    <Toolbar>
+                        <Typography className={classes.title} variant="h6" noWrap>
+                            {/* {bannerTitle} */}
+                            <img src="logo.svg" alt="logo"/>
+                        </Typography>
 
-                    {/* the bellow is for credential login and survey button */}
-                    <AppBarActions/>
-                </Toolbar>
+                        {/* the bellow is for credential login and survey button */}
+                        <AppBarActions/>
+                    </Toolbar>
+                </div>
             </AppBar>
         </div>
     );

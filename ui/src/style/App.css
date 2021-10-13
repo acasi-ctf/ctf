@@ -1,7 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import 'bootstrap/dist/css/bootstrap.min.css';
 *{
     padding: 0;
     margin: 0;
-    font-family: 'Lato', sans-serif;
+    /* font-family: 'Lato', sans-serif; */
+    font-family: 'Poppins', sans-serif;
 }
 
 .App{
@@ -28,3 +32,330 @@
 
 
 
+.MuiAppBar-colorPrimary{
+    background: #1176ae !important;
+    box-shadow: none !important;
+}
+.MuiToolbar-regular{
+    min-height: 97px !important;
+}
+.container {
+    max-width: 1593px;
+
+}
+.mt-30 {
+    margin-top: 30px;
+}
+
+.mainContent {
+    display: flex;
+}
+
+.grayCol {
+    padding: 37px 34px 37px 38px;
+    background: #f5f1f2;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.mainContent .grayCol {
+    padding-bottom: 13px;
+}
+.signinCol.grayCol {
+    padding: 23px 50px 28px;
+}
+.signinCol.grayCol p.rememberMeCol {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: 0em;
+    color: #444;
+}
+.signinCol.grayCol .butn {
+    height: 50px;
+    border-radius: 5px;
+    width: 100%;
+    border: none;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 28px;
+    letter-spacing: 0em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Roboto', sans-serif;
+}
+.signinCol.grayCol .butn img {
+    margin-right: 10px;
+}
+.primaryBtn {
+    background: #1176AE;
+    color: #fff;
+}
+.secondaryBtn {
+    color: #444;
+    background: #DAD8D8;
+}
+.signinCol h2 {
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 42px;
+    letter-spacing: 0em;
+    color: #1176AE;
+    text-transform: uppercase;
+    margin-bottom: 7px;
+}
+.signinCol.grayCol p.loginAction {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+.signinCol.grayCol p.loginAction a {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 23px;
+    letter-spacing: 0em;
+    color: #1176AE;
+    text-decoration: none;
+}
+.inputControl input {
+    height: 50px;
+    width: 100%;
+    background: #FFFFFF;
+    border: 1px solid #C4C4C4;
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    padding: 17px;
+    margin-bottom: 20px;
+}
+.mainContent h2 {
+    font-size: 25px;
+    font-weight: 500;
+    line-height: 38px;
+    color: #444444;
+    margin-bottom: 8px;
+}
+.mainContent p {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 35px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #444444;
+}
+.actionLink {
+    display: flex;
+    list-style: none;
+    margin: auto 0 3px 13px;
+}
+.actionLink li.mr77 {
+    margin-right: 77px;
+}
+.actionLink li a {
+    padding: 0;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 30px;
+    letter-spacing: 0em;
+    color: #1176AE;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.challenges h3 {
+    font-size: 25px;
+    font-weight: 500;
+    line-height: 38px;
+    letter-spacing: 0em;
+    color: #444;
+}
+.challengesCol {
+    background: #1176ae;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+.challengesCol .wrapper {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.challengesCol .card {
+    padding: 20px;
+    background: #fff;
+    margin: 26px 0;
+    border:none;
+    border-radius: 0;
+}
+.challengesCol .card p{
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 28px;
+    letter-spacing: 0em;
+    color:#444;
+}
+.challengesCol .card img {
+    max-width: 100%;
+}
+.cardAction {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.cardAction a {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 30px;
+    letter-spacing: 0em;
+    color: #1176AE;
+}
+.bubbleBtn {
+    border: none;
+    background: transparent;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.bubbleBtn:hover {
+    opacity: 0.9;
+}
+.bubbleBtn:focus, .bubbleBtn:active {
+    opacity: 1;
+}
+.challengesWrap h3 {
+    font-size: 25px;
+    font-weight: 500;
+    line-height: 38px;
+    letter-spacing: 0em;
+    margin: 53px 0 10px;
+    color: #444;
+}
+
+/* footer */
+.footer {
+    background: #fff;
+    padding: 28px 0;
+}
+ul.footerNav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+}
+ul.footerNav li {
+    margin: 0 31px 0 30px;
+}
+ul.footerNav li a {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 21px;
+    color: #444;
+    text-transform: uppercase;
+}
+.footer p, .footer .container ul li a {
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    color: #444444;
+    margin: 0;
+}
+.footer .container ul {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0;
+}
+.footer .container ul li {
+    list-style: none
+}
+.footer .container ul li a {
+    text-decoration: none;
+}
+.ml-6 {
+    margin-left: 20px;
+}
+.footer .container ul.socialNav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+.footer .container ul.socialNav li{
+    margin: 0 12px;
+}
+
+@media all and (max-width:1199px) {
+    .grayCol,
+    .signinCol.grayCol{
+        padding: 20px;
+    }
+    .challengesCol{
+        padding: 30px 0;
+    }
+    .challengesCol .card{margin:0 0 30px;}
+    .signinCol h2,
+    .mainContent h2{
+        font-size: 22px;
+    }
+    .actionLink li.mr77{
+        margin-right: 18px;
+    }
+    .actionLink{
+        margin: auto 0 0 ;
+    }
+    .cardAction a,
+    .actionLink li a{
+        font-size: 18px;
+    }
+    .challengesWrap h3{
+        margin: 25px 0 15px;
+        font-size: 20px;
+    }
+    .challengesCol .card{
+        padding: 15px;
+    }
+    .challengesCol .card p{
+        font-size: 14px;
+    }
+    .grayCol, .signinCol.grayCol{
+        height: 100%;
+    }
+}
+@media all and (max-width:767px) {
+    .mainContent{
+        margin-bottom: 16px;
+    }
+    .footer{
+        padding: 15px 0;
+    }
+    ul.footerNav{
+        margin-bottom: 5px;
+    }
+    ul.footerNav li{
+        margin: 0 4px;
+    }
+    ul.footerNav li a{
+        font-weight: 500;
+    }
+    .ml-6{
+        margin-left: 5px;
+    }
+    .footer .container ul{
+        justify-content: center;
+    }
+    .footer .container ul.socialNav{
+        margin: 10px 0;
+    }
+    .footer .container ul.socialNav li{margin: 0 5px;}
+    .footer p, .footer .container ul li a{text-align: center;}
+    .mt-30{
+        margin-top: 10px;
+    }
+    .challengesCol .card .bubbleBtn img{
+        max-width: 30px;
+    }
+}
