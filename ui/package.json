@@ -67,6 +67,6 @@
   "devDependencies": {
     "prop-types": "^15.7.2"
   },
-  "proxy": "https://acasi.gorence.io"
+  "proxy": "https://ctf.cyberliteracyforall.com/"
 }
 
