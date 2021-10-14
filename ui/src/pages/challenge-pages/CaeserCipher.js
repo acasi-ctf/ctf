@@ -52,37 +52,31 @@ TabPanel.propTypes = {
 export default function CaeserCipher() {
 	//value variable control which is the chosen/selected tab in appbar
 	const [value, setValue] = React.useState(0);
-	const handleChange = (events, newValue) => {
+	const handleChange = (event, newValue) => {
 		setValue(newValue);
-		setPath(ChallengeSet1Data[newValue].itembox1);
+		const temp=`/api/challenge-sets/${csSlug}/challenges/${cSlug}`+'/'+fetchData.documentation[value].path;
+		console.log(temp)
+		setPath(temp);
 	};
 
 	const [txt, setMarkdown] = useState("");
 	const [path, setPath] = useState("");
-	const [first, setfirst] = useState(0);
-
+	// const [first, setfirst] = useState(0);
+	const [fetchData, setData] = useState(0);
 	let {csSlug, cSlug} = useParams();
 
+	console.log('testing');
 	console.log(`${csSlug}-${cSlug}`);
-
-	//ERROR WITH THIS, NOT ABLE TO FETCH AFTER THE FIRST FETCH.
-	//ANYTHING COMES AFTER THE FIRST FETCH IS THE SAME AS THE FIRST
-	//APIpath is updatable
-	//let APIpath = useGetAPI();
-	// API POST REQUEST TO THE SERVER
-	// when this page in activate (during display), fetch will constantly load
-	//console.log("Current API path is: ", APIpath);
+	
 	useEffect(() => {
 		fetch(`/api/challenge-sets/${csSlug}/challenges/${cSlug}`)
 			.then((res) => res.json())
-			.then((json) => console.log(json));
+			.then((json) => {console.log(json);
+							setData(json);
+							setValue(0);});
 	}, [csSlug, cSlug]);
 
 	//Testing git commit for automatically add initials
-
-	//LEARN THIS FOR FUTURE WORK:
-	//USESTATE HOOK WILL TRIGGER WHEN THE ASSIGNED FUNCTION IS CALL (EXAMPLE BELOW IS SETMARKDOWN/ SETPATH)
-	//USEEFFECT HOOK WILL TRIGGER THE WHEN THE VARIABLE AT THE [] AT BOTTOM IS UPDATE. IN THIS CASE IS "PATH VARIABLE"
 	useEffect(() => {
 		fetch(path)
 		.then((res) => res.text())
@@ -90,24 +84,25 @@ export default function CaeserCipher() {
 			setMarkdown(text);
 		});
 	}, [path]);
+
 	// if (loading) return <Spinner />;
 	// if (error) return <GenericErrorPage />;
 
 	//this is to set first time rendering for mardown. Without this, it will redner html on first run
-	if (!first) {
-		setPath(ChallengeSet1Data[0].itembox1);
-		setfirst(first + 1);
-	}
+	// if (!first) {
+	// 	setPath(ChallengeSet1Data[0].itembox1);
+	// 	setfirst(first + 1);
+	// }
 
 	return (
 		<div style={{ display: "flex", flexDirection: "row", position: "fixed" }}>
 			<div className="ChallengeSet1">
 				<core.AppBar position="static" color="default">
-					<core.Tabs value={value} onChange={handleChange} indicatorColor="primary" 
+					<core.Tabs value={value}indicatorColor="primary" onChange={handleChange}
 						textColor="primary" variant="scrollable" scrollButtons="auto" aria-label="simple auto tabs example" >
-						{ChallengeSet1Data.map((item, index) => {
+						{fetchData && fetchData.documentation.map((item, index) => {
 							return (
-								<core.Tab key={index} label={item.label} {...a11yProps(item.index)} />
+								<core.Tab key={index} label={item.name}  {...a11yProps(item.index)} />
 							);
 						})}
 					</core.Tabs>
