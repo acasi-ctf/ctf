@@ -54,8 +54,8 @@ export default function CaeserCipher() {
 	const [value, setValue] = React.useState(0);
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
-		const temp=`/api/challenge-sets/${csSlug}/challenges/${cSlug}`+'/'+fetchData.documentation[value].path;
-		console.log(temp)
+		const temp=`/api/challenge-sets/${csSlug}/challenges/${cSlug}`+'/docs/'+fetchData.documentation[newValue].path;
+		// console.log(temp);
 		setPath(temp);
 	};
 
@@ -63,20 +63,28 @@ export default function CaeserCipher() {
 	const [path, setPath] = useState("");
 	// const [first, setfirst] = useState(0);
 	const [fetchData, setData] = useState(0);
+
+	
 	let {csSlug, cSlug} = useParams();
 
-	console.log('testing');
-	console.log(`${csSlug}-${cSlug}`);
-	
+	// console.log('testing');
+	// console.log(`${csSlug}-${cSlug}`);
 	useEffect(() => {
 		fetch(`/api/challenge-sets/${csSlug}/challenges/${cSlug}`)
 			.then((res) => res.json())
-			.then((json) => {console.log(json);
+			.then((json) => {
+							// console.log(json);
 							setData(json);
-							setValue(0);});
+							setValue(0);
+							const temp=`/api/challenge-sets/${csSlug}/challenges/${cSlug}`+'/docs/'+json.documentation[0].path;
+							// console.log(temp);
+							setPath(temp)	
+						});
 	}, [csSlug, cSlug]);
 
 	//Testing git commit for automatically add initials
+
+	// this useEffect gets triggered when path hook is updated
 	useEffect(() => {
 		fetch(path)
 		.then((res) => res.text())
