@@ -54,7 +54,7 @@ export default function CaeserCipher() {
 	const [value, setValue] = React.useState(0);
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
-		const temp=`/api/challenge-sets/${csSlug}/challenges/${cSlug}`+'/docs/'+fetchData.documentation[newValue].path;
+		const temp=`/api/challenge-sets/${csSlug}/challenges/${cSlug}`.toString()+'/docs/'+fetchData.documentation[newValue].path;
 		// console.log(temp);
 		setPath(temp);
 	};
@@ -64,7 +64,7 @@ export default function CaeserCipher() {
 	// const [first, setfirst] = useState(0);
 	const [fetchData, setData] = useState(0);
 
-	
+
 	let {csSlug, cSlug} = useParams();
 
 	// console.log('testing');
@@ -76,7 +76,7 @@ export default function CaeserCipher() {
 							// console.log(json);
 							setData(json);
 							setValue(0);
-							const temp=`/api/challenge-sets/${csSlug}/challenges/${cSlug}`+'/docs/'+json.documentation[0].path;
+							const temp=`/api/challenge-sets/${csSlug}/challenges/${cSlug}`.toString()+'/docs/'+json.documentation[0].path;
 							// console.log(temp);
 							setPath(temp)	
 						});

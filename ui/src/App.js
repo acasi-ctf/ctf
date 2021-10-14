@@ -38,42 +38,40 @@ export default function App() {
 
 	return (
 		<>
-			<APIPathProvider>
-				<Router>
-					<div className="App">
-						<MenuBar />
-						<div className="contentBackground">
-							<div className="Content">
-								<Switch>
-									<Route path="/" exact component={Home} />
-									<Route path="/LeaderBoard" component={leaderboard} />
-									<Route path="/selection" component={Selection} />
+			<Router>
+				<div className="App">
+					<MenuBar />
+					<div className="contentBackground">
+						<div className="Content">
+							<Switch>
+								<Route path="/" exact component={Home} />
+								<Route path="/LeaderBoard" component={leaderboard} />
+								<Route path="/selection" component={Selection} />
 
-									{/* Testing on retrieving data throught GET API from server */}
-									<Route path="/play/:csSlug/:cSlug">
-										<CaeserCipher />
-									</Route>
-
-
-									{/* <Route path="/letter-to-number" component={LetterToNumber} />
-									<Route path="/morse-code" component={MorseCode} />
-									<Route path="/reverse-cipher" component={ReverseCipher} /> */}
+								{/* Testing on retrieving data throught GET API from server */}
+								<Route path="/play/:csSlug/:cSlug">
+									<CaeserCipher />
+								</Route>
 
 
-									<Route path="/comprehensive-challenge" component={ComprehensiveChallenge} />
-									<Route path="/directory-traversal" component={DirectoryTraversal} />
+								{/* <Route path="/letter-to-number" component={LetterToNumber} />
+								<Route path="/morse-code" component={MorseCode} />
+								<Route path="/reverse-cipher" component={ReverseCipher} /> */}
 
 
-									{/* <Route path="/web-structure" component={WebStructure} />
-									<Route path="/challenge_1" component={CaeserCipher} />
-									<Route path="/set/:cs_slug" component={ChallengeSetPage} />
-									<Route path="/env/:env_id" component={EnvironmentPage} /> */}
-								</Switch>
-							</div>
+								<Route path="/comprehensive-challenge" component={ComprehensiveChallenge} />
+								<Route path="/directory-traversal" component={DirectoryTraversal} />
+
+
+								{/* <Route path="/web-structure" component={WebStructure} />
+								<Route path="/challenge_1" component={CaeserCipher} />
+								<Route path="/set/:cs_slug" component={ChallengeSetPage} />
+								<Route path="/env/:env_id" component={EnvironmentPage} /> */}
+							</Switch>
 						</div>
 					</div>
-				</Router>
-			</APIPathProvider>
+				</div>
+			</Router>
 		</>
 	);
 }

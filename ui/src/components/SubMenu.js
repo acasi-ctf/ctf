@@ -24,7 +24,7 @@ export default function SubMenu(props) {
         if(clickSub){
             //submenu item 
             props.changeTitle(title);
-            setAPI(props.path+"/"+set.slug+"/challenges/"+slug);
+            // setAPI(props.path+"/"+set.slug+"/challenges/"+slug);
         }else{
             //menu item
             setSubNav(!subnav);
