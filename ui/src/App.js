@@ -24,9 +24,6 @@ import Selection from "./pages/Selection";
 //this is for set + get API path globally
 import {APIPathProvider} from "./APIContext";
 
-
-
-
 export default function App() {
 	const { isAuthenticated, getAccessTokenSilently } = useAuth0();
 	if (!isAuthenticated)
@@ -53,7 +50,9 @@ export default function App() {
 									<Route path="/selection" component={Selection} />
 
 									{/* Testing on retrieving data throught GET API from server */}
-									<Route path="/page" component={CaeserCipher} />
+									<Route path="/play/:csSlug/:cSlug">
+										<CaeserCipher />
+									</Route>
 
 
 									{/* <Route path="/letter-to-number" component={LetterToNumber} />

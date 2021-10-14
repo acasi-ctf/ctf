@@ -17,6 +17,7 @@ import ReactMarkdown from "react-markdown";
 import useFetchAuth from "../../useFetchAuth";
 import Spinner from "../../components/Spinner";
 import GenericErrorPage from "../error-pages/genericErrorPage";
+import {useParams} from "react-router-dom";
 
 function a11yProps(index) {
 	return {
@@ -56,25 +57,32 @@ export default function CaeserCipher() {
 		setPath(ChallengeSet1Data[newValue].itembox1);
 	};
 
+	const [txt, setMarkdown] = useState("");
+	const [path, setPath] = useState("");
+	const [first, setfirst] = useState(0);
+
+	let {csSlug, cSlug} = useParams();
+
+	console.log(`${csSlug}-${cSlug}`);
+
 	//ERROR WITH THIS, NOT ABLE TO FETCH AFTER THE FIRST FETCH.
 	//ANYTHING COMES AFTER THE FIRST FETCH IS THE SAME AS THE FIRST
 	//APIpath is updatable
-	let APIpath =useGetAPI();	
+	//let APIpath = useGetAPI();
 	// API POST REQUEST TO THE SERVER
 	// when this page in activate (during display), fetch will constantly load
-	console.log("Current API path is: ", APIpath);
-	const temp = useFetchAuth( APIpath);
-	const {data, error, loading} = temp;
-	console.log(data);
+	//console.log("Current API path is: ", APIpath);
+	useEffect(() => {
+		fetch(`/api/challenge-sets/${csSlug}/challenges/${cSlug}`)
+			.then((res) => res.json())
+			.then((json) => console.log(json));
+	}, [csSlug, cSlug]);
 
 	//Testing git commit for automatically add initials
 
 	//LEARN THIS FOR FUTURE WORK:
 	//USESTATE HOOK WILL TRIGGER WHEN THE ASSIGNED FUNCTION IS CALL (EXAMPLE BELOW IS SETMARKDOWN/ SETPATH)
 	//USEEFFECT HOOK WILL TRIGGER THE WHEN THE VARIABLE AT THE [] AT BOTTOM IS UPDATE. IN THIS CASE IS "PATH VARIABLE"
-	const [txt, setMarkdown] = useState("");
-	const [path, setPath] = useState("");
-	const [first, setfirst] = useState(0);
 	useEffect(() => {
 		fetch(path)
 		.then((res) => res.text())
@@ -90,7 +98,6 @@ export default function CaeserCipher() {
 		setPath(ChallengeSet1Data[0].itembox1);
 		setfirst(first + 1);
 	}
-
 
 	return (
 		<div style={{ display: "flex", flexDirection: "row", position: "fixed" }}>

@@ -57,7 +57,7 @@ export default function SubMenu(props) {
                 </Link> 
                 {subnav && data.map((item)=>{
                     return (
-                        <Link to={"/page"} key={item.id} className='subItem' onClick={()=>{showSubmenu(1, item.name, item.slug)}}>
+                        <Link to={`/play/${set.slug}/${item.slug}`} key={item.id} className='subItem' onClick={()=>{showSubmenu(1, item.name, item.slug)}}>
                             <div style={{display:'flex', flexDirection:'row'}}>
                                 <core.ListItemIcon style={{minWidth:'0'}}>{ChallengeIcon}</core.ListItemIcon>
                                 <core.ListItemText style={{marginLeft:'16px', marginRight:'25px'}} 
