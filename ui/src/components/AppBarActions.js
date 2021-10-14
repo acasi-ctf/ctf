@@ -36,10 +36,8 @@ export default function AppBarActions() {
   ) : (
     <>
       <Button
-        variant="contained"
-        color="white"
+      className="d-none"
         disableElevation
-        style={buttonStyle}
         onClick={() => loginWithPopup()}
       >
         Login
@@ -56,34 +54,17 @@ export default function AppBarActions() {
   };
 
   return (
-    <div className="d-flex topNav">
+    <div className="topNav d-flex align-items-start">
 
-      <Navbar  expand="xl">
-        {/* <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand> */}
+      <Navbar expand="lg" className="p-0 flex-fill">
+        <Navbar.Brand href="/home"><img src="logo.svg" alt="logo"/></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto">
+          <Nav className="ml-auto">
             <Nav.Link href="https://wsu.co1.qualtrics.com/jfe/form/SV_88hZcsQMzabAMOq" target="_blank">Report Issue</Nav.Link>
             <Nav.Link href="https://wsu.co1.qualtrics.com/jfe/form/SV_3HSX4XrAlj1L7mu" target="_blank">Anonymous Survey</Nav.Link>
             <Nav.Link onClick={handleClickOpen}>Show environments (Testing Purposes)</Nav.Link>
-            
-              <Dialog
-                maxWidth={"md"}
-                fullWidth={true}
-                open={open}
-                onClose={handleClose}
-              >
-                <DialogContent>
-                  {environments.map((e) => {
-                    return (
-                      <>
-                        <p>{e.id}</p>
-                      </>
-                    );
-                  })}
-                </DialogContent> *
-              </Dialog> 
-            
+            <Nav.Link  onClick={() => loginWithPopup()}>Login</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
@@ -122,7 +103,7 @@ export default function AppBarActions() {
         Show environments (Testing Purposes)
       </Button> */}
 
-      {/* <Dialog
+      <Dialog
         maxWidth={"md"}
         fullWidth={true}
         open={open}
@@ -136,8 +117,8 @@ export default function AppBarActions() {
               </>
             );
           })}
-        </DialogContent> *
-      </Dialog>  */}
+        </DialogContent>
+      </Dialog> 
 
       {authComponent}
     </div>

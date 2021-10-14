@@ -1,26 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import 'bootstrap/dist/css/bootstrap.min.css';
-*{
+* {
     padding: 0;
     margin: 0;
     /* font-family: 'Lato', sans-serif; */
     font-family: 'Poppins', sans-serif;
 }
-
-.App{
+.App {
     display: flex;
 }
-
-.contentBackground{
+.contentBackground {
     display: flex;
     width: 100%;
     height: 100vh;
     /* change the color of the back ground for developing */
     background-color: rgb(255, 255, 255);
 }
-
-.Content{
+.Content {
     margin-left: 10px;
     margin-right: 10px;
     width: 98%;
@@ -29,28 +26,46 @@
     /* change the color of the back ground for developing */
     background-color: rgb(255, 255, 255);
 }
+/* Header and nav */
 
-
-
-.MuiAppBar-colorPrimary{
+.MuiAppBar-colorPrimary {
     background: #1176ae !important;
     box-shadow: none !important;
 }
-.MuiToolbar-regular{
-    min-height: 97px !important;
+.topNav .navbar-toggler {
+    background: #fff;
+    border: none;
+    padding: 2px 5px;
 }
-.container {
-    max-width: 1593px;
+.topNav .navbar-toggler:hover {
+    background: #0e5c87;
+}
+.topNav .navbar-light .navbar-nav .nav-link {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 21px;
+    color: #fff;
+    text-transform: uppercase;
+}
+.topNav {
+    padding: 27px 0 30px;
+}
+.topNav button {
+    color: #fff;
+    padding: .5rem;
+}
+.topNav .navbar-light .navbar-nav .nav-link:hover, .topNav button:hover {
+    background: transparent;
+    text-decoration: underline;
+}
+/* Header and nav */
 
-}
 .mt-30 {
     margin-top: 30px;
 }
-
 .mainContent {
     display: flex;
 }
-
 .grayCol {
     padding: 37px 34px 37px 38px;
     background: #f5f1f2;
@@ -64,7 +79,7 @@
 .signinCol.grayCol {
     padding: 23px 50px 28px;
 }
-.signinCol.grayCol p.rememberMeCol {
+.signinCol.grayCol .rememberMeCol {
     font-size: 14px;
     font-weight: 400;
     line-height: 21px;
@@ -153,10 +168,10 @@
     list-style: none;
     margin: auto 0 3px 13px;
 }
-.actionLink li.mr77 {
+.actionLink .mr77 {
     margin-right: 77px;
 }
-.actionLink li a {
+.actionLink .nav-link {
     padding: 0;
     font-size: 20px;
     font-weight: 500;
@@ -186,25 +201,24 @@
     padding: 20px;
     background: #fff;
     margin: 26px 0;
-    border:none;
+    border: none;
     border-radius: 0;
 }
-.challengesCol .card p{
+.challengesCol .card .card-text {
     font-size: 16px;
     font-weight: 400;
     line-height: 28px;
     letter-spacing: 0em;
-    color:#444;
+    color: #444;
+    margin: 15px 0;
 }
-.challengesCol .card img {
-    max-width: 100%;
-}
+
 .cardAction {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.cardAction a {
+.cardAction .btn-link {
     text-decoration: none;
     text-transform: uppercase;
     font-size: 20px;
@@ -212,18 +226,17 @@
     line-height: 30px;
     letter-spacing: 0em;
     color: #1176AE;
+    padding: 0;
 }
 .bubbleBtn {
     border: none;
     background: transparent;
     margin-left: 10px;
     cursor: pointer;
+    padding: 0;
 }
 .bubbleBtn:hover {
     opacity: 0.9;
-}
-.bubbleBtn:focus, .bubbleBtn:active {
-    opacity: 1;
 }
 .challengesWrap h3 {
     font-size: 25px;
@@ -233,129 +246,184 @@
     margin: 53px 0 10px;
     color: #444;
 }
-
 /* footer */
+
 .footer {
     background: #fff;
     padding: 28px 0;
 }
-ul.footerNav {
+.footerNav {
     display: flex;
     justify-content: center;
     align-items: center;
     list-style: none;
 }
-ul.footerNav li {
+.footerNav .nav-item {
     margin: 0 31px 0 30px;
 }
-ul.footerNav li a {
+.footerNav .nav-link {
     text-decoration: none;
     font-size: 14px;
     font-weight: 600;
     line-height: 21px;
     color: #444;
     text-transform: uppercase;
+    padding: 0;
 }
-.footer p, .footer .container ul li a {
+.footer p, .footer .footerSubNav .nav-link {
     font-family: Roboto;
     font-size: 14px;
     font-weight: 400;
     line-height: 16px;
     color: #444444;
     margin: 0;
+    padding: 0;
 }
-.footer .container ul {
+.footerSubNav {
     display: flex;
     justify-content: flex-end;
     margin: 0;
 }
-.footer .container ul li {
-    list-style: none
-}
-.footer .container ul li a {
-    text-decoration: none;
-}
 .ml-6 {
     margin-left: 20px;
 }
-.footer .container ul.socialNav{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-}
-.footer .container ul.socialNav li{
+.socialNav .nav-link {
     margin: 0 12px;
+    padding: 0;
 }
-
+@media all and (max-width:2500px) and (min-width:1700px) {
+    .container {
+        max-width: 1593px;
+    }
+}
+@media all and (max-width:1190px) and (min-width:991px) {
+    .topNav button, .topNav .navbar-light .navbar-nav .nav-link {
+        font-size: 13px;
+    }
+}
 @media all and (max-width:1199px) {
-    .grayCol,
-    .signinCol.grayCol{
+    .grayCol, .signinCol.grayCol {
         padding: 20px;
     }
-    .challengesCol{
+    .challengesCol {
         padding: 30px 0;
     }
-    .challengesCol .card{margin:0 0 30px;}
-    .signinCol h2,
-    .mainContent h2{
+    .challengesCol .card {
+        margin: 0 0 30px;
+    }
+    .signinCol h2, .mainContent h2 {
         font-size: 22px;
     }
-    .actionLink li.mr77{
+    .actionLink .mr77 {
         margin-right: 18px;
     }
-    .actionLink{
-        margin: auto 0 0 ;
+    .actionLink {
+        margin: auto 0 0;
     }
-    .cardAction a,
-    .actionLink li a{
+    .cardAction a, .actionLink .nav-link {
         font-size: 18px;
     }
-    .challengesWrap h3{
+    .challengesWrap h3 {
         margin: 25px 0 15px;
         font-size: 20px;
     }
-    .challengesCol .card{
+    .challengesCol .card {
         padding: 15px;
     }
-    .challengesCol .card p{
+    .challengesCol .card p {
         font-size: 14px;
     }
-    .grayCol, .signinCol.grayCol{
+    .grayCol, .signinCol.grayCol {
         height: 100%;
     }
 }
-@media all and (max-width:767px) {
-    .mainContent{
-        margin-bottom: 16px;
+@media all and (max-width:1040px) {
+    .navbar-light .navbar-brand img {
+        max-width: 280px;
     }
-    .footer{
-        padding: 15px 0;
+}
+@media all and (max-width:991px) {
+    .ml-auto.navbar-nav .nav-link {
+        border-bottom: 1px solid #fff;
     }
-    ul.footerNav{
-        margin-bottom: 5px;
+    .ml-auto.navbar-nav .nav-link:first-child {
+        border-top: 1px solid #fff;
     }
-    ul.footerNav li{
-        margin: 0 4px;
+    .topNav {
+        padding: 10px 0;
     }
-    ul.footerNav li a{
-        font-weight: 500;
+    .navbar-collapse {
+        /* min-width: calc(100% + 55px); */
     }
-    .ml-6{
-        margin-left: 5px;
+    .footer .row {
+        flex-direction: column;
     }
-    .footer .container ul{
+    .footerSubNav {
         justify-content: center;
     }
-    .footer .container ul.socialNav{
+    .socialNav {
+        margin: 0 0 15px;
+    }
+    .footer .container .socialNav .nav-link {
+        margin: 0 5px;
+    }
+    .footer p {
+        text-align: center;
         margin: 10px 0;
     }
-    .footer .container ul.socialNav li{margin: 0 5px;}
-    .footer p, .footer .container ul li a{text-align: center;}
-    .mt-30{
+    .mt-30 {
         margin-top: 10px;
     }
-    .challengesCol .card .bubbleBtn img{
+    .challengesCol .card .bubbleBtn img {
         max-width: 30px;
+    }
+}
+@media all and (max-width:767px) {
+    .signinCol h2, .mainContent h2, .challengesWrap h3{
+        font-size: 18px;
+    }
+    .cardAction a, .actionLink .nav-link,
+    .mainContent p{
+        font-size: 15px;
+    }
+    .mainContent p{
+        line-height: 27px;
+    }
+    .signinCol h2,
+    .mainContent h2{
+        line-height: 25px;
+    }
+    .footerNav .nav-link{
+        font-size: 13px;
+    }
+    .challengesCol .card{
+        padding: 10px;
+    }
+    .signinCol.grayCol .butn,
+    .inputControl input{
+        height: 40px;
+        padding: 8px;
+        font-size: 15px;
+    }
+    .navbar-light .navbar-brand img {
+        max-width: 200px;
+    }
+    .mainContent {
+        margin-bottom: 16px;
+    }
+    .footer {
+        padding: 15px 0;
+    }
+    .footerNav {
+        margin-bottom: 5px;
+    }
+    .footerNav .nav-item {
+        margin: 0 4px;
+    }
+    .footerNav .nav-link {
+        font-weight: 500;
+    }
+    .ml-6 {
+        margin-left: 5px;
     }
 }

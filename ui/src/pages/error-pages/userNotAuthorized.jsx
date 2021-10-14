@@ -1,6 +1,6 @@
 import React from "react";
 // import Container from '@material-ui/core/Container'
-import { Button } from "react-bootstrap";
+import { Button, Form, Nav, Card} from "react-bootstrap";
 
 export default function UserNotAuthorized() {
   // return <h1>Please log in</h1>;
@@ -12,32 +12,37 @@ export default function UserNotAuthorized() {
                     <div className="grayCol">
                       <h2>How Wireless Technology Is Changing Business</h2>
                       <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</p>
-                      
-                      <ul className="actionLink">
-                        <li className="mr77"><a href="">Learn More</a></li>
-                        <li><a href="">Try Challenges</a></li>
-                      </ul>
+
+                      <Nav className="actionLink">
+                        <Nav.Item className="mr77">
+                          <Nav.Link href="/home">Learn More</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                          <Nav.Link href="/home">Try Challenges</Nav.Link>
+                        </Nav.Item>
+                      </Nav>
                     </div>
                   </div>
                   <div className="col-lg-4 col-md-5">
                     <div className="grayCol signinCol">
                       <h2>Sign In</h2>
-                      <form action="">
-                        <div className="inputControl">
-                          <input type="text" placeholder="Email"/>
-                          <input type="passsword" placeholder="Password"/>
-                        </div>
-                        <p className="rememberMeCol form-check">
-                          <input type="checkbox" id="rememberMe" className="form-check-input"/>
-                          <label htmlFor="rememberMe" className="m-0 form-check-label"> Remember me</label>
-                        </p>
-                        <Button className="butn primaryBtn" variant="primary"> Sign in</Button>
-                        <Button className="butn secondaryBtn"  variant="secondary"><img src="google.svg" alt="google"/> Sign in with Google</Button>
+
+                      <Form>
+                        <Form.Group className="inputControl" controlId="formBasicEmail">
+                          <Form.Control type="email" placeholder="Email" />
+                          <Form.Control type="password" placeholder="Password" />
+                        </Form.Group>
+
+                        <Form.Group className="rememberMeCol" controlId="formBasicCheckbox">
+                          <Form.Check type="checkbox" label="Remember me" className="m-0 form-check-label" />
+                        </Form.Group>
+                        <Button className="butn primaryBtn" variant="primary" type="submit"> Sign in</Button>
+                        <Button className="butn secondaryBtn"  variant="secondary" type="submit"><img src="google.svg" alt="google"/> Sign in with Google</Button>
                         <p className="loginAction mb-0">
-                          <a href="">Can't log in?</a>
-                          <a href="">Create Account</a>
+                          <a href="/home">Can't log in?</a>
+                          <a href="/home">Create Account</a>
                         </p>
-                      </form>
+                      </Form>
                     </div>
                   </div>
                 </div>
@@ -55,155 +60,213 @@ export default function UserNotAuthorized() {
                 <div className="container">
                   <div className="row flexWrap">
                     <div className="col-lg-4 col-md-6">
-                      <div className="card">
-                        <img src="challenges/thumb01.jpg" alt="thumb"/>
-                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, </p>
-                        <div className="cardAction">
-                          <a href="/">Play</a>
-                          <div className="btnGroup">
-                             <button className="bubbleBtn"><img src="bell.svg" alt="bell"/></button>
-                             <button className="bubbleBtn"><img src="like.svg" alt="like"/></button>
+                      <Card>
+                        <Card.Img variant="null" src="challenges/thumb01.jpg" alt="thumb" />
+                        <Card.Body className="p-0">
+                          <Card.Text>
+                          Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, 
+                          </Card.Text>
+                          <div className="cardAction">
+                            <Button variant="link">Play</Button>
+                            <div className="btnGroup">
+                              <Button className="bubbleBtn" variant="light"><img src="bell.svg" alt="bell"/></Button>
+                              <Button className="bubbleBtn" variant="light"><img src="like.svg" alt="like"/></Button>
+                            </div>
                           </div>
-                        </div>
-                      </div>
+                        </Card.Body>
+                      </Card>                      
                     </div>
                     <div className="col-lg-4 col-md-6">
-                      <div className="card">
-                      <img src="challenges/thumb02.png" alt="thumb"/>
-                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, </p>
-                        <div className="cardAction">
-                          <a href="/">Play</a>
-                          <div className="btnGroup">
-                             <button className="bubbleBtn"><img src="bell.svg" alt="bell"/></button>
-                             <button className="bubbleBtn"><img src="like.svg" alt="like"/></button>
+                      <Card>
+                        <Card.Img variant="null" src="challenges/thumb03.jpg" alt="thumb" />
+                        <Card.Body className="p-0">
+                          <Card.Text>
+                          Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, 
+                          </Card.Text>
+                          <div className="cardAction">
+                            <Button variant="link">Play</Button>
+                            <div className="btnGroup">
+                              <Button className="bubbleBtn" variant="light"><img src="bell.svg" alt="bell"/></Button>
+                              <Button className="bubbleBtn" variant="light"><img src="like.svg" alt="like"/></Button>
+                            </div>
                           </div>
-                        </div>
-                      </div>
+                        </Card.Body>
+                      </Card>
                     </div>
                     <div className="col-lg-4 col-md-6">
-                      <div className="card">
-                      <img src="challenges/thumb04.png" alt="thumb"/>
-                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, </p>
-                        <div className="cardAction">
-                          <a href="/">Play</a>
-                          <div className="btnGroup">
-                              <button className="bubbleBtn"><img src="bell.svg" alt="bell"/></button>
-                              <button className="bubbleBtn"><img src="like.svg" alt="like"/></button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="col-lg-4 col-md-6">
-                      <div className="card">
-                        <img src="challenges/thumb01.jpg" alt="thumb"/>
-                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, </p>
-                        <div className="cardAction">
-                          <a href="/">Play</a>
-                          <div className="btnGroup">
-                             <button className="bubbleBtn"><img src="bell.svg" alt="bell"/></button>
-                             <button className="bubbleBtn"><img src="like.svg" alt="like"/></button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-lg-4 col-md-6">
-                      <div className="card">
-                      <img src="challenges/thumb02.png" alt="thumb"/>
-                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, </p>
-                        <div className="cardAction">
-                          <a href="/">Play</a>
-                          <div className="btnGroup">
-                             <button className="bubbleBtn"><img src="bell.svg" alt="bell"/></button>
-                             <button className="bubbleBtn"><img src="like.svg" alt="like"/></button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-lg-4 col-md-6">
-                      <div className="card">
-                      <img src="challenges/thumb03.jpg" alt="thumb"/>
-                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, </p>
-                        <div className="cardAction">
-                          <a href="/">Play</a>
-                          <div className="btnGroup">
-                              <button className="bubbleBtn"><img src="bell.svg" alt="bell"/></button>
-                              <button className="bubbleBtn"><img src="like.svg" alt="like"/></button>
-                          </div>
-                        </div>
-                      </div>
+                        <Card>
+                          <Card.Img variant="null" src="challenges/thumb01.jpg" alt="thumb" />
+                          <Card.Body className="p-0">
+                            <Card.Text>
+                            Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, 
+                            </Card.Text>
+                            <div className="cardAction">
+                              <Button variant="link">Play</Button>
+                              <div className="btnGroup">
+                                <Button className="bubbleBtn" variant="light"><img src="bell.svg" alt="bell"/></Button>
+                                <Button className="bubbleBtn" variant="light"><img src="like.svg" alt="like"/></Button>
+                              </div>
+                            </div>
+                          </Card.Body>
+                        </Card>
                     </div>
 
                     <div className="col-lg-4 col-md-6">
-                      <div className="card">
-                        <img src="challenges/thumb01.jpg" alt="thumb"/>
-                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, </p>
-                        <div className="cardAction">
-                          <a href="/">Play</a>
-                          <div className="btnGroup">
-                             <button className="bubbleBtn"><img src="bell.svg" alt="bell"/></button>
-                             <button className="bubbleBtn"><img src="like.svg" alt="like"/></button>
+                      <Card>
+                        <Card.Img variant="null" src="challenges/thumb01.jpg" alt="thumb" />
+                        <Card.Body className="p-0">
+                          <Card.Text>
+                          Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, 
+                          </Card.Text>
+                          <div className="cardAction">
+                            <Button variant="link">Play</Button>
+                            <div className="btnGroup">
+                              <Button className="bubbleBtn" variant="light"><img src="bell.svg" alt="bell"/></Button>
+                              <Button className="bubbleBtn" variant="light"><img src="like.svg" alt="like"/></Button>
+                            </div>
                           </div>
-                        </div>
-                      </div>
+                        </Card.Body>
+                      </Card>
                     </div>
                     <div className="col-lg-4 col-md-6">
-                      <div className="card">
-                      <img src="challenges/thumb02.png"  alt="thumb"/>
-                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, </p>
-                        <div className="cardAction">
-                          <a href="/">Play</a>
-                          <div className="btnGroup">
-                             <button className="bubbleBtn"><img src="bell.svg" alt="bell"/></button>
-                             <button className="bubbleBtn"><img src="like.svg" alt="like"/></button>
+                      <Card>
+                        <Card.Img variant="null" src="challenges/thumb02.png" alt="thumb" />
+                        <Card.Body className="p-0">
+                          <Card.Text>
+                          Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, 
+                          </Card.Text>
+                          <div className="cardAction">
+                            <Button variant="link">Play</Button>
+                            <div className="btnGroup">
+                              <Button className="bubbleBtn" variant="light"><img src="bell.svg" alt="bell"/></Button>
+                              <Button className="bubbleBtn" variant="light"><img src="like.svg" alt="like"/></Button>
+                            </div>
                           </div>
-                        </div>
-                      </div>
+                        </Card.Body>
+                      </Card>
                     </div>
                     <div className="col-lg-4 col-md-6">
-                      <div className="card">
-                      <img src="challenges/thumb03.jpg"  alt="thumb"/>
-                        <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, </p>
-                        <div className="cardAction">
-                          <a href="/">Play</a>
-                          <div className="btnGroup">
-                              <button className="bubbleBtn"><img src="bell.svg" alt="bell"/></button>
-                              <button className="bubbleBtn"><img src="like.svg" alt="like"/></button>
+                      <Card>
+                        <Card.Img variant="null" src="challenges/thumb04.png" alt="thumb" />
+                        <Card.Body className="p-0">
+                          <Card.Text>
+                          Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, 
+                          </Card.Text>
+                          <div className="cardAction">
+                            <Button variant="link">Play</Button>
+                            <div className="btnGroup">
+                              <Button className="bubbleBtn" variant="light"><img src="bell.svg" alt="bell"/></Button>
+                              <Button className="bubbleBtn" variant="light"><img src="like.svg" alt="like"/></Button>
+                            </div>
                           </div>
-                        </div>
-                      </div>
+                        </Card.Body>
+                      </Card>
+                    </div>
+
+                    <div className="col-lg-4 col-md-6">
+                      <Card>
+                        <Card.Img variant="null" src="challenges/thumb01.jpg" alt="thumb" />
+                        <Card.Body className="p-0">
+                          <Card.Text>
+                          Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, 
+                          </Card.Text>
+                          <div className="cardAction">
+                            <Button variant="link">Play</Button>
+                            <div className="btnGroup">
+                              <Button className="bubbleBtn" variant="light"><img src="bell.svg" alt="bell"/></Button>
+                              <Button className="bubbleBtn" variant="light"><img src="like.svg" alt="like"/></Button>
+                            </div>
+                          </div>
+                        </Card.Body>
+                      </Card>
+                    </div>
+                    <div className="col-lg-4 col-md-6">
+                      <Card>
+                        <Card.Img variant="null" src="challenges/thumb02.png" alt="thumb" />
+                        <Card.Body className="p-0">
+                          <Card.Text>
+                          Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, 
+                          </Card.Text>
+                          <div className="cardAction">
+                            <Button variant="link">Play</Button>
+                            <div className="btnGroup">
+                              <Button className="bubbleBtn" variant="light"><img src="bell.svg" alt="bell"/></Button>
+                              <Button className="bubbleBtn" variant="light"><img src="like.svg" alt="like"/></Button>
+                            </div>
+                          </div>
+                        </Card.Body>
+                      </Card>
+                    </div>
+                    <div className="col-lg-4 col-md-6">
+                      <Card>
+                        <Card.Img variant="null" src="challenges/thumb04.png" alt="thumb" />
+                        <Card.Body className="p-0">
+                          <Card.Text>
+                          Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, 
+                          </Card.Text>
+                          <div className="cardAction">
+                            <Button variant="link">Play</Button>
+                            <div className="btnGroup">
+                              <Button className="bubbleBtn" variant="light"><img src="bell.svg" alt="bell"/></Button>
+                              <Button className="bubbleBtn" variant="light"><img src="like.svg" alt="like"/></Button>
+                            </div>
+                          </div>
+                        </Card.Body>
+                      </Card>
                     </div>
                   </div>
                 </div>
               </div>
               <div className="footer">
-                <ul className="footerNav">
-                  <li><a href="">Our Story</a></li>
-                  <li><a href="">Vision and mission</a></li>
-                  <li><a href="">Team</a></li>
-                  <li><a href="">Partners</a></li>
-                  <li><a href="">Terms of service</a></li>
-                </ul>
+                <Nav className="justify-content-center footerNav flex-wrap">
+                  <Nav.Item>
+                    <Nav.Link href="/home">Our Story</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link href="/home">Vision and mission</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link href="/home">Team</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link href="/home">Partners</Nav.Link>
+                  </Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link href="/home">Terms of service</Nav.Link>
+                  </Nav.Item>
+                </Nav>  
                 <div className="container">
                   <div className="row mt-30">
-                  <div className="col col-sm-12">
+                    <div className="col">
                       <p>cyberliteracyforall.com. all rights reserved.</p>
                     </div>
 
-                    <div className="col col-sm-12">
-                      <ul className="socialNav">
-                        <li><a href=""><img src="social/fb.png" alt="facebook"/></a></li>
-                        <li><a href=""><img src="social/insta.png" alt="instagram"/></a></li>
-                        <li><a href=""><img src="social/pin.png" alt="pin"/></a></li>
-                        <li><a href=""><img src="social/twitter.png" alt="twitter"/></a></li>
-                      </ul>
+                    <div className="col">
+                      <Nav className="socialNav justify-content-center">
+                        <Nav.Item>
+                          <Nav.Link href="https://www.facebook.com/" target="blank"><img src="social/fb.png" alt="facebook"/></Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                          <Nav.Link href="https://www.instagram.com" target="blank"><img src="social/insta.png" alt="instagram"/></Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                          <Nav.Link href="https://pinterest.com" target="blank"><img src="social/pin.png" alt="pinterest"/></Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                          <Nav.Link href="https://twitter.com/" target="blank"><img src="social/twitter.png" alt="twitter"/></Nav.Link>
+                        </Nav.Item>                        
+                      </Nav>
                     </div>
 
-                    <div className="col col-sm-12">
-                      <ul>
-                        <li> <a href="">terms and conditions</a></li>
-                        <li className="ml-6"> <a href="">privacy policy</a></li>
-                      </ul>
+                    <div className="col">
+                      <Nav className="footerSubNav">
+                        <Nav.Item>
+                          <Nav.Link href="/home">terms and conditions</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item className="ml-6">
+                          <Nav.Link href="/home">privacy policy</Nav.Link>
+                        </Nav.Item>
+                      </Nav>
                     </div>
                   </div>
                 </div>
