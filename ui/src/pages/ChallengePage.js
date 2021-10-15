@@ -1,22 +1,15 @@
 import React, { useState, useEffect } from "react";
-import "../../style/ChallengeSet1.css";
+import "../style/ChallengePage.css";
 import * as core from "@material-ui/core";
-import {useGetAPI,useSetAPI} from '../../APIContext';
-//FIX THIS DATA FOR EACH FILE
-
-//CHALLENGE 1 = CAESAR CHALLENGE
-/*----------------------------------------------------------------------------- */
-import { ChallengeSet1Data } from "../challenge-data/ChallengeSet1Data";
-/*----------------------------------------------------------------------------- */
 
 import PropTypes from "prop-types";
-import Terminal from "../../components/Terminal";
+import Terminal from "../components/Terminal";
 
 import gfm from "remark-gfm";
 import ReactMarkdown from "react-markdown";
-import useFetchAuth from "../../useFetchAuth";
-import Spinner from "../../components/Spinner";
-import GenericErrorPage from "../error-pages/genericErrorPage";
+import useFetchAuth from "../useFetchAuth";
+import Spinner from "../components/Spinner";
+import GenericErrorPage from "./error-pages/genericErrorPage";
 import {useParams} from "react-router-dom";
 
 function a11yProps(index) {
@@ -49,19 +42,19 @@ TabPanel.propTypes = {
 	value: PropTypes.any.isRequired,
 };	
 
-export default function CaeserCipher() {
+export default function ChallengePage() {
 	//value variable control which is the chosen/selected tab in appbar
 	const [value, setValue] = React.useState(0);
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
-		const temp=`/api/challenge-sets/${csSlug}/challenges/${cSlug}`.toString()+'/docs/'+fetchData.documentation[newValue].path;
+		const temp=`/api/challenge-sets/${csSlug}/challenges/${cSlug}`.toString()+'/docs/'
+		+fetchData.documentation[newValue].path;
 		// console.log(temp);
 		setPath(temp);
 	};
 
 	const [txt, setMarkdown] = useState("");
 	const [path, setPath] = useState("");
-	// const [first, setfirst] = useState(0);
 	const [fetchData, setData] = useState(0);
 
 
@@ -74,9 +67,10 @@ export default function CaeserCipher() {
 			.then((res) => res.json())
 			.then((json) => {
 							// console.log(json);
-							setData(json);
 							setValue(0);
-							const temp=`/api/challenge-sets/${csSlug}/challenges/${cSlug}`.toString()+'/docs/'+json.documentation[0].path;
+							setData(json);
+							const temp=`/api/challenge-sets/${csSlug}/challenges/${cSlug}`.toString()
+							+'/docs/'+json.documentation[0].path;
 							// console.log(temp);
 							setPath(temp)	
 						});
@@ -95,12 +89,6 @@ export default function CaeserCipher() {
 
 	// if (loading) return <Spinner />;
 	// if (error) return <GenericErrorPage />;
-
-	//this is to set first time rendering for mardown. Without this, it will redner html on first run
-	// if (!first) {
-	// 	setPath(ChallengeSet1Data[0].itembox1);
-	// 	setfirst(first + 1);
-	// }
 
 	return (
 		<div style={{ display: "flex", flexDirection: "row", position: "fixed" }}>

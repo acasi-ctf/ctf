@@ -4,7 +4,6 @@ import * as core from '@material-ui/core';
 import '../style/SubMenu.css';
 import useFetchAuth from "../useFetchAuth";
 import * as UI from '@material-ui/icons';
-import { useGetAPI,useSetAPI } from '../APIContext';
 
 
 const iconClosed = <UI.ArrowDropDown/>;
@@ -14,7 +13,6 @@ const ChallengeIcon = <UI.Assignment/>;
 
 export default function SubMenu(props) {
     const [subnav, setSubNav] = useState(false);
-    const setAPI = useSetAPI();
     //set is each of the item in the list to challenge-set like cipher, web-based,...
     const set = props.listItem;
 
@@ -24,7 +22,6 @@ export default function SubMenu(props) {
         if(clickSub){
             //submenu item 
             props.changeTitle(title);
-            // setAPI(props.path+"/"+set.slug+"/challenges/"+slug);
         }else{
             //menu item
             setSubNav(!subnav);
@@ -70,5 +67,4 @@ export default function SubMenu(props) {
         </>
     );
 };
-
 
