@@ -1,7 +1,6 @@
 import "./style/App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import MenuBar from "./components/Menu";
-// import ChallengeSetPage from "./pages/ChallengeSetPage";
 // import EnvironmentPage from "./pages/challenge-pages/EnvironmentPage";
 import { useAuth0 } from "@auth0/auth0-react";
 import UserNotAuthorized from "./pages/error-pages/userNotAuthorized";
@@ -19,12 +18,12 @@ export default function App() {
 	const { isAuthenticated, getAccessTokenSilently } = useAuth0();
 	if (!isAuthenticated)
 		return (
-		<>
-			<div>
-			<ChallengeBar name="Welcome to Capture the Flag" />
-			<UserNotAuthorized />
-			</div>
-		</>
+			<>
+				<div>
+				<ChallengeBar name="Welcome to Capture the Flag" />
+				<UserNotAuthorized />
+				</div>
+			</>
 		);
 
 	return (
