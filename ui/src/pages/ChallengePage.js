@@ -7,7 +7,7 @@ import Terminal from "../components/Terminal";
 
 import gfm from "remark-gfm";
 import ReactMarkdown from "react-markdown";
-import useFetchAuth from "../useFetchAuth";
+import { useAuth0 } from "@auth0/auth0-react";
 import Spinner from "../components/Spinner";
 import GenericErrorPage from "./error-pages/genericErrorPage";
 import {useParams} from "react-router-dom";
@@ -43,13 +43,13 @@ TabPanel.propTypes = {
 };	
 
 export default function ChallengePage() {
+
 	//value variable control which is the chosen/selected tab in appbar
 	const [value, setValue] = React.useState(0);
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
 		const temp=`/api/challenge-sets/${csSlug}/challenges/${cSlug}`.toString()+'/docs/'
 		+fetchData.documentation[newValue].path;
-		// console.log(temp);
 		setPath(temp);
 	};
 
@@ -60,8 +60,8 @@ export default function ChallengePage() {
 
 	let {csSlug, cSlug} = useParams();
 
-	// console.log('testing');
 	// console.log(`${csSlug}-${cSlug}`);
+	// Trigger on clicking new Menu Items
 	useEffect(() => {
 		fetch(`/api/challenge-sets/${csSlug}/challenges/${cSlug}`)
 			.then((res) => res.json())
@@ -72,13 +72,68 @@ export default function ChallengePage() {
 							const temp=`/api/challenge-sets/${csSlug}/challenges/${cSlug}`.toString()
 							+'/docs/'+json.documentation[0].path;
 							// console.log(temp);
-							setPath(temp)	
+							setPath(temp);
+							setDat([]);
+							setError(null);
+							setLoading(true);
+							setRunning(false);
 						});
 	}, [csSlug, cSlug]);
 
-	//Testing git commit for automatically add initials
+
+	const [data, setDat] = useState([]);
+	const [error, setError] = useState(null);
+	const [loading, setLoading] = useState(true);
+	const [running, setRunning] = useState(false);
+	const { isAuthenticated, getAccessTokenSilently } = useAuth0();
+
+	useEffect(() => {
+		async function init() {
+			try {
+				const accessToken = await getAccessTokenSilently();
+				// console.log(accessToken);
+
+				const options = {
+					method: "POST",
+					headers: {
+						"Authorization": `Bearer ${accessToken}`,
+						"Content-Type": "application/json"
+					},
+					body:JSON.stringify({
+						"challengeSetSlug" :`${csSlug}`,
+						"challengeSlug"  :`${cSlug}`
+					})
+				};
+				console.log(options);
+
+				const response = await fetch("/api/user/environments", options);
+				if (response.ok) {
+					const json = await response.json();
+					setDat(json);
+				} else {
+					setError(response);
+				}
+			} catch (e) {
+				console.log(e);
+				setError(e);
+			} finally {
+				setLoading(false);
+			}
+		}
+		if (isAuthenticated) {
+			if (!running && loading) {
+				setRunning(true);
+				// noinspection JSIgnoredPromiseFromCall
+				init();
+			}
+		}
+	},  [getAccessTokenSilently, isAuthenticated, loading, running, csSlug, cSlug]);
+
+
+
 
 	// this useEffect gets triggered when path hook is updated
+	// update the documents in the component that display markdown
 	useEffect(() => {
 		fetch(path)
 		.then((res) => res.text())
@@ -87,8 +142,8 @@ export default function ChallengePage() {
 		});
 	}, [path]);
 
-	// if (loading) return <Spinner />;
-	// if (error) return <GenericErrorPage />;
+	if (loading) return <Spinner />;
+	if (error) return <GenericErrorPage />;
 
 	return (
 		<div style={{ display: "flex", flexDirection: "row", position: "fixed" }}>
@@ -109,7 +164,7 @@ export default function ChallengePage() {
 					<ReactMarkdown remarkPlugins={[gfm]} children={txt} style={{ marginLeft: "10px" }} />
 				</TabPanel>
 			</div>
-			{/* <Terminal id={data.id} /> */}
+			<Terminal id={data.id} />
 		</div>
 	);
 }
