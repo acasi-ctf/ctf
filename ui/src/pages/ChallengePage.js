@@ -40,10 +40,9 @@ TabPanel.propTypes = {
 	children: PropTypes.node,
 	index: PropTypes.any.isRequired,
 	value: PropTypes.any.isRequired,
-};	
+};
 
 export default function ChallengePage() {
-
 	//value variable control which is the chosen/selected tab in appbar
 	const [value, setValue] = React.useState(0);
 	const handleChange = (event, newValue) => {
@@ -60,7 +59,6 @@ export default function ChallengePage() {
 
 	let {csSlug, cSlug} = useParams();
 
-	// console.log(`${csSlug}-${cSlug}`);
 	// Trigger on clicking new Menu Items
 	useEffect(() => {
 		fetch(`/api/challenge-sets/${csSlug}/challenges/${cSlug}`)
@@ -91,7 +89,6 @@ export default function ChallengePage() {
 		async function init() {
 			try {
 				const accessToken = await getAccessTokenSilently();
-				// console.log(accessToken);
 
 				const options = {
 					method: "POST",
@@ -149,7 +146,7 @@ export default function ChallengePage() {
 		<div style={{ display: "flex", flexDirection: "row", position: "fixed" }}>
 			<div className="ChallengeSet1">
 				<core.AppBar position="static" color="default">
-					<core.Tabs value={value}indicatorColor="primary" onChange={handleChange}
+					<core.Tabs value={value} indicatorColor="primary" onChange={handleChange}
 						textColor="primary" variant="scrollable" scrollButtons="auto" aria-label="simple auto tabs example" >
 						{fetchData && fetchData.documentation.map((item, index) => {
 							return (
@@ -159,12 +156,12 @@ export default function ChallengePage() {
 					</core.Tabs>
 				</core.AppBar>
 
-				<TabPanel className="box1" value={value} index={value} 
+				<TabPanel className="box1" value={value} index={value}
 					style={{ overflowY: "scroll", marginTop: "5px", marginLeft: "5px" }}>
 					<ReactMarkdown remarkPlugins={[gfm]} children={txt} style={{ marginLeft: "10px" }} />
 				</TabPanel>
 			</div>
-			<Terminal id={data.id} />
+			<Terminal key={data.id} id={data.id} />
 		</div>
 	);
 }
