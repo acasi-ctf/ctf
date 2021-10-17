@@ -18,8 +18,11 @@ import {grpc} from "@improbable-eng/grpc-web";
 import {UUID} from "../generated/common_pb";
 import * as termproxy_pb from "../generated/termproxy_pb";
 
-// ctf.cyberliteracyforall.com
-const client = new TermproxyServiceClient(`https://${window.location.host}`, {
+let host = "ctf.cyberliteracyforall.com";
+if (process.env.REACT_APP_TERMPROXY_HOST) {
+    host = process.env.REACT_APP_TERMPROXY_HOST;
+}
+const client = new TermproxyServiceClient(`https://${host}`, {
   transport: grpc.WebsocketTransport(),
 });
 
