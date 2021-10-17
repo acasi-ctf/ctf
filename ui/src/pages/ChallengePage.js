@@ -104,7 +104,6 @@ export default function ChallengePage() {
 						"challengeSlug"  :`${cSlug}`
 					})
 				};
-				console.log(options);
 
 				const response = await fetch("/api/user/environments", options);
 				if (response.ok) {
@@ -135,12 +134,14 @@ export default function ChallengePage() {
 	// this useEffect gets triggered when path hook is updated
 	// update the documents in the component that display markdown
 	useEffect(() => {
-		fetch(path)
-		.then((res) => res.text())
-		.then((text) => {
-			setMarkdown(text);
-		});
-	}, [path]);
+		if(!path.includes(`play/${csSlug}/${cSlug}`)){
+			fetch(path)
+			.then((res) => res.text())
+			.then((text) => {
+				setMarkdown(text);
+			});
+		}
+	}, [path,csSlug,cSlug]);
 
 	if (loading) return <Spinner />;
 	if (error) return <GenericErrorPage />;
@@ -164,7 +165,7 @@ export default function ChallengePage() {
 					<ReactMarkdown remarkPlugins={[gfm]} children={txt} style={{ marginLeft: "10px" }} />
 				</TabPanel>
 			</div>
-			<Terminal id={data.id} />
+			{/* <Terminal id={data.id} /> */}
 		</div>
 	);
 }

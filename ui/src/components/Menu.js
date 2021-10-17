@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Layout from '../pageLayout.js';
 import ChallengeBar from "./AppBar";
 import * as core from '@material-ui/core';
-import {List1Data} from './MenuBarData';
+import {staticMenuData} from './MenuBarData';
 import {Link} from 'react-router-dom';
 import SubMenu from './SubMenu.js';
 import useFetchAuth from "../useFetchAuth";
@@ -49,10 +49,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function MenuBar() {
     const classes = useStyles();
-    // const [submenu, setSubMenu] = useState(false);
-    // const showSubNav = () =>{
-    //     setSubMenu(!submenu)
-    // }
 
     const [title, setTitle] = useState("Home");
 
@@ -71,11 +67,20 @@ export default function MenuBar() {
                 
                 <core.Divider />
                 {/* LIST 1 */}
-                {/* Leave this alone for now */}
                 {/* Data in this list is read from local file */}
                 <core.List>
-                    {List1Data.map((item,index)=>{
-                        return <SubMenu listItem={item} key={index} changeTitle={title => setTitle(title)}/>;
+                    {staticMenuData.map((item,index)=>{
+                        return(
+                            <core.ListItem key={index} style={{display:'flex', flexDirection:'column', alignItems:'flex-start'}}>
+                                <Link to={item.path} style={{textDecoration:'none'}} onClick={()=>{setTitle(item.name)}} >
+                                    <div style={{display:'flex', flexDirection: 'row'}}>
+                                        <core.ListItemIcon style={{minWidth:'0'}}>{item.icon}</core.ListItemIcon>
+                                        <core.ListItemText style={{color:'#000000', marginLeft:'16px', marginRight:'25px'}}
+                                        primary={<core.Typography style={{fontSize:'15px'}}>{item.name}</core.Typography>} />   
+                                    </div>
+                                </Link> 
+                            </core.ListItem>
+                        );
                     })}
                 </core.List>
 

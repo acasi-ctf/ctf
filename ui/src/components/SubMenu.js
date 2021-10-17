@@ -25,12 +25,6 @@ export default function SubMenu(props) {
         }else{
             //menu item
             setSubNav(!subnav);
-            if(data.length === 0){
-                //items in list 1
-                props.changeTitle(title);
-            } else{
-                //items in list 2                
-            }
         }
     }
 
@@ -40,15 +34,13 @@ export default function SubMenu(props) {
     return (
         <>
             <core.ListItem style={{display:'flex', flexDirection:'column', alignItems:'flex-start'}}>
-                <Link to={set.path?set.path:"."} style={{textDecoration:'none'}} onClick={()=>{showSubmenu(0, set.name,"")}} >
+                <Link to={"."} style={{textDecoration:'none'}} onClick={()=>{showSubmenu(0, set.name,"")}} >
                     <div style={{display:'flex', flexDirection: 'row'}}>
-                        <core.ListItemIcon style={{minWidth:'0'}}>{set.icon?set.icon:ChallengeSet_Icon}</core.ListItemIcon>
+                        <core.ListItemIcon style={{minWidth:'0'}}>{ChallengeSet_Icon}</core.ListItemIcon>
                         <core.ListItemText style={{color:'#000000', marginLeft:'16px', marginRight:'25px'}}
                         primary={<core.Typography style={{fontSize:'15px'}}>{set.name}</core.Typography>} />   
                         <div>
-                            {(set.subMenu || data.length !==0) && subnav ? iconOpened:
-                            ( set.subMenu || data.length !==0) ? iconClosed:
-                            null}
+                            {data.length !==0 && subnav ? iconOpened:iconClosed}
                         </div>
                     </div>
                 </Link> 
