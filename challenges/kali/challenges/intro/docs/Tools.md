@@ -1,66 +1,72 @@
-# Planned Linux/Kali Commands to Demonstrate
+**Planned Linux/Kali Commands to Demonstrate**
 
 **Steganography:**
 
-- strings – Displays readable text characters.
-  - Requires: Executable with hidden text. Linux.
-- binwalk – Extract hidden files and executables from bins.
-  - Requires: Bin File with embedded program. Linux.
-- Steghide – is able to hide data in various kinds of image- and audio-files. (Maybe)
-- pngcheck – look for/correct broken chunks in PNGs. (Maybe)
-  - Requires: PNG file with message encoded.
+Good entry commands, and a common stable of CTFs. Requires corresponding files with hidden
+keys/flags.
 
-**Crytography:**
+- strings – Displays readable text characters.
+- binwalk – Extract hidden files and executables from bins.
+- Steghide – is able to hide data in various kinds of image- and audio-files. (Maybe)
+- pngcheck – look for/correct broken chunks in PNGs.
+
+**Cryptography:**
+
+The majority of useful tools I found were websites rather than in cli tools. Potentially something to
+explore.
 
 - TBD
 
 **Password Cracking:**
 
+Basic brute forcing, dictionary attacks etc. Requires hashed passwords, Kali Linux brute force
+frameworks.
+
 - Hash-Identifier – Identifies hash types, used to decide how to approach breaking a hash.
-  - Requires: A hashed password, kali env.
 - Hashcat – HASH cracking tool
-  - Requires: A hashed password, kali env.
-- John the Ripper – Detect and crack weak PWs.
-  - Requires: Hashed Password. Kali env.
-- txt WordList – Dictionary Wordlist.
+- John the Ripper – Brute force tool.
+- Rockyou.txt WordList – Dictionary Wordlist.
 
 **Web:**
 
+Website structure analysis. Requires website with generic structure and a hidden flag.
+
 - DIRB – brute force, looks for existing (and/or hidden) Web Objects
-  - Requires: Website with multiple hidden directories.
 
 **Scanning:**
 
-- Nmap – utility for network discovery and auditing
-  - Requires: If possible would need to build up some sort of network to demonstrate nmap.
-- Metasploit Framework – scan for known vulnerabilities (Kali)
-  - Requires: Vulnerable system.
-- Recon-ng – Recon (Kali).
-  - Requires:
+Networking observation and mapping. Requires at the very least, two VMs and possibly a router. The
+closer we can simulate a corporate network the better.
+
+- Nmap – Network reconnaissance, network inventory
+- Recon-ng – Web Reconnaissance tool.
+- Metasploit Framework – Known vulnerabilities, prebuilt frameworks.
 
 **Network Traffic Analysis:**
 
+Requires a generic understanding of how information is distributed. While I could accomplish quite a bit
+without actually needing a network, I think it'll be best to setup a network behind our user vm.
+
+- ngrep – Search for strings in network packets
+
+
 - Wireshark – Network Traffic capture and analysis.
-  - Requires: Packet Route where we can simulate a packet transfer.
 - tcpdump – Packet analyzer
-  - Requires: Captured Packet.
-- ngrep – search for strings in network packets
-  - Captured Pack
+- Netcat – Utility that reads and writes data across network
 
-**Enumeration and Exploitation:**
+**Forensics**
 
-- &#39;File&#39; Command – determine a file type (including executables)
-- Hex Editor – view executable for visible text stings
-- &#39;xxd -r&#39; Command – convert a hex dump back to its original binary form
-- Ghidra – reverse engineering tool developed by the NSA (Maybe)
+Reverse engineering, code diagnosis. Requires executables Kali Linux environment.
+
+- Ghidra – Reverse engineering tool developed by the NSA (Maybe)
 - Objdump -d – Linux command line dis-assembler
-- Netcat – utility that reads and writes data across network
-- uncompyle6 – translates Python bytecode back into source
-- Pwntools – a CTF framework and exploit development library.
+- uncompyle6 – Translates Python bytecode back into source
+- Pwntools – A CTF framework and exploit development library. (Maybe)
 
 **Wireless Exploitation:**
 
-Not sure if these are going to be possible simulate, I had a good experience messing with Aircrack so thought it should be mentioned in case.
+Likely not achievable in our current environment. Would require a simulated wireless network.
 
-- Aircrack- ng – tools to assess WiFi network security
-- &#39;ifconfig&#39; command – configure and query TCP/IP network interface parameters
+- Aircrack-ng – Wireless network penetration testing and surveillance. (Maybe)
+
+
