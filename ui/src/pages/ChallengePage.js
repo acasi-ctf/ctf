@@ -61,6 +61,7 @@ export default function ChallengePage() {
 
 	// Trigger on clicking new Menu Items
 	useEffect(() => {
+		console.log('testing');
 		fetch(`/api/challenge-sets/${csSlug}/challenges/${cSlug}`)
 			.then((res) => res.json())
 			.then((json) => {
