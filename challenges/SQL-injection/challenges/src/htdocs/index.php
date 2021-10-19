@@ -1,5 +1,5 @@
 
-<?php include("logo.php")?>
+<?php include("logo.html")?>
 
 <?php
 	
@@ -23,11 +23,23 @@
 
     echo "<br>";
 
-    echo '<a href = "injection-2.php?id='.$rows['id'].'"> SQL-Injection-2 Blog </a>';
+    echo '<a href = "injection-2.php?id='.$rows['id'].'"> SQL-Challenge-2 SQL Blog Cipher message </a>';
 
     echo "<br>";
 
-    echo '<a href = "injection-3-index.html"> SQL-Injeciton Username and Password </a>';
+    echo '<a href = "injection-3.php?id='.$rows['id'].'"> SQL-Injection-3 Blog </a>';
+
+    echo "<br>";
+
+    echo '<a href = "injection-4-index.html"> SQL-Injeciton-4 Username and Password </a>';
+
+    echo "<br>";
+
+    echo '<a href = "injection-5-index.html"> SQL-Injeciton-5 Find out the "Flag" </a>';
+
+    echo "<br>";
+
+    echo '<a href = "text-function.php"> test </a>';
     
 
     mysqli_close($con);

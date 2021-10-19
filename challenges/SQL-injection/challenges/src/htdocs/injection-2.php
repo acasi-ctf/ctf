@@ -2,14 +2,14 @@
 
 <?php include("logo.html")?>
 
+<div style="text-align:center;">
 <h1>SQL-Injection 2</h1>
+</div>
 
 <?php
 
 $con=mysqli_connect("localhost","root","");
-
-mysqli_select_db($con,'blog');
-
+mysqli_select_db($con,'challenge_four');
 if (mysqli_connect_errno())
 {
     echo "Falid to Connect".mysql_connect_error();
@@ -17,10 +17,12 @@ if (mysqli_connect_errno())
 
 $id=$_GET["id"];
 
-$result=mysqli_query($con,"select title,body from blog.data where id='$id'");
+$result=mysqli_query($con,"select title,body from challenge_four.four where id='$id'");
+
+
 
 if($result === FALSE) {
-    
+    echo "Invaild format for 'id'.";
 }
 else {
     foreach( $result as $row ) {
@@ -39,6 +41,7 @@ else {
         echo "<br>";
 
         echo "</div>";
+        
     }
 }
 
