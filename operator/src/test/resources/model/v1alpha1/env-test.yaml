@@ -1,0 +1,6 @@
+apiVersion: ctf.acasi.info/v1alpha1
+kind: Environment
+metadata:
+  name: test
+spec:
+  templateName: test-template

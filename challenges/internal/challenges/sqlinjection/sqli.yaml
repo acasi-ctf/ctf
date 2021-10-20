@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sqlinjection
+  labels:
+    ctf-env-label: sqlinjection
+    ctf-svc-type: ingress
+spec:
+  containers:
+  - name: sqlinjection
+    image: ghcr.io/acasi-ctf/challenges/internal/sqlinjection:latest

@@ -1,0 +1,33 @@
+apiVersion: ctf.acasi.info/v1alpha1
+kind: EnvTemplate
+metadata:
+  name: test-template
+spec:
+  pods:
+    - metadata:
+        name: nginx
+        labels:
+          app: nginx
+      spec:
+        containers:
+          - name: nginx
+            image: nginx:latest
+  services:
+    - metadata:
+        name: nginx
+      spec:
+        selector:
+          app: nginx
+        ports:
+          - port: 80
+  ingresses:
+    - metadata:
+        name: nginx
+      spec:
+        path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx
+            port:
+              number: 80

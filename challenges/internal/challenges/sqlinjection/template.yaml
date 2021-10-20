@@ -1,0 +1,33 @@
+apiVersion: ctf.acasi.info/v1alpha1
+kind: EnvTemplate
+metadata:
+  name: internal-sqlinjection
+spec:
+  pods:
+    - metadata:
+        name: sqli
+        labels:
+          app: sqli
+      spec:
+        containers:
+          - name: sqli
+            image: ghcr.io/acasi-ctf/challenges/internal/sqlinjection:latest
+  services:
+    - metadata:
+        name: sqli
+      spec:
+        selector:
+          app: sqli
+        ports:
+          - port: 8080
+  ingresses:
+    - metadata:
+        name: sqli
+      spec:
+        path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: sqli
+            port:
+              number: 8080

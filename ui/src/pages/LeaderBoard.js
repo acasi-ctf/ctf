@@ -1,5 +1,5 @@
 import React from 'react'
-import './LeaderBoard.css'
+import '../style/LeaderBoard.css'
 
 export default function leaderboard() {
     return (

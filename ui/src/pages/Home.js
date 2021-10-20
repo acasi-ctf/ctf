@@ -1,5 +1,5 @@
 import React from "react";
-import "./Home.css";
+import "../style/Home.css";
 import UserNotAuthorized from "./error-pages/userNotAuthorized";
 import { useAuth0 } from "@auth0/auth0-react";
 
