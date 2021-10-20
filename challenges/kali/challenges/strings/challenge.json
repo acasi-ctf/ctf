@@ -1,9 +1,9 @@
 {
   "$schema": "../../../schemas/challenge.schema.json",
   "id": "9efea081-241e-4d0f-b0ec-3bd8237db217",
-  "slug": "intro",
-  "name": "Introduction",
-  "description": "This is a challenge that demonstrates introductory tools",
+  "slug": "strings",
+  "name": "strings",
+  "description": "This is a challenge that demonstrates strings tool",
   "provisioner": {
     "type": "kubernetes"
   },

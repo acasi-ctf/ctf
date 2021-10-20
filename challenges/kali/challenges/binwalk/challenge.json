@@ -1,0 +1,16 @@
+{
+  "$schema": "../../../schemas/challenge.schema.json",
+  "id": "9efea081-241e-4d0f-b0ec-3bd8237db217",
+  "slug": "binwalk",
+  "name": "Binwalk",
+  "description": "This is a challenge that demonstrates Binwalk tool",
+  "provisioner": {
+    "type": "kubernetes"
+  },
+  "documentation": [
+    {
+      "name": "BinwalkDocument",
+      "path": "docs/BinwalkDocument.md"
+    }
+  ]
+}

@@ -3,7 +3,7 @@ FROM gcc:11 AS builder
 
 WORKDIR /
 
-COPY challenges/kali/challenges/intro/src/lock.cpp .
+COPY challenges/kali/challenges/strings/src/lock.cpp .
 RUN g++ -o lock lock.cpp
 
 FROM ghcr.io/acasi-ctf/ctf/penimage:latest
