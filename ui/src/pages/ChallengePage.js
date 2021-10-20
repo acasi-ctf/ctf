@@ -45,6 +45,8 @@ TabPanel.propTypes = {
 export default function ChallengePage() {
 	//value variable control which is the chosen/selected tab in appbar
 	const [value, setValue] = React.useState(0);
+	// A function callback to update the value and the API path when an item is
+	// clicked on TabMode.
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
 		const temp=`/api/challenge-sets/${csSlug}/challenges/${cSlug}`.toString()+'/docs/'

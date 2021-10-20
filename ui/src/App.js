@@ -1,17 +1,15 @@
 import "./style/App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import MenuBar from "./components/Menu";
-// import EnvironmentPage from "./pages/challenge-pages/EnvironmentPage";
 import { useAuth0 } from "@auth0/auth0-react";
 import UserNotAuthorized from "./pages/error-pages/userNotAuthorized";
-// import React,{useState} from "react";
 import ChallengeBar from "./components/AppBar";
 /********************************************** Three Static Pages **************************************************************/
 import Selection from "./pages/Selection.js"
 import Home from "./pages/Home";
 import leaderboard from "./pages/LeaderBoard";
 /********************************************** Dynamic Pages **************************************************************/
-import ChallengePage from "./pages/ChallengePage"; //challengeSet1=caesar challenge
+import ChallengePage from "./pages/ChallengePage";
 /***************************************************************************************************************************************/
 
 export default function App() {
