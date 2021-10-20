@@ -9,8 +9,8 @@
   },
   "documentation": [
     {
-      "name": "Tools",
-      "path": "docs/Tools.md"
+      "name": "StringsDocument",
+      "path": "docs/StringsDocument.md"
     }
   ]
 }
