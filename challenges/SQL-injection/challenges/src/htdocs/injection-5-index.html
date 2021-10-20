@@ -1,30 +1,62 @@
 <html>
 
+    <style>
+        body{
+            background-color: rgb(255, 255, 255);
+        }
+    </style>
 
-    <img src="/static/ctf-logo.png" width = "300" height = "200"/>
-
+    <div style="overflow: hidden;">
+        <div id="A" style="float:left; width: 300;">
+            <img src="/static/ctf-logo.png" width = "300" height = "200"/>
+        </div>
+        <div id="B" style="float:left; width: 70%;">
+            <div style="color:rgb(0, 0, 0); font-size: xxx-large; text-align:center;">
+                <br>
+                F5-Team CTF: SQL INJECTION CHALLENGE
+            </div>
+        </div>
+    </div>
+    
+    <br>
     <br>
 
-    <br>
-
+</html>
 
 <html>
 
+
 <link href='./static/css/main.css' rel='stylesheet' type='text/css'/>
 
-<div style="text-align:center;">
-    <h1>SQL-Injection 5</h1>
+
+<div style="background-color: rgb(179, 179, 179); border-radius: 0px; width: 100%; height: 700px; margin: auto; position: absolute; top: 150; left: 0; right: 0; bottom:0;">
+
+    <div style="text-align:center;">
+        <h1>SQL-Injection 5</h1>
+    </div>
+
+<div style="text-align:center; background-color: rgb(236, 236, 236); border-radius: 30px; width: 400px; height: 300px; margin: auto; position: absolute; top: 50; left: 0; right: 0; bottom: 150;">
+
+    <form action="injection-5-login.php" method="post">
+
+        <div style="color:rgb(0, 0, 0); font-size: 26px; text-transform: uppercase;">
+            <br>
+            User Login
+            <br>
+
+            Username:
+            
+            <input name="username" type="text" id="username"><br>
+
+            Password:
+            <input name="password" type="text" id="password"><br>
+            <br>
+            <input name="submit" type="submit" style='font-size:20px' value="submit">
+        </div>
+        </form>
+    </form>
+
+</div>
 </div>
 
-<form action="injection-5-login.php" method="post">
-    User Login<br>
-
-    Username:
-    <input name="username" type="text" id="username"><br>
-
-    Password:
-    <input name="password" type="text" id="password"><br>
-
-    <input name="submit" type="submit" value="submit">
-    </form>
-</form>
+</html>

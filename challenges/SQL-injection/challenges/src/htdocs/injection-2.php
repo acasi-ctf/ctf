@@ -1,10 +1,7 @@
-<link href='./static/css/main.css' rel='stylesheet' type='text/css'/>
 
-<?php include("logo.html")?>
+<?php include("base.html")?>
 
-<div style="text-align:center;">
-<h1>SQL-Injection 2</h1>
-</div>
+<div style="background-color: rgb(179, 179, 179); border-radius: 0px; width: 100%; height: 700px; margin: auto; position: absolute; top: 150; left: 0; right: 0; bottom:0;">
 
 <?php
 
@@ -25,17 +22,38 @@ if($result === FALSE) {
     echo "Invaild format for 'id'.";
 }
 else {
+
+    echo "<div style=\"text-align:center;\"><h1>SQL-Injection 3</h1></div>";
+
     foreach( $result as $row ) {
         mysqli_fetch_array($result);
 
-        echo "<div class = 'blog_title'>";
+        echo "<div style=\"text-align:center;
+        font-weight:bold;
+        font-size:xx-large;
+        background-color: rgb(255, 255, 255);
+        border-radius: 30px;
+        width: 800px;
+        height: 50px;
+        margin: auto;\">";
 
         echo $row['title'];
-        echo "<br>";
 
         echo "</div>";
 
-        echo "<div class = 'blog_body'>";
+        echo "<div style=\"text-align:center;
+        font-size:x-large;
+        color:rgb(0, 0, 0);
+        background-color: rgb(255, 255, 255);
+        border-radius: 20px;
+        width: 800px;
+        height: 200px;
+        margin: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 200;\">";
 
         echo $row['body'];
         echo "<br>";
@@ -43,6 +61,7 @@ else {
         echo "</div>";
         
     }
+    echo "</div>";
 }
 
 ?>

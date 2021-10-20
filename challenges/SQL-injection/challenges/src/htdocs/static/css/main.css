@@ -2,9 +2,7 @@
     text-align:center;
     font-weight:bold;
     font-size:xx-large;
-
-
-    background-color: rgb(129, 129, 129);
+    background-color: rgb(255, 255, 255);
     border-radius: 30px;
 	width: 800px;
 	height: 50px;
@@ -19,7 +17,7 @@
     text-align:center;
     font-size:x-large;
     color:rgb(0, 0, 0);
-    background-color: rgb(129, 129, 129);
+    background-color: rgb(255, 255, 255);
     border-radius: 20px;
 	width: 800px;
 	height: 200px;
@@ -28,5 +26,19 @@
 	top: 0;
 	left: 0;
 	right: 0;
-	bottom: 120;
+	bottom: 200;
+}
+
+.login{
+    text-align:center;
+    background-color: rgb(71, 71, 71);
+    border-radius: 30px;
+	width: 800px;
+	height: 600px;
+	margin: auto;
+	position: absolute;
+	top: 120;
+	left: 0;
+	right: 0;
+	bottom: 150;
 }

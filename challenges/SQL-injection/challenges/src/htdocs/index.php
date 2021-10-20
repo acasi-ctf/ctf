@@ -1,5 +1,5 @@
 
-<?php include("logo.html")?>
+<?php include("base.html")?>
 
 <?php
 	
@@ -18,6 +18,8 @@
     $res = mysqli_query($con, $sql);
 
     $rows = mysqli_fetch_assoc($res);
+
+    echo "<div style=\"text-align:center;\">";
     
     echo '<a href = "injection-1.php?id='.$rows['id'].'"> SQL-Challenge-1 Find Out the Injection Point </a>';
 
@@ -27,7 +29,7 @@
 
     echo "<br>";
 
-    echo '<a href = "injection-3.php?id='.$rows['id'].'"> SQL-Injection-3 Blog </a>';
+    echo '<a href = "injection-3.php?id='.$rows['id'].'"> SQL-Injection-3 Hidden Blog </a>';
 
     echo "<br>";
 
@@ -36,11 +38,8 @@
     echo "<br>";
 
     echo '<a href = "injection-5-index.html"> SQL-Injeciton-5 Find out the "Flag" </a>';
-
-    echo "<br>";
-
-    echo '<a href = "text-function.php"> test </a>';
     
+    echo "</div>";
 
     mysqli_close($con);
 
