@@ -67,6 +67,5 @@
   "devDependencies": {
     "prop-types": "^15.7.2"
   },
-  "proxy": "https://ctf.cyberliteracyforall.com/"
+  "proxy": "https://ctf.cyberliteracyforall.com"
 }
-
