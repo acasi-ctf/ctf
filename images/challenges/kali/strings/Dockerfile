@@ -11,10 +11,10 @@ FROM ghcr.io/acasi-ctf/ctf/penimage:latest
 WORKDIR /home/player
 
 # Install packages
-RUN apt-get update && \
-  apt-get -yq --no-install-recommends install binutils && \
-  apt-get clean all && \
-  rm -rf /var/lib/apt/lists/*
+# RUN apt-get update && \
+#   apt-get -yq --no-install-recommends install binutils && \
+#   apt-get clean all && \
+#   rm -rf /var/lib/apt/lists/*
 
 # Copy over executable
 COPY --from=builder /lock /home/player/lock
