@@ -18,13 +18,13 @@ export default function AppBarActions() {
     getAccessTokenSilently,
   } = useAuth0();
 
-  let buttonStyle = { marginLeft: "15px" };
+  // let buttonStyle = { marginLeft: "15px", cursor:"pointer" };
   let authComponent = isAuthenticated ? (
     <>
       <Tooltip title="Logout" aria-label="logout">
         <Avatar
           src={user.picture}
-          style={buttonStyle}
+          // style={buttonStyle}
           onClick={() =>
             logout({
               returnTo: window.location.protocol + "//" + window.location.host,
@@ -64,7 +64,29 @@ export default function AppBarActions() {
             <Nav.Link href="https://wsu.co1.qualtrics.com/jfe/form/SV_88hZcsQMzabAMOq" target="_blank">Report Issue</Nav.Link>
             <Nav.Link href="https://wsu.co1.qualtrics.com/jfe/form/SV_3HSX4XrAlj1L7mu" target="_blank">Anonymous Survey</Nav.Link>
             <Nav.Link onClick={handleClickOpen}>Show environments (Testing Purposes)</Nav.Link>
-            <Nav.Link  onClick={() => loginWithPopup()}>Login</Nav.Link>
+            {/* <Nav.Link  onClick={() => loginWithPopup()}>Login</Nav.Link> */}
+            {isAuthenticated ? (
+            // <Tooltip title="Logout" aria-label="logout">
+            <div className="loginUserWrap">
+              <span className="ml-0-m">Welcome, User</span>
+              <Avatar
+                src={user.picture}
+                className="avatarBox"
+                onClick={() =>
+                  logout({
+                    returnTo: window.location.protocol + "//" + window.location.host,
+                  })
+                }
+              />
+              <span onClick={() =>
+                  logout({
+                    returnTo: window.location.protocol + "//" + window.location.host,
+                  })
+                }>logout</span>
+            </div>
+            ) : (
+            <Nav.Link onClick={() => loginWithPopup()} >Login</Nav.Link>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Navbar>
@@ -120,7 +142,7 @@ export default function AppBarActions() {
         </DialogContent>
       </Dialog> 
 
-      {authComponent}
+      {/* {authComponent} */}
     </div>
   );
 }

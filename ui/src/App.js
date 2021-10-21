@@ -38,8 +38,7 @@ export default function App() {
       <Router>
         <div className="App">
           <MenuBar />
-          <div className="contentBackground">
-            <div className="Content">
+          <div className="container-fluid mt-110">
               <Switch>
                 <Route path="/" exact component={Home} />
                 <Route path="/LeaderBoard" component={leaderboard} />
@@ -61,7 +60,7 @@ export default function App() {
                 <Route path="/set/:cs_slug" component={ChallengeSetPage} />
                 <Route path="/env/:env_id" component={EnvironmentPage} /> */}
               </Switch>
-            </div>
+            
           </div>
         </div>
       </Router>

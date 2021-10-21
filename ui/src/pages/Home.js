@@ -8,10 +8,8 @@ export default function Home() {
 
   if (!isAuthenticated) return <UserNotAuthorized />;
   return (
-    <div>
-      <div className="Home">
-        <h1>Home</h1>
-      </div>
+    <div className="row">
+      <div className="col-12"><h1>Home</h1></div>
     </div>
   );
 }

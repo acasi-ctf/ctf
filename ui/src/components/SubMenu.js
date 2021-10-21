@@ -24,12 +24,12 @@ export default function SubMenu(props) {
     console.log(data);
     return (
         <>
-            <core.ListItem style={{display:'flex', flexDirection:'column', alignItems:'flex-start'}}>
+            <core.ListItem button style={{display:'flex', flexDirection:'column', alignItems:'flex-start'}}>
                 
                 <Link to={item.path?item.path:"."} style={{textDecoration:'none'}} onClick={()=>{setSubNav(!subnav)}} >
-                    <div style={{display:'flex', flexDirection: 'row'}}>
+                    <div style={{display:'flex', flexDirection: 'row',  minWidth:'250px'}}>
                         <core.ListItemIcon style={{minWidth:'0'}}>{item.icon?item.icon:ChallengeSet_Icon}</core.ListItemIcon>
-                        <core.ListItemText style={{color:'#000000', marginLeft:'16px', marginRight:'25px'}}
+                        <core.ListItemText style={{color:'#000000', marginLeft:'15px', marginRight:'15px'}}
                         primary={<core.Typography style={{fontSize:'15px'}}>{item.name}</core.Typography>} />   
                         <div>
                             {(item.subMenu || data.length !==0) && subnav ? iconOpened:
@@ -43,9 +43,9 @@ export default function SubMenu(props) {
                     return (
                         // <Link to={item.path} key={item.id} className='subItem'>
                         <Link to={"."} key={item.id} className='subItem' >
-                            <div style={{display:'flex', flexDirection:'row'}}>
+                            <div style={{display:'flex', flexDirection:'row', minWidth:'250px'}}>
                                 <core.ListItemIcon style={{minWidth:'0'}}>{ChallengeIcon}</core.ListItemIcon>
-                                <core.ListItemText style={{marginLeft:'16px', marginRight:'25px'}} 
+                                <core.ListItemText style={{marginLeft:'15px', marginRight:'15px'}} 
                                 primary={<core.Typography style={{fontSize:'13px'}}>{item.name}</core.Typography>} />
                             </div>
                         </Link>

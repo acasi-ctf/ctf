@@ -56,12 +56,94 @@ export default function UserNotAuthorized() {
                 </div>
               </div>
 
-              <div className="challengesCol">
+              <div className="challengesCol ">
+                <div className="container">
+                  <div className="row flexWrap">
+                    <div className="col-lg-4 col-md-6">
+                        <Card>
+                            <Card.Img variant="null" src="challenges/c001.jpg" alt="thumb" class="mw-100"/>
+                            <Card.Body className="p-0">
+                            <Card.Text className="text-center">
+                                Caesar Cipher
+                            </Card.Text>
+                            </Card.Body>
+                        </Card>
+                    </div>
+                    <div className="col-lg-4 col-md-6">
+                        <Card>
+                            <Card.Img variant="null" src="challenges/c002.jpg" alt="thumb" class="mw-100"/>
+                            <Card.Body className="p-0">
+                            <Card.Text className="text-center">
+                            Letter to Number Cipher
+                            </Card.Text>
+                            </Card.Body>
+                        </Card>
+                    </div>
+                    <div className="col-lg-4 col-md-6">
+                        <Card>
+                            <Card.Img variant="null" src="challenges/c003.jpg" alt="thumb" class="mw-100"/>
+                            <Card.Body className="p-0">
+                                <Card.Text className="text-center">
+                                Morse Code Cipher
+                                </Card.Text>
+                            </Card.Body>
+                        </Card>
+                    </div>
+
+                    <div className="col-lg-4 col-md-6">
+                        <Card>
+                            <Card.Img variant="null" src="challenges/c004.jpg" alt="thumb" class="mw-100"/>
+                            <Card.Body className="p-0">
+                            <Card.Text className="text-center">
+                            Reverse Cipher
+                            </Card.Text>
+                            </Card.Body>
+                        </Card>
+                    </div>
+                    <div className="col-lg-4 col-md-6">
+                        <Card>
+                            <Card.Img variant="null" src="challenges/c003.jpg" alt="thumb" class="mw-100"/>
+                            <Card.Body className="p-0">
+                            <Card.Text className="text-center">
+                            Comprehensive Cipher
+                            </Card.Text>
+                            </Card.Body>
+                        </Card>
+                    </div>
+                    <div className="col-lg-4 col-md-6">
+                        
+                            <Card>
+                                <Card.Img variant="null" src="challenges/c001.jpg" alt="thumb" class="mw-100"/>
+                                <Card.Body className="p-0">
+                                <Card.Text className="text-center">
+                                Directory Traversal
+                                </Card.Text>
+                                </Card.Body>
+                            </Card>
+                        
+                    </div>
+
+                    <div className="col-lg-4 col-md-6">
+                        <Card>
+                            <Card.Img variant="null" src="challenges/thumb03.jpg" alt="thumb" class="mw-100"/>
+                            <Card.Body className="p-0">
+                            <Card.Text className="text-center">
+                            Web Structure
+                            </Card.Text>
+                            </Card.Body>
+                        </Card>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+
+              {/* <div className="challengesCol">
                 <div className="container">
                   <div className="row flexWrap">
                     <div className="col-lg-4 col-md-6">
                       <Card>
-                        <Card.Img variant="null" src="challenges/thumb01.jpg" alt="thumb" />
+                        <Card.Img variant="null" src="challenges/thumb01.jpg" alt="thumb" class="mw-100"/>
                         <Card.Body className="p-0">
                           <Card.Text>
                           Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, 
@@ -78,7 +160,7 @@ export default function UserNotAuthorized() {
                     </div>
                     <div className="col-lg-4 col-md-6">
                       <Card>
-                        <Card.Img variant="null" src="challenges/thumb03.jpg" alt="thumb" />
+                        <Card.Img variant="null" src="challenges/thumb03.jpg" alt="thumb" class="mw-100"/>
                         <Card.Body className="p-0">
                           <Card.Text>
                           Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, 
@@ -95,7 +177,7 @@ export default function UserNotAuthorized() {
                     </div>
                     <div className="col-lg-4 col-md-6">
                         <Card>
-                          <Card.Img variant="null" src="challenges/thumb01.jpg" alt="thumb" />
+                          <Card.Img variant="null" src="challenges/thumb01.jpg" alt="thumb" class="mw-100"/>
                           <Card.Body className="p-0">
                             <Card.Text>
                             Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, 
@@ -113,7 +195,7 @@ export default function UserNotAuthorized() {
 
                     <div className="col-lg-4 col-md-6">
                       <Card>
-                        <Card.Img variant="null" src="challenges/thumb01.jpg" alt="thumb" />
+                        <Card.Img variant="null" src="challenges/thumb01.jpg" alt="thumb" class="mw-100"/>
                         <Card.Body className="p-0">
                           <Card.Text>
                           Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, 
@@ -130,7 +212,7 @@ export default function UserNotAuthorized() {
                     </div>
                     <div className="col-lg-4 col-md-6">
                       <Card>
-                        <Card.Img variant="null" src="challenges/thumb02.png" alt="thumb" />
+                        <Card.Img variant="null" src="challenges/thumb02.png" alt="thumb" class="mw-100"/>
                         <Card.Body className="p-0">
                           <Card.Text>
                           Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, 
@@ -147,7 +229,7 @@ export default function UserNotAuthorized() {
                     </div>
                     <div className="col-lg-4 col-md-6">
                       <Card>
-                        <Card.Img variant="null" src="challenges/thumb04.png" alt="thumb" />
+                        <Card.Img variant="null" src="challenges/thumb04.png" alt="thumb" class="mw-100"/>
                         <Card.Body className="p-0">
                           <Card.Text>
                           Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, 
@@ -165,7 +247,7 @@ export default function UserNotAuthorized() {
 
                     <div className="col-lg-4 col-md-6">
                       <Card>
-                        <Card.Img variant="null" src="challenges/thumb01.jpg" alt="thumb" />
+                        <Card.Img variant="null" src="challenges/thumb01.jpg" alt="thumb" class="mw-100"/>
                         <Card.Body className="p-0">
                           <Card.Text>
                           Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, 
@@ -182,7 +264,7 @@ export default function UserNotAuthorized() {
                     </div>
                     <div className="col-lg-4 col-md-6">
                       <Card>
-                        <Card.Img variant="null" src="challenges/thumb02.png" alt="thumb" />
+                        <Card.Img variant="null" src="challenges/thumb02.png" alt="thumb" class="mw-100"/>
                         <Card.Body className="p-0">
                           <Card.Text>
                           Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, 
@@ -199,7 +281,7 @@ export default function UserNotAuthorized() {
                     </div>
                     <div className="col-lg-4 col-md-6">
                       <Card>
-                        <Card.Img variant="null" src="challenges/thumb04.png" alt="thumb" />
+                        <Card.Img variant="null" src="challenges/thumb04.png" alt="thumb" class="mw-100"/>
                         <Card.Body className="p-0">
                           <Card.Text>
                           Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, 
@@ -216,7 +298,7 @@ export default function UserNotAuthorized() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
               <div className="footer">
                 <Nav className="justify-content-center footerNav flex-wrap">
                   <Nav.Item>

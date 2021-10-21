@@ -3,8 +3,8 @@ import '../style/LeaderBoard.css'
 
 export default function leaderboard() {
     return (
-        <div>
-            <div className='leaderboard'>
+        <div className="row">
+            <div className="col-12">
                 <h1>Leader Board</h1>
             </div>
         </div>

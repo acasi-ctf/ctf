@@ -10,22 +10,7 @@
 .App {
     display: flex;
 }
-.contentBackground {
-    display: flex;
-    width: 100%;
-    height: 100vh;
-    /* change the color of the back ground for developing */
-    background-color: rgb(255, 255, 255);
-}
-.Content {
-    margin-left: 10px;
-    margin-right: 10px;
-    width: 98%;
-    height: calc(100% - 66px);
-    margin-top: 66px;
-    /* change the color of the back ground for developing */
-    background-color: rgb(255, 255, 255);
-}
+
 /* Header and nav */
 
 .MuiAppBar-colorPrimary {
@@ -33,12 +18,16 @@
     box-shadow: none !important;
 }
 .topNav .navbar-toggler {
-    background: #fff;
+
     border: none;
     padding: 2px 5px;
 }
+.navbar-light .navbar-toggler-icon{
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='18' height='12' viewBox='0 0 18 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 10h20M4 15h20M4 20h20'/%3e%3c/svg%3e") !important;   
+    width: 27px;
+}
 .topNav .navbar-toggler:hover {
-    background: #0e5c87;
+    background: transparent;
 }
 .topNav .navbar-light .navbar-nav .nav-link {
     font-size: 14px;
@@ -188,6 +177,7 @@
     letter-spacing: 0em;
     color: #444;
 }
+
 .challengesCol {
     background: #1176ae;
     padding-top: 40px;
@@ -212,7 +202,11 @@
     color: #444;
     margin: 15px 0;
 }
-
+.challengesCol .card .card-text{
+    color: #1176ae;
+    text-transform: uppercase;
+    font-size: 17px;
+    font-weight: 500;}
 .cardAction {
     display: flex;
     justify-content: space-between;
@@ -300,8 +294,12 @@
     .topNav button, .topNav .navbar-light .navbar-nav .nav-link {
         font-size: 13px;
     }
+    .topNav .navbar-light .navbar-nav .nav-link{
+        font-size: 12px;
+    }
 }
 @media all and (max-width:1199px) {
+    .topNav .navbar-light .navbar-nav .nav-link{padding: .5rem;font-size: 13px;}
     .grayCol, .signinCol.grayCol {
         padding: 20px;
     }
@@ -352,9 +350,7 @@
     .topNav {
         padding: 10px 0;
     }
-    .navbar-collapse {
-        /* min-width: calc(100% + 55px); */
-    }
+
     .footer .row {
         flex-direction: column;
     }
@@ -377,6 +373,16 @@
     .challengesCol .card .bubbleBtn img {
         max-width: 30px;
     }
+}
+@media all and (max-width:805px) {
+    .challengesCol .card .card-text{
+        font-size: 15px;
+        margin: 10px 0 0;
+    }
+    .challengesCol.selection .col-md-6{
+        max-width: 100%;
+    }
+    .challengesCol.selection .col-md-6 .card{margin-bottom: 15px;}
 }
 @media all and (max-width:767px) {
     .signinCol h2, .mainContent h2, .challengesWrap h3{
@@ -426,4 +432,59 @@
     .ml-6 {
         margin-left: 5px;
     }
+}
+.mt-110{
+    padding-top: 97px;
+}
+.makeStyles-appBar-10{
+    width: 100%;margin-left: 0;
+    z-index: 9999;
+}
+header.MuiAppBar-positionFixed{
+    z-index: 9999 !important;
+}
+.MuiPaper-elevation16,
+.MuiDrawer-paperAnchorDockedLeft{
+    background: #06547f !important;
+}
+.MuiPaper-elevation16 *,
+.MuiDrawer-paperAnchorDockedLeft *{
+    color: #fff;
+}
+.paddingtop{
+    padding-top: 100px;
+}
+header .MuiToolbar-regular{
+    padding: 0 !important;
+}
+header .makeStyles-menuButton-10{
+    
+    margin: 5px 0 auto 0 !important;
+}
+header .MuiToolbar-root{
+    align-items: flex-start;
+}
+.loginUserWrap Avatar{cursor: pointer;}
+.loginUserWrap span{display: none;}
+.avatarBox{margin-left: 15px;cursor: pointer;}
+@media screen and (max-width:991px){
+    .loginUserWrap {display: flex;align-items: center;justify-content: space-between;}
+    .loginUserWrap span{display: block;}
+    .MuiAvatar-circular{order: -1;}
+    .avatarBox{
+        margin: 10px 0 0;
+        height: 30px !important;
+        width: 30px !important;
+    }
+    .loginUserWrap span{
+        margin: 10px 0 0;
+        cursor: pointer;
+    }
+    .loginUserWrap span.ml-0-m{margin:10px auto 0 10px;}
+}
+@media screen and (max-width:599px){
+    .paddingtop{
+        padding-top: 52px;
+    }
+    
 }
