@@ -26,6 +26,7 @@ $res = mysqli_fetch_array($result);
 
 if($res == NULL) {
     echo "<div style=\"text-align:center; font-size:x-large;\">Your Username or Passward is not correct.</div>";   
+    echo "<div style=\"text-align:center;font-size:x-large;\"><a href=\"JavaScript:history.back(-1)\">Back To Login</a></div>";
 }
 else {
 
