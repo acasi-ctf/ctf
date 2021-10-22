@@ -72,8 +72,8 @@ Please review the following code files, which were actively developed during thi
 * Team members who were stuck asked for help and were able to get assistance from team members.
 
 ### Here's what we'd like to improve
-* Continue increasing the frequency with which we commit. 
-* Finishing up sprint work a couple of days before sprint demo. 
+* Continue increasing the frequency with which we commit.
+* Finishing up sprint work a couple of days before sprint demo.
 * Avoid working late the night before deadline to finish demo video and final work to increase quality of work.
 
 ### Here are changes we plan to implement in the next sprint
