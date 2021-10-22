@@ -67,9 +67,11 @@ Please review the following code files, which were actively developed during thi
 
 ## Retrospective Summary
 ### Here's what went well
-
+* Github use was much better. More consistent commits, across the team. Made it easier to see whats being worked on.
 
 ### Here's what we'd like to improve
+* Continue increasing the frequency with which we commit. 
+* Finishing Up Sprint work a couple days before sprint demo. Avoid working late the night before deadline.
 
-  
 ### Here are changes we plan to implement in the next sprint
+* Establish team deadlines, to avoid rushing.
