@@ -71,7 +71,7 @@ Please review the following code files, which were actively developed during thi
 
 ### Here's what we'd like to improve
 * Continue increasing the frequency with which we commit. 
-* Finishing Up Sprint work a couple days before sprint demo. Avoid working late the night before deadline.
+* Finishing up sprint work a couple days before sprint demo. Avoid working late the night before deadline.
 
 ### Here are changes we plan to implement in the next sprint
 * Establish team deadlines, to avoid rushing.
