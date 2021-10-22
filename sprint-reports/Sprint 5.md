@@ -1,77 +1,59 @@
-# Sprint 4 Report (9/25/2021 - 10/21/2021)
+# Sprint 5 Report (9/25/2021 - 10/21/2021)
+[Sprint Summary Video](https://www.youtube.com/watch?v=KLDDMQUEllQ)
 
 ## What's New (User Facing)
-* Page Routing is almost completely dynamic
-* More work on challenges
-  * Cipher
+* Dynamic content loading
+* Additional challenges available
   * Kali Linux
+  * Games
 
-One very large change that I would like to mention is that the overall scope of our project is changing.
-Our sponsor wants to take what we have completed for them and use it as approximately 1/3rd of the new project concept.
-Due to this, we suddenly had a large blocker on many issues because we not only had to wait for F5 to hire contractors,
-but we also then had to wait for that contracting firm to select people to work with F5 based on the desired roles F5
-needs. Additionally, one of the roles is a designer so that F5 can make sure the theme and color pallet of all 3
-subdomains of the new project look like they belong together. Due to this chain of delaying events, not as much as able
-to be completed on the UI as expected.
-
-We switched from using MS Teams to Discord as a primary means of communication. Our sponsor has stated that they find
-communication via discord sufficient communication for the most part and would only like to have meetings at the start
-of each sprint unless otherwise directed. This is also where we will be communicating with the contractors outside of
-meetings.
-
-Neither the template nor the rubric asked us to include our transcripts anywhere. Since there was no direction on this,
-we are prepared to share them if requested, but would rather not for the same reason we are no longer sharing the
-retrospective videos.
+**TODO!**
 
 ## Work Summary (Developer Facing)
-The backend changes consisted of a pretty large refactoring and rewrite of the relevant components to provisioning in
-the Kubernetes Operator. The [respective before and after video](https://www.youtube.com/watch?v=_wIl-tk9EAM) goes into
-this in more depth. The work is not complete for the intended goal of these backend changes yet, but it lays down a solid
-foundation for going into the next sprint, by allowing us to replace the old implementation.
+Work is ongoing with the Kubernetes operator rework. A large amount of work is being done
+(and continuing to be done) to rework the JSON that describes an individual challenge,
+whether it be metadata or how to provision it in the Kubernetes cluster.
 
-There has also been work done towards making the UI dynamic using API calls based on challenge sets rather than having
-static menu. Additionally, we started styling the site and added a landing page, but had to stop style work because of
-new scope of project explained below.4
+The user interface now properly pulls in challenge sets, challenges, and documentation
+from the frontend API which is backed by PostgreSQL. A number of these routes are publicly
+available, and some are protected by Auth0 authentication/authorization.
 
 ## Unfinished Work
-As stated in the previous section, the work towards getting our Kubernetes Operator to be a more traditional
-implementation (while also being much cleaner and easier to maintain), is a multi-sprint goal to achieve.
-Next sprint, we will continue working on this and hope to have it completed by then. These subtasks are
-being tracked in [issue #100](https://github.com/acasi-ctf/ctf/issues/100).
-
-Due to our sponsor changing the scope of the project, the UI theme and color schema are being blocked. The scope of the
-new project requires that our theme and color scheme match that of the overall site that is being branded Cyber Literacy
-for All. Our original project is 1/3 of the new scope, but we are waiting on contractors hired by our sponsor to be
-selected and to give us a design document to work with.
+Due to both time commitments in other classes and at work, the Kubernetes rework is taking
+long than originally planned out. There are subtasks that need to be taken care of as part
+of issue #100. These subtasks are being tracked [here](https://github.com/acasi-ctf/ctf/issues/100).
 
 ## Completed Issues / User Stories
-|Issue URL | Before/After Video URL|
-|----------|-----------------------|
-|[Issue #101](https://github.com/acasi-ctf/ctf/issues/101) | [Video](https://www.youtube.com/watch?v=_wIl-tk9EAM)|
-|[Issue #121](https://github.com/acasi-ctf/ctf/issues/121) | [Video](https://www.youtube.com/watch?v=FOuDwQRuFCQ)|
-|[Issue #107](https://github.com/acasi-ctf/ctf/issues/107) | [Video](https://www.youtube.com/watch?v=Be2aLsa0dB8)|
-|[Issue #104](https://github.com/acasi-ctf/ctf/issues/104) | [Video](https://www.youtube.com/watch?v=hg7XCsO3LI4)|
+|Issue URL |
+|----------|
+|[Issue #]() |
+|[Issue #]() |
+|[Issue #]() |
+|[Issue #]() |
 
 ## Incomplete Issues / User Stories
 |Issue | Blocker|
 |------|-----------------------------------------------------------------------|
-|[Issue 105](https://github.com/acasi-ctf/ctf/issues/105) | Waiting on contractors being hired by F5 to continue with agreed upon theme and color pallet.|
-|[Issue 106](https://github.com/acasi-ctf/ctf/issues/106) | Have been waiting to talk with contractors, but meeting scheduled for 9:00PM PST on Sunday 9/26.|
-|[Issue 110](https://github.com/acasi-ctf/ctf/issues/110) | Ethan unable to get Docker images running on cluster due to lack of experience with Kubernetes, but Logan can assist in next sprint.|
+|[Issue #]() | |
+|[Issue #]() | |
+|[Issue #]() | |
 
 ## Code Files for Review
 Please review the following code files, which were actively developed during this sprint, for quality:
-* [EnvListener.kt](https://github.com/acasi-ctf/ctf/blob/main/operator/src/main/kotlin/org/acasictf/ctf/operator/provisioner/kubernetes/EnvListener.kt)
-* [EnvCreator.kt](https://github.com/acasi-ctf/ctf/blob/main/operator/src/main/kotlin/org/acasictf/ctf/operator/provisioner/kubernetes/creator/EnvCreator.kt)
-* [StatefulSetCreator.kt](https://github.com/acasi-ctf/ctf/blob/main/operator/src/main/kotlin/org/acasictf/ctf/operator/provisioner/kubernetes/creator/StatefulSetCreator.kt)
+* [KubernetesProvisioner.kt](https://github.com/acasi-ctf/ctf/blob/sprint5-refactor-operator/operator/src/main/kotlin/org/acasictf/ctf/operator/provisioner/kubernetes/KubernetesProvisioner.kt)
+* [KubernetesProvisionerTest.kt](https://github.com/acasi-ctf/ctf/blob/sprint5-refactor-operator/operator/src/test/kotlin/org/acasictf/ctf/operator/provisioner/kubernetes/KubernetesProvisionerTest.kt)
+* [EnvListenerTest.kt](https://github.com/acasi-ctf/ctf/blob/sprint5-refactor-operator/operator/src/test/kotlin/org/acasictf/ctf/operator/provisioner/kubernetes/EnvListenerTest.kt)
+* [ProvisioningService.kt](https://github.com/acasi-ctf/ctf/blob/sprint5-refactor-operator/operator/src/main/kotlin/org/acasictf/ctf/operator/service/ProvisioningService.kt)
+* [builder.go](https://github.com/acasi-ctf/ctf/blob/sprint5-refactor-operator/pkg/challenges/builder/builder.go)
+* [validator_kubernetes_provisioner_test.go](https://github.com/acasi-ctf/ctf/blob/sprint5-refactor-operator/pkg/challenges/validator/validator_kubernetes_provisioner_test.go)
 
 ## Retrospective Summary
 ### Here's what went well
-* Github use was much better. More consistent commits, across the team. Made it easier to see whats being worked on.
+* GitHub use was much better. More consistent commits across the team. Made it easier to see whats being worked on.
 
 ### Here's what we'd like to improve
 * Continue increasing the frequency with which we commit. 
-* Finishing up sprint work a couple days before sprint demo. Avoid working late the night before deadline.
+* Finishing up sprint work a couple days before sprint demo. Avoid working late the night before deadline to finish demo video and final work.
 
 ### Here are changes we plan to implement in the next sprint
-* Establish team deadlines, to avoid rushing.
+* Establish deadlines as a team, to avoid rushing.
