@@ -25,24 +25,9 @@ return <div className="challengesWrap">
         </div>
         <div className="col-lg-4 col-md-5">
           <div className="grayCol signinCol">
-            <h2>Sign In</h2>
-
-            <Form>
-              <Form.Group className="inputControl" controlId="formBasicEmail">
-                <Form.Control type="email" placeholder="Email" />
-                <Form.Control type="password" placeholder="Password" />
-              </Form.Group>
-
-              <Form.Group className="rememberMeCol" controlId="formBasicCheckbox">
-                <Form.Check type="checkbox" label="Remember me" className="m-0 form-check-label" />
-              </Form.Group>
-              <Button className="butn primaryBtn" variant="primary" type="submit"> Sign in</Button>
-              <Button className="butn secondaryBtn"  variant="secondary" type="submit"><img src="google.svg" alt="google"/> Sign in with Google</Button>
-              <p className="loginAction mb-0">
-                <a href="/home">Can't log in?</a>
-                <a href="/home">Create Account</a>
-              </p>
-            </Form>
+            <h2>Welcome <span>to CTF</span></h2>
+            <img src="login.svg" alt="login"/>
+            <Button className="butn primaryBtn" variant="primary" type="submit"> Sign In/ Sign Up</Button>            
           </div>
         </div>
       </div>

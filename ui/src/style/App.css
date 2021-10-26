@@ -66,14 +66,13 @@
     padding-bottom: 13px;
 }
 .signinCol.grayCol {
-    padding: 23px 50px 28px;
+    padding: 30px 40px;
+    min-height: 100%;
+    justify-content: center;
 }
-.signinCol.grayCol .rememberMeCol {
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 21px;
-    letter-spacing: 0em;
-    color: #444;
+.signinCol.grayCol img{
+    max-width: 200px;
+    margin: 0 auto;
 }
 .signinCol.grayCol .butn {
     height: 50px;
@@ -109,34 +108,13 @@
     color: #1176AE;
     text-transform: uppercase;
     margin-bottom: 7px;
+    text-align: center;
 }
-.signinCol.grayCol p.loginAction {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 15px;
+.signinCol h2 span{
+    color: #444;
 }
-.signinCol.grayCol p.loginAction a {
-    font-size: 15px;
-    font-weight: 400;
-    line-height: 23px;
-    letter-spacing: 0em;
-    color: #1176AE;
-    text-decoration: none;
-}
-.inputControl input {
-    height: 50px;
-    width: 100%;
-    background: #FFFFFF;
-    border: 1px solid #C4C4C4;
-    box-sizing: border-box;
-    border-radius: 5px;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 24px;
-    padding: 17px;
-    margin-bottom: 20px;
-}
+
+
 .mainContent h2 {
     font-size: 25px;
     font-weight: 500;
