@@ -1,8 +1,20 @@
 import React from "react";
 // import Container from '@material-ui/core/Container'
+import { useAuth0 } from "@auth0/auth0-react";
+import useFetchAuth from "../Home";
 import { Button, Form, Nav, Card} from "react-bootstrap";
 
 export default function UserNotAuthorized() {
+  const { data: environments, loading, error } = useFetchAuth(
+    "/api/user/environments"
+  );
+  const {
+    user,
+    loginWithPopup,
+    logout,
+    isAuthenticated,
+    getAccessTokenSilently,
+  } = useAuth0();
 // return <h1>Please log in</h1>;
 
 return <div className="challengesWrap">
@@ -15,10 +27,10 @@ return <div className="challengesWrap">
 
             <Nav className="actionLink">
               <Nav.Item className="mr77">
-                <Nav.Link href="/home">Learn More</Nav.Link>
+                <Nav.Link href="#" onClick={() => loginWithPopup()}>Learn More</Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link href="/home">Try Challenges</Nav.Link>
+                <Nav.Link href="#" onClick={() => loginWithPopup()}>Try Challenges</Nav.Link>
               </Nav.Item>
             </Nav>
           </div>
@@ -27,12 +39,12 @@ return <div className="challengesWrap">
           <div className="grayCol signinCol">
             <h2>Welcome <span>to CTF</span></h2>
             <img src="login.svg" alt="login"/>
-            <Button className="butn primaryBtn" variant="primary" type="submit"> Sign In/ Sign Up</Button>            
+            <Button className="butn primaryBtn" onClick={() => loginWithPopup()} variant="primary" type="submit"> Sign In/ Sign Up</Button>
           </div>
         </div>
       </div>
     </div>
-    
+
     <div className="container">
       <div className="row">
         <div className="col">
@@ -45,80 +57,93 @@ return <div className="challengesWrap">
       <div className="container">
         <div className="row flexWrap">
           <div className="col-lg-4 col-md-6">
+            <Nav.Link href="#" onClick={() => loginWithPopup()}>
               <Card>
-                  <Card.Img variant="null" src="challenges/c001.jpg" alt="thumb" class="mw-100"/>
+                  <Card.Img variant="null" src="challenges/c001.jpg" alt="thumb" className="mw-100"/>
                   <Card.Body className="p-0">
                   <Card.Text className="text-center">
                       Caesar Cipher
                   </Card.Text>
                   </Card.Body>
               </Card>
+              </Nav.Link>
           </div>
           <div className="col-lg-4 col-md-6">
+            <Nav.Link href="#" onClick={() => loginWithPopup()}>
               <Card>
-                  <Card.Img variant="null" src="challenges/c002.jpg" alt="thumb" class="mw-100"/>
+                  <Card.Img variant="null" src="challenges/c002.jpg" alt="thumb" className="mw-100"/>
                   <Card.Body className="p-0">
                   <Card.Text className="text-center">
                   Letter to Number Cipher
                   </Card.Text>
                   </Card.Body>
               </Card>
+              </Nav.Link>
           </div>
           <div className="col-lg-4 col-md-6">
+          <Nav.Link href="#" onClick={() => loginWithPopup()}>
               <Card>
-                  <Card.Img variant="null" src="challenges/c003.jpg" alt="thumb" class="mw-100"/>
+                  <Card.Img variant="null" src="challenges/c003.jpg" alt="thumb" className="mw-100"/>
                   <Card.Body className="p-0">
                       <Card.Text className="text-center">
                       Morse Code Cipher
                       </Card.Text>
                   </Card.Body>
               </Card>
+              </Nav.Link>
           </div>
 
           <div className="col-lg-4 col-md-6">
+          <Nav.Link href="#" onClick={() => loginWithPopup()}>
               <Card>
-                  <Card.Img variant="null" src="challenges/c004.jpg" alt="thumb" class="mw-100"/>
+                  <Card.Img variant="null" src="challenges/c004.jpg" alt="thumb" className="mw-100"/>
                   <Card.Body className="p-0">
                   <Card.Text className="text-center">
                   Reverse Cipher
                   </Card.Text>
                   </Card.Body>
               </Card>
+              </Nav.Link>
           </div>
           <div className="col-lg-4 col-md-6">
+          <Nav.Link href="#" onClick={() => loginWithPopup()}>
               <Card>
-                  <Card.Img variant="null" src="challenges/c003.jpg" alt="thumb" class="mw-100"/>
+                  <Card.Img variant="null" src="challenges/c003.jpg" alt="thumb" className="mw-100"/>
                   <Card.Body className="p-0">
                   <Card.Text className="text-center">
                   Comprehensive Cipher
                   </Card.Text>
                   </Card.Body>
               </Card>
+              </Nav.Link>
           </div>
           <div className="col-lg-4 col-md-6">
-              
+          <Nav.Link href="#" onClick={() => loginWithPopup()}>
                   <Card>
-                      <Card.Img variant="null" src="challenges/c001.jpg" alt="thumb" class="mw-100"/>
+                      <Card.Img variant="null" src="challenges/c001.jpg" alt="thumb" className="mw-100"/>
                       <Card.Body className="p-0">
                       <Card.Text className="text-center">
                       Directory Traversal
                       </Card.Text>
                       </Card.Body>
                   </Card>
-              
+                  </Nav.Link>
+
           </div>
 
           <div className="col-lg-4 col-md-6">
+          <Nav.Link href="#" onClick={() => loginWithPopup()}>
               <Card>
-                  <Card.Img variant="null" src="challenges/thumb03.jpg" alt="thumb" class="mw-100"/>
+                  <Card.Img variant="null" src="challenges/thumb03.jpg" alt="thumb" className="mw-100"/>
                   <Card.Body className="p-0">
                   <Card.Text className="text-center">
                   Web Structure
                   </Card.Text>
                   </Card.Body>
               </Card>
+              </Nav.Link>
           </div>
-          
+
         </div>
       </div>
     </div>
@@ -128,10 +153,10 @@ return <div className="challengesWrap">
         <div className="row flexWrap">
           <div className="col-lg-4 col-md-6">
             <Card>
-              <Card.Img variant="null" src="challenges/thumb01.jpg" alt="thumb" class="mw-100"/>
+              <Card.Img variant="null" src="challenges/thumb01.jpg" alt="thumb" className="mw-100"/>
               <Card.Body className="p-0">
                 <Card.Text>
-                Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, 
+                Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock,
                 </Card.Text>
                 <div className="cardAction">
                   <Button variant="link">Play</Button>
@@ -141,14 +166,14 @@ return <div className="challengesWrap">
                   </div>
                 </div>
               </Card.Body>
-            </Card>                      
+            </Card>
           </div>
           <div className="col-lg-4 col-md-6">
             <Card>
-              <Card.Img variant="null" src="challenges/thumb03.jpg" alt="thumb" class="mw-100"/>
+              <Card.Img variant="null" src="challenges/thumb03.jpg" alt="thumb" className="mw-100"/>
               <Card.Body className="p-0">
                 <Card.Text>
-                Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, 
+                Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock,
                 </Card.Text>
                 <div className="cardAction">
                   <Button variant="link">Play</Button>
@@ -162,10 +187,10 @@ return <div className="challengesWrap">
           </div>
           <div className="col-lg-4 col-md-6">
               <Card>
-                <Card.Img variant="null" src="challenges/thumb01.jpg" alt="thumb" class="mw-100"/>
+                <Card.Img variant="null" src="challenges/thumb01.jpg" alt="thumb" className="mw-100"/>
                 <Card.Body className="p-0">
                   <Card.Text>
-                  Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, 
+                  Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock,
                   </Card.Text>
                   <div className="cardAction">
                     <Button variant="link">Play</Button>
@@ -180,10 +205,10 @@ return <div className="challengesWrap">
 
           <div className="col-lg-4 col-md-6">
             <Card>
-              <Card.Img variant="null" src="challenges/thumb01.jpg" alt="thumb" class="mw-100"/>
+              <Card.Img variant="null" src="challenges/thumb01.jpg" alt="thumb" className="mw-100"/>
               <Card.Body className="p-0">
                 <Card.Text>
-                Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, 
+                Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock,
                 </Card.Text>
                 <div className="cardAction">
                   <Button variant="link">Play</Button>
@@ -197,10 +222,10 @@ return <div className="challengesWrap">
           </div>
           <div className="col-lg-4 col-md-6">
             <Card>
-              <Card.Img variant="null" src="challenges/thumb02.png" alt="thumb" class="mw-100"/>
+              <Card.Img variant="null" src="challenges/thumb02.png" alt="thumb" className="mw-100"/>
               <Card.Body className="p-0">
                 <Card.Text>
-                Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, 
+                Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock,
                 </Card.Text>
                 <div className="cardAction">
                   <Button variant="link">Play</Button>
@@ -214,10 +239,10 @@ return <div className="challengesWrap">
           </div>
           <div className="col-lg-4 col-md-6">
             <Card>
-              <Card.Img variant="null" src="challenges/thumb04.png" alt="thumb" class="mw-100"/>
+              <Card.Img variant="null" src="challenges/thumb04.png" alt="thumb" className="mw-100"/>
               <Card.Body className="p-0">
                 <Card.Text>
-                Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, 
+                Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock,
                 </Card.Text>
                 <div className="cardAction">
                   <Button variant="link">Play</Button>
@@ -232,10 +257,10 @@ return <div className="challengesWrap">
 
           <div className="col-lg-4 col-md-6">
             <Card>
-              <Card.Img variant="null" src="challenges/thumb01.jpg" alt="thumb" class="mw-100"/>
+              <Card.Img variant="null" src="challenges/thumb01.jpg" alt="thumb" className="mw-100"/>
               <Card.Body className="p-0">
                 <Card.Text>
-                Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, 
+                Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock,
                 </Card.Text>
                 <div className="cardAction">
                   <Button variant="link">Play</Button>
@@ -249,10 +274,10 @@ return <div className="challengesWrap">
           </div>
           <div className="col-lg-4 col-md-6">
             <Card>
-              <Card.Img variant="null" src="challenges/thumb02.png" alt="thumb" class="mw-100"/>
+              <Card.Img variant="null" src="challenges/thumb02.png" alt="thumb" className="mw-100"/>
               <Card.Body className="p-0">
                 <Card.Text>
-                Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, 
+                Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock,
                 </Card.Text>
                 <div className="cardAction">
                   <Button variant="link">Play</Button>
@@ -266,10 +291,10 @@ return <div className="challengesWrap">
           </div>
           <div className="col-lg-4 col-md-6">
             <Card>
-              <Card.Img variant="null" src="challenges/thumb04.png" alt="thumb" class="mw-100"/>
+              <Card.Img variant="null" src="challenges/thumb04.png" alt="thumb" className="mw-100"/>
               <Card.Body className="p-0">
                 <Card.Text>
-                Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, 
+                Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock,
                 </Card.Text>
                 <div className="cardAction">
                   <Button variant="link">Play</Button>
@@ -301,7 +326,7 @@ return <div className="challengesWrap">
         <Nav.Item>
           <Nav.Link href="/home">Terms of service</Nav.Link>
         </Nav.Item>
-      </Nav>  
+      </Nav>
       <div className="container">
         <div className="row mt-30">
           <div className="col">
@@ -321,7 +346,7 @@ return <div className="challengesWrap">
               </Nav.Item>
               <Nav.Item>
                 <Nav.Link href="https://twitter.com/" target="blank"><img src="social/twitter.png" alt="twitter"/></Nav.Link>
-              </Nav.Item>                        
+              </Nav.Item>
             </Nav>
           </div>
 
