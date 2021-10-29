@@ -146,8 +146,8 @@ export default function ChallengePage() {
 	if (error) return <GenericErrorPage />;
 
 	return (
-		<div style={{ display: "flex", flexDirection: "row", position: "fixed" }}>
-			<div className="ChallengeSet1">
+		<div className="mainCover">
+			<div className="challengeWrap">
 				<core.AppBar position="static" color="default">
 					<core.Tabs value={value} indicatorColor="primary" onChange={handleChange}
 						textColor="primary" variant="scrollable" scrollButtons="auto" aria-label="simple auto tabs example" >
@@ -160,7 +160,7 @@ export default function ChallengePage() {
 				</core.AppBar>
 
 				<TabPanel className="box1" value={value} index={value}
-					style={{ overflowY: "scroll", marginTop: "5px", marginLeft: "5px" }}>
+					style={{ overflowY: "scroll", marginTop: "5px"}}>
 					<ReactMarkdown remarkPlugins={[gfm]} children={txt} style={{ marginLeft: "10px" }} />
 				</TabPanel>
 			</div>

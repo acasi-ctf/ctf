@@ -1,9 +1,18 @@
-.ChallengeSet1{
+.mainCover{ 
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    height: calc(100% - 104px);
+    left: 0;
+    padding-left: 290px;
+    top:104px
+}
+.challengeWrap{
     justify-content: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 95vh;
+    flex: 1;
 }
 
 .tab{
@@ -12,6 +21,21 @@
 
 .box1{
     height: 85vh;
-    width: 100%;
     border-style: groove;
+    padding: 10px;
+}
+@media all and (max-width:1361px) {
+    .mainCover{
+        overflow: auto;
+    }
+}
+@media all and (max-width:1201px) {
+    .mainCover{
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .box1{
+        height: 50vh;
+    }
 }

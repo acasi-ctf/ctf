@@ -1,5 +1,6 @@
 .Terminal {
-    width: 48%;
-    margin-left: 10px;
-    margin-top: 5px;
+    margin:0 0 0 5px;
+    background: #000;
+    flex: 1;
+    /* width: 40vw; */
 }

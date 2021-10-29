@@ -277,7 +277,7 @@
     }
 }
 @media all and (max-width:1199px) {
-    .topNav .navbar-light .navbar-nav .nav-link{padding: .5rem;font-size: 13px;}
+    .topNav .navbar-light .navbar-nav .nav-link{padding: .5rem 3px;font-size: 13px;}
     .grayCol, .signinCol.grayCol {
         padding: 20px;
     }
