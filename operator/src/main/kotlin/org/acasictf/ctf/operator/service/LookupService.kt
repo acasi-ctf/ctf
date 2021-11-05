@@ -20,7 +20,6 @@ class LookupService(
         val envIdStr = request.environmentId.contents
 
         val listOptions = ListOptions().apply {
-            // TODO: labelSelector assumes penimage env label
             labelSelector = "$ctfEnvIdKey=$envIdStr,$ctfExposeKey=Termproxy"
         }
         val services = kube.services().inNamespace(kubeNamespace).list(listOptions)
