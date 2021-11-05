@@ -3,7 +3,6 @@ FROM ubuntu:focal
 
 # Install packages
 RUN apt-get update && \
-  apt-get -y dist-upgrade && \
   apt-get -yq --no-install-recommends install nano vim curl nmap openssh-server sudo python3 && \
   apt-get clean all && \
   rm -rf /var/lib/apt/lists/*
