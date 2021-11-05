@@ -74,8 +74,6 @@ function ResponsiveDrawer(props) {
   const drawer = (
     <div>
       <div className="paddingtop" />
-            {/* /* LIST 1 */}
-            {/* Data in this list is read from local file */}
       <core.List>
             {staticMenuData.map((item,index)=>{return(
                             <core.ListItem button key={index} style={{display:'flex', flexDirection:'column', alignItems:'flex-start'}}>
@@ -93,8 +91,6 @@ function ResponsiveDrawer(props) {
 
                 <core.Divider />
 
-                {/* LIST 2 */}
-                {/* Data in this list is read over API */}
                 <core.List >    
                     {data.map((item)=>{
                         return <SubMenu path={APIpath} listItem={item} key={item.id} changeTitle={title => setTitle(title)}/>;
