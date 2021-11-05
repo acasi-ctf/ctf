@@ -98,6 +98,7 @@ spec:
                                 ctfExpose:
                                   type: string
                                   enum:
+                                    - None
                                     - Termproxy
                               required:
                                 - port
@@ -133,6 +134,7 @@ spec:
                           ctfExpose:
                             type: string
                             enum:
+                              - None
                               - Web
                           backend:
                             type: object

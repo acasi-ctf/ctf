@@ -18,7 +18,7 @@ class StatefulSetCreator(
     private val env: Environment,
     private val envTemplate: EnvTemplate,
     client: MixedOperation<StatefulSet, StatefulSetList, *>
-) : ResourceCreator<StatefulSet, StatefulSetList>(client) {
+) : ResourceCreator<StatefulSet, StatefulSetList>(client, env) {
     override fun generate() = envTemplate.spec.pods.map {
         statefulSet {
             metadata = meta {

@@ -212,6 +212,7 @@ class EnvTemplateServiceSpecPort {
     var port: Int = 0
     var targetPort: Int? = null
     var protocol = EnvTemplateServiceSpecPortProtocol.Tcp
+    var ctfExpose = EnvTemplateServiceSpecPortCtfExpose.None
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -223,6 +224,7 @@ class EnvTemplateServiceSpecPort {
         if (port != other.port) return false
         if (targetPort != other.targetPort) return false
         if (protocol != other.protocol) return false
+        if (ctfExpose != other.ctfExpose) return false
 
         return true
     }
@@ -232,6 +234,7 @@ class EnvTemplateServiceSpecPort {
         result = 31 * result + port
         result = 31 * result + (targetPort ?: 0)
         result = 31 * result + protocol.hashCode()
+        result = 31 * result + ctfExpose.hashCode()
         return result
     }
 }
@@ -242,6 +245,14 @@ enum class EnvTemplateServiceSpecPortProtocol {
 
     @JsonProperty("UDP")
     Udp
+}
+
+enum class EnvTemplateServiceSpecPortCtfExpose {
+    @JsonProperty("None")
+    None,
+
+    @JsonProperty("Termproxy")
+    Termproxy,
 }
 
 class EnvTemplateIngress {
@@ -290,6 +301,7 @@ class EnvTemplateIngressSpec {
     lateinit var path: String
     var pathType = EnvTemplateIngressPathType.Prefix
     lateinit var backend: EnvTemplateIngressBackend
+    var ctfExpose = EnvTemplateIngressCtfExpose.None
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -300,6 +312,7 @@ class EnvTemplateIngressSpec {
         if (path != other.path) return false
         if (pathType != other.pathType) return false
         if (backend != other.backend) return false
+        if (ctfExpose != other.ctfExpose) return false
 
         return true
     }
@@ -308,6 +321,7 @@ class EnvTemplateIngressSpec {
         var result = path.hashCode()
         result = 31 * result + pathType.hashCode()
         result = 31 * result + backend.hashCode()
+        result = 31 * result + ctfExpose.hashCode()
         return result
     }
 }
@@ -321,6 +335,14 @@ enum class EnvTemplateIngressPathType {
 
     @JsonProperty("ImplementationSpecific")
     ImplementationSpecific
+}
+
+enum class EnvTemplateIngressCtfExpose {
+    @JsonProperty("None")
+    None,
+
+    @JsonProperty("Web")
+    Web,
 }
 
 class EnvTemplateIngressBackend {
