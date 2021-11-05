@@ -3,7 +3,7 @@ Routes that relate to fetching challenge sets and challenges.
 """
 from flask import Blueprint, jsonify, Response
 
-from frontend.model.challenges import ChallengeSet, Challenge, Documentation
+from frontend.model.challenges import ChallengeSet, Challenge, Documentation, UserChallenges
 
 """
 Blueprint that encapsulates this group of routes.
