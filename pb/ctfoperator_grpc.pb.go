@@ -179,6 +179,7 @@ var EnvironmentProvisioningService_ServiceDesc = grpc.ServiceDesc{
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type EnvironmentLookupServiceClient interface {
 	IsEnvironmentReady(ctx context.Context, in *IsEnvironmentReadyRequest, opts ...grpc.CallOption) (*IsEnvironmentReadyResponse, error)
+	// Deprecated: Do not use.
 	GetEnvironmentInfo(ctx context.Context, in *GetEnvironmentInfoRequest, opts ...grpc.CallOption) (*GetEnvironmentInfoResponse, error)
 	ListUserEnvironments(ctx context.Context, in *ListUserEnvironmentsRequest, opts ...grpc.CallOption) (*ListUserEnvironmentsResponse, error)
 }
@@ -200,6 +201,7 @@ func (c *environmentLookupServiceClient) IsEnvironmentReady(ctx context.Context,
 	return out, nil
 }
 
+// Deprecated: Do not use.
 func (c *environmentLookupServiceClient) GetEnvironmentInfo(ctx context.Context, in *GetEnvironmentInfoRequest, opts ...grpc.CallOption) (*GetEnvironmentInfoResponse, error) {
 	out := new(GetEnvironmentInfoResponse)
 	err := c.cc.Invoke(ctx, "/ctf.EnvironmentLookupService/GetEnvironmentInfo", in, out, opts...)
@@ -223,6 +225,7 @@ func (c *environmentLookupServiceClient) ListUserEnvironments(ctx context.Contex
 // for forward compatibility
 type EnvironmentLookupServiceServer interface {
 	IsEnvironmentReady(context.Context, *IsEnvironmentReadyRequest) (*IsEnvironmentReadyResponse, error)
+	// Deprecated: Do not use.
 	GetEnvironmentInfo(context.Context, *GetEnvironmentInfoRequest) (*GetEnvironmentInfoResponse, error)
 	ListUserEnvironments(context.Context, *ListUserEnvironmentsRequest) (*ListUserEnvironmentsResponse, error)
 	mustEmbedUnimplementedEnvironmentLookupServiceServer()

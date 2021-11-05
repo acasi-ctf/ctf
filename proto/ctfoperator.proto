@@ -114,7 +114,10 @@ service EnvironmentLookupService {
   rpc IsEnvironmentReady(IsEnvironmentReadyRequest) returns
       (IsEnvironmentReadyResponse);
   rpc GetEnvironmentInfo(GetEnvironmentInfoRequest) returns
-      (GetEnvironmentInfoResponse);
+      (GetEnvironmentInfoResponse) {
+    // TODO: Create generic services lookup method, hardcoded to one SSH service
+    option deprecated = true;
+  }
   rpc ListUserEnvironments(ListUserEnvironmentsRequest) returns
       (ListUserEnvironmentsResponse);
 }

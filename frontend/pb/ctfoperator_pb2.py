@@ -6,7 +6,6 @@ from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
 from google.protobuf import reflection as _reflection
 from google.protobuf import symbol_database as _symbol_database
-
 # @@protoc_insertion_point(imports)
 
 _sym_db = _symbol_database.Default()
@@ -17,1003 +16,724 @@ from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
-    name="ctfoperator.proto",
-    package="ctf",
-    syntax="proto3",
-    serialized_options=b"\n\026org.acasictf.ctf.protoZ\033github.com/acasi-ctf/ctf/pb",
-    create_key=_descriptor._internal_create_key,
-    serialized_pb=b'\n\x11\x63tfoperator.proto\x12\x03\x63tf\x1a\x0c\x63ommon.proto\x1a\x1bgoogle/protobuf/empty.proto"\x83\x01\n\x17StartEnvironmentRequest\x12#\n\x10\x63hallenge_set_id\x18\x01 \x01(\x0b\x32\t.ctf.UUID\x12\x1f\n\x0c\x63hallenge_id\x18\x02 \x01(\x0b\x32\t.ctf.UUID\x12"\n\x0f\x63hallenge_owner\x18\x03 \x01(\x0b\x32\t.ctf.UUID"\x98\x01\n\x18StartEnvironmentResponse\x12\x37\n\x07success\x18\x01 \x01(\x0b\x32$.ctf.StartEnvironmentSuccessResponseH\x00\x12\x37\n\x07\x66\x61ilure\x18\x02 \x01(\x0b\x32$.ctf.StartEnvironmentFailureResponseH\x00\x42\n\n\x08response"D\n\x1fStartEnvironmentSuccessResponse\x12!\n\x0e\x65nvironment_id\x18\x01 \x01(\x0b\x32\t.ctf.UUID"!\n\x1fStartEnvironmentFailureResponse";\n\x16StopEnvironmentRequest\x12!\n\x0e\x65nvironment_id\x18\x01 \x01(\x0b\x32\t.ctf.UUID"\x19\n\x17StopEnvironmentResponse"3\n UploadEnvironmentTemplateRequest\x12\x0f\n\x07\x65nv_zip\x18\x01 \x01(\x0c">\n\x19IsEnvironmentReadyRequest\x12!\n\x0e\x65nvironment_id\x18\x01 \x01(\x0b\x32\t.ctf.UUID"+\n\x1aIsEnvironmentReadyResponse\x12\r\n\x05ready\x18\x01 \x01(\x08">\n\x19GetEnvironmentInfoRequest\x12!\n\x0e\x65nvironment_id\x18\x01 \x01(\x0b\x32\t.ctf.UUID"@\n\x1aGetEnvironmentInfoResponse\x12\x10\n\x08ssh_host\x18\x01 \x01(\t\x12\x10\n\x08ssh_port\x18\x02 \x01(\x05"9\n\x1bListUserEnvironmentsRequest\x12\x1a\n\x07user_id\x18\x01 \x01(\x0b\x32\t.ctf.UUID"v\n\x13UserEnvironmentInfo\x12\x19\n\x06\x65nv_id\x18\x01 \x01(\x0b\x32\t.ctf.UUID\x12#\n\x10\x63hallenge_set_id\x18\x02 \x01(\x0b\x32\t.ctf.UUID\x12\x1f\n\x0c\x63hallenge_id\x18\x03 \x01(\x0b\x32\t.ctf.UUID"N\n\x1cListUserEnvironmentsResponse\x12.\n\x0c\x65nvironments\x18\x01 \x03(\x0b\x32\x18.ctf.UserEnvironmentInfo2\x9b\x02\n\x1e\x45nvironmentProvisioningService\x12O\n\x10StartEnvironment\x12\x1c.ctf.StartEnvironmentRequest\x1a\x1d.ctf.StartEnvironmentResponse\x12L\n\x0fStopEnvironment\x12\x1b.ctf.StopEnvironmentRequest\x1a\x1c.ctf.StopEnvironmentResponse\x12Z\n\x19UploadEnvironmentTemplate\x12%.ctf.UploadEnvironmentTemplateRequest\x1a\x16.google.protobuf.Empty2\xa5\x02\n\x18\x45nvironmentLookupService\x12U\n\x12IsEnvironmentReady\x12\x1e.ctf.IsEnvironmentReadyRequest\x1a\x1f.ctf.IsEnvironmentReadyResponse\x12U\n\x12GetEnvironmentInfo\x12\x1e.ctf.GetEnvironmentInfoRequest\x1a\x1f.ctf.GetEnvironmentInfoResponse\x12[\n\x14ListUserEnvironments\x12 .ctf.ListUserEnvironmentsRequest\x1a!.ctf.ListUserEnvironmentsResponseB5\n\x16org.acasictf.ctf.protoZ\x1bgithub.com/acasi-ctf/ctf/pbb\x06proto3',
-    dependencies=[
-        common__pb2.DESCRIPTOR,
-        google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,
-    ],
-)
+  name='ctfoperator.proto',
+  package='ctf',
+  syntax='proto3',
+  serialized_options=b'\n\026org.acasictf.ctf.protoZ\033github.com/acasi-ctf/ctf/pb',
+  create_key=_descriptor._internal_create_key,
+  serialized_pb=b'\n\x11\x63tfoperator.proto\x12\x03\x63tf\x1a\x0c\x63ommon.proto\x1a\x1bgoogle/protobuf/empty.proto\"\x83\x01\n\x17StartEnvironmentRequest\x12#\n\x10\x63hallenge_set_id\x18\x01 \x01(\x0b\x32\t.ctf.UUID\x12\x1f\n\x0c\x63hallenge_id\x18\x02 \x01(\x0b\x32\t.ctf.UUID\x12\"\n\x0f\x63hallenge_owner\x18\x03 \x01(\x0b\x32\t.ctf.UUID\"\x98\x01\n\x18StartEnvironmentResponse\x12\x37\n\x07success\x18\x01 \x01(\x0b\x32$.ctf.StartEnvironmentSuccessResponseH\x00\x12\x37\n\x07\x66\x61ilure\x18\x02 \x01(\x0b\x32$.ctf.StartEnvironmentFailureResponseH\x00\x42\n\n\x08response\"D\n\x1fStartEnvironmentSuccessResponse\x12!\n\x0e\x65nvironment_id\x18\x01 \x01(\x0b\x32\t.ctf.UUID\"!\n\x1fStartEnvironmentFailureResponse\";\n\x16StopEnvironmentRequest\x12!\n\x0e\x65nvironment_id\x18\x01 \x01(\x0b\x32\t.ctf.UUID\"\x19\n\x17StopEnvironmentResponse\"3\n UploadEnvironmentTemplateRequest\x12\x0f\n\x07\x65nv_zip\x18\x01 \x01(\x0c\">\n\x19IsEnvironmentReadyRequest\x12!\n\x0e\x65nvironment_id\x18\x01 \x01(\x0b\x32\t.ctf.UUID\"+\n\x1aIsEnvironmentReadyResponse\x12\r\n\x05ready\x18\x01 \x01(\x08\">\n\x19GetEnvironmentInfoRequest\x12!\n\x0e\x65nvironment_id\x18\x01 \x01(\x0b\x32\t.ctf.UUID\"@\n\x1aGetEnvironmentInfoResponse\x12\x10\n\x08ssh_host\x18\x01 \x01(\t\x12\x10\n\x08ssh_port\x18\x02 \x01(\x05\"9\n\x1bListUserEnvironmentsRequest\x12\x1a\n\x07user_id\x18\x01 \x01(\x0b\x32\t.ctf.UUID\"v\n\x13UserEnvironmentInfo\x12\x19\n\x06\x65nv_id\x18\x01 \x01(\x0b\x32\t.ctf.UUID\x12#\n\x10\x63hallenge_set_id\x18\x02 \x01(\x0b\x32\t.ctf.UUID\x12\x1f\n\x0c\x63hallenge_id\x18\x03 \x01(\x0b\x32\t.ctf.UUID\"N\n\x1cListUserEnvironmentsResponse\x12.\n\x0c\x65nvironments\x18\x01 \x03(\x0b\x32\x18.ctf.UserEnvironmentInfo2\x9b\x02\n\x1e\x45nvironmentProvisioningService\x12O\n\x10StartEnvironment\x12\x1c.ctf.StartEnvironmentRequest\x1a\x1d.ctf.StartEnvironmentResponse\x12L\n\x0fStopEnvironment\x12\x1b.ctf.StopEnvironmentRequest\x1a\x1c.ctf.StopEnvironmentResponse\x12Z\n\x19UploadEnvironmentTemplate\x12%.ctf.UploadEnvironmentTemplateRequest\x1a\x16.google.protobuf.Empty2\xaa\x02\n\x18\x45nvironmentLookupService\x12U\n\x12IsEnvironmentReady\x12\x1e.ctf.IsEnvironmentReadyRequest\x1a\x1f.ctf.IsEnvironmentReadyResponse\x12Z\n\x12GetEnvironmentInfo\x12\x1e.ctf.GetEnvironmentInfoRequest\x1a\x1f.ctf.GetEnvironmentInfoResponse\"\x03\x88\x02\x01\x12[\n\x14ListUserEnvironments\x12 .ctf.ListUserEnvironmentsRequest\x1a!.ctf.ListUserEnvironmentsResponseB5\n\x16org.acasictf.ctf.protoZ\x1bgithub.com/acasi-ctf/ctf/pbb\x06proto3'
+  ,
+  dependencies=[common__pb2.DESCRIPTOR,google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,])
+
+
 
 
 _STARTENVIRONMENTREQUEST = _descriptor.Descriptor(
-    name="StartEnvironmentRequest",
-    full_name="ctf.StartEnvironmentRequest",
-    filename=None,
-    file=DESCRIPTOR,
-    containing_type=None,
-    create_key=_descriptor._internal_create_key,
-    fields=[
-        _descriptor.FieldDescriptor(
-            name="challenge_set_id",
-            full_name="ctf.StartEnvironmentRequest.challenge_set_id",
-            index=0,
-            number=1,
-            type=11,
-            cpp_type=10,
-            label=1,
-            has_default_value=False,
-            default_value=None,
-            message_type=None,
-            enum_type=None,
-            containing_type=None,
-            is_extension=False,
-            extension_scope=None,
-            serialized_options=None,
-            file=DESCRIPTOR,
-            create_key=_descriptor._internal_create_key,
-        ),
-        _descriptor.FieldDescriptor(
-            name="challenge_id",
-            full_name="ctf.StartEnvironmentRequest.challenge_id",
-            index=1,
-            number=2,
-            type=11,
-            cpp_type=10,
-            label=1,
-            has_default_value=False,
-            default_value=None,
-            message_type=None,
-            enum_type=None,
-            containing_type=None,
-            is_extension=False,
-            extension_scope=None,
-            serialized_options=None,
-            file=DESCRIPTOR,
-            create_key=_descriptor._internal_create_key,
-        ),
-        _descriptor.FieldDescriptor(
-            name="challenge_owner",
-            full_name="ctf.StartEnvironmentRequest.challenge_owner",
-            index=2,
-            number=3,
-            type=11,
-            cpp_type=10,
-            label=1,
-            has_default_value=False,
-            default_value=None,
-            message_type=None,
-            enum_type=None,
-            containing_type=None,
-            is_extension=False,
-            extension_scope=None,
-            serialized_options=None,
-            file=DESCRIPTOR,
-            create_key=_descriptor._internal_create_key,
-        ),
-    ],
-    extensions=[],
-    nested_types=[],
-    enum_types=[],
-    serialized_options=None,
-    is_extendable=False,
-    syntax="proto3",
-    extension_ranges=[],
-    oneofs=[],
-    serialized_start=70,
-    serialized_end=201,
+  name='StartEnvironmentRequest',
+  full_name='ctf.StartEnvironmentRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='challenge_set_id', full_name='ctf.StartEnvironmentRequest.challenge_set_id', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='challenge_id', full_name='ctf.StartEnvironmentRequest.challenge_id', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='challenge_owner', full_name='ctf.StartEnvironmentRequest.challenge_owner', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=70,
+  serialized_end=201,
 )
 
 
 _STARTENVIRONMENTRESPONSE = _descriptor.Descriptor(
-    name="StartEnvironmentResponse",
-    full_name="ctf.StartEnvironmentResponse",
-    filename=None,
-    file=DESCRIPTOR,
-    containing_type=None,
-    create_key=_descriptor._internal_create_key,
-    fields=[
-        _descriptor.FieldDescriptor(
-            name="success",
-            full_name="ctf.StartEnvironmentResponse.success",
-            index=0,
-            number=1,
-            type=11,
-            cpp_type=10,
-            label=1,
-            has_default_value=False,
-            default_value=None,
-            message_type=None,
-            enum_type=None,
-            containing_type=None,
-            is_extension=False,
-            extension_scope=None,
-            serialized_options=None,
-            file=DESCRIPTOR,
-            create_key=_descriptor._internal_create_key,
-        ),
-        _descriptor.FieldDescriptor(
-            name="failure",
-            full_name="ctf.StartEnvironmentResponse.failure",
-            index=1,
-            number=2,
-            type=11,
-            cpp_type=10,
-            label=1,
-            has_default_value=False,
-            default_value=None,
-            message_type=None,
-            enum_type=None,
-            containing_type=None,
-            is_extension=False,
-            extension_scope=None,
-            serialized_options=None,
-            file=DESCRIPTOR,
-            create_key=_descriptor._internal_create_key,
-        ),
-    ],
-    extensions=[],
-    nested_types=[],
-    enum_types=[],
-    serialized_options=None,
-    is_extendable=False,
-    syntax="proto3",
-    extension_ranges=[],
-    oneofs=[
-        _descriptor.OneofDescriptor(
-            name="response",
-            full_name="ctf.StartEnvironmentResponse.response",
-            index=0,
-            containing_type=None,
-            create_key=_descriptor._internal_create_key,
-            fields=[],
-        ),
-    ],
-    serialized_start=204,
-    serialized_end=356,
+  name='StartEnvironmentResponse',
+  full_name='ctf.StartEnvironmentResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='success', full_name='ctf.StartEnvironmentResponse.success', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='failure', full_name='ctf.StartEnvironmentResponse.failure', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+    _descriptor.OneofDescriptor(
+      name='response', full_name='ctf.StartEnvironmentResponse.response',
+      index=0, containing_type=None,
+      create_key=_descriptor._internal_create_key,
+    fields=[]),
+  ],
+  serialized_start=204,
+  serialized_end=356,
 )
 
 
 _STARTENVIRONMENTSUCCESSRESPONSE = _descriptor.Descriptor(
-    name="StartEnvironmentSuccessResponse",
-    full_name="ctf.StartEnvironmentSuccessResponse",
-    filename=None,
-    file=DESCRIPTOR,
-    containing_type=None,
-    create_key=_descriptor._internal_create_key,
-    fields=[
-        _descriptor.FieldDescriptor(
-            name="environment_id",
-            full_name="ctf.StartEnvironmentSuccessResponse.environment_id",
-            index=0,
-            number=1,
-            type=11,
-            cpp_type=10,
-            label=1,
-            has_default_value=False,
-            default_value=None,
-            message_type=None,
-            enum_type=None,
-            containing_type=None,
-            is_extension=False,
-            extension_scope=None,
-            serialized_options=None,
-            file=DESCRIPTOR,
-            create_key=_descriptor._internal_create_key,
-        ),
-    ],
-    extensions=[],
-    nested_types=[],
-    enum_types=[],
-    serialized_options=None,
-    is_extendable=False,
-    syntax="proto3",
-    extension_ranges=[],
-    oneofs=[],
-    serialized_start=358,
-    serialized_end=426,
+  name='StartEnvironmentSuccessResponse',
+  full_name='ctf.StartEnvironmentSuccessResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='environment_id', full_name='ctf.StartEnvironmentSuccessResponse.environment_id', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=358,
+  serialized_end=426,
 )
 
 
 _STARTENVIRONMENTFAILURERESPONSE = _descriptor.Descriptor(
-    name="StartEnvironmentFailureResponse",
-    full_name="ctf.StartEnvironmentFailureResponse",
-    filename=None,
-    file=DESCRIPTOR,
-    containing_type=None,
-    create_key=_descriptor._internal_create_key,
-    fields=[],
-    extensions=[],
-    nested_types=[],
-    enum_types=[],
-    serialized_options=None,
-    is_extendable=False,
-    syntax="proto3",
-    extension_ranges=[],
-    oneofs=[],
-    serialized_start=428,
-    serialized_end=461,
+  name='StartEnvironmentFailureResponse',
+  full_name='ctf.StartEnvironmentFailureResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=428,
+  serialized_end=461,
 )
 
 
 _STOPENVIRONMENTREQUEST = _descriptor.Descriptor(
-    name="StopEnvironmentRequest",
-    full_name="ctf.StopEnvironmentRequest",
-    filename=None,
-    file=DESCRIPTOR,
-    containing_type=None,
-    create_key=_descriptor._internal_create_key,
-    fields=[
-        _descriptor.FieldDescriptor(
-            name="environment_id",
-            full_name="ctf.StopEnvironmentRequest.environment_id",
-            index=0,
-            number=1,
-            type=11,
-            cpp_type=10,
-            label=1,
-            has_default_value=False,
-            default_value=None,
-            message_type=None,
-            enum_type=None,
-            containing_type=None,
-            is_extension=False,
-            extension_scope=None,
-            serialized_options=None,
-            file=DESCRIPTOR,
-            create_key=_descriptor._internal_create_key,
-        ),
-    ],
-    extensions=[],
-    nested_types=[],
-    enum_types=[],
-    serialized_options=None,
-    is_extendable=False,
-    syntax="proto3",
-    extension_ranges=[],
-    oneofs=[],
-    serialized_start=463,
-    serialized_end=522,
+  name='StopEnvironmentRequest',
+  full_name='ctf.StopEnvironmentRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='environment_id', full_name='ctf.StopEnvironmentRequest.environment_id', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=463,
+  serialized_end=522,
 )
 
 
 _STOPENVIRONMENTRESPONSE = _descriptor.Descriptor(
-    name="StopEnvironmentResponse",
-    full_name="ctf.StopEnvironmentResponse",
-    filename=None,
-    file=DESCRIPTOR,
-    containing_type=None,
-    create_key=_descriptor._internal_create_key,
-    fields=[],
-    extensions=[],
-    nested_types=[],
-    enum_types=[],
-    serialized_options=None,
-    is_extendable=False,
-    syntax="proto3",
-    extension_ranges=[],
-    oneofs=[],
-    serialized_start=524,
-    serialized_end=549,
+  name='StopEnvironmentResponse',
+  full_name='ctf.StopEnvironmentResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=524,
+  serialized_end=549,
 )
 
 
 _UPLOADENVIRONMENTTEMPLATEREQUEST = _descriptor.Descriptor(
-    name="UploadEnvironmentTemplateRequest",
-    full_name="ctf.UploadEnvironmentTemplateRequest",
-    filename=None,
-    file=DESCRIPTOR,
-    containing_type=None,
-    create_key=_descriptor._internal_create_key,
-    fields=[
-        _descriptor.FieldDescriptor(
-            name="env_zip",
-            full_name="ctf.UploadEnvironmentTemplateRequest.env_zip",
-            index=0,
-            number=1,
-            type=12,
-            cpp_type=9,
-            label=1,
-            has_default_value=False,
-            default_value=b"",
-            message_type=None,
-            enum_type=None,
-            containing_type=None,
-            is_extension=False,
-            extension_scope=None,
-            serialized_options=None,
-            file=DESCRIPTOR,
-            create_key=_descriptor._internal_create_key,
-        ),
-    ],
-    extensions=[],
-    nested_types=[],
-    enum_types=[],
-    serialized_options=None,
-    is_extendable=False,
-    syntax="proto3",
-    extension_ranges=[],
-    oneofs=[],
-    serialized_start=551,
-    serialized_end=602,
+  name='UploadEnvironmentTemplateRequest',
+  full_name='ctf.UploadEnvironmentTemplateRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='env_zip', full_name='ctf.UploadEnvironmentTemplateRequest.env_zip', index=0,
+      number=1, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=551,
+  serialized_end=602,
 )
 
 
 _ISENVIRONMENTREADYREQUEST = _descriptor.Descriptor(
-    name="IsEnvironmentReadyRequest",
-    full_name="ctf.IsEnvironmentReadyRequest",
-    filename=None,
-    file=DESCRIPTOR,
-    containing_type=None,
-    create_key=_descriptor._internal_create_key,
-    fields=[
-        _descriptor.FieldDescriptor(
-            name="environment_id",
-            full_name="ctf.IsEnvironmentReadyRequest.environment_id",
-            index=0,
-            number=1,
-            type=11,
-            cpp_type=10,
-            label=1,
-            has_default_value=False,
-            default_value=None,
-            message_type=None,
-            enum_type=None,
-            containing_type=None,
-            is_extension=False,
-            extension_scope=None,
-            serialized_options=None,
-            file=DESCRIPTOR,
-            create_key=_descriptor._internal_create_key,
-        ),
-    ],
-    extensions=[],
-    nested_types=[],
-    enum_types=[],
-    serialized_options=None,
-    is_extendable=False,
-    syntax="proto3",
-    extension_ranges=[],
-    oneofs=[],
-    serialized_start=604,
-    serialized_end=666,
+  name='IsEnvironmentReadyRequest',
+  full_name='ctf.IsEnvironmentReadyRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='environment_id', full_name='ctf.IsEnvironmentReadyRequest.environment_id', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=604,
+  serialized_end=666,
 )
 
 
 _ISENVIRONMENTREADYRESPONSE = _descriptor.Descriptor(
-    name="IsEnvironmentReadyResponse",
-    full_name="ctf.IsEnvironmentReadyResponse",
-    filename=None,
-    file=DESCRIPTOR,
-    containing_type=None,
-    create_key=_descriptor._internal_create_key,
-    fields=[
-        _descriptor.FieldDescriptor(
-            name="ready",
-            full_name="ctf.IsEnvironmentReadyResponse.ready",
-            index=0,
-            number=1,
-            type=8,
-            cpp_type=7,
-            label=1,
-            has_default_value=False,
-            default_value=False,
-            message_type=None,
-            enum_type=None,
-            containing_type=None,
-            is_extension=False,
-            extension_scope=None,
-            serialized_options=None,
-            file=DESCRIPTOR,
-            create_key=_descriptor._internal_create_key,
-        ),
-    ],
-    extensions=[],
-    nested_types=[],
-    enum_types=[],
-    serialized_options=None,
-    is_extendable=False,
-    syntax="proto3",
-    extension_ranges=[],
-    oneofs=[],
-    serialized_start=668,
-    serialized_end=711,
+  name='IsEnvironmentReadyResponse',
+  full_name='ctf.IsEnvironmentReadyResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='ready', full_name='ctf.IsEnvironmentReadyResponse.ready', index=0,
+      number=1, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=668,
+  serialized_end=711,
 )
 
 
 _GETENVIRONMENTINFOREQUEST = _descriptor.Descriptor(
-    name="GetEnvironmentInfoRequest",
-    full_name="ctf.GetEnvironmentInfoRequest",
-    filename=None,
-    file=DESCRIPTOR,
-    containing_type=None,
-    create_key=_descriptor._internal_create_key,
-    fields=[
-        _descriptor.FieldDescriptor(
-            name="environment_id",
-            full_name="ctf.GetEnvironmentInfoRequest.environment_id",
-            index=0,
-            number=1,
-            type=11,
-            cpp_type=10,
-            label=1,
-            has_default_value=False,
-            default_value=None,
-            message_type=None,
-            enum_type=None,
-            containing_type=None,
-            is_extension=False,
-            extension_scope=None,
-            serialized_options=None,
-            file=DESCRIPTOR,
-            create_key=_descriptor._internal_create_key,
-        ),
-    ],
-    extensions=[],
-    nested_types=[],
-    enum_types=[],
-    serialized_options=None,
-    is_extendable=False,
-    syntax="proto3",
-    extension_ranges=[],
-    oneofs=[],
-    serialized_start=713,
-    serialized_end=775,
+  name='GetEnvironmentInfoRequest',
+  full_name='ctf.GetEnvironmentInfoRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='environment_id', full_name='ctf.GetEnvironmentInfoRequest.environment_id', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=713,
+  serialized_end=775,
 )
 
 
 _GETENVIRONMENTINFORESPONSE = _descriptor.Descriptor(
-    name="GetEnvironmentInfoResponse",
-    full_name="ctf.GetEnvironmentInfoResponse",
-    filename=None,
-    file=DESCRIPTOR,
-    containing_type=None,
-    create_key=_descriptor._internal_create_key,
-    fields=[
-        _descriptor.FieldDescriptor(
-            name="ssh_host",
-            full_name="ctf.GetEnvironmentInfoResponse.ssh_host",
-            index=0,
-            number=1,
-            type=9,
-            cpp_type=9,
-            label=1,
-            has_default_value=False,
-            default_value=b"".decode("utf-8"),
-            message_type=None,
-            enum_type=None,
-            containing_type=None,
-            is_extension=False,
-            extension_scope=None,
-            serialized_options=None,
-            file=DESCRIPTOR,
-            create_key=_descriptor._internal_create_key,
-        ),
-        _descriptor.FieldDescriptor(
-            name="ssh_port",
-            full_name="ctf.GetEnvironmentInfoResponse.ssh_port",
-            index=1,
-            number=2,
-            type=5,
-            cpp_type=1,
-            label=1,
-            has_default_value=False,
-            default_value=0,
-            message_type=None,
-            enum_type=None,
-            containing_type=None,
-            is_extension=False,
-            extension_scope=None,
-            serialized_options=None,
-            file=DESCRIPTOR,
-            create_key=_descriptor._internal_create_key,
-        ),
-    ],
-    extensions=[],
-    nested_types=[],
-    enum_types=[],
-    serialized_options=None,
-    is_extendable=False,
-    syntax="proto3",
-    extension_ranges=[],
-    oneofs=[],
-    serialized_start=777,
-    serialized_end=841,
+  name='GetEnvironmentInfoResponse',
+  full_name='ctf.GetEnvironmentInfoResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='ssh_host', full_name='ctf.GetEnvironmentInfoResponse.ssh_host', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='ssh_port', full_name='ctf.GetEnvironmentInfoResponse.ssh_port', index=1,
+      number=2, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=777,
+  serialized_end=841,
 )
 
 
 _LISTUSERENVIRONMENTSREQUEST = _descriptor.Descriptor(
-    name="ListUserEnvironmentsRequest",
-    full_name="ctf.ListUserEnvironmentsRequest",
-    filename=None,
-    file=DESCRIPTOR,
-    containing_type=None,
-    create_key=_descriptor._internal_create_key,
-    fields=[
-        _descriptor.FieldDescriptor(
-            name="user_id",
-            full_name="ctf.ListUserEnvironmentsRequest.user_id",
-            index=0,
-            number=1,
-            type=11,
-            cpp_type=10,
-            label=1,
-            has_default_value=False,
-            default_value=None,
-            message_type=None,
-            enum_type=None,
-            containing_type=None,
-            is_extension=False,
-            extension_scope=None,
-            serialized_options=None,
-            file=DESCRIPTOR,
-            create_key=_descriptor._internal_create_key,
-        ),
-    ],
-    extensions=[],
-    nested_types=[],
-    enum_types=[],
-    serialized_options=None,
-    is_extendable=False,
-    syntax="proto3",
-    extension_ranges=[],
-    oneofs=[],
-    serialized_start=843,
-    serialized_end=900,
+  name='ListUserEnvironmentsRequest',
+  full_name='ctf.ListUserEnvironmentsRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='user_id', full_name='ctf.ListUserEnvironmentsRequest.user_id', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=843,
+  serialized_end=900,
 )
 
 
 _USERENVIRONMENTINFO = _descriptor.Descriptor(
-    name="UserEnvironmentInfo",
-    full_name="ctf.UserEnvironmentInfo",
-    filename=None,
-    file=DESCRIPTOR,
-    containing_type=None,
-    create_key=_descriptor._internal_create_key,
-    fields=[
-        _descriptor.FieldDescriptor(
-            name="env_id",
-            full_name="ctf.UserEnvironmentInfo.env_id",
-            index=0,
-            number=1,
-            type=11,
-            cpp_type=10,
-            label=1,
-            has_default_value=False,
-            default_value=None,
-            message_type=None,
-            enum_type=None,
-            containing_type=None,
-            is_extension=False,
-            extension_scope=None,
-            serialized_options=None,
-            file=DESCRIPTOR,
-            create_key=_descriptor._internal_create_key,
-        ),
-        _descriptor.FieldDescriptor(
-            name="challenge_set_id",
-            full_name="ctf.UserEnvironmentInfo.challenge_set_id",
-            index=1,
-            number=2,
-            type=11,
-            cpp_type=10,
-            label=1,
-            has_default_value=False,
-            default_value=None,
-            message_type=None,
-            enum_type=None,
-            containing_type=None,
-            is_extension=False,
-            extension_scope=None,
-            serialized_options=None,
-            file=DESCRIPTOR,
-            create_key=_descriptor._internal_create_key,
-        ),
-        _descriptor.FieldDescriptor(
-            name="challenge_id",
-            full_name="ctf.UserEnvironmentInfo.challenge_id",
-            index=2,
-            number=3,
-            type=11,
-            cpp_type=10,
-            label=1,
-            has_default_value=False,
-            default_value=None,
-            message_type=None,
-            enum_type=None,
-            containing_type=None,
-            is_extension=False,
-            extension_scope=None,
-            serialized_options=None,
-            file=DESCRIPTOR,
-            create_key=_descriptor._internal_create_key,
-        ),
-    ],
-    extensions=[],
-    nested_types=[],
-    enum_types=[],
-    serialized_options=None,
-    is_extendable=False,
-    syntax="proto3",
-    extension_ranges=[],
-    oneofs=[],
-    serialized_start=902,
-    serialized_end=1020,
+  name='UserEnvironmentInfo',
+  full_name='ctf.UserEnvironmentInfo',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='env_id', full_name='ctf.UserEnvironmentInfo.env_id', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='challenge_set_id', full_name='ctf.UserEnvironmentInfo.challenge_set_id', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='challenge_id', full_name='ctf.UserEnvironmentInfo.challenge_id', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=902,
+  serialized_end=1020,
 )
 
 
 _LISTUSERENVIRONMENTSRESPONSE = _descriptor.Descriptor(
-    name="ListUserEnvironmentsResponse",
-    full_name="ctf.ListUserEnvironmentsResponse",
-    filename=None,
-    file=DESCRIPTOR,
-    containing_type=None,
-    create_key=_descriptor._internal_create_key,
-    fields=[
-        _descriptor.FieldDescriptor(
-            name="environments",
-            full_name="ctf.ListUserEnvironmentsResponse.environments",
-            index=0,
-            number=1,
-            type=11,
-            cpp_type=10,
-            label=3,
-            has_default_value=False,
-            default_value=[],
-            message_type=None,
-            enum_type=None,
-            containing_type=None,
-            is_extension=False,
-            extension_scope=None,
-            serialized_options=None,
-            file=DESCRIPTOR,
-            create_key=_descriptor._internal_create_key,
-        ),
-    ],
-    extensions=[],
-    nested_types=[],
-    enum_types=[],
-    serialized_options=None,
-    is_extendable=False,
-    syntax="proto3",
-    extension_ranges=[],
-    oneofs=[],
-    serialized_start=1022,
-    serialized_end=1100,
+  name='ListUserEnvironmentsResponse',
+  full_name='ctf.ListUserEnvironmentsResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='environments', full_name='ctf.ListUserEnvironmentsResponse.environments', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1022,
+  serialized_end=1100,
 )
 
-_STARTENVIRONMENTREQUEST.fields_by_name[
-    "challenge_set_id"
-].message_type = common__pb2._UUID
-_STARTENVIRONMENTREQUEST.fields_by_name["challenge_id"].message_type = common__pb2._UUID
-_STARTENVIRONMENTREQUEST.fields_by_name[
-    "challenge_owner"
-].message_type = common__pb2._UUID
-_STARTENVIRONMENTRESPONSE.fields_by_name[
-    "success"
-].message_type = _STARTENVIRONMENTSUCCESSRESPONSE
-_STARTENVIRONMENTRESPONSE.fields_by_name[
-    "failure"
-].message_type = _STARTENVIRONMENTFAILURERESPONSE
-_STARTENVIRONMENTRESPONSE.oneofs_by_name["response"].fields.append(
-    _STARTENVIRONMENTRESPONSE.fields_by_name["success"]
-)
-_STARTENVIRONMENTRESPONSE.fields_by_name[
-    "success"
-].containing_oneof = _STARTENVIRONMENTRESPONSE.oneofs_by_name["response"]
-_STARTENVIRONMENTRESPONSE.oneofs_by_name["response"].fields.append(
-    _STARTENVIRONMENTRESPONSE.fields_by_name["failure"]
-)
-_STARTENVIRONMENTRESPONSE.fields_by_name[
-    "failure"
-].containing_oneof = _STARTENVIRONMENTRESPONSE.oneofs_by_name["response"]
-_STARTENVIRONMENTSUCCESSRESPONSE.fields_by_name[
-    "environment_id"
-].message_type = common__pb2._UUID
-_STOPENVIRONMENTREQUEST.fields_by_name[
-    "environment_id"
-].message_type = common__pb2._UUID
-_ISENVIRONMENTREADYREQUEST.fields_by_name[
-    "environment_id"
-].message_type = common__pb2._UUID
-_GETENVIRONMENTINFOREQUEST.fields_by_name[
-    "environment_id"
-].message_type = common__pb2._UUID
-_LISTUSERENVIRONMENTSREQUEST.fields_by_name["user_id"].message_type = common__pb2._UUID
-_USERENVIRONMENTINFO.fields_by_name["env_id"].message_type = common__pb2._UUID
-_USERENVIRONMENTINFO.fields_by_name["challenge_set_id"].message_type = common__pb2._UUID
-_USERENVIRONMENTINFO.fields_by_name["challenge_id"].message_type = common__pb2._UUID
-_LISTUSERENVIRONMENTSRESPONSE.fields_by_name[
-    "environments"
-].message_type = _USERENVIRONMENTINFO
-DESCRIPTOR.message_types_by_name["StartEnvironmentRequest"] = _STARTENVIRONMENTREQUEST
-DESCRIPTOR.message_types_by_name["StartEnvironmentResponse"] = _STARTENVIRONMENTRESPONSE
-DESCRIPTOR.message_types_by_name[
-    "StartEnvironmentSuccessResponse"
-] = _STARTENVIRONMENTSUCCESSRESPONSE
-DESCRIPTOR.message_types_by_name[
-    "StartEnvironmentFailureResponse"
-] = _STARTENVIRONMENTFAILURERESPONSE
-DESCRIPTOR.message_types_by_name["StopEnvironmentRequest"] = _STOPENVIRONMENTREQUEST
-DESCRIPTOR.message_types_by_name["StopEnvironmentResponse"] = _STOPENVIRONMENTRESPONSE
-DESCRIPTOR.message_types_by_name[
-    "UploadEnvironmentTemplateRequest"
-] = _UPLOADENVIRONMENTTEMPLATEREQUEST
-DESCRIPTOR.message_types_by_name[
-    "IsEnvironmentReadyRequest"
-] = _ISENVIRONMENTREADYREQUEST
-DESCRIPTOR.message_types_by_name[
-    "IsEnvironmentReadyResponse"
-] = _ISENVIRONMENTREADYRESPONSE
-DESCRIPTOR.message_types_by_name[
-    "GetEnvironmentInfoRequest"
-] = _GETENVIRONMENTINFOREQUEST
-DESCRIPTOR.message_types_by_name[
-    "GetEnvironmentInfoResponse"
-] = _GETENVIRONMENTINFORESPONSE
-DESCRIPTOR.message_types_by_name[
-    "ListUserEnvironmentsRequest"
-] = _LISTUSERENVIRONMENTSREQUEST
-DESCRIPTOR.message_types_by_name["UserEnvironmentInfo"] = _USERENVIRONMENTINFO
-DESCRIPTOR.message_types_by_name[
-    "ListUserEnvironmentsResponse"
-] = _LISTUSERENVIRONMENTSRESPONSE
+_STARTENVIRONMENTREQUEST.fields_by_name['challenge_set_id'].message_type = common__pb2._UUID
+_STARTENVIRONMENTREQUEST.fields_by_name['challenge_id'].message_type = common__pb2._UUID
+_STARTENVIRONMENTREQUEST.fields_by_name['challenge_owner'].message_type = common__pb2._UUID
+_STARTENVIRONMENTRESPONSE.fields_by_name['success'].message_type = _STARTENVIRONMENTSUCCESSRESPONSE
+_STARTENVIRONMENTRESPONSE.fields_by_name['failure'].message_type = _STARTENVIRONMENTFAILURERESPONSE
+_STARTENVIRONMENTRESPONSE.oneofs_by_name['response'].fields.append(
+  _STARTENVIRONMENTRESPONSE.fields_by_name['success'])
+_STARTENVIRONMENTRESPONSE.fields_by_name['success'].containing_oneof = _STARTENVIRONMENTRESPONSE.oneofs_by_name['response']
+_STARTENVIRONMENTRESPONSE.oneofs_by_name['response'].fields.append(
+  _STARTENVIRONMENTRESPONSE.fields_by_name['failure'])
+_STARTENVIRONMENTRESPONSE.fields_by_name['failure'].containing_oneof = _STARTENVIRONMENTRESPONSE.oneofs_by_name['response']
+_STARTENVIRONMENTSUCCESSRESPONSE.fields_by_name['environment_id'].message_type = common__pb2._UUID
+_STOPENVIRONMENTREQUEST.fields_by_name['environment_id'].message_type = common__pb2._UUID
+_ISENVIRONMENTREADYREQUEST.fields_by_name['environment_id'].message_type = common__pb2._UUID
+_GETENVIRONMENTINFOREQUEST.fields_by_name['environment_id'].message_type = common__pb2._UUID
+_LISTUSERENVIRONMENTSREQUEST.fields_by_name['user_id'].message_type = common__pb2._UUID
+_USERENVIRONMENTINFO.fields_by_name['env_id'].message_type = common__pb2._UUID
+_USERENVIRONMENTINFO.fields_by_name['challenge_set_id'].message_type = common__pb2._UUID
+_USERENVIRONMENTINFO.fields_by_name['challenge_id'].message_type = common__pb2._UUID
+_LISTUSERENVIRONMENTSRESPONSE.fields_by_name['environments'].message_type = _USERENVIRONMENTINFO
+DESCRIPTOR.message_types_by_name['StartEnvironmentRequest'] = _STARTENVIRONMENTREQUEST
+DESCRIPTOR.message_types_by_name['StartEnvironmentResponse'] = _STARTENVIRONMENTRESPONSE
+DESCRIPTOR.message_types_by_name['StartEnvironmentSuccessResponse'] = _STARTENVIRONMENTSUCCESSRESPONSE
+DESCRIPTOR.message_types_by_name['StartEnvironmentFailureResponse'] = _STARTENVIRONMENTFAILURERESPONSE
+DESCRIPTOR.message_types_by_name['StopEnvironmentRequest'] = _STOPENVIRONMENTREQUEST
+DESCRIPTOR.message_types_by_name['StopEnvironmentResponse'] = _STOPENVIRONMENTRESPONSE
+DESCRIPTOR.message_types_by_name['UploadEnvironmentTemplateRequest'] = _UPLOADENVIRONMENTTEMPLATEREQUEST
+DESCRIPTOR.message_types_by_name['IsEnvironmentReadyRequest'] = _ISENVIRONMENTREADYREQUEST
+DESCRIPTOR.message_types_by_name['IsEnvironmentReadyResponse'] = _ISENVIRONMENTREADYRESPONSE
+DESCRIPTOR.message_types_by_name['GetEnvironmentInfoRequest'] = _GETENVIRONMENTINFOREQUEST
+DESCRIPTOR.message_types_by_name['GetEnvironmentInfoResponse'] = _GETENVIRONMENTINFORESPONSE
+DESCRIPTOR.message_types_by_name['ListUserEnvironmentsRequest'] = _LISTUSERENVIRONMENTSREQUEST
+DESCRIPTOR.message_types_by_name['UserEnvironmentInfo'] = _USERENVIRONMENTINFO
+DESCRIPTOR.message_types_by_name['ListUserEnvironmentsResponse'] = _LISTUSERENVIRONMENTSRESPONSE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
-StartEnvironmentRequest = _reflection.GeneratedProtocolMessageType(
-    "StartEnvironmentRequest",
-    (_message.Message,),
-    {
-        "DESCRIPTOR": _STARTENVIRONMENTREQUEST,
-        "__module__": "ctfoperator_pb2"
-        # @@protoc_insertion_point(class_scope:ctf.StartEnvironmentRequest)
-    },
-)
+StartEnvironmentRequest = _reflection.GeneratedProtocolMessageType('StartEnvironmentRequest', (_message.Message,), {
+  'DESCRIPTOR' : _STARTENVIRONMENTREQUEST,
+  '__module__' : 'ctfoperator_pb2'
+  # @@protoc_insertion_point(class_scope:ctf.StartEnvironmentRequest)
+  })
 _sym_db.RegisterMessage(StartEnvironmentRequest)
 
-StartEnvironmentResponse = _reflection.GeneratedProtocolMessageType(
-    "StartEnvironmentResponse",
-    (_message.Message,),
-    {
-        "DESCRIPTOR": _STARTENVIRONMENTRESPONSE,
-        "__module__": "ctfoperator_pb2"
-        # @@protoc_insertion_point(class_scope:ctf.StartEnvironmentResponse)
-    },
-)
+StartEnvironmentResponse = _reflection.GeneratedProtocolMessageType('StartEnvironmentResponse', (_message.Message,), {
+  'DESCRIPTOR' : _STARTENVIRONMENTRESPONSE,
+  '__module__' : 'ctfoperator_pb2'
+  # @@protoc_insertion_point(class_scope:ctf.StartEnvironmentResponse)
+  })
 _sym_db.RegisterMessage(StartEnvironmentResponse)
 
-StartEnvironmentSuccessResponse = _reflection.GeneratedProtocolMessageType(
-    "StartEnvironmentSuccessResponse",
-    (_message.Message,),
-    {
-        "DESCRIPTOR": _STARTENVIRONMENTSUCCESSRESPONSE,
-        "__module__": "ctfoperator_pb2"
-        # @@protoc_insertion_point(class_scope:ctf.StartEnvironmentSuccessResponse)
-    },
-)
+StartEnvironmentSuccessResponse = _reflection.GeneratedProtocolMessageType('StartEnvironmentSuccessResponse', (_message.Message,), {
+  'DESCRIPTOR' : _STARTENVIRONMENTSUCCESSRESPONSE,
+  '__module__' : 'ctfoperator_pb2'
+  # @@protoc_insertion_point(class_scope:ctf.StartEnvironmentSuccessResponse)
+  })
 _sym_db.RegisterMessage(StartEnvironmentSuccessResponse)
 
-StartEnvironmentFailureResponse = _reflection.GeneratedProtocolMessageType(
-    "StartEnvironmentFailureResponse",
-    (_message.Message,),
-    {
-        "DESCRIPTOR": _STARTENVIRONMENTFAILURERESPONSE,
-        "__module__": "ctfoperator_pb2"
-        # @@protoc_insertion_point(class_scope:ctf.StartEnvironmentFailureResponse)
-    },
-)
+StartEnvironmentFailureResponse = _reflection.GeneratedProtocolMessageType('StartEnvironmentFailureResponse', (_message.Message,), {
+  'DESCRIPTOR' : _STARTENVIRONMENTFAILURERESPONSE,
+  '__module__' : 'ctfoperator_pb2'
+  # @@protoc_insertion_point(class_scope:ctf.StartEnvironmentFailureResponse)
+  })
 _sym_db.RegisterMessage(StartEnvironmentFailureResponse)
 
-StopEnvironmentRequest = _reflection.GeneratedProtocolMessageType(
-    "StopEnvironmentRequest",
-    (_message.Message,),
-    {
-        "DESCRIPTOR": _STOPENVIRONMENTREQUEST,
-        "__module__": "ctfoperator_pb2"
-        # @@protoc_insertion_point(class_scope:ctf.StopEnvironmentRequest)
-    },
-)
+StopEnvironmentRequest = _reflection.GeneratedProtocolMessageType('StopEnvironmentRequest', (_message.Message,), {
+  'DESCRIPTOR' : _STOPENVIRONMENTREQUEST,
+  '__module__' : 'ctfoperator_pb2'
+  # @@protoc_insertion_point(class_scope:ctf.StopEnvironmentRequest)
+  })
 _sym_db.RegisterMessage(StopEnvironmentRequest)
 
-StopEnvironmentResponse = _reflection.GeneratedProtocolMessageType(
-    "StopEnvironmentResponse",
-    (_message.Message,),
-    {
-        "DESCRIPTOR": _STOPENVIRONMENTRESPONSE,
-        "__module__": "ctfoperator_pb2"
-        # @@protoc_insertion_point(class_scope:ctf.StopEnvironmentResponse)
-    },
-)
+StopEnvironmentResponse = _reflection.GeneratedProtocolMessageType('StopEnvironmentResponse', (_message.Message,), {
+  'DESCRIPTOR' : _STOPENVIRONMENTRESPONSE,
+  '__module__' : 'ctfoperator_pb2'
+  # @@protoc_insertion_point(class_scope:ctf.StopEnvironmentResponse)
+  })
 _sym_db.RegisterMessage(StopEnvironmentResponse)
 
-UploadEnvironmentTemplateRequest = _reflection.GeneratedProtocolMessageType(
-    "UploadEnvironmentTemplateRequest",
-    (_message.Message,),
-    {
-        "DESCRIPTOR": _UPLOADENVIRONMENTTEMPLATEREQUEST,
-        "__module__": "ctfoperator_pb2"
-        # @@protoc_insertion_point(class_scope:ctf.UploadEnvironmentTemplateRequest)
-    },
-)
+UploadEnvironmentTemplateRequest = _reflection.GeneratedProtocolMessageType('UploadEnvironmentTemplateRequest', (_message.Message,), {
+  'DESCRIPTOR' : _UPLOADENVIRONMENTTEMPLATEREQUEST,
+  '__module__' : 'ctfoperator_pb2'
+  # @@protoc_insertion_point(class_scope:ctf.UploadEnvironmentTemplateRequest)
+  })
 _sym_db.RegisterMessage(UploadEnvironmentTemplateRequest)
 
-IsEnvironmentReadyRequest = _reflection.GeneratedProtocolMessageType(
-    "IsEnvironmentReadyRequest",
-    (_message.Message,),
-    {
-        "DESCRIPTOR": _ISENVIRONMENTREADYREQUEST,
-        "__module__": "ctfoperator_pb2"
-        # @@protoc_insertion_point(class_scope:ctf.IsEnvironmentReadyRequest)
-    },
-)
+IsEnvironmentReadyRequest = _reflection.GeneratedProtocolMessageType('IsEnvironmentReadyRequest', (_message.Message,), {
+  'DESCRIPTOR' : _ISENVIRONMENTREADYREQUEST,
+  '__module__' : 'ctfoperator_pb2'
+  # @@protoc_insertion_point(class_scope:ctf.IsEnvironmentReadyRequest)
+  })
 _sym_db.RegisterMessage(IsEnvironmentReadyRequest)
 
-IsEnvironmentReadyResponse = _reflection.GeneratedProtocolMessageType(
-    "IsEnvironmentReadyResponse",
-    (_message.Message,),
-    {
-        "DESCRIPTOR": _ISENVIRONMENTREADYRESPONSE,
-        "__module__": "ctfoperator_pb2"
-        # @@protoc_insertion_point(class_scope:ctf.IsEnvironmentReadyResponse)
-    },
-)
+IsEnvironmentReadyResponse = _reflection.GeneratedProtocolMessageType('IsEnvironmentReadyResponse', (_message.Message,), {
+  'DESCRIPTOR' : _ISENVIRONMENTREADYRESPONSE,
+  '__module__' : 'ctfoperator_pb2'
+  # @@protoc_insertion_point(class_scope:ctf.IsEnvironmentReadyResponse)
+  })
 _sym_db.RegisterMessage(IsEnvironmentReadyResponse)
 
-GetEnvironmentInfoRequest = _reflection.GeneratedProtocolMessageType(
-    "GetEnvironmentInfoRequest",
-    (_message.Message,),
-    {
-        "DESCRIPTOR": _GETENVIRONMENTINFOREQUEST,
-        "__module__": "ctfoperator_pb2"
-        # @@protoc_insertion_point(class_scope:ctf.GetEnvironmentInfoRequest)
-    },
-)
+GetEnvironmentInfoRequest = _reflection.GeneratedProtocolMessageType('GetEnvironmentInfoRequest', (_message.Message,), {
+  'DESCRIPTOR' : _GETENVIRONMENTINFOREQUEST,
+  '__module__' : 'ctfoperator_pb2'
+  # @@protoc_insertion_point(class_scope:ctf.GetEnvironmentInfoRequest)
+  })
 _sym_db.RegisterMessage(GetEnvironmentInfoRequest)
 
-GetEnvironmentInfoResponse = _reflection.GeneratedProtocolMessageType(
-    "GetEnvironmentInfoResponse",
-    (_message.Message,),
-    {
-        "DESCRIPTOR": _GETENVIRONMENTINFORESPONSE,
-        "__module__": "ctfoperator_pb2"
-        # @@protoc_insertion_point(class_scope:ctf.GetEnvironmentInfoResponse)
-    },
-)
+GetEnvironmentInfoResponse = _reflection.GeneratedProtocolMessageType('GetEnvironmentInfoResponse', (_message.Message,), {
+  'DESCRIPTOR' : _GETENVIRONMENTINFORESPONSE,
+  '__module__' : 'ctfoperator_pb2'
+  # @@protoc_insertion_point(class_scope:ctf.GetEnvironmentInfoResponse)
+  })
 _sym_db.RegisterMessage(GetEnvironmentInfoResponse)
 
-ListUserEnvironmentsRequest = _reflection.GeneratedProtocolMessageType(
-    "ListUserEnvironmentsRequest",
-    (_message.Message,),
-    {
-        "DESCRIPTOR": _LISTUSERENVIRONMENTSREQUEST,
-        "__module__": "ctfoperator_pb2"
-        # @@protoc_insertion_point(class_scope:ctf.ListUserEnvironmentsRequest)
-    },
-)
+ListUserEnvironmentsRequest = _reflection.GeneratedProtocolMessageType('ListUserEnvironmentsRequest', (_message.Message,), {
+  'DESCRIPTOR' : _LISTUSERENVIRONMENTSREQUEST,
+  '__module__' : 'ctfoperator_pb2'
+  # @@protoc_insertion_point(class_scope:ctf.ListUserEnvironmentsRequest)
+  })
 _sym_db.RegisterMessage(ListUserEnvironmentsRequest)
 
-UserEnvironmentInfo = _reflection.GeneratedProtocolMessageType(
-    "UserEnvironmentInfo",
-    (_message.Message,),
-    {
-        "DESCRIPTOR": _USERENVIRONMENTINFO,
-        "__module__": "ctfoperator_pb2"
-        # @@protoc_insertion_point(class_scope:ctf.UserEnvironmentInfo)
-    },
-)
+UserEnvironmentInfo = _reflection.GeneratedProtocolMessageType('UserEnvironmentInfo', (_message.Message,), {
+  'DESCRIPTOR' : _USERENVIRONMENTINFO,
+  '__module__' : 'ctfoperator_pb2'
+  # @@protoc_insertion_point(class_scope:ctf.UserEnvironmentInfo)
+  })
 _sym_db.RegisterMessage(UserEnvironmentInfo)
 
-ListUserEnvironmentsResponse = _reflection.GeneratedProtocolMessageType(
-    "ListUserEnvironmentsResponse",
-    (_message.Message,),
-    {
-        "DESCRIPTOR": _LISTUSERENVIRONMENTSRESPONSE,
-        "__module__": "ctfoperator_pb2"
-        # @@protoc_insertion_point(class_scope:ctf.ListUserEnvironmentsResponse)
-    },
-)
+ListUserEnvironmentsResponse = _reflection.GeneratedProtocolMessageType('ListUserEnvironmentsResponse', (_message.Message,), {
+  'DESCRIPTOR' : _LISTUSERENVIRONMENTSRESPONSE,
+  '__module__' : 'ctfoperator_pb2'
+  # @@protoc_insertion_point(class_scope:ctf.ListUserEnvironmentsResponse)
+  })
 _sym_db.RegisterMessage(ListUserEnvironmentsResponse)
 
 
 DESCRIPTOR._options = None
 
 _ENVIRONMENTPROVISIONINGSERVICE = _descriptor.ServiceDescriptor(
-    name="EnvironmentProvisioningService",
-    full_name="ctf.EnvironmentProvisioningService",
-    file=DESCRIPTOR,
+  name='EnvironmentProvisioningService',
+  full_name='ctf.EnvironmentProvisioningService',
+  file=DESCRIPTOR,
+  index=0,
+  serialized_options=None,
+  create_key=_descriptor._internal_create_key,
+  serialized_start=1103,
+  serialized_end=1386,
+  methods=[
+  _descriptor.MethodDescriptor(
+    name='StartEnvironment',
+    full_name='ctf.EnvironmentProvisioningService.StartEnvironment',
     index=0,
+    containing_service=None,
+    input_type=_STARTENVIRONMENTREQUEST,
+    output_type=_STARTENVIRONMENTRESPONSE,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
-    serialized_start=1103,
-    serialized_end=1386,
-    methods=[
-        _descriptor.MethodDescriptor(
-            name="StartEnvironment",
-            full_name="ctf.EnvironmentProvisioningService.StartEnvironment",
-            index=0,
-            containing_service=None,
-            input_type=_STARTENVIRONMENTREQUEST,
-            output_type=_STARTENVIRONMENTRESPONSE,
-            serialized_options=None,
-            create_key=_descriptor._internal_create_key,
-        ),
-        _descriptor.MethodDescriptor(
-            name="StopEnvironment",
-            full_name="ctf.EnvironmentProvisioningService.StopEnvironment",
-            index=1,
-            containing_service=None,
-            input_type=_STOPENVIRONMENTREQUEST,
-            output_type=_STOPENVIRONMENTRESPONSE,
-            serialized_options=None,
-            create_key=_descriptor._internal_create_key,
-        ),
-        _descriptor.MethodDescriptor(
-            name="UploadEnvironmentTemplate",
-            full_name="ctf.EnvironmentProvisioningService.UploadEnvironmentTemplate",
-            index=2,
-            containing_service=None,
-            input_type=_UPLOADENVIRONMENTTEMPLATEREQUEST,
-            output_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
-            serialized_options=None,
-            create_key=_descriptor._internal_create_key,
-        ),
-    ],
-)
+  ),
+  _descriptor.MethodDescriptor(
+    name='StopEnvironment',
+    full_name='ctf.EnvironmentProvisioningService.StopEnvironment',
+    index=1,
+    containing_service=None,
+    input_type=_STOPENVIRONMENTREQUEST,
+    output_type=_STOPENVIRONMENTRESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='UploadEnvironmentTemplate',
+    full_name='ctf.EnvironmentProvisioningService.UploadEnvironmentTemplate',
+    index=2,
+    containing_service=None,
+    input_type=_UPLOADENVIRONMENTTEMPLATEREQUEST,
+    output_type=google_dot_protobuf_dot_empty__pb2._EMPTY,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+])
 _sym_db.RegisterServiceDescriptor(_ENVIRONMENTPROVISIONINGSERVICE)
 
-DESCRIPTOR.services_by_name[
-    "EnvironmentProvisioningService"
-] = _ENVIRONMENTPROVISIONINGSERVICE
+DESCRIPTOR.services_by_name['EnvironmentProvisioningService'] = _ENVIRONMENTPROVISIONINGSERVICE
 
 
 _ENVIRONMENTLOOKUPSERVICE = _descriptor.ServiceDescriptor(
-    name="EnvironmentLookupService",
-    full_name="ctf.EnvironmentLookupService",
-    file=DESCRIPTOR,
-    index=1,
+  name='EnvironmentLookupService',
+  full_name='ctf.EnvironmentLookupService',
+  file=DESCRIPTOR,
+  index=1,
+  serialized_options=None,
+  create_key=_descriptor._internal_create_key,
+  serialized_start=1389,
+  serialized_end=1687,
+  methods=[
+  _descriptor.MethodDescriptor(
+    name='IsEnvironmentReady',
+    full_name='ctf.EnvironmentLookupService.IsEnvironmentReady',
+    index=0,
+    containing_service=None,
+    input_type=_ISENVIRONMENTREADYREQUEST,
+    output_type=_ISENVIRONMENTREADYRESPONSE,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
-    serialized_start=1389,
-    serialized_end=1682,
-    methods=[
-        _descriptor.MethodDescriptor(
-            name="IsEnvironmentReady",
-            full_name="ctf.EnvironmentLookupService.IsEnvironmentReady",
-            index=0,
-            containing_service=None,
-            input_type=_ISENVIRONMENTREADYREQUEST,
-            output_type=_ISENVIRONMENTREADYRESPONSE,
-            serialized_options=None,
-            create_key=_descriptor._internal_create_key,
-        ),
-        _descriptor.MethodDescriptor(
-            name="GetEnvironmentInfo",
-            full_name="ctf.EnvironmentLookupService.GetEnvironmentInfo",
-            index=1,
-            containing_service=None,
-            input_type=_GETENVIRONMENTINFOREQUEST,
-            output_type=_GETENVIRONMENTINFORESPONSE,
-            serialized_options=None,
-            create_key=_descriptor._internal_create_key,
-        ),
-        _descriptor.MethodDescriptor(
-            name="ListUserEnvironments",
-            full_name="ctf.EnvironmentLookupService.ListUserEnvironments",
-            index=2,
-            containing_service=None,
-            input_type=_LISTUSERENVIRONMENTSREQUEST,
-            output_type=_LISTUSERENVIRONMENTSRESPONSE,
-            serialized_options=None,
-            create_key=_descriptor._internal_create_key,
-        ),
-    ],
-)
+  ),
+  _descriptor.MethodDescriptor(
+    name='GetEnvironmentInfo',
+    full_name='ctf.EnvironmentLookupService.GetEnvironmentInfo',
+    index=1,
+    containing_service=None,
+    input_type=_GETENVIRONMENTINFOREQUEST,
+    output_type=_GETENVIRONMENTINFORESPONSE,
+    serialized_options=b'\210\002\001',
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='ListUserEnvironments',
+    full_name='ctf.EnvironmentLookupService.ListUserEnvironments',
+    index=2,
+    containing_service=None,
+    input_type=_LISTUSERENVIRONMENTSREQUEST,
+    output_type=_LISTUSERENVIRONMENTSRESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+])
 _sym_db.RegisterServiceDescriptor(_ENVIRONMENTLOOKUPSERVICE)
 
-DESCRIPTOR.services_by_name["EnvironmentLookupService"] = _ENVIRONMENTLOOKUPSERVICE
+DESCRIPTOR.services_by_name['EnvironmentLookupService'] = _ENVIRONMENTLOOKUPSERVICE
 
 # @@protoc_insertion_point(module_scope)
