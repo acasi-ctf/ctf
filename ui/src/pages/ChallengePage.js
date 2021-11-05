@@ -105,6 +105,7 @@ export default function ChallengePage() {
 				};
 
 				const response = await fetch("/api/user/environments", options);
+				setRunning(true);
 				if (response.ok) {
 					const json = await response.json();
 					setDat(json);
@@ -120,12 +121,11 @@ export default function ChallengePage() {
 		}
 		if (isAuthenticated) {
 			if (!running && loading) {
-				setRunning(true);
 				// noinspection JSIgnoredPromiseFromCall
 				init();
 			}
 		}
-	},  [getAccessTokenSilently, isAuthenticated, loading, running, csSlug, cSlug]);
+	},  [csSlug, cSlug]);
 
 
 

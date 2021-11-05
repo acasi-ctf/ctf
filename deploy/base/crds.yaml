@@ -95,6 +95,10 @@ spec:
                                   enum:
                                     - TCP
                                     - UDP
+                                ctfExpose:
+                                  type: string
+                                  enum:
+                                    - Termproxy
                               required:
                                 - port
                           selector:
@@ -126,6 +130,10 @@ spec:
                               - Prefix
                               - Exact
                               - ImplementationSpecific
+                          ctfExpose:
+                            type: string
+                            enum:
+                              - Web
                           backend:
                             type: object
                             properties:

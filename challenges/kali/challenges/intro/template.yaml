@@ -1,0 +1,14 @@
+apiVersion: ctf.acasi.info/v1alpha1
+kind: EnvTemplate
+metadata:
+  name: kali-intro
+spec:
+  pods:
+    - metadata:
+        name: penimage
+        labels:
+          app: penimage
+      spec:
+        containers:
+          - name: penimage
+            image: ghcr.io/acasi-ctf/challenges/kali/intro:latest

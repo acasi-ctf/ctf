@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty
 
 class EnvTemplateSpec {
     lateinit var pods: List<EnvTemplatePod>
-    lateinit var services: List<EnvTemplateService>
-    lateinit var ingresses: List<EnvTemplateIngress>
+    var services: List<EnvTemplateService> = listOf()
+    var ingresses: List<EnvTemplateIngress> = listOf()
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

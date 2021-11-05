@@ -135,8 +135,11 @@ EnvironmentProvisioningServiceCoroutineImplBase() {
                 metadata.namespace = kubeNamespace
             }
         }
-        templates.forEach { envTemplateClient.dryRun(true).create(it) }
-        templates.forEach { envTemplateClient.dryRun(false).create(it) }
+
+        // TODO: If any existing challenges with this template create resources that are not
+        //  referenced by the new one, they will stay on the cluster forever.
+        templates.forEach { envTemplateClient.dryRun(true).createOrReplace(it) }
+        templates.forEach { envTemplateClient.dryRun(false).createOrReplace(it) }
 
         logger.info("New challenge template uploaded: $challengeZipFile")
 

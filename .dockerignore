@@ -6,3 +6,8 @@ ui/node_modules/
 *.db
 
 super-linter.log
+
+work/
+sprint-reports/
+
+ui/.env*

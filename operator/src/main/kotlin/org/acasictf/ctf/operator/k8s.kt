@@ -14,6 +14,7 @@ fun container(f: Container.() -> Unit) = Container().apply(f)
 fun pod(f: Pod.() -> Unit) = Pod().apply(f)
 fun podSpec(f: PodSpec.() -> Unit) = PodSpec().apply(f)
 fun podTemplateSpec(f: PodTemplateSpec.() -> Unit) = PodTemplateSpec().apply(f)
+fun env(f: EnvVar.() -> Unit) = EnvVar().apply(f)
 
 fun statefulSet(f: StatefulSet.() -> Unit) = StatefulSet().apply(f)
 fun statefulSetSpec(f: StatefulSetSpec.() -> Unit) = StatefulSetSpec().apply(f)

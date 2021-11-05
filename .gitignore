@@ -174,5 +174,11 @@ __pycache__
 # Operator data directory
 data/
 
+# Random working files
+work/
+
+# macOS
+.DS_Store
+
 # End of custom
 

@@ -7,6 +7,7 @@ import io.fabric8.kubernetes.client.dsl.MixedOperation
 import org.acasictf.ctf.operator.*
 import org.acasictf.ctf.operator.model.kubernetes.v1alpha1.EnvTemplate
 import org.acasictf.ctf.operator.model.kubernetes.v1alpha1.Environment
+import org.acasictf.ctf.operator.persistence.GlobalConfig
 
 /**
  * Implementation of [ResourceCreator] that will create the
@@ -36,12 +37,28 @@ class StatefulSetCreator(
                             container {
                                 name = c.name
                                 image = c.image
-                                env = c.env.map { ev ->
+
+                                // Backwards compatibility
+                                val initialEnvs = listOf(
+                                    env {
+                                        name = "PUBLIC_KEY"
+                                        value = GlobalConfig.publicKey
+                                    }
+                                )
+                                // New variables, which override existing ones
+                                val addonEnvs = listOf(
+                                    env {
+                                        name = "CTF_TERMPROXY_PUBLIC_KEY"
+                                        value = GlobalConfig.publicKey
+                                    }
+                                )
+
+                                env = initialEnvs + c.env.map { ev ->
                                     EnvVar().apply {
                                         name = ev.name
                                         value = ev.value
                                     }
-                                }
+                                } + addonEnvs
                             }
                         }
                     }

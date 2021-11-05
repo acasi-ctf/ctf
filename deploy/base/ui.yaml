@@ -17,6 +17,7 @@ spec:
     spec:
       containers:
         - image: ghcr.io/acasi-ctf/ctf/ui:latest
+          imagePullPolicy: Always
           name: ui
           resources: { }
 ---

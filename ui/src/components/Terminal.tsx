@@ -18,7 +18,7 @@ import {grpc} from "@improbable-eng/grpc-web";
 import {UUID} from "../generated/common_pb";
 import * as termproxy_pb from "../generated/termproxy_pb";
 
-let host = "ctf.cyberliteracyforall.com";
+let host = window.location.hostname;
 if (process.env.REACT_APP_TERMPROXY_HOST) {
     host = process.env.REACT_APP_TERMPROXY_HOST;
 }
