@@ -10,6 +10,7 @@ import Home from "./pages/Home";
 import leaderboard from "./pages/LeaderBoard";
 /********************************************** Dynamic Pages **************************************************************/
 import ChallengePage from "./pages/ChallengePage";
+import StartChallengePage from "./pages/StartChallengePage";
 /***************************************************************************************************************************************/
 
 export default function App() {
@@ -35,6 +36,9 @@ export default function App() {
 						<Route path="/selection" component={Selection} />
 						{/* Challenge Sets pages */}
 						<Route path="/play/:csSlug/:cSlug">
+							<StartChallengePage />
+						</Route>
+						<Route path="/env/:csSlug/:cSlug/:envId">
 							<ChallengePage />
 						</Route>
 					</Switch>
