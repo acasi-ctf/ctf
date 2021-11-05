@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'\n\026org.acasictf.ctf.protoZ\033github.com/acasi-ctf/ctf/pb',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x11\x63tfoperator.proto\x12\x03\x63tf\x1a\x0c\x63ommon.proto\x1a\x1bgoogle/protobuf/empty.proto\"\x83\x01\n\x17StartEnvironmentRequest\x12#\n\x10\x63hallenge_set_id\x18\x01 \x01(\x0b\x32\t.ctf.UUID\x12\x1f\n\x0c\x63hallenge_id\x18\x02 \x01(\x0b\x32\t.ctf.UUID\x12\"\n\x0f\x63hallenge_owner\x18\x03 \x01(\x0b\x32\t.ctf.UUID\"\x98\x01\n\x18StartEnvironmentResponse\x12\x37\n\x07success\x18\x01 \x01(\x0b\x32$.ctf.StartEnvironmentSuccessResponseH\x00\x12\x37\n\x07\x66\x61ilure\x18\x02 \x01(\x0b\x32$.ctf.StartEnvironmentFailureResponseH\x00\x42\n\n\x08response\"D\n\x1fStartEnvironmentSuccessResponse\x12!\n\x0e\x65nvironment_id\x18\x01 \x01(\x0b\x32\t.ctf.UUID\"!\n\x1fStartEnvironmentFailureResponse\";\n\x16StopEnvironmentRequest\x12!\n\x0e\x65nvironment_id\x18\x01 \x01(\x0b\x32\t.ctf.UUID\"\x19\n\x17StopEnvironmentResponse\"3\n UploadEnvironmentTemplateRequest\x12\x0f\n\x07\x65nv_zip\x18\x01 \x01(\x0c\">\n\x19IsEnvironmentReadyRequest\x12!\n\x0e\x65nvironment_id\x18\x01 \x01(\x0b\x32\t.ctf.UUID\"+\n\x1aIsEnvironmentReadyResponse\x12\r\n\x05ready\x18\x01 \x01(\x08\">\n\x19GetEnvironmentInfoRequest\x12!\n\x0e\x65nvironment_id\x18\x01 \x01(\x0b\x32\t.ctf.UUID\"@\n\x1aGetEnvironmentInfoResponse\x12\x10\n\x08ssh_host\x18\x01 \x01(\t\x12\x10\n\x08ssh_port\x18\x02 \x01(\x05\"9\n\x1bListUserEnvironmentsRequest\x12\x1a\n\x07user_id\x18\x01 \x01(\x0b\x32\t.ctf.UUID\"v\n\x13UserEnvironmentInfo\x12\x19\n\x06\x65nv_id\x18\x01 \x01(\x0b\x32\t.ctf.UUID\x12#\n\x10\x63hallenge_set_id\x18\x02 \x01(\x0b\x32\t.ctf.UUID\x12\x1f\n\x0c\x63hallenge_id\x18\x03 \x01(\x0b\x32\t.ctf.UUID\"N\n\x1cListUserEnvironmentsResponse\x12.\n\x0c\x65nvironments\x18\x01 \x03(\x0b\x32\x18.ctf.UserEnvironmentInfo2\x9b\x02\n\x1e\x45nvironmentProvisioningService\x12O\n\x10StartEnvironment\x12\x1c.ctf.StartEnvironmentRequest\x1a\x1d.ctf.StartEnvironmentResponse\x12L\n\x0fStopEnvironment\x12\x1b.ctf.StopEnvironmentRequest\x1a\x1c.ctf.StopEnvironmentResponse\x12Z\n\x19UploadEnvironmentTemplate\x12%.ctf.UploadEnvironmentTemplateRequest\x1a\x16.google.protobuf.Empty2\xaa\x02\n\x18\x45nvironmentLookupService\x12U\n\x12IsEnvironmentReady\x12\x1e.ctf.IsEnvironmentReadyRequest\x1a\x1f.ctf.IsEnvironmentReadyResponse\x12Z\n\x12GetEnvironmentInfo\x12\x1e.ctf.GetEnvironmentInfoRequest\x1a\x1f.ctf.GetEnvironmentInfoResponse\"\x03\x88\x02\x01\x12[\n\x14ListUserEnvironments\x12 .ctf.ListUserEnvironmentsRequest\x1a!.ctf.ListUserEnvironmentsResponseB5\n\x16org.acasictf.ctf.protoZ\x1bgithub.com/acasi-ctf/ctf/pbb\x06proto3'
+  serialized_pb=b'\n\x11\x63tfoperator.proto\x12\x03\x63tf\x1a\x0c\x63ommon.proto\x1a\x1bgoogle/protobuf/empty.proto\"\x83\x01\n\x17StartEnvironmentRequest\x12#\n\x10\x63hallenge_set_id\x18\x01 \x01(\x0b\x32\t.ctf.UUID\x12\x1f\n\x0c\x63hallenge_id\x18\x02 \x01(\x0b\x32\t.ctf.UUID\x12\"\n\x0f\x63hallenge_owner\x18\x03 \x01(\x0b\x32\t.ctf.UUID\"\x98\x01\n\x18StartEnvironmentResponse\x12\x37\n\x07success\x18\x01 \x01(\x0b\x32$.ctf.StartEnvironmentSuccessResponseH\x00\x12\x37\n\x07\x66\x61ilure\x18\x02 \x01(\x0b\x32$.ctf.StartEnvironmentFailureResponseH\x00\x42\n\n\x08response\"D\n\x1fStartEnvironmentSuccessResponse\x12!\n\x0e\x65nvironment_id\x18\x01 \x01(\x0b\x32\t.ctf.UUID\"!\n\x1fStartEnvironmentFailureResponse\";\n\x16StopEnvironmentRequest\x12!\n\x0e\x65nvironment_id\x18\x01 \x01(\x0b\x32\t.ctf.UUID\"\x19\n\x17StopEnvironmentResponse\"3\n UploadEnvironmentTemplateRequest\x12\x0f\n\x07\x65nv_zip\x18\x01 \x01(\x0c\">\n\x19IsEnvironmentReadyRequest\x12!\n\x0e\x65nvironment_id\x18\x01 \x01(\x0b\x32\t.ctf.UUID\"+\n\x1aIsEnvironmentReadyResponse\x12\r\n\x05ready\x18\x01 \x01(\x08\">\n\x19GetEnvironmentInfoRequest\x12!\n\x0e\x65nvironment_id\x18\x01 \x01(\x0b\x32\t.ctf.UUID\"@\n\x1aGetEnvironmentInfoResponse\x12\x10\n\x08ssh_host\x18\x01 \x01(\t\x12\x10\n\x08ssh_port\x18\x02 \x01(\x05\".\n\x10TermproxyService\x12\x0c\n\x04host\x18\x01 \x01(\t\x12\x0c\n\x04port\x18\x02 \x01(\x05\"\x19\n\nWebService\x12\x0b\n\x03url\x18\x01 \x01(\t\"C\n\x1eListEnvironmentServicesRequest\x12!\n\x0e\x65nvironment_id\x18\x01 \x01(\x0b\x32\t.ctf.UUID\"{\n\x1fListEnvironmentServicesResponse\x12\x31\n\x12termproxy_services\x18\x01 \x03(\x0b\x32\x15.ctf.TermproxyService\x12%\n\x0cweb_services\x18\x02 \x03(\x0b\x32\x0f.ctf.WebService\"9\n\x1bListUserEnvironmentsRequest\x12\x1a\n\x07user_id\x18\x01 \x01(\x0b\x32\t.ctf.UUID\"v\n\x13UserEnvironmentInfo\x12\x19\n\x06\x65nv_id\x18\x01 \x01(\x0b\x32\t.ctf.UUID\x12#\n\x10\x63hallenge_set_id\x18\x02 \x01(\x0b\x32\t.ctf.UUID\x12\x1f\n\x0c\x63hallenge_id\x18\x03 \x01(\x0b\x32\t.ctf.UUID\"N\n\x1cListUserEnvironmentsResponse\x12.\n\x0c\x65nvironments\x18\x01 \x03(\x0b\x32\x18.ctf.UserEnvironmentInfo2\x9b\x02\n\x1e\x45nvironmentProvisioningService\x12O\n\x10StartEnvironment\x12\x1c.ctf.StartEnvironmentRequest\x1a\x1d.ctf.StartEnvironmentResponse\x12L\n\x0fStopEnvironment\x12\x1b.ctf.StopEnvironmentRequest\x1a\x1c.ctf.StopEnvironmentResponse\x12Z\n\x19UploadEnvironmentTemplate\x12%.ctf.UploadEnvironmentTemplateRequest\x1a\x16.google.protobuf.Empty2\x90\x03\n\x18\x45nvironmentLookupService\x12U\n\x12IsEnvironmentReady\x12\x1e.ctf.IsEnvironmentReadyRequest\x1a\x1f.ctf.IsEnvironmentReadyResponse\x12Z\n\x12GetEnvironmentInfo\x12\x1e.ctf.GetEnvironmentInfoRequest\x1a\x1f.ctf.GetEnvironmentInfoResponse\"\x03\x88\x02\x01\x12[\n\x14ListUserEnvironments\x12 .ctf.ListUserEnvironmentsRequest\x1a!.ctf.ListUserEnvironmentsResponse\x12\x64\n\x17ListEnvironmentServices\x12#.ctf.ListEnvironmentServicesRequest\x1a$.ctf.ListEnvironmentServicesResponseB5\n\x16org.acasictf.ctf.protoZ\x1bgithub.com/acasi-ctf/ctf/pbb\x06proto3'
   ,
   dependencies=[common__pb2.DESCRIPTOR,google_dot_protobuf_dot_empty__pb2.DESCRIPTOR,])
 
@@ -399,6 +399,148 @@ _GETENVIRONMENTINFORESPONSE = _descriptor.Descriptor(
 )
 
 
+_TERMPROXYSERVICE = _descriptor.Descriptor(
+  name='TermproxyService',
+  full_name='ctf.TermproxyService',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='host', full_name='ctf.TermproxyService.host', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='port', full_name='ctf.TermproxyService.port', index=1,
+      number=2, type=5, cpp_type=1, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=843,
+  serialized_end=889,
+)
+
+
+_WEBSERVICE = _descriptor.Descriptor(
+  name='WebService',
+  full_name='ctf.WebService',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='url', full_name='ctf.WebService.url', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=891,
+  serialized_end=916,
+)
+
+
+_LISTENVIRONMENTSERVICESREQUEST = _descriptor.Descriptor(
+  name='ListEnvironmentServicesRequest',
+  full_name='ctf.ListEnvironmentServicesRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='environment_id', full_name='ctf.ListEnvironmentServicesRequest.environment_id', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=918,
+  serialized_end=985,
+)
+
+
+_LISTENVIRONMENTSERVICESRESPONSE = _descriptor.Descriptor(
+  name='ListEnvironmentServicesResponse',
+  full_name='ctf.ListEnvironmentServicesResponse',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  create_key=_descriptor._internal_create_key,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='termproxy_services', full_name='ctf.ListEnvironmentServicesResponse.termproxy_services', index=0,
+      number=1, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+    _descriptor.FieldDescriptor(
+      name='web_services', full_name='ctf.ListEnvironmentServicesResponse.web_services', index=1,
+      number=2, type=11, cpp_type=10, label=3,
+      has_default_value=False, default_value=[],
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR,  create_key=_descriptor._internal_create_key),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=987,
+  serialized_end=1110,
+)
+
+
 _LISTUSERENVIRONMENTSREQUEST = _descriptor.Descriptor(
   name='ListUserEnvironmentsRequest',
   full_name='ctf.ListUserEnvironmentsRequest',
@@ -426,8 +568,8 @@ _LISTUSERENVIRONMENTSREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=843,
-  serialized_end=900,
+  serialized_start=1112,
+  serialized_end=1169,
 )
 
 
@@ -472,8 +614,8 @@ _USERENVIRONMENTINFO = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=902,
-  serialized_end=1020,
+  serialized_start=1171,
+  serialized_end=1289,
 )
 
 
@@ -504,8 +646,8 @@ _LISTUSERENVIRONMENTSRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=1022,
-  serialized_end=1100,
+  serialized_start=1291,
+  serialized_end=1369,
 )
 
 _STARTENVIRONMENTREQUEST.fields_by_name['challenge_set_id'].message_type = common__pb2._UUID
@@ -523,6 +665,9 @@ _STARTENVIRONMENTSUCCESSRESPONSE.fields_by_name['environment_id'].message_type =
 _STOPENVIRONMENTREQUEST.fields_by_name['environment_id'].message_type = common__pb2._UUID
 _ISENVIRONMENTREADYREQUEST.fields_by_name['environment_id'].message_type = common__pb2._UUID
 _GETENVIRONMENTINFOREQUEST.fields_by_name['environment_id'].message_type = common__pb2._UUID
+_LISTENVIRONMENTSERVICESREQUEST.fields_by_name['environment_id'].message_type = common__pb2._UUID
+_LISTENVIRONMENTSERVICESRESPONSE.fields_by_name['termproxy_services'].message_type = _TERMPROXYSERVICE
+_LISTENVIRONMENTSERVICESRESPONSE.fields_by_name['web_services'].message_type = _WEBSERVICE
 _LISTUSERENVIRONMENTSREQUEST.fields_by_name['user_id'].message_type = common__pb2._UUID
 _USERENVIRONMENTINFO.fields_by_name['env_id'].message_type = common__pb2._UUID
 _USERENVIRONMENTINFO.fields_by_name['challenge_set_id'].message_type = common__pb2._UUID
@@ -539,6 +684,10 @@ DESCRIPTOR.message_types_by_name['IsEnvironmentReadyRequest'] = _ISENVIRONMENTRE
 DESCRIPTOR.message_types_by_name['IsEnvironmentReadyResponse'] = _ISENVIRONMENTREADYRESPONSE
 DESCRIPTOR.message_types_by_name['GetEnvironmentInfoRequest'] = _GETENVIRONMENTINFOREQUEST
 DESCRIPTOR.message_types_by_name['GetEnvironmentInfoResponse'] = _GETENVIRONMENTINFORESPONSE
+DESCRIPTOR.message_types_by_name['TermproxyService'] = _TERMPROXYSERVICE
+DESCRIPTOR.message_types_by_name['WebService'] = _WEBSERVICE
+DESCRIPTOR.message_types_by_name['ListEnvironmentServicesRequest'] = _LISTENVIRONMENTSERVICESREQUEST
+DESCRIPTOR.message_types_by_name['ListEnvironmentServicesResponse'] = _LISTENVIRONMENTSERVICESRESPONSE
 DESCRIPTOR.message_types_by_name['ListUserEnvironmentsRequest'] = _LISTUSERENVIRONMENTSREQUEST
 DESCRIPTOR.message_types_by_name['UserEnvironmentInfo'] = _USERENVIRONMENTINFO
 DESCRIPTOR.message_types_by_name['ListUserEnvironmentsResponse'] = _LISTUSERENVIRONMENTSRESPONSE
@@ -621,6 +770,34 @@ GetEnvironmentInfoResponse = _reflection.GeneratedProtocolMessageType('GetEnviro
   })
 _sym_db.RegisterMessage(GetEnvironmentInfoResponse)
 
+TermproxyService = _reflection.GeneratedProtocolMessageType('TermproxyService', (_message.Message,), {
+  'DESCRIPTOR' : _TERMPROXYSERVICE,
+  '__module__' : 'ctfoperator_pb2'
+  # @@protoc_insertion_point(class_scope:ctf.TermproxyService)
+  })
+_sym_db.RegisterMessage(TermproxyService)
+
+WebService = _reflection.GeneratedProtocolMessageType('WebService', (_message.Message,), {
+  'DESCRIPTOR' : _WEBSERVICE,
+  '__module__' : 'ctfoperator_pb2'
+  # @@protoc_insertion_point(class_scope:ctf.WebService)
+  })
+_sym_db.RegisterMessage(WebService)
+
+ListEnvironmentServicesRequest = _reflection.GeneratedProtocolMessageType('ListEnvironmentServicesRequest', (_message.Message,), {
+  'DESCRIPTOR' : _LISTENVIRONMENTSERVICESREQUEST,
+  '__module__' : 'ctfoperator_pb2'
+  # @@protoc_insertion_point(class_scope:ctf.ListEnvironmentServicesRequest)
+  })
+_sym_db.RegisterMessage(ListEnvironmentServicesRequest)
+
+ListEnvironmentServicesResponse = _reflection.GeneratedProtocolMessageType('ListEnvironmentServicesResponse', (_message.Message,), {
+  'DESCRIPTOR' : _LISTENVIRONMENTSERVICESRESPONSE,
+  '__module__' : 'ctfoperator_pb2'
+  # @@protoc_insertion_point(class_scope:ctf.ListEnvironmentServicesResponse)
+  })
+_sym_db.RegisterMessage(ListEnvironmentServicesResponse)
+
 ListUserEnvironmentsRequest = _reflection.GeneratedProtocolMessageType('ListUserEnvironmentsRequest', (_message.Message,), {
   'DESCRIPTOR' : _LISTUSERENVIRONMENTSREQUEST,
   '__module__' : 'ctfoperator_pb2'
@@ -652,8 +829,8 @@ _ENVIRONMENTPROVISIONINGSERVICE = _descriptor.ServiceDescriptor(
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=1103,
-  serialized_end=1386,
+  serialized_start=1372,
+  serialized_end=1655,
   methods=[
   _descriptor.MethodDescriptor(
     name='StartEnvironment',
@@ -698,8 +875,8 @@ _ENVIRONMENTLOOKUPSERVICE = _descriptor.ServiceDescriptor(
   index=1,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=1389,
-  serialized_end=1687,
+  serialized_start=1658,
+  serialized_end=2058,
   methods=[
   _descriptor.MethodDescriptor(
     name='IsEnvironmentReady',
@@ -728,6 +905,16 @@ _ENVIRONMENTLOOKUPSERVICE = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_LISTUSERENVIRONMENTSREQUEST,
     output_type=_LISTUSERENVIRONMENTSRESPONSE,
+    serialized_options=None,
+    create_key=_descriptor._internal_create_key,
+  ),
+  _descriptor.MethodDescriptor(
+    name='ListEnvironmentServices',
+    full_name='ctf.EnvironmentLookupService.ListEnvironmentServices',
+    index=3,
+    containing_service=None,
+    input_type=_LISTENVIRONMENTSERVICESREQUEST,
+    output_type=_LISTENVIRONMENTSERVICESRESPONSE,
     serialized_options=None,
     create_key=_descriptor._internal_create_key,
   ),

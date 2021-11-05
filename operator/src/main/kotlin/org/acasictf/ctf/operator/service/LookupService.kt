@@ -59,4 +59,42 @@ class LookupService(
             addAllEnvironments(environments)
         }.build()
     }
+
+    override suspend fun listEnvironmentServices(
+        request: ListEnvironmentServicesRequest
+    ): ListEnvironmentServicesResponse = managed {
+        return ListEnvironmentServicesResponse.newBuilder().apply {
+            addAllTermproxyServices(listEnvironmentTermproxyServices(request.environmentId.contents))
+            addAllWebServices(listEnvironmentWebServices(request.environmentId.contents))
+        }.build()
+    }
+
+    private fun listEnvironmentTermproxyServices(envId: String): List<TermproxyService> {
+        val listOptions = ListOptions().apply {
+            labelSelector = "$ctfEnvIdKey=$envId,$ctfExposeKey=Termproxy"
+        }
+        val services = kube.services().inNamespace(kubeNamespace).list(listOptions)
+            ?: return emptyList()
+
+        return services.items.map {
+            TermproxyService.newBuilder().apply {
+                host = it.spec.clusterIP
+                port = it.spec.ports[0].port
+            }.build()
+        }
+    }
+
+    private fun listEnvironmentWebServices(envId: String): List<WebService> {
+        val listOptions = ListOptions().apply {
+            labelSelector = "$ctfEnvIdKey=$envId,$ctfExposeKey=Web"
+        }
+        val ingresses = kube.network().v1().ingresses().inNamespace(kubeNamespace).list(listOptions)
+            ?: return emptyList()
+
+        return ingresses.items.map {
+            WebService.newBuilder().apply {
+                url = "http://${it.spec.rules[0].host}"
+            }.build()
+        }
+    }
 }

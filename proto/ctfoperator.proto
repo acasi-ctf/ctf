@@ -96,6 +96,24 @@ message GetEnvironmentInfoResponse {
   int32 ssh_port = 2;
 }
 
+message TermproxyService {
+  string host = 1;
+  int32 port = 2;
+}
+
+message WebService {
+  string url = 1;
+}
+
+message ListEnvironmentServicesRequest {
+  UUID environment_id = 1;
+}
+
+message ListEnvironmentServicesResponse {
+  repeated TermproxyService termproxy_services = 1;
+  repeated WebService web_services = 2;
+}
+
 message ListUserEnvironmentsRequest {
   UUID user_id = 1;
 }
@@ -113,11 +131,13 @@ message ListUserEnvironmentsResponse {
 service EnvironmentLookupService {
   rpc IsEnvironmentReady(IsEnvironmentReadyRequest) returns
       (IsEnvironmentReadyResponse);
+  // deprecated: ListEnvironmentServices replaces this call.
   rpc GetEnvironmentInfo(GetEnvironmentInfoRequest) returns
       (GetEnvironmentInfoResponse) {
-    // TODO: Create generic services lookup method, hardcoded to one SSH service
     option deprecated = true;
   }
   rpc ListUserEnvironments(ListUserEnvironmentsRequest) returns
       (ListUserEnvironmentsResponse);
+  rpc ListEnvironmentServices(ListEnvironmentServicesRequest) returns
+      (ListEnvironmentServicesResponse);
 }
