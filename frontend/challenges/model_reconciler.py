@@ -1,5 +1,5 @@
 from frontend.extensions import db
-from frontend.model.challenges import ChallengeSet, Challenge, Documentation, UserChallenges
+from frontend.model.challenges import ChallengeSet, Challenge, Documentation
 
 
 class ChallengeSetModelReconciler:
