@@ -60,6 +60,8 @@ func (tp *TermproxyServiceImpl) ProxyTerminal(srv pb.TermproxyService_ProxyTermi
 		return errors.New("first message must be OpenConnection")
 	}
 
+	log.Printf("Starting proxy for environment %s", openMsg.GetEnvironmentId().GetContents())
+
 	// Perform an environment lookup.
 	envCtx, envCtxCancel := context.WithTimeout(srv.Context(), 10*time.Second)
 	envInfo, err := tp.LookupClient.GetEnvironmentInfo(
@@ -70,6 +72,7 @@ func (tp *TermproxyServiceImpl) ProxyTerminal(srv pb.TermproxyService_ProxyTermi
 	)
 	envCtxCancel()
 	if err != nil {
+		log.Printf("Failed to lookup environment info: %v", err)
 		return err
 	}
 

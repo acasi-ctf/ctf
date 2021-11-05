@@ -23,7 +23,7 @@ abstract class ResourceCreator<T : HasMetadata, L>(
     override fun create(dryRun: Boolean) {
         client.inNamespace(kubeNamespace).apply {
             generate().forEach {
-                it.metadata.addLabel(ctfEnvIdKey, env.metadata.name)
+                it.metadata.addLabel(ctfEnvIdKey, env.metadata.name.replace("chl-", ""))
 
                 dryRun(dryRun).createOrReplace(it)
             }
