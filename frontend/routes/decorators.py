@@ -9,7 +9,7 @@ from jose import jwt
 from frontend.autherror import AuthError
 
 AUTH0_DOMAIN = "acasictf-dev-lg.us.auth0.com"
-API_AUDIENCE = "https://ctf.gorence.io/api"
+API_AUDIENCE = "https://ctf.cyberliteracyforall.com/api"
 ALGORITHMS = ["RS256"]
 AUTH_DISABLED = os.getenv("AUTH_DISABLE") == "true"
 
