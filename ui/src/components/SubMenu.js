@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useContext} from 'react';
 import {Link} from 'react-router-dom';
 import * as core from '@material-ui/core';
 import '../style/SubMenu.css';
@@ -13,39 +13,43 @@ const ChallengeIcon = <UI.Assignment/>;
 
 export default function SubMenu(props) {
     const [subnav, setSubNav] = useState(false);
-    const item = props.item;
-    const showSubmenu = () =>{
-        setSubNav(!subnav);
-        // props.changeTitle(item.title);
+    //set is each of the item in the list to challenge-set like cipher, web-based,...
+    const set = props.listItem;
+
+    const showSubmenu = (clickSub,title,slug) =>{
+        //clickSub is to detect whether menu item is click or submenu item is clicked
+        //clickSub = 0, menuItem is click, clickSub = 1, subMenu item is clicked
+        if(clickSub){
+            //submenu item 
+            props.changeTitle(title);
+        }else{
+            //menu item
+            setSubNav(!subnav);
+        }
     }
+
     //constructing the API path then fetch data from there
-    const APIpath = props.path+"/"+item.slug+"/challenges";
+    const APIpath = props.path+"/"+set.slug+"/challenges";
     const { data, error, loading } = useFetchAuth(APIpath);
-    console.log(data);
     return (
         <>
             <core.ListItem style={{display:'flex', flexDirection:'column', alignItems:'flex-start'}}>
-                
-                <Link to={item.path?item.path:"."} style={{textDecoration:'none'}} onClick={()=>{setSubNav(!subnav)}} >
-                    <div style={{display:'flex', flexDirection: 'row'}}>
-                        <core.ListItemIcon style={{minWidth:'0'}}>{item.icon?item.icon:ChallengeSet_Icon}</core.ListItemIcon>
-                        <core.ListItemText style={{color:'#000000', marginLeft:'16px', marginRight:'25px'}}
-                        primary={<core.Typography style={{fontSize:'15px'}}>{item.name}</core.Typography>} />   
+                <Link style={{textDecoration:'none'}} onClick={()=>{showSubmenu(0, set.name,"")}} >
+                    <div style={{display:'flex', flexDirection:'row', minWidth:'250px'}}>
+                        <core.ListItemIcon style={{minWidth:'0'}}>{ChallengeSet_Icon}</core.ListItemIcon>
+                        <core.ListItemText style={{color:'#000000', marginLeft:'15px', marginRight:'15px'}}
+                        primary={<core.Typography style={{fontSize:'15px'}}>{set.name}</core.Typography>} />   
                         <div>
-                            {(item.subMenu || data.length !==0) && subnav ? iconOpened:
-                            ( item.subMenu || data.length !==0) ? iconClosed:
-                            null}
+                            {data.length !==0 && subnav ? iconOpened:iconClosed}
                         </div>
                     </div>
-                    
                 </Link> 
                 {subnav && data.map((item)=>{
                     return (
-                        // <Link to={item.path} key={item.id} className='subItem'>
-                        <Link to={"."} key={item.id} className='subItem' >
-                            <div style={{display:'flex', flexDirection:'row'}}>
+                        <Link to={`/play/${set.slug}/${item.slug}`} key={item.id} className='subItem' onClick={()=>{showSubmenu(1, item.name, item.slug)}}>
+                            <div style={{display:'flex', flexDirection:'row', minWidth:'250px'}}>
                                 <core.ListItemIcon style={{minWidth:'0'}}>{ChallengeIcon}</core.ListItemIcon>
-                                <core.ListItemText style={{marginLeft:'16px', marginRight:'25px'}} 
+                                <core.ListItemText style={{marginLeft:'15px', marginRight:'15px'}} 
                                 primary={<core.Typography style={{fontSize:'13px'}}>{item.name}</core.Typography>} />
                             </div>
                         </Link>
@@ -55,5 +59,4 @@ export default function SubMenu(props) {
         </>
     );
 };
-
 

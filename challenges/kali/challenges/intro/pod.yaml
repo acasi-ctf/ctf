@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: penimage
+  labels:
+    ctf-env-label: penimage
+spec:
+  containers:
+  - name: penimage
+    image: ghcr.io/acasi-ctf/challenges/kali/intro:latest

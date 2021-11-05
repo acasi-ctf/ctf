@@ -1,0 +1,11 @@
+{
+  "$schema": "../schemas/challenge-set.schema.json",
+  "id": "ac17eea4-853d-4aa3-bf60-3e4800c03b32",
+  "slug": "games",
+  "name": "Games",
+  "description": "Challenge set that contains games",
+  "version": "0.1.0",
+  "challenges": [
+    "yahtzee"
+  ]
+}
