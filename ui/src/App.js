@@ -28,18 +28,16 @@ export default function App() {
 		<Router>
 			<div className="App">
 				<MenuBar />
-				<div className="contentBackground">
-					<div className="Content">
-						<Switch>
-							<Route path="/" exact component={Home} />
-							<Route path="/LeaderBoard" component={leaderboard} />
-							<Route path="/selection" component={Selection} />
-							{/* Challenge Sets pages */}
-							<Route path="/play/:csSlug/:cSlug">
-								<ChallengePage />
-							</Route>
-						</Switch>
-					</div>
+				<div className="container-fluid mt-110">
+					<Switch>
+						<Route path="/" exact component={Home} />
+						<Route path="/LeaderBoard" component={leaderboard} />
+						<Route path="/selection" component={Selection} />
+						{/* Challenge Sets pages */}
+						<Route path="/play/:csSlug/:cSlug">
+							<ChallengePage />
+						</Route>
+					</Switch>
 				</div>
 			</div>
 		</Router>
