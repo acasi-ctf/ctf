@@ -55,7 +55,7 @@ export default function AppBarActions() {
     <div className="topNav d-flex align-items-start">
 
       <Navbar expand="lg" className="p-0 flex-fill">
-        <Navbar.Brand href="/home"><img src="logo.svg" alt="logo"/></Navbar.Brand>
+        <Navbar.Brand href="/home"><img src="/logo.svg" alt="logo"/></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">

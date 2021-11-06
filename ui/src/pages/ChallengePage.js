@@ -7,9 +7,6 @@ import Terminal from "../components/Terminal";
 
 import gfm from "remark-gfm";
 import ReactMarkdown from "react-markdown";
-import { useAuth0 } from "@auth0/auth0-react";
-import Spinner from "../components/Spinner";
-import GenericErrorPage from "./error-pages/genericErrorPage";
 import {useParams} from "react-router-dom";
 import fetchAuth from "../util/fetchAuth";
 
@@ -96,7 +93,7 @@ export default function ChallengePage() {
 			const resp = await fetchAuth(`/api/user/environments/${envId}/services`);
 			console.log(await resp.json());
 		}, 2500);
-	}, [data]);
+	}, [data, envId]);
 
 	return (
 		<div style={{
