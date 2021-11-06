@@ -1,10 +1,13 @@
-FROM node:15-alpine as npm
+FROM node:17-alpine as npm
 WORKDIR /app
 
 # Install dependencies.
 COPY ui/package.json /app
 COPY ui/package-lock.json /app
 RUN npm install -g npm
+
+ENV NODE_OPTIONS=--openssl-legacy-provider
+
 RUN npm install
 
 # Copy over entire app source.
