@@ -78,10 +78,11 @@ def create_user_environment():
     resp = provisioning_service.StartEnvironment(r)
 
     uc = UserChallenges(
-        challenge_id=cs.id,
+        challenge_id=c.id,
         user_id=user_id,
         created=datetime.now()
     )
-    db.session.add(cs)
+    db.session.add(uc)
+    db.session.commit()
 
     return jsonify({"id": resp.success.environment_id.contents})
