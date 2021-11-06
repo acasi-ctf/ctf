@@ -49,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
+    overflowX: 'hidden'
   },
   content: {
     flexGrow: 1,
