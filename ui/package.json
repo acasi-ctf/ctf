@@ -69,5 +69,5 @@
   "devDependencies": {
     "prop-types": "^15.7.2"
   },
-  "proxy": "https://ctf.cyberliteracyforall.com"
+  "proxy": "http://localhost:5000"
 }

@@ -111,3 +111,8 @@ def get_challenge_doc(challenge_set_slug, challenge_slug, doc_path):
     d = Documentation.query.filter_by(parent_id=c.id, path=doc_path).first_or_404()
 
     return Response(d.content, mimetype="text/markdown")
+
+
+@bp.route("/top-challenges")
+def get_top_challenges():
+    return jsonify([])
