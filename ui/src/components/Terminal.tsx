@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import "../style/Terminal.css";
 import {XTerm} from "xterm-for-react";
 import {FitAddon} from "xterm-addon-fit";
@@ -34,6 +34,7 @@ export default function Terminal(props: TerminalOptions) {
     const xtermRef = useRef<XTerm>(null);
     const fitRef = useRef<FitAddon>(new FitAddon());
     const streamRef = useRef<BidirectionalStream<termproxy_pb.ClientMessage, termproxy_pb.ServerMessage>>(client.proxyTerminal());
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         async function connect(stream: BidirectionalStream<termproxy_pb.ClientMessage, termproxy_pb.ServerMessage>) {
@@ -89,7 +90,7 @@ export default function Terminal(props: TerminalOptions) {
                 setTimeout(() => {
                     streamRef.current = client.proxyTerminal();
                     connect(streamRef.current);
-                }, 5000);
+                }, 2000);
             });
         }
 
@@ -116,11 +117,23 @@ export default function Terminal(props: TerminalOptions) {
                 }
             });
             xtermRef.current.terminal.loadAddon(fitRef.current);
-            fitRef.current.fit();
         }
 
         connect(streamRef.current);
     }, [props.id]);
 
-    return <XTerm className="Terminal" ref={xtermRef}/>;
+    useEffect(() => {
+        function handleResize() {
+            fitRef.current.fit();
+        }
+        window.addEventListener("resize", handleResize)
+        fitRef.current.fit();
+    })
+
+    let p = <p>f</p>;
+
+    return <div style={{
+    }}>
+        <XTerm className="Terminal" ref={xtermRef}/>
+    </div>;
 }

@@ -1,5 +1,7 @@
 .Terminal {
-    width: 48%;
+    /*width: 48%;
     margin-left: 10px;
-    margin-top: 5px;
+    margin-top: 5px;*/
+    height: 92.5vh;
+    padding: 10px;
 }

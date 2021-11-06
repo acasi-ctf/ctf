@@ -99,8 +99,11 @@ export default function ChallengePage() {
 	}, [data]);
 
 	return (
-		<div style={{ display: "flex", flexDirection: "row", position: "fixed" }}>
-			<div className="ChallengeSet1">
+		<div style={{
+			display: "grid",
+			height: "100%"
+		}}>
+			<div className="left-column">
 				<core.AppBar position="static" color="default">
 					<core.Tabs value={value} indicatorColor="primary" onChange={handleChange}
 						textColor="primary" variant="scrollable" scrollButtons="auto" aria-label="simple auto tabs example" >
@@ -113,11 +116,15 @@ export default function ChallengePage() {
 				</core.AppBar>
 
 				<TabPanel className="box1" value={value} index={value}
-					style={{ overflowY: "scroll", marginTop: "5px", marginLeft: "5px" }}>
-					<ReactMarkdown remarkPlugins={[gfm]} children={txt} style={{ marginLeft: "10px" }} />
+					style={{ overflowY: "scroll", margin: "5px" }}>
+					<ReactMarkdown remarkPlugins={[gfm]} children={txt} style={{
+						margin: "5px"
+					}} />
 				</TabPanel>
 			</div>
-			<Terminal key={envId} id={envId} />
+			<div className="right-column">
+				<Terminal key={envId} id={envId} />
+			</div>
 		</div>
 	);
 }
