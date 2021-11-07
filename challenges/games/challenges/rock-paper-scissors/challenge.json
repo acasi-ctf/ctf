@@ -1,6 +1,6 @@
 {
   "$schema": "../../../schemas/challenge.schema.json",
-  "id": "e0867c69-92cd-4e50-b23b-b782ec3e251f",
+  "id": "e6ddf451-e5e6-423a-bcd0-6841d738d421",
   "slug": "rock-paper-scissors",
   "name": "Rock Paper Scissors",
   "description": "Game of Rock Paper Scissors",

@@ -1,6 +1,6 @@
 {
   "$schema": "../../../schemas/challenge.schema.json",
-  "id": "e0867c69-92cd-4e50-b23b-b782ec3e251f",
+  "id": "69eb3f04-58f3-4c5b-a9b1-c4e0da1815e0",
   "slug": "prize",
   "name": "prize",
   "description": "Game of prize",

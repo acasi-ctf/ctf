@@ -1,7 +1,7 @@
 {
   "$schema": "../../../schemas/challenge.schema.json",
-  "id": "e0867c69-92cd-4e50-b23b-b782ec3e251f",
-  "slug": "Noughts",
+  "id": "24477f75-fe6e-4037-9c31-148e13c77d50",
+  "slug": "noughts",
   "name": "Noughts",
   "description": "Game of Noughts",
   "provisioner": {
