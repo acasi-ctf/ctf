@@ -6,6 +6,10 @@
   "description": "Challenge set that contains games",
   "version": "0.1.0",
   "challenges": [
-    "yahtzee"
+    "yahtzee",
+    "seven-up",
+    "rock-paper-scissors",
+    "prize",
+    "noughts"
   ]
 }
