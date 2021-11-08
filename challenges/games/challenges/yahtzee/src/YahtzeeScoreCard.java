@@ -53,7 +53,6 @@ public class YahtzeeScoreCard {
                 "10   11   12   13\n\n");
     }
 
-
     /**
      * Change the scorecard based on the category choice 1-13.
      *
