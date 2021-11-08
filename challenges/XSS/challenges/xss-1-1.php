@@ -29,7 +29,7 @@ function decipher() {
 
 
 <?php
-    $input = $_GET['title']?? "XSS Alert Challenge";
+    $input = $_GET['title']?? "Refelection - XSS Alert Challenge";
 
     echo "<h1>".$input."</h1>";
 

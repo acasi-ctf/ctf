@@ -35,12 +35,12 @@ function decipher() {
 
 
 <?php
-$input=$_GET['title']?? "XSS Alert Challenge";
+$input=$_GET['title']?? "Refelection - XSS Alert Challenge";
 ?> 
 
 <script type="text/javascript">
     if(location.search == ""){
-        location.search = "?title=XSS Alert Challenge"
+        location.search = "?title=Refelection - XSS Alert Challenge"
     }
 
     var title = '<?php echo $input?>';
