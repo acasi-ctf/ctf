@@ -1,7 +1,6 @@
 /**
- *
- *  @author Mr Greenstein
-*/
+ * @author Mr Greenstein
+ */
 
 public class YahtzeePlayer {
     private String name;
@@ -9,13 +8,19 @@ public class YahtzeePlayer {
 
 
     public YahtzeePlayer() {
-        scorecard = new YahtzeeScoreCard ();
+        scorecard = new YahtzeeScoreCard();
     }
 
-    public void setName(String n) { name = n; }
+    public String getName() {
+        return name;
+    }
 
-    public String getName() { return name; }
+    public void setName(String n) {
+        name = n;
+    }
 
-    public YahtzeeScoreCard getScoreCard() { return scorecard; }
+    public YahtzeeScoreCard getScoreCard() {
+        return scorecard;
+    }
 
 }
