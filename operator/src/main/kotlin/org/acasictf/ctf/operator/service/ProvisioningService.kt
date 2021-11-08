@@ -12,6 +12,7 @@ import org.acasictf.ctf.operator.model.kubernetes.v1alpha1.EnvTemplate
 import org.acasictf.ctf.operator.model.kubernetes.v1alpha1.EnvTemplateList
 import org.acasictf.ctf.operator.persistence.EnvironmentDao
 import org.acasictf.ctf.operator.persistence.ZipChallengeTemplate
+import org.acasictf.ctf.operator.provisioner.Provisioner
 import org.acasictf.ctf.operator.provisioner.kubernetes.KubernetesProvisioner
 import org.acasictf.ctf.proto.Common
 import org.acasictf.ctf.proto.Ctfoperator.*
@@ -76,7 +77,7 @@ EnvironmentProvisioningServiceCoroutineImplBase() {
             it.id == request.challengeId.contents
         } ?: return@managed failureResponse
 
-        val prov = KubernetesProvisioner(envIdStr, kube)
+        val prov: Provisioner = KubernetesProvisioner(envIdStr, kube)
         try {
             prov.provision(c)
         } catch (e: Exception) {
