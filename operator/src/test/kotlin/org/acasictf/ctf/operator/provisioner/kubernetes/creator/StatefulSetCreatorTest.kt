@@ -1,15 +1,13 @@
 package org.acasictf.ctf.operator.provisioner.kubernetes.creator
 
-import io.fabric8.kubernetes.api.model.EnvVar
 import io.mockk.mockkObject
-import io.mockk.unmockkObject
+import io.mockk.unmockkAll
 import org.acasictf.ctf.operator.meta
 import org.acasictf.ctf.operator.model.kubernetes.v1alpha1.EnvTemplate
 import org.acasictf.ctf.operator.model.kubernetes.v1alpha1.EnvTemplateList
 import org.acasictf.ctf.operator.model.kubernetes.v1alpha1.Environment
 import org.acasictf.ctf.operator.model.kubernetes.v1alpha1.EnvironmentSpec
 import org.acasictf.ctf.operator.persistence.GlobalConfig
-import org.acasictf.ctf.operator.port
 import org.acasictf.ctf.operator.testutil.k8sCrud
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
@@ -34,7 +32,7 @@ internal class StatefulSetCreatorTest {
 
   @AfterTest
   fun after() {
-    unmockkObject(GlobalConfig)
+    unmockkAll()
   }
 
   @Test
@@ -61,11 +59,11 @@ internal class StatefulSetCreatorTest {
     val c = t.spec.containers[0]
     assertEquals("nginx", c.name)
     assertEquals("nginx:latest", c.image)
-    assertTrue(c.env.all {
+    assertTrue(c.env.all { ev ->
       when {
-        it.name == "ENV_VAR" && it.value == "VALUE" -> true
-        it.name == "CTF_TERMPROXY_PUBLIC_KEY" -> true
-        it.name == "PUBLIC_KEY" -> true
+        ev.name == "ENV_VAR" && ev.value == "VALUE" -> true
+        ev.name == "CTF_TERMPROXY_PUBLIC_KEY" -> true
+        ev.name == "PUBLIC_KEY" -> true
         else -> false
       }
     })

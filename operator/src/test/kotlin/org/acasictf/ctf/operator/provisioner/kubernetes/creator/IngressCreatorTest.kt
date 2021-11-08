@@ -1,7 +1,7 @@
 package org.acasictf.ctf.operator.provisioner.kubernetes.creator
 
 import io.mockk.mockkObject
-import io.mockk.unmockkObject
+import io.mockk.unmockkAll
 import org.acasictf.ctf.operator.meta
 import org.acasictf.ctf.operator.model.kubernetes.v1alpha1.EnvTemplate
 import org.acasictf.ctf.operator.model.kubernetes.v1alpha1.EnvTemplateList
@@ -31,7 +31,7 @@ internal class IngressCreatorTest {
 
   @AfterTest
   fun after() {
-    unmockkObject(GlobalConfig)
+    unmockkAll()
   }
 
   @Test
@@ -40,7 +40,8 @@ internal class IngressCreatorTest {
 
     val client = it.client
     val f = client.customResources(EnvTemplate::class.java, EnvTemplateList::class.java)
-    val envTemplate = f.load(javaClass.getResourceAsStream("/model/v1alpha1/envtemplate-test.yaml")).get()
+    val envTemplate =
+      f.load(javaClass.getResourceAsStream("/model/v1alpha1/envtemplate-test.yaml")).get()
 
     val ic = IngressCreator(env, envTemplate, client.network().v1().ingresses())
     val ingresses = ic.generate()

@@ -1,7 +1,7 @@
 package org.acasictf.ctf.operator.provisioner.kubernetes.creator
 
 import io.mockk.mockkObject
-import io.mockk.unmockkObject
+import io.mockk.unmockkAll
 import org.acasictf.ctf.operator.meta
 import org.acasictf.ctf.operator.model.kubernetes.v1alpha1.EnvTemplate
 import org.acasictf.ctf.operator.model.kubernetes.v1alpha1.EnvTemplateList
@@ -32,7 +32,7 @@ internal class ServiceCreatorTest {
 
   @AfterTest
   fun after() {
-    unmockkObject(GlobalConfig)
+    unmockkAll()
   }
 
   @Test
