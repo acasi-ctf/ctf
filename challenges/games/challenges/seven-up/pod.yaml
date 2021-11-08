@@ -7,4 +7,4 @@ metadata:
 spec:
   containers:
   - name: penimage
-    image: ghcr.io/acasi-ctf/challenges/games/yahtzee:latest
+    image: ghcr.io/acasi-ctf/challenges/games/seven-up:latest
