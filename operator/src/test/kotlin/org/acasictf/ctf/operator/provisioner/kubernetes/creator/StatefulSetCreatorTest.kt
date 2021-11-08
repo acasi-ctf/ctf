@@ -15,6 +15,7 @@ import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 internal class StatefulSetCreatorTest {
   private val env = Environment().apply {
@@ -60,6 +61,14 @@ internal class StatefulSetCreatorTest {
     val c = t.spec.containers[0]
     assertEquals("nginx", c.name)
     assertEquals("nginx:latest", c.image)
-    assertEquals(listOf(EnvVar("ENV_VAR", "VALUE", null)), c.env)
+    assertTrue(c.env.all {
+      when {
+        it.name == "ENV_VAR" && it.value == "VALUE" -> true
+        it.name == "CTF_TERMPROXY_PUBLIC_KEY" -> true
+        it.name == "PUBLIC_KEY" -> true
+        else -> false
+      }
+    })
+    assertEquals(3, c.env.size)
   }
 }

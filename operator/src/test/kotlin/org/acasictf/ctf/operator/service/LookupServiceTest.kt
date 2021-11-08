@@ -3,15 +3,23 @@ package org.acasictf.ctf.operator.service
 import io.fabric8.kubernetes.api.model.PodBuilder
 import io.fabric8.kubernetes.api.model.PodListBuilder
 import io.fabric8.kubernetes.api.model.PodStatus
+import io.fabric8.kubernetes.api.model.ServiceBuilder
+import io.fabric8.kubernetes.api.model.ServiceListBuilder
+import io.fabric8.kubernetes.api.model.ServiceSpec
+import io.fabric8.kubernetes.api.model.ServiceStatus
 import io.fabric8.kubernetes.client.utils.Utils
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
+import org.acasictf.ctf.operator.ctfEnvIdKey
+import org.acasictf.ctf.operator.ctfExposeKey
 import org.acasictf.ctf.operator.generateProtoUuid
 import org.acasictf.ctf.operator.kubeNamespace
 import org.acasictf.ctf.operator.meta
 import org.acasictf.ctf.operator.persistence.EnvironmentDao
+import org.acasictf.ctf.operator.port
+import org.acasictf.ctf.operator.serviceSpec
 import org.acasictf.ctf.operator.testutil.assertFailsBlocking
 import org.acasictf.ctf.operator.testutil.k8sExpect
 import org.acasictf.ctf.proto.Ctfoperator.GetEnvironmentInfoRequest
@@ -20,9 +28,9 @@ import org.acasictf.ctf.proto.CtfoperatorInternal.Environment
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-private fun getPenimagePod(envId: String) =
-    "/api/v1/namespaces/ctf/pods?labelSelector=" + Utils.toUrlEncoded(
-        "ctf-env-id=$envId,ctf-env-label=penimage"
+private fun getTermproxyService(envId: String) =
+    "/api/v1/namespaces/ctf/services?labelSelector=" + Utils.toUrlEncoded(
+        "$ctfEnvIdKey=$envId,$ctfExposeKey=Termproxy"
     )
 
 class LookupServiceTest {
@@ -40,21 +48,24 @@ class LookupServiceTest {
         val sshPort = 22
         val envId = generateProtoUuid()
 
-        val pod = PodBuilder()
+        val svc = ServiceBuilder()
             .withMetadata(meta {
                 namespace = kubeNamespace
             })
-            .withStatus(
-                PodStatus().apply {
-                    podIP = sshHost
-                }
-            )
+            .withSpec(serviceSpec {
+                clusterIP = sshHost
+                ports = listOf(
+                    port {
+                        port = 22
+                    }
+                )
+            })
             .build()
 
         server.expect()
             .get()
-            .withPath(getPenimagePod(envId.contents))
-            .andReturn(200, PodListBuilder().withItems(pod).build())
+            .withPath(getTermproxyService(envId.contents))
+            .andReturn(200, ServiceListBuilder().withItems(svc).build())
             .once()
 
         val service = LookupService(environmentDao, server.client)
@@ -82,7 +93,7 @@ class LookupServiceTest {
 
         server.expect()
             .get()
-            .withPath(getPenimagePod(envId.contents))
+            .withPath(getTermproxyService(envId.contents))
             .andReturn(200, PodListBuilder().build())
             .once()
 

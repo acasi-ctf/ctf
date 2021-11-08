@@ -17,7 +17,7 @@ from frontend.routes.decorators import (
 )
 from frontend.routes.scopes import (
     permission_write_user_environments,
-    permission_read_user_environments
+    permission_read_user_environments,
 )
 
 """
