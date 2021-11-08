@@ -164,7 +164,7 @@ export default function ChallengePage() {
 				</TabPanel>
 			</div>
 			<div className="terminalBox">
-				<Terminal key={data.id} id={data.id} />
+				<Terminal key={data.id} id={data.id}/>
 			</div>
 		</div>
 	);

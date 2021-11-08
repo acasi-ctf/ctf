@@ -1,5 +1,7 @@
 import "./style/App.css";
+import {useHistory} from 'react-router-dom';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import React, { useEffect } from "react";
 import MenuBar from "./components/Menu";
 import { useAuth0 } from "@auth0/auth0-react";
 import UserNotAuthorized from "./pages/error-pages/userNotAuthorized";
@@ -13,7 +15,15 @@ import ChallengePage from "./pages/ChallengePage";
 /***************************************************************************************************************************************/
 
 export default function App() {
+	const history = useHistory();
 	const { isAuthenticated, getAccessTokenSilently } = useAuth0();
+	useEffect(() => {
+		if (performance.navigation.type === 1) {
+			history.push('/');
+		}
+	});
+
+
 	if (!isAuthenticated)
 		return (
 			<>
@@ -23,6 +33,7 @@ export default function App() {
 				</div>
 			</>
 		);
+
 
 	return (
 		<Router>
