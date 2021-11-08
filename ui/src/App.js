@@ -14,14 +14,11 @@ import ChallengePage from "./pages/ChallengePage";
 import { constants } from "crypto";
 /***************************************************************************************************************************************/
 
+let a = 0;
+
 export default function App() {
 
 	const { isAuthenticated, getAccessTokenSilently } = useAuth0();
-
-	// const [temp,setTemp] = useState(0);
-	// setTemp(temp+1);
-	// console.log('THROUGH HERE');
-
 	if (!isAuthenticated){
 		return (
 			<>

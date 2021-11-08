@@ -48,16 +48,8 @@ export default function ChallengePage(props) {
 	//The app should always start with home uri no matter which URI user is given or when page is reload
 	
 	let history = useHistory();
-	const [detectReload, setDetectReload] = useState(0);
-	// console.log('aaaa')
-	// console.log(props.test)
-	//detect app is reloaded -> redirect to home
-	// console.log(window.performance.getEntriesByType("navigation")[0].type);
-	// console.log(performance.navigation.type);
-	if(performance.navigation.type ===1	 && !detectReload){
-		console.log('reload');
-		console.log(detectReload);
-		setDetectReload(detectReload+1);
+	// detected reload -> push to home URL
+	if(history.action === 'POP'){
 		history.push('/');
 	}
 
