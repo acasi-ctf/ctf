@@ -6,6 +6,7 @@ COPY ui/package.json /app
 COPY ui/package-lock.json /app
 RUN npm install -g npm
 
+# TODO: This fixes a build error.
 ENV NODE_OPTIONS=--openssl-legacy-provider
 
 RUN npm install
