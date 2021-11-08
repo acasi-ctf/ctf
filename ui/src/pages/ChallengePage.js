@@ -43,7 +43,27 @@ TabPanel.propTypes = {
 	value: PropTypes.any.isRequired,
 };
 
-export default function ChallengePage() {
+export default function ChallengePage(props) {
+	//this code block to dedicated to detect if user manually put in a link
+	//The app should always start with home uri no matter which URI user is given or when page is reload
+	
+	let history = useHistory();
+	const [detectReload, setDetectReload] = useState(0);
+	// console.log('aaaa')
+	// console.log(props.test)
+	//detect app is reloaded -> redirect to home
+	// console.log(window.performance.getEntriesByType("navigation")[0].type);
+	// console.log(performance.navigation.type);
+	if(performance.navigation.type ===1	 && !detectReload){
+		console.log('reload');
+		console.log(detectReload);
+		setDetectReload(detectReload+1);
+		history.push('/');
+	}
+
+
+
+
 	//value variable control which is the chosen/selected tab in appbar
 	const [value, setValue] = React.useState(0);
 	// A function callback to update the value and the API path when an item is
@@ -58,8 +78,6 @@ export default function ChallengePage() {
 	const [txt, setMarkdown] = useState("");
 	const [path, setPath] = useState("");
 	const [fetchData, setData] = useState(0);
-
-	let history = useHistory();
 
 
 	let {csSlug, cSlug} = useParams();
@@ -129,21 +147,6 @@ export default function ChallengePage() {
 			}
 		}
 	},  [getAccessTokenSilently, isAuthenticated, loading, running, csSlug, cSlug]);
-
-
-	//this code block to dedicated to detect if user manually put in a link
-	//The app should always start with home uri no matter which URI user is given or when page is reload
-
-	//detect app is reloaded -> redirect to home
-	console.log(window.performance.getEntriesByType("navigation")[0].type);
-	console.log(performance.navigation.type);
-	if(String(window.performance.getEntriesByType("navigation")[0].type === 'navigate') && performance.navigation.type === 0){
-
-	}
-	else if(String(window.performance.getEntriesByType("navigation")[0].type === 'reload') && performance.navigation.type === 1){
-		
-	}
-
 
 	// this useEffect gets triggered when path hook is updated
 	// update the documents in the component that display markdown
