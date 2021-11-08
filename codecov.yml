@@ -1,9 +1,13 @@
 ignore:
   # Ignoring this directory, there is a very large number of equals/hashCode implementations
-  #  which are very difficult and time-consuming to test.
-  - operator/src/main/kotlin/org/acasictf/ctf/operator/model/kubernetes
+  #  which are very difficult and time-consuming to test. Additionally, there are data classes,
+  #  which are pointless to test.
+  - operator/src/main/kotlin/org/acasictf/ctf/operator/model
 coverage:
   status:
     project:
+      default:
+        threshold: 5%
+    patch:
       default:
         threshold: 5%
