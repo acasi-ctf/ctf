@@ -163,7 +163,9 @@ export default function ChallengePage() {
 					<ReactMarkdown remarkPlugins={[gfm]} children={txt} style={{ marginLeft: "10px" }} />
 				</TabPanel>
 			</div>
-			{/* <Terminal key={data.id} id={data.id} /> */}
+			<div className="terminalBox">
+				<Terminal key={data.id} id={data.id} />
+			</div>
 		</div>
 	);
 }

@@ -1,5 +1,8 @@
 .Terminal {
-    width: 48%;
+    /* width: 48%;
     margin-left: 10px;
-    margin-top: 5px;
+    margin-top: 5px; */
+    width: calc(100% - 53%);
+    height: 100%;
+    overflow-y: hidden;
 }
