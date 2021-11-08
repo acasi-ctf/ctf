@@ -1,5 +1,6 @@
 package org.acasictf.ctf.operator.provisioner.kubernetes.creator
 
+import io.mockk.every
 import io.mockk.mockkObject
 import io.mockk.unmockkAll
 import org.acasictf.ctf.operator.meta
@@ -28,6 +29,9 @@ internal class StatefulSetCreatorTest {
   @BeforeTest
   fun before() {
     mockkObject(GlobalConfig)
+
+    every { GlobalConfig.baseUrl } returns "ctf.example.com"
+    every { GlobalConfig.publicKey } returns "TEST_KEY"
   }
 
   @AfterTest
@@ -37,9 +41,6 @@ internal class StatefulSetCreatorTest {
 
   @Test
   fun generate() = k8sCrud {
-    GlobalConfig.baseUrl = "ctf.example.com"
-    GlobalConfig.publicKey = "TEST_KEY"
-
     val client = it.client
     val f = client.customResources(EnvTemplate::class.java, EnvTemplateList::class.java)
     val envTemplate =

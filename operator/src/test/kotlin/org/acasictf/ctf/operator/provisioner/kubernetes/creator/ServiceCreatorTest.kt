@@ -1,5 +1,6 @@
 package org.acasictf.ctf.operator.provisioner.kubernetes.creator
 
+import io.mockk.every
 import io.mockk.mockkObject
 import io.mockk.unmockkAll
 import org.acasictf.ctf.operator.meta
@@ -28,6 +29,9 @@ internal class ServiceCreatorTest {
   @BeforeTest
   fun before() {
     mockkObject(GlobalConfig)
+
+    every { GlobalConfig.baseUrl } returns "ctf.example.com"
+    every { GlobalConfig.publicKey } returns "TEST_KEY"
   }
 
   @AfterTest
