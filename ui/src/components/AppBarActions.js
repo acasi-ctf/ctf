@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Avatar, Tooltip, Dialog, DialogContent } from "@material-ui/core";
@@ -51,6 +51,16 @@ export default function AppBarActions() {
     setOpen(false);
   };
 
+  const [displayFlagSubmit, setDisplayFlagSubmit ] = useState(false);
+  const handleSubmitFlag = ()=>{
+    if(displayFlagSubmit){
+      //display field is in open. checkflag + do validation on the field
+      setDisplayFlagSubmit(!displayFlagSubmit);
+    }else{
+      setDisplayFlagSubmit(!displayFlagSubmit);
+    }
+  }
+
   return (
     <div className="topNav d-flex align-items-start">
 
@@ -61,7 +71,9 @@ export default function AppBarActions() {
           <Nav className="ml-auto">
             <Nav.Link href="https://wsu.co1.qualtrics.com/jfe/form/SV_88hZcsQMzabAMOq" target="_blank">Report Issue</Nav.Link>
             <Nav.Link href="https://wsu.co1.qualtrics.com/jfe/form/SV_3HSX4XrAlj1L7mu" target="_blank">Anonymous Survey</Nav.Link>
-            <Nav.Link onClick={handleClickOpen}>Show environments (Testing Purposes)</Nav.Link>
+            {/* <Nav.Link onClick={handleClickOpen}>Show environments (Testing Purposes)</Nav.Link> */}
+            <input type="text" className={displayFlagSubmit? "inputFlag inputFlag-enable":"inputFlag inputFlag-disable"}/>
+            <Nav.Link onClick={handleSubmitFlag}> Submit Flag </Nav.Link>
             {isAuthenticated ? (
             <div className="loginUserWrap">
               <span className="ml-0-m">Welcome, User</span>

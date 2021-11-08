@@ -49,10 +49,13 @@ export default function ChallengePage(props) {
 	
 	let history = useHistory();
 	// detected reload -> push to home URL
-	if(history.action === 'POP'){
-		history.push('/');
-	}
-
+	useEffect(()=>{
+		if(history.action === 'POP'){
+			const controller = new AbortController();
+			controller.abort();
+			history.push('/');
+		}	
+	});
 
 
 
