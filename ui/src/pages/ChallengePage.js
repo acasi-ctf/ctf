@@ -146,9 +146,9 @@ export default function ChallengePage() {
 	if (error) return <GenericErrorPage />;
 
 	return (
-		<div style={{ display: "flex", flexDirection: "row", position: "fixed" }}>
+		<div className="ChallengePageContainter">
 			<div className="ChallengeSet1">
-				<core.AppBar position="static" color="default">
+				<core.AppBar position="absolute" color="default">
 					<core.Tabs value={value} indicatorColor="primary" onChange={handleChange}
 						textColor="primary" variant="scrollable" scrollButtons="auto" aria-label="simple auto tabs example" >
 						{fetchData && fetchData.documentation.map((item, index) => {
@@ -159,12 +159,11 @@ export default function ChallengePage() {
 					</core.Tabs>
 				</core.AppBar>
 
-				<TabPanel className="box1" value={value} index={value}
-					style={{ overflowY: "scroll", marginTop: "5px", marginLeft: "5px" }}>
+				<TabPanel className="box1" value={value} index={value}>
 					<ReactMarkdown remarkPlugins={[gfm]} children={txt} style={{ marginLeft: "10px" }} />
 				</TabPanel>
 			</div>
-			<Terminal key={data.id} id={data.id} />
+			{/* <Terminal key={data.id} id={data.id} /> */}
 		</div>
 	);
 }
