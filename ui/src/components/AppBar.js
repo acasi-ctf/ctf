@@ -86,7 +86,7 @@ export default function ChallengeBar(props) {
                         {/* </Typography> */}
 
                         {/* the bellow is for credential login and survey button */}
-                        <AppBarActions/>
+                        <AppBarActions />
                     {/* </Toolbar> */}
                 </div>
             </AppBar>

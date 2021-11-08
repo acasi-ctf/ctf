@@ -34,7 +34,7 @@ export default function SubMenu(props) {
     return (
         <>
             <core.ListItem style={{display:'flex', flexDirection:'column', alignItems:'flex-start'}}>
-                <Link style={{textDecoration:'none'}} onClick={()=>{showSubmenu(0, set.name,"")}} >
+                <Link to='#' style={{textDecoration:'none'}} onClick={()=>{showSubmenu(0, set.name,"")}} >
                     <div style={{display:'flex', flexDirection:'row', minWidth:'250px'}}>
                         <core.ListItemIcon style={{minWidth:'0'}}>{ChallengeSet_Icon}</core.ListItemIcon>
                         <core.ListItemText style={{color:'#000000', marginLeft:'15px', marginRight:'15px'}}

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../style/ChallengePage.css";
 import * as core from "@material-ui/core";
 
-import PropTypes from "prop-types";
+import PropTypes, { string } from "prop-types";
 import Terminal from "../components/Terminal";
 
 import gfm from "remark-gfm";
@@ -11,6 +11,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Spinner from "../components/Spinner";
 import GenericErrorPage from "./error-pages/genericErrorPage";
 import {useParams} from "react-router-dom";
+import {useHistory, Redirect} from "react-router-dom";
 
 function a11yProps(index) {
 	return {
@@ -57,6 +58,8 @@ export default function ChallengePage() {
 	const [txt, setMarkdown] = useState("");
 	const [path, setPath] = useState("");
 	const [fetchData, setData] = useState(0);
+
+	let history = useHistory();
 
 
 	let {csSlug, cSlug} = useParams();
@@ -128,6 +131,18 @@ export default function ChallengePage() {
 	},  [getAccessTokenSilently, isAuthenticated, loading, running, csSlug, cSlug]);
 
 
+	//this code block to dedicated to detect if user manually put in a link
+	//The app should always start with home uri no matter which URI user is given or when page is reload
+
+	//detect app is reloaded -> redirect to home
+	console.log(window.performance.getEntriesByType("navigation")[0].type);
+	console.log(performance.navigation.type);
+	if(String(window.performance.getEntriesByType("navigation")[0].type === 'navigate') && performance.navigation.type === 0){
+
+	}
+	else if(String(window.performance.getEntriesByType("navigation")[0].type === 'reload') && performance.navigation.type === 1){
+		
+	}
 
 
 	// this useEffect gets triggered when path hook is updated

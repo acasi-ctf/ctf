@@ -1,5 +1,4 @@
 import "./style/App.css";
-import {useHistory} from 'react-router-dom';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import React, { useEffect } from "react";
 import MenuBar from "./components/Menu";
@@ -15,16 +14,11 @@ import ChallengePage from "./pages/ChallengePage";
 /***************************************************************************************************************************************/
 
 export default function App() {
-	const history = useHistory();
+
 	const { isAuthenticated, getAccessTokenSilently } = useAuth0();
-	useEffect(() => {
-		if (performance.navigation.type === 1) {
-			history.push('/');
-		}
-	});
 
 
-	if (!isAuthenticated)
+	if (!isAuthenticated){
 		return (
 			<>
 				<div>
@@ -33,6 +27,7 @@ export default function App() {
 				</div>
 			</>
 		);
+	}
 
 
 	return (
@@ -45,9 +40,7 @@ export default function App() {
 						<Route path="/LeaderBoard" component={leaderboard} />
 						<Route path="/selection" component={Selection} />
 						{/* Challenge Sets pages */}
-						<Route path="/play/:csSlug/:cSlug">
-							<ChallengePage />
-						</Route>
+						<Route path="/play/:csSlug/:cSlug"> <ChallengePage /> </Route>
 					</Switch>
 				</div>
 			</div>

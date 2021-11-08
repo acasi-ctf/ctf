@@ -6,3 +6,8 @@
     height: 100%;
     font-size: 5px;
 }
+
+.xterm .xterm-screen canvas{
+    padding-left: 10px;
+    padding-top: 10px;
+}

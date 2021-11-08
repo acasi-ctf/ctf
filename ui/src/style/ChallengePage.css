@@ -13,8 +13,8 @@
 
 .terminalBox{
     right: 0px;
-    width: calc(100% - 50%);
-    height: calc(100% - 27px - 10px);
+    width: calc(100% - 50% - 5px);
+    height: 100%;
     position: absolute;
     font-size: medium;
 }
