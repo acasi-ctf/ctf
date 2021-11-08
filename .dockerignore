@@ -2,6 +2,7 @@
 .idea/
 
 ui/node_modules/
+ui/.env.*
 
 *.db
 

@@ -1,0 +1,16 @@
+{
+  "$schema": "../../../schemas/challenge.schema.json",
+  "id": "252a7356-1c6e-46a3-97bd-327f30fe402f",
+  "slug": "seven-up",
+  "name": "Seven Up",
+  "description": "Game of Seven Up",
+  "provisioner": {
+    "type": "kubernetes"
+  },
+  "documentation": [
+    {
+      "name": "SevenUp",
+      "path": "docs/SevenUp.md"
+    }
+  ]
+}
