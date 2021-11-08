@@ -38,6 +38,7 @@ internal class StatefulSetCreatorTest {
   @Test
   fun generate() = k8sCrud {
     GlobalConfig.baseUrl = "ctf.example.com"
+    GlobalConfig.publicKey = "TEST_KEY"
 
     val client = it.client
     val f = client.customResources(EnvTemplate::class.java, EnvTemplateList::class.java)
