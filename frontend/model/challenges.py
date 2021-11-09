@@ -1,7 +1,7 @@
 """
 This file defines database tables for the Frontend API using SQLAlchemy.
 """
-from sqlalchemy import Column, ForeignKey, Text, text, PrimaryKeyConstraint, Integer
+from sqlalchemy import Column, ForeignKey, Text, text, PrimaryKeyConstraint, Integer, DateTime
 from sqlalchemy.dialects.postgresql import BYTEA, JSONB, UUID
 from sqlalchemy.orm import relationship
 
@@ -132,3 +132,32 @@ class Documentation(db.Model):
     Contents of this documentation.
     """
     content = Column(BYTEA, nullable=False)
+
+
+class UserChallenges(db.Model):
+    """
+    This table contains data on recently run challenges.
+    """
+
+    __tablename__ = "user_challenges"
+
+    """
+    Id of challenge run.
+    """
+    challenge_id = Column(
+        UUID(as_uuid=True), ForeignKey("challenge.id", ondelete="CASCADE")
+    )
+
+    """
+    Id of user who ran challenge.
+    """
+    user_id = Column(UUID(as_uuid=True), nullable=False)
+
+    """
+    Time challenge was initialized.
+    """
+    created = Column(DateTime, nullable=False)
+
+    __table_args__ = (
+        PrimaryKeyConstraint(challenge_id, user_id, created),
+    )
