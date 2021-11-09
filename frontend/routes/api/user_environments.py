@@ -1,14 +1,15 @@
 """
 Routes that relate to managing user environments.
 """
+from datetime import datetime
+
 from flask import Blueprint, jsonify, request
 
-from frontend.extensions import lookup_service, provisioning_service
-from frontend.model.challenges import ChallengeSet, Challenge
+from frontend.extensions import lookup_service, provisioning_service, db
+from frontend.model.challenges import ChallengeSet, Challenge, UserChallenges
 from frontend.pb import (
     ListUserEnvironmentsRequest,
     StartEnvironmentRequest,
-    StartEnvironmentResponse,
 )
 from frontend.routes.decorators import (
     requires_auth,
@@ -74,5 +75,9 @@ def create_user_environment():
     r.challenge_owner.contents = user_id
 
     resp = provisioning_service.StartEnvironment(r)
+
+    uc = UserChallenges(challenge_id=c.id, user_id=user_id, created=datetime.now())
+    db.session.add(uc)
+    db.session.commit()
 
     return jsonify({"id": resp.success.environment_id.contents})
