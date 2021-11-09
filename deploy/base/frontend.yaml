@@ -17,6 +17,7 @@ spec:
     spec:
       containers:
         - image: ghcr.io/acasi-ctf/ctf/frontend:latest
+          imagePullPolicy: Always
           name: frontend
           resources: { }
 ---

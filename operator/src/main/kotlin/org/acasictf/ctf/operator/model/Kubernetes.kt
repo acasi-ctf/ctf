@@ -4,10 +4,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Kubernetes(
-    val manifests: Manifests
-)
-
-@Serializable
-data class Manifests(
-    val pods: List<String>
+    val templatePath: String,
+    val templateCRDVersion: String
 )

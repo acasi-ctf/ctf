@@ -62,8 +62,8 @@ class ChallengeTemplateTest {
         )
 
         assertNotNull(kubernetesJson)
-        assertEquals(1, kubernetesJson.manifests.pods.size)
-        assertEquals("dvwa.yaml", kubernetesJson.manifests.pods[0])
+        assertEquals("dvwa.yaml", kubernetesJson.templatePath)
+        assertEquals("v1alpha1", kubernetesJson.templateCRDVersion)
     }
 
     /**

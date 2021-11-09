@@ -1,26 +1,37 @@
 package org.acasictf.ctf.operator.service
 
-import io.fabric8.kubernetes.api.model.PodBuilder
-import io.fabric8.kubernetes.api.model.PodListBuilder
-import io.fabric8.kubernetes.api.model.PodStatus
+import io.fabric8.kubernetes.api.model.ServiceBuilder
+import io.fabric8.kubernetes.api.model.ServiceListBuilder
+import io.fabric8.kubernetes.api.model.networking.v1.IngressListBuilder
 import io.fabric8.kubernetes.client.utils.Utils
 import io.mockk.every
 import io.mockk.impl.annotations.MockK
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
+import org.acasictf.ctf.operator.ctfEnvIdKey
+import org.acasictf.ctf.operator.ctfExposeKey
 import org.acasictf.ctf.operator.generateProtoUuid
+import org.acasictf.ctf.operator.kubeNamespace
+import org.acasictf.ctf.operator.meta
 import org.acasictf.ctf.operator.persistence.EnvironmentDao
+import org.acasictf.ctf.operator.port
+import org.acasictf.ctf.operator.serviceSpec
 import org.acasictf.ctf.operator.testutil.assertFailsBlocking
 import org.acasictf.ctf.operator.testutil.k8sExpect
 import org.acasictf.ctf.proto.Ctfoperator.GetEnvironmentInfoRequest
+import org.acasictf.ctf.proto.Ctfoperator.ListEnvironmentServicesRequest
 import org.acasictf.ctf.proto.Ctfoperator.ListUserEnvironmentsRequest
 import org.acasictf.ctf.proto.CtfoperatorInternal.Environment
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-private fun getPenimagePod(envId: String) =
-    "/api/v1/namespaces/ctf/pods?labelSelector=" + Utils.toUrlEncoded(
-        "ctf-env-id=$envId,ctf-env-label=penimage"
+private fun getTermproxyService(envId: String) =
+    "/api/v1/namespaces/ctf/services?labelSelector=" + Utils.toUrlEncoded(
+        "$ctfEnvIdKey=$envId,$ctfExposeKey=Termproxy"
+    )
+private fun getWebService(envId: String) =
+    "/apis/networking.k8s.io/v1/namespaces/ctf/ingresses?labelSelector=" + Utils.toUrlEncoded(
+        "$ctfEnvIdKey=$envId,$ctfExposeKey=Web"
     )
 
 class LookupServiceTest {
@@ -38,18 +49,24 @@ class LookupServiceTest {
         val sshPort = 22
         val envId = generateProtoUuid()
 
-        val pod = PodBuilder()
-            .withStatus(
-                PodStatus().apply {
-                    podIP = sshHost
-                }
-            )
+        val svc = ServiceBuilder()
+            .withMetadata(meta {
+                namespace = kubeNamespace
+            })
+            .withSpec(serviceSpec {
+                clusterIP = sshHost
+                ports = listOf(
+                    port {
+                        port = sshPort
+                    }
+                )
+            })
             .build()
 
         server.expect()
             .get()
-            .withPath(getPenimagePod(envId.contents))
-            .andReturn(200, PodListBuilder().withItems(pod).build())
+            .withPath(getTermproxyService(envId.contents))
+            .andReturn(200, ServiceListBuilder().withItems(svc).build())
             .once()
 
         val service = LookupService(environmentDao, server.client)
@@ -77,8 +94,8 @@ class LookupServiceTest {
 
         server.expect()
             .get()
-            .withPath(getPenimagePod(envId.contents))
-            .andReturn(200, PodListBuilder().build())
+            .withPath(getTermproxyService(envId.contents))
+            .andReturn(200, ServiceListBuilder().build())
             .once()
 
         val service = LookupService(environmentDao, server.client)
@@ -90,6 +107,58 @@ class LookupServiceTest {
                 }.build()
             )
         }
+    }
+
+    /**
+     * List the environment services. Ensures that the gRPC response contains the correct services.
+     */
+    @Test
+    fun `list environment services`() = k8sExpect { server ->
+        val envId = generateProtoUuid()
+        val host1 = "1.1.1.1"
+        val port1 = 22
+
+        val svc1 = ServiceBuilder()
+            .withMetadata(meta {
+                namespace = kubeNamespace
+            })
+            .withSpec(serviceSpec {
+                clusterIP = host1
+                ports = listOf(
+                    port {
+                        port = port1
+                    }
+                )
+            })
+            .build()
+
+        server.expect()
+            .get()
+            .withPath(getTermproxyService(envId.contents))
+            .andReturn(200, ServiceListBuilder().withItems(svc1).build())
+            .once()
+        // TODO: Test for Web expose types.
+        server.expect()
+            .get()
+            .withPath(getWebService(envId.contents))
+            .andReturn(200, IngressListBuilder().build())
+            .once()
+
+        val service = LookupService(environmentDao, server.client)
+
+        val response = runBlocking {
+            service.listEnvironmentServices(
+                ListEnvironmentServicesRequest.newBuilder().apply {
+                    environmentId = envId
+                }.build()
+            )
+        }
+
+        assertEquals(1, response.termproxyServicesCount)
+        assertEquals(0, response.webServicesCount)
+
+        assertEquals(host1, response.termproxyServicesList[0].host)
+        assertEquals(port1, response.termproxyServicesList[0].port)
     }
 
     /**

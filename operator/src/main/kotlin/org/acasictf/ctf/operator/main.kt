@@ -43,6 +43,7 @@ fun main() {
     val informerFactory = client.informers()
 
     val envInformer = informerFactory
+        .inNamespace(kubeNamespace)
         .sharedIndexInformerForCustomResource(
             Environment::class.java,
             EnvironmentList::class.java,

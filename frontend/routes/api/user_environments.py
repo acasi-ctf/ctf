@@ -10,13 +10,17 @@ from frontend.model.challenges import ChallengeSet, Challenge, UserChallenges
 from frontend.pb import (
     ListUserEnvironmentsRequest,
     StartEnvironmentRequest,
+    ListEnvironmentServicesRequest,
 )
 from frontend.routes.decorators import (
     requires_auth,
     get_user_id,
     requires_permission_raise,
 )
-from frontend.routes.scopes import permission_write_user_environments
+from frontend.routes.scopes import (
+    permission_write_user_environments,
+    permission_read_user_environments,
+)
 
 """
 Blueprint that encapsulates this group of routes.
@@ -27,6 +31,8 @@ bp = Blueprint("user_environments", __name__)
 @bp.route("/environments", methods=["GET"])
 @requires_auth
 def list_user_environments():
+    requires_permission_raise(permission_read_user_environments)
+
     user_id = get_user_id()
 
     r = ListUserEnvironmentsRequest()
@@ -81,3 +87,32 @@ def create_user_environment():
     db.session.commit()
 
     return jsonify({"id": resp.success.environment_id.contents})
+
+
+@bp.route("/environments/<env_id>/services")
+@requires_auth
+def get_environment_services(env_id):
+    """
+    This route gets an environment's services.
+    :param env_id: ID of the environment.
+    :return: List of environment services.
+    """
+    requires_permission_raise(permission_read_user_environments)
+
+    # TODO: Does not validate whether the environment is the user's own.
+
+    r = ListEnvironmentServicesRequest()
+    r.environment_id.contents = env_id
+
+    resp = lookup_service.ListEnvironmentServices(r)
+
+    def map_termproxy_service(svc):
+        return {"host": svc.host, "port": svc.port}
+
+    def map_web_service(svc):
+        return {"url": svc.url}
+
+    termproxy_services = list(map(map_termproxy_service, resp.termproxy_services))
+    web_services = list(map(map_web_service, resp.web_services))
+
+    return jsonify({"termproxy": termproxy_services, "web": web_services})

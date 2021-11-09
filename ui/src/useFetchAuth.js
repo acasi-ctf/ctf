@@ -12,7 +12,7 @@ export default function useFetchAuth(url, method = "GET", body = {}) {
 		async function init() {
 			try {
 				const accessToken = await getAccessTokenSilently();
-				// console.log(accessToken);
+				console.log(accessToken);
 
 				const options = {
 					method: method,

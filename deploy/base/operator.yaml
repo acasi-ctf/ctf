@@ -18,6 +18,7 @@ spec:
       serviceAccountName: operator
       containers:
         - image: ghcr.io/acasi-ctf/ctf/operatorkt:latest
+          imagePullPolicy: Always
           name: operator
           resources: { }
           env:

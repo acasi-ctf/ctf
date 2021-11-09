@@ -26,6 +26,7 @@ spec:
       spec:
         path: /
         pathType: Prefix
+        ctfExpose: Web
         backend:
           service:
             name: sqli

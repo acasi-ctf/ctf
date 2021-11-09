@@ -11,7 +11,9 @@ import (
 
 // uploadCmd represents the upload command
 var uploadCmd = &cobra.Command{
-	Use: "upload",
+	Use:   "upload",
+	Short: "Upload a challenge set ZIP",
+	Long:  "Upload a challenge set ZIP over gRPC",
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) == 0 {
 			cmd.Help()

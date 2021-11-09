@@ -5,17 +5,9 @@ import useFetchAuth from "../Home";
 import { Button, Form, Nav, Card} from "react-bootstrap";
 
 export default function UserNotAuthorized() {
-  const { data: environments, loading, error } = useFetchAuth(
-    "/api/user/environments"
-  );
   const {
-    user,
     loginWithPopup,
-    logout,
-    isAuthenticated,
-    getAccessTokenSilently,
   } = useAuth0();
-// return <h1>Please log in</h1>;
 
 return <div className="challengesWrap">
     <div className="container">
@@ -38,7 +30,7 @@ return <div className="challengesWrap">
         <div className="col-lg-4 col-md-5">
           <div className="grayCol signinCol">
             <h2>Welcome <span>to CTF</span></h2>
-            <img src="login.svg" alt="login"/>
+            <img src="/login.svg" alt="login"/>
             <Button className="butn primaryBtn" onClick={() => loginWithPopup()} variant="primary" type="submit"> Sign In/ Sign Up</Button>
           </div>
         </div>

@@ -1,8 +1,13 @@
 PROTOSRC = proto/common proto/termproxy proto/ctfoperator proto/ctfoperator_internal
 
-IMAGE_CTF_BASE = ghcr.io/acasi-ctf/ctf
-IMAGE_CHALLENGES_BASE = ghcr.io/acasi-ctf/challenges
-IMAGE_TAG = latest
+IMAGE_CTF_BASE        ?= ghcr.io/acasi-ctf/ctf
+IMAGE_CHALLENGES_BASE ?= ghcr.io/acasi-ctf/challenges
+IMAGE_TAG             ?= latest
+
+docker_info:
+	@echo Platform base:   $(IMAGE_CTF_BASE)
+	@echo Challenges base: $(IMAGE_CHALLENGES_BASE)
+	@echo Image tag:       $(IMAGE_TAG)
 
 all: proto docker
 

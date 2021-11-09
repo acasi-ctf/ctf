@@ -7,10 +7,8 @@ import Terminal from "../components/Terminal";
 
 import gfm from "remark-gfm";
 import ReactMarkdown from "react-markdown";
-import { useAuth0 } from "@auth0/auth0-react";
-import Spinner from "../components/Spinner";
-import GenericErrorPage from "./error-pages/genericErrorPage";
 import {useParams} from "react-router-dom";
+import fetchAuth from "../util/fetchAuth";
 
 function a11yProps(index) {
 	return {
@@ -58,8 +56,7 @@ export default function ChallengePage() {
 	const [path, setPath] = useState("");
 	const [fetchData, setData] = useState(0);
 
-
-	let {csSlug, cSlug} = useParams();
+	let {csSlug, cSlug, envId} = useParams();
 
 	// Trigger on clicking new Menu Items
 	useEffect(() => {
@@ -74,61 +71,10 @@ export default function ChallengePage() {
 							// console.log(temp);
 							setPath(temp);
 							setDat([]);
-							setError(null);
-							setLoading(true);
-							setRunning(false);
 						});
 	}, [csSlug, cSlug]);
 
-
 	const [data, setDat] = useState([]);
-	const [error, setError] = useState(null);
-	const [loading, setLoading] = useState(true);
-	const [running, setRunning] = useState(false);
-	const { isAuthenticated, getAccessTokenSilently } = useAuth0();
-
-	useEffect(() => {
-		async function init() {
-			try {
-				const accessToken = await getAccessTokenSilently();
-
-				const options = {
-					method: "POST",
-					headers: {
-						"Authorization": `Bearer ${accessToken}`,
-						"Content-Type": "application/json"
-					},
-					body:JSON.stringify({
-						"challengeSetSlug" :`${csSlug}`,
-						"challengeSlug"  :`${cSlug}`
-					})
-				};
-
-				const response = await fetch("/api/user/environments", options);
-				if (response.ok) {
-					const json = await response.json();
-					setDat(json);
-				} else {
-					setError(response);
-				}
-			} catch (e) {
-				console.log(e);
-				setError(e);
-			} finally {
-				setLoading(false);
-			}
-		}
-		if (isAuthenticated) {
-			if (!running && loading) {
-				setRunning(true);
-				// noinspection JSIgnoredPromiseFromCall
-				init();
-			}
-		}
-	},  [getAccessTokenSilently, isAuthenticated, loading, running, csSlug, cSlug]);
-
-
-
 
 	// this useEffect gets triggered when path hook is updated
 	// update the documents in the component that display markdown
@@ -142,12 +88,19 @@ export default function ChallengePage() {
 		}
 	}, [path,csSlug,cSlug]);
 
-	if (loading) return <Spinner />;
-	if (error) return <GenericErrorPage />;
+	useEffect(() => {
+		setTimeout(async () => {
+			const resp = await fetchAuth(`/api/user/environments/${envId}/services`);
+			console.log(await resp.json());
+		}, 2500);
+	}, [data, envId]);
 
 	return (
-		<div style={{ display: "flex", flexDirection: "row", position: "fixed" }}>
-			<div className="ChallengeSet1">
+		<div style={{
+			display: "grid",
+			height: "100%"
+		}}>
+			<div className="left-column">
 				<core.AppBar position="static" color="default">
 					<core.Tabs value={value} indicatorColor="primary" onChange={handleChange}
 						textColor="primary" variant="scrollable" scrollButtons="auto" aria-label="simple auto tabs example" >
@@ -160,11 +113,15 @@ export default function ChallengePage() {
 				</core.AppBar>
 
 				<TabPanel className="box1" value={value} index={value}
-					style={{ overflowY: "scroll", marginTop: "5px", marginLeft: "5px" }}>
-					<ReactMarkdown remarkPlugins={[gfm]} children={txt} style={{ marginLeft: "10px" }} />
+					style={{ overflowY: "scroll", margin: "5px" }}>
+					<ReactMarkdown remarkPlugins={[gfm]} children={txt} style={{
+						margin: "5px"
+					}} />
 				</TabPanel>
 			</div>
-			<Terminal key={data.id} id={data.id} />
+			<div className="right-column">
+				<Terminal key={envId} id={envId} />
+			</div>
 		</div>
 	);
 }

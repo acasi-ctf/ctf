@@ -11,10 +11,6 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
-
-
-// import { makeStyles } from '@material-ui/core/styles';
-import Layout from '../pageLayout.js';
 import ChallengeBar from "./AppBar";
 import * as core from '@material-ui/core';
 import {staticMenuData} from './MenuBarData';
@@ -22,11 +18,9 @@ import {Link} from 'react-router-dom';
 import SubMenu from './SubMenu.js';
 import useFetchAuth from "../useFetchAuth";
 
-
 const drawerWidth = 280;
 
-const appBarHeight = 0;
-const APIpath = 'api/challenge-sets';
+const APIpath = '/api/challenge-sets';
 
 const useStyles = makeStyles((theme) => ({
     root: {

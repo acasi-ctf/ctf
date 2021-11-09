@@ -15,7 +15,7 @@ class EnvironmentTest {
 
     private fun create(server: KubernetesServer) {
         client = server.client
-        f = client.customResources(Environment::class.java, EnvironmentList::class.java)
+        f = client.resources(Environment::class.java, EnvironmentList::class.java)
     }
 
     @Test

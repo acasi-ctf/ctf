@@ -5,7 +5,9 @@ import io.fabric8.kubernetes.api.model.networking.v1.IngressList
 import io.fabric8.kubernetes.client.dsl.MixedOperation
 import org.acasictf.ctf.operator.*
 import org.acasictf.ctf.operator.model.kubernetes.v1alpha1.EnvTemplate
+import org.acasictf.ctf.operator.model.kubernetes.v1alpha1.EnvTemplateIngressCtfExpose
 import org.acasictf.ctf.operator.model.kubernetes.v1alpha1.EnvTemplateIngressPathType
+import org.acasictf.ctf.operator.model.kubernetes.v1alpha1.EnvTemplateServiceSpecPortCtfExpose
 import org.acasictf.ctf.operator.model.kubernetes.v1alpha1.Environment
 import org.acasictf.ctf.operator.persistence.GlobalConfig
 
@@ -18,7 +20,7 @@ class IngressCreator(
     private val env: Environment,
     private val envTemplate: EnvTemplate,
     client: MixedOperation<Ingress, IngressList, *>
-) : ResourceCreator<Ingress, IngressList>(client) {
+) : ResourceCreator<Ingress, IngressList>(client, env) {
     override fun generate() = envTemplate.spec.ingresses.map {
         ingress {
             metadata = meta {
@@ -26,6 +28,10 @@ class IngressCreator(
                 annotations = mapOf(
                     "nginx.ingress.kubernetes.io/ssl-redirect" to "false"
                 )
+
+                if (it.spec.ctfExpose == EnvTemplateIngressCtfExpose.Web) {
+                    addLabel(ctfExposeKey, EnvTemplateIngressCtfExpose.Web.toString())
+                }
             }
             spec = ingressSpec {
                 rules = listOf(
