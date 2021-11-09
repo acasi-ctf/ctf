@@ -2,7 +2,9 @@
 Routes that relate to fetching challenge sets and challenges.
 """
 from flask import Blueprint, jsonify, Response
+from sqlalchemy import func
 
+from frontend.extensions import db
 from frontend.model.challenges import ChallengeSet, Challenge, Documentation, UserChallenges
 
 """
@@ -115,4 +117,20 @@ def get_challenge_doc(challenge_set_slug, challenge_slug, doc_path):
 
 @bp.route("/top-challenges")
 def get_top_challenges():
-    return jsonify([])
+    joined = db.session.query(UserChallenges.challenge_id, func.count(UserChallenges.challenge_id).label("count"), Challenge, ChallengeSet) \
+        .join(Challenge, UserChallenges.challenge_id == Challenge.id) \
+        .join(ChallengeSet, Challenge.parent_id == ChallengeSet.id) \
+        .group_by(UserChallenges.challenge_id, Challenge, ChallengeSet) \
+        .order_by(func.count(UserChallenges.challenge_id).desc()) \
+        .all()
+
+    def map_joined(x):
+        print(x["count"])
+        return {
+            "challengeSet": map_challenge_set(x["ChallengeSet"]),
+            "challenge": map_challenge(x["Challenge"]),
+        }
+
+    challenges = map(map_joined, joined)
+
+    return jsonify(list(challenges))

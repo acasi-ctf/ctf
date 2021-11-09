@@ -174,5 +174,8 @@ __pycache__
 # Operator data directory
 data/
 
+# ZIP files
+*.zip
+
 # End of custom
 
