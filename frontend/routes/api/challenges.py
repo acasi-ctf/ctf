@@ -2,8 +2,16 @@
 Routes that relate to fetching challenge sets and challenges.
 """
 from flask import Blueprint, jsonify, Response
+from sqlalchemy import func
 
-from frontend.model.challenges import ChallengeSet, Challenge, Documentation
+from frontend.extensions import db
+from frontend.model.challenges import (
+    ChallengeSet,
+    Challenge,
+    Documentation,
+    UserChallenges,
+)
+
 
 """
 Blueprint that encapsulates this group of routes.
@@ -111,3 +119,36 @@ def get_challenge_doc(challenge_set_slug, challenge_slug, doc_path):
     d = Documentation.query.filter_by(parent_id=c.id, path=doc_path).first_or_404()
 
     return Response(d.content, mimetype="text/markdown")
+
+
+@bp.route("/top-challenges")
+def get_top_challenges():
+    """
+    This route groups challenges and returns the play count of each.
+    :return: JSON list of challenge set and challenge objects, with their respective count.
+    """
+    joined = (
+        db.session.query(
+            UserChallenges.challenge_id,
+            func.count(UserChallenges.challenge_id).label("count"),
+            Challenge,
+            ChallengeSet,
+        )
+        .join(Challenge, UserChallenges.challenge_id == Challenge.id)
+        .join(ChallengeSet, Challenge.parent_id == ChallengeSet.id)
+        .group_by(UserChallenges.challenge_id, Challenge, ChallengeSet)
+        .order_by(func.count(UserChallenges.challenge_id).desc())
+        .limit(5)
+        .all()
+    )
+
+    def map_joined(x):
+        return {
+            "challengeSet": map_challenge_set(x["ChallengeSet"]),
+            "challenge": map_challenge(x["Challenge"]),
+            "playCount": x["count"],
+        }
+
+    challenges = map(map_joined, joined)
+
+    return jsonify(list(challenges))

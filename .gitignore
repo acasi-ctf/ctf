@@ -180,5 +180,8 @@ work/
 # macOS
 .DS_Store
 
+# ZIP files
+*.zip
+
 # End of custom
 
