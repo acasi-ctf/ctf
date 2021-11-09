@@ -7,6 +7,7 @@ from sqlalchemy import func
 from frontend.extensions import db
 from frontend.model.challenges import ChallengeSet, Challenge, Documentation, UserChallenges
 
+
 """
 Blueprint that encapsulates this group of routes.
 """

@@ -1,12 +1,10 @@
 """
 Routes that relate to managing user environments.
 """
-from datetime import datetime
-
 from flask import Blueprint, jsonify, request
 
-from frontend.extensions import lookup_service, provisioning_service, db
-from frontend.model.challenges import ChallengeSet, Challenge, UserChallenges
+from frontend.extensions import lookup_service, provisioning_service
+from frontend.model.challenges import ChallengeSet, Challenge
 from frontend.pb import (
     ListUserEnvironmentsRequest,
     StartEnvironmentRequest,

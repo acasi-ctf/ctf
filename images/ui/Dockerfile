@@ -17,3 +17,7 @@ FROM nginx:mainline
 
 # Copy over static files from npm to nginx.
 COPY --from=npm /app/build /usr/share/nginx/html
+
+# Remove default NGINX config and replace it with ours.
+RUN rm /etc/nginx/conf.d/default.conf
+COPY images/ui/nginx.conf /etc/nginx/conf.d
