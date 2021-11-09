@@ -478,8 +478,6 @@ header .MuiToolbar-root{
     background: #FFF;
     outline: none;
     border-radius: 10px 0 0 10px;
-    border: 2px solid;
-    padding-left: 10px;
     -webkit-transition: all 1s ease;  
     -moz-transition: all 1s ease;  
     -o-transition: all 1s ease;  
@@ -491,9 +489,13 @@ header .MuiToolbar-root{
 .inputFlag-disable{
     width: 0px;
     visibility: hidden;
+    padding: 0px;
+    border: 0px solid;;
 }
 
 .inputFlag-enable{
+    border: 2px solid;
+    padding-left: 10px;
     width: 200px;
     visibility: visible;
 }

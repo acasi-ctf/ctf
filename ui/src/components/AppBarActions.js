@@ -71,8 +71,9 @@ export default function AppBarActions(props) {
             <Nav.Link href="https://wsu.co1.qualtrics.com/jfe/form/SV_88hZcsQMzabAMOq" target="_blank">Report Issue</Nav.Link>
             <Nav.Link href="https://wsu.co1.qualtrics.com/jfe/form/SV_3HSX4XrAlj1L7mu" target="_blank">Anonymous Survey</Nav.Link>
             {/* <Nav.Link onClick={handleClickOpen}>Show environments (Testing Purposes)</Nav.Link> */}
-
-            <input id="inputSubmitFlag" type="text" className={props.displayInput? "inputFlag inputFlag-enable":"inputFlag inputFlag-disable"} maxLength="50" minLength="1"/>
+            <input id="inputSubmitFlag" type="text" 
+                   className={props.displayInput? "inputFlag inputFlag-enable":"inputFlag inputFlag-disable"} 
+                   maxLength="50" minLength="1"/>
             <Nav.Link onClick={handleSubmitFlag}> Submit Flag </Nav.Link>
 
             {isAuthenticated ? (
