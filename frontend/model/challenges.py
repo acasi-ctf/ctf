@@ -1,7 +1,15 @@
 """
 This file defines database tables for the Frontend API using SQLAlchemy.
 """
-from sqlalchemy import Column, ForeignKey, Text, text, PrimaryKeyConstraint, Integer, DateTime
+from sqlalchemy import (
+    Column,
+    ForeignKey,
+    Text,
+    text,
+    PrimaryKeyConstraint,
+    Integer,
+    DateTime,
+)
 from sqlalchemy.dialects.postgresql import BYTEA, JSONB, UUID
 from sqlalchemy.orm import relationship
 
@@ -158,6 +166,4 @@ class UserChallenges(db.Model):
     """
     created = Column(DateTime, nullable=False)
 
-    __table_args__ = (
-        PrimaryKeyConstraint(challenge_id, user_id, created),
-    )
+    __table_args__ = (PrimaryKeyConstraint(challenge_id, user_id, created),)

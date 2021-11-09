@@ -5,7 +5,12 @@ from flask import Blueprint, jsonify, Response
 from sqlalchemy import func
 
 from frontend.extensions import db
-from frontend.model.challenges import ChallengeSet, Challenge, Documentation, UserChallenges
+from frontend.model.challenges import (
+    ChallengeSet,
+    Challenge,
+    Documentation,
+    UserChallenges,
+)
 
 
 """
@@ -122,15 +127,20 @@ def get_top_challenges():
     This route groups challenges and returns the play count of each.
     :return: JSON list of challenge set and challenge objects, with their respective count.
     """
-    joined = db.session.query(UserChallenges.challenge_id,
-                              func.count(UserChallenges.challenge_id).label("count"),
-                              Challenge, ChallengeSet) \
-        .join(Challenge, UserChallenges.challenge_id == Challenge.id) \
-        .join(ChallengeSet, Challenge.parent_id == ChallengeSet.id) \
-        .group_by(UserChallenges.challenge_id, Challenge, ChallengeSet) \
-        .order_by(func.count(UserChallenges.challenge_id).desc()) \
-        .limit(2) \
+    joined = (
+        db.session.query(
+            UserChallenges.challenge_id,
+            func.count(UserChallenges.challenge_id).label("count"),
+            Challenge,
+            ChallengeSet,
+        )
+        .join(Challenge, UserChallenges.challenge_id == Challenge.id)
+        .join(ChallengeSet, Challenge.parent_id == ChallengeSet.id)
+        .group_by(UserChallenges.challenge_id, Challenge, ChallengeSet)
+        .order_by(func.count(UserChallenges.challenge_id).desc())
+        .limit(5)
         .all()
+    )
 
     def map_joined(x):
         return {
