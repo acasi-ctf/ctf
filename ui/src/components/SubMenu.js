@@ -22,6 +22,11 @@ export default function SubMenu(props) {
         if(clickSub){
             //submenu item 
             props.changeTitle(title);
+            if(props.displayInput){
+                const inputSubmitFlag = document.getElementById('inputSubmitFlag');
+                inputSubmitFlag.value = "";
+                props.setDisplay(false);
+            }
         }else{
             //menu item
             setSubNav(!subnav);

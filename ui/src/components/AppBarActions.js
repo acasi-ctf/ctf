@@ -5,7 +5,7 @@ import { Avatar, Tooltip, Dialog, DialogContent } from "@material-ui/core";
 import useFetchAuth from "../useFetchAuth";
 import {Nav, Navbar } from "react-bootstrap";
 
-export default function AppBarActions() {
+export default function AppBarActions(props) {
   const [open, setOpen] = React.useState(false);
   const { data: environments, loading, error } = useFetchAuth(
     "/api/user/environments"
@@ -51,16 +51,15 @@ export default function AppBarActions() {
     setOpen(false);
   };
 
-  const [displayFlagSubmit, setDisplayFlagSubmit ] = useState(false);
+
   const handleSubmitFlag = ()=>{
-    if(displayFlagSubmit){
+    if(props.displayInput){
       //display field is in open. checkflag + do validation on the field
-      setDisplayFlagSubmit(!displayFlagSubmit);
+      props.setDisplay(!props.displayInput);
     }else{
-      setDisplayFlagSubmit(!displayFlagSubmit);
+      props.setDisplay(!props.displayInput);
     }
   }
-
   return (
     <div className="topNav d-flex align-items-start">
 
@@ -72,8 +71,10 @@ export default function AppBarActions() {
             <Nav.Link href="https://wsu.co1.qualtrics.com/jfe/form/SV_88hZcsQMzabAMOq" target="_blank">Report Issue</Nav.Link>
             <Nav.Link href="https://wsu.co1.qualtrics.com/jfe/form/SV_3HSX4XrAlj1L7mu" target="_blank">Anonymous Survey</Nav.Link>
             {/* <Nav.Link onClick={handleClickOpen}>Show environments (Testing Purposes)</Nav.Link> */}
-            <input type="text" className={displayFlagSubmit? "inputFlag inputFlag-enable":"inputFlag inputFlag-disable"}/>
+
+            <input id="inputSubmitFlag" type="text" className={props.displayInput? "inputFlag inputFlag-enable":"inputFlag inputFlag-disable"} maxLength="50" minLength="1"/>
             <Nav.Link onClick={handleSubmitFlag}> Submit Flag </Nav.Link>
+
             {isAuthenticated ? (
             <div className="loginUserWrap">
               <span className="ml-0-m">Welcome, User</span>

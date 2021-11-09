@@ -29,13 +29,19 @@
 .topNav .navbar-toggler:hover {
     background: transparent;
 }
-.topNav .navbar-light .navbar-nav .nav-link {
+.topNav .navbar-light .navbar-nav .nav-link  {
     font-size: 14px;
     font-weight: 500;
     line-height: 21px;
     color: #fff;
     text-transform: uppercase;
 }
+
+.topNav:hover .navbar-light:hover .navbar-nav:hover .nav-link:hover{
+    text-decoration: none;
+    border: 1px solid;
+}
+
 .topNav {
     padding: 27px 0 30px;
 }

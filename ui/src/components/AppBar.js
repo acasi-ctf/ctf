@@ -75,6 +75,7 @@ export default function ChallengeBar(props) {
     }else{
         bannerTitle = props.name
     }
+    console.log()
     return (
         <div className={classes.root}>
             <AppBar position="static">
@@ -86,7 +87,7 @@ export default function ChallengeBar(props) {
                         {/* </Typography> */}
 
                         {/* the bellow is for credential login and survey button */}
-                        <AppBarActions />
+                        <AppBarActions displayInput={props.displayInput} setDisplay={props.setDisplay}/>
                     {/* </Toolbar> */}
                 </div>
             </AppBar>
