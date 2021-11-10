@@ -1,7 +1,7 @@
 apiVersion: ctf.acasi.info/v1alpha1
 kind: EnvTemplate
 metadata:
-  name: kali-intro
+  name: kali-strings
 spec:
   pods:
     - metadata:
@@ -11,7 +11,7 @@ spec:
       spec:
         containers:
           - name: penimage
-            image: ghcr.io/acasi-ctf/challenges/kali/binwalk:latest
+            image: ghcr.io/acasi-ctf/challenges/kali/strings:latest
   services:
     - metadata:
         name: penimage-termproxy

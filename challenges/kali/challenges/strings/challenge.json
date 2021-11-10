@@ -1,6 +1,6 @@
 {
   "$schema": "../../../schemas/challenge.schema.json",
-  "id": "9efea081-241e-4d0f-b0ec-3bd8237db217",
+  "id": "0c73d010-b360-4116-ba6f-92dad43c3e57",
   "slug": "strings",
   "name": "strings",
   "description": "This is a challenge that demonstrates strings tool",
