@@ -7,7 +7,7 @@ The tool _hash-identifier_ is a python-based tool designed to allow it's user to
 To run _hash-identifier_ we can call the tool and then provide our hashed string.
 
 ```Bash
-root: $ Hash-Identifier
+root: $ hash-identifier
    #########################################################################
    #     __  __                     __           ______    _____           #
    #    /\ \/\ \                   /\ \         /\__  _\  /\  _ `\         #
