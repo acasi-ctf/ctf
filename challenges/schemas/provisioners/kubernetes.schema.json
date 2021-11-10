@@ -2,18 +2,21 @@
   "$schema": "https://json-schema.org/draft-07/schema",
   "title": "kubernetes-provisioner",
   "description": "Describes how to provision Kubernetes for this challenge environment",
+  "required": [
+    "templatePath",
+    "templateCRDVersion"
+  ],
   "properties": {
-    "manifests": {
-      "type": "object",
-      "properties": {
-        "pods": {
-          "type": "array",
-          "items": {
-            "type": "string",
-            "format": "path"
-          }
-        }
-      }
+    "templatePath": {
+      "description": "Relative path to the environment template",
+      "type": "string"
+    },
+    "templateCRDVersion": {
+      "description": "Version of the CRD resource file given",
+      "type": "string",
+      "enum": [
+        "v1alpha1"
+      ]
     }
   }
 }

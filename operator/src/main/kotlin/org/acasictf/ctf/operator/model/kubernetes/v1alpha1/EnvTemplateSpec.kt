@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty
 
 class EnvTemplateSpec {
     lateinit var pods: List<EnvTemplatePod>
-    lateinit var services: List<EnvTemplateService>
-    lateinit var ingresses: List<EnvTemplateIngress>
+    var services: List<EnvTemplateService> = listOf()
+    var ingresses: List<EnvTemplateIngress> = listOf()
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -96,6 +96,7 @@ class EnvTemplatePodSpec {
 class EnvTemplatePodSpecContainer {
     lateinit var name: String
     lateinit var image: String
+    var env: List<EnvTemplatePodSpecContainerEnv> = listOf()
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -105,13 +106,38 @@ class EnvTemplatePodSpecContainer {
 
         if (name != other.name) return false
         if (image != other.image) return false
+        if (env != other.env) return false
 
         return true
     }
 
     override fun hashCode(): Int {
-        var result = name?.hashCode() ?: 0
+        var result = name.hashCode()
         result = 31 * result + image.hashCode()
+        result = 31 * result + env.hashCode()
+        return result
+    }
+}
+
+class EnvTemplatePodSpecContainerEnv {
+    lateinit var name: String
+    lateinit var value: String
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as EnvTemplatePodSpecContainerEnv
+
+        if (name != other.name) return false
+        if (value != other.value) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = name.hashCode()
+        result = 31 * result + value.hashCode()
         return result
     }
 }
@@ -186,6 +212,7 @@ class EnvTemplateServiceSpecPort {
     var port: Int = 0
     var targetPort: Int? = null
     var protocol = EnvTemplateServiceSpecPortProtocol.Tcp
+    var ctfExpose = EnvTemplateServiceSpecPortCtfExpose.None
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -197,6 +224,7 @@ class EnvTemplateServiceSpecPort {
         if (port != other.port) return false
         if (targetPort != other.targetPort) return false
         if (protocol != other.protocol) return false
+        if (ctfExpose != other.ctfExpose) return false
 
         return true
     }
@@ -206,6 +234,7 @@ class EnvTemplateServiceSpecPort {
         result = 31 * result + port
         result = 31 * result + (targetPort ?: 0)
         result = 31 * result + protocol.hashCode()
+        result = 31 * result + ctfExpose.hashCode()
         return result
     }
 }
@@ -216,6 +245,14 @@ enum class EnvTemplateServiceSpecPortProtocol {
 
     @JsonProperty("UDP")
     Udp
+}
+
+enum class EnvTemplateServiceSpecPortCtfExpose {
+    @JsonProperty("None")
+    None,
+
+    @JsonProperty("Termproxy")
+    Termproxy,
 }
 
 class EnvTemplateIngress {
@@ -264,6 +301,7 @@ class EnvTemplateIngressSpec {
     lateinit var path: String
     var pathType = EnvTemplateIngressPathType.Prefix
     lateinit var backend: EnvTemplateIngressBackend
+    var ctfExpose = EnvTemplateIngressCtfExpose.None
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -274,6 +312,7 @@ class EnvTemplateIngressSpec {
         if (path != other.path) return false
         if (pathType != other.pathType) return false
         if (backend != other.backend) return false
+        if (ctfExpose != other.ctfExpose) return false
 
         return true
     }
@@ -282,6 +321,7 @@ class EnvTemplateIngressSpec {
         var result = path.hashCode()
         result = 31 * result + pathType.hashCode()
         result = 31 * result + backend.hashCode()
+        result = 31 * result + ctfExpose.hashCode()
         return result
     }
 }
@@ -295,6 +335,14 @@ enum class EnvTemplateIngressPathType {
 
     @JsonProperty("ImplementationSpecific")
     ImplementationSpecific
+}
+
+enum class EnvTemplateIngressCtfExpose {
+    @JsonProperty("None")
+    None,
+
+    @JsonProperty("Web")
+    Web,
 }
 
 class EnvTemplateIngressBackend {

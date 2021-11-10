@@ -1,32 +1,7 @@
-.selection{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 100%;
-    height: 93vh;
-    background: transparent;
-    align-content: flex-start;
-    justify-content: flex-start;
+.challengesCol.selection{
+    background: #e5e5e5;
+    padding: 15px 0 0;
 }
-
-.cards{
-    width: 250px;
-    height: 250px;
-    border-radius: 15px;
-    transition-duration: 0.4s;
-    margin-top: 15px;
-    margin-left: 10px;
-    text-decoration: none;
-    justify-content: center;
-    align-items: center;
-    border-style: solid;
-    outline: none; /*this will remove the border of the button when click*/
-    display: flex;
-    border-width: 2px;
+.challengesCol.selection .card{
+    margin: 0 0 30px;
 }
-
-.cards:hover{
-    background-color: #3f51b5;
-    color: white;
-}
-

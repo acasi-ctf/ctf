@@ -34,10 +34,10 @@ export default function SubMenu(props) {
     return (
         <>
             <core.ListItem style={{display:'flex', flexDirection:'column', alignItems:'flex-start'}}>
-                <Link style={{textDecoration:'none'}} onClick={()=>{showSubmenu(0, set.name,"")}} >
-                    <div style={{display:'flex', flexDirection: 'row'}}>
+                <Link style={{textDecoration:'none'}} onClick={()=>{showSubmenu(0, set.name,"")}} to="#">
+                    <div style={{display:'flex', flexDirection:'row', minWidth:'250px'}}>
                         <core.ListItemIcon style={{minWidth:'0'}}>{ChallengeSet_Icon}</core.ListItemIcon>
-                        <core.ListItemText style={{color:'#000000', marginLeft:'16px', marginRight:'25px'}}
+                        <core.ListItemText style={{color:'#000000', marginLeft:'15px', marginRight:'15px'}}
                         primary={<core.Typography style={{fontSize:'15px'}}>{set.name}</core.Typography>} />   
                         <div>
                             {data.length !==0 && subnav ? iconOpened:iconClosed}
@@ -47,9 +47,9 @@ export default function SubMenu(props) {
                 {subnav && data.map((item)=>{
                     return (
                         <Link to={`/play/${set.slug}/${item.slug}`} key={item.id} className='subItem' onClick={()=>{showSubmenu(1, item.name, item.slug)}}>
-                            <div style={{display:'flex', flexDirection:'row'}}>
+                            <div style={{display:'flex', flexDirection:'row', minWidth:'250px'}}>
                                 <core.ListItemIcon style={{minWidth:'0'}}>{ChallengeIcon}</core.ListItemIcon>
-                                <core.ListItemText style={{marginLeft:'16px', marginRight:'25px'}} 
+                                <core.ListItemText style={{marginLeft:'15px', marginRight:'15px'}} 
                                 primary={<core.Typography style={{fontSize:'13px'}}>{item.name}</core.Typography>} />
                             </div>
                         </Link>

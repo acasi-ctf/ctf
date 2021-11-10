@@ -1,8 +1,5 @@
 {
   "$schema": "../../../schemas/provisioners/kubernetes.schema.json",
-  "manifests": {
-    "pods": [
-      "sqli.yaml"
-    ]
-  }
+  "templatePath": "template.yaml",
+  "templateCRDVersion": "v1alpha1"
 }

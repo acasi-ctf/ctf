@@ -1,11 +1,11 @@
 # This file is a specification for our Frontend API using OpenAPI v3.
-openapi: 3.1.0
+openapi: 3.0.1
 info:
   title: CTF Frontend API
   description: Frontend API for querying challenge sets, challenges, etc. from the CTF platform.
-  version: 0.1.0
+  version: 0.2.0
 servers:
-  - url: '/'
+  - url: 'https://ctf.cyberliteracyforall.com'
 paths:
   /api/challenge-sets:
     get:
@@ -37,6 +37,12 @@ paths:
           description: Challenge set was not found
   /api/challenge-sets/{challenge-set-slug}/challenges:
     get:
+      parameters:
+        - name: challenge-set-slug
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
         '200':
           description: List of challenges for challenge set
@@ -95,6 +101,15 @@ paths:
             text/markdown: {}
         '404':
           description: Documentation was not found
+  /api/top-challenges:
+    get:
+      responses:
+        '200':
+          description: List of top challenges
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChallengePlayCountList'
   /api/user/environments:
     get:
       security:
@@ -174,6 +189,24 @@ components:
                 type: string
               order:
                 type: integer
+    ChallengePlayCount:
+      type: object
+      required:
+        - challengeSet
+        - challenge
+        - playCount
+      properties:
+        challengeSet:
+          $ref: '#/components/schemas/ChallengeSet'
+        challenge:
+          $ref: '#/components/schemas/Challenge'
+        playCount:
+          type: integer
+    ChallengePlayCountList:
+      type: array
+      maxItems: 5
+      items:
+        $ref: '#/components/schemas/ChallengePlayCount'
     UserEnvironmentInfo:
       type: object
       properties:

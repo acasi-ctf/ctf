@@ -12,6 +12,9 @@ spec:
         containers:
           - name: nginx
             image: nginx:latest
+            env:
+              - name: ENV_VAR
+                value: VALUE
   services:
     - metadata:
         name: nginx

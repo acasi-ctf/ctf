@@ -1,0 +1,23 @@
+apiVersion: ctf.acasi.info/v1alpha1
+kind: EnvTemplate
+metadata:
+  name: kali-intro
+spec:
+  pods:
+    - metadata:
+        name: penimage
+        labels:
+          app: penimage
+      spec:
+        containers:
+          - name: penimage
+            image: ghcr.io/acasi-ctf/challenges/kali/intro:latest
+  services:
+    - metadata:
+        name: penimage-termproxy
+      spec:
+        selector:
+          app: penimage
+        ports:
+          - port: 22
+            ctfExpose: Termproxy

@@ -6,6 +6,10 @@ import io.fabric8.kubernetes.api.model.apps.StatefulSetSpec
 import io.fabric8.kubernetes.api.model.networking.v1.*
 
 fun meta(f: ObjectMeta.() -> Unit) = ObjectMeta().apply(f)
+fun ObjectMeta.addLabel(key: String, value: String) {
+  if (labels == null) labels = mutableMapOf()
+  labels[key] = value
+}
 
 fun labelSelector(f: LabelSelector.() -> Unit) = LabelSelector().apply(f)
 
@@ -14,6 +18,7 @@ fun container(f: Container.() -> Unit) = Container().apply(f)
 fun pod(f: Pod.() -> Unit) = Pod().apply(f)
 fun podSpec(f: PodSpec.() -> Unit) = PodSpec().apply(f)
 fun podTemplateSpec(f: PodTemplateSpec.() -> Unit) = PodTemplateSpec().apply(f)
+fun env(f: EnvVar.() -> Unit) = EnvVar().apply(f)
 
 fun statefulSet(f: StatefulSet.() -> Unit) = StatefulSet().apply(f)
 fun statefulSetSpec(f: StatefulSetSpec.() -> Unit) = StatefulSetSpec().apply(f)

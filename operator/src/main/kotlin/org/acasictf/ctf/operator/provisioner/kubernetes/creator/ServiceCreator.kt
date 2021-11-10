@@ -5,8 +5,11 @@ import io.fabric8.kubernetes.api.model.Service
 import io.fabric8.kubernetes.api.model.ServiceList
 import io.fabric8.kubernetes.client.dsl.MixedOperation
 import io.fabric8.kubernetes.client.dsl.ServiceResource
+import org.acasictf.ctf.operator.addLabel
+import org.acasictf.ctf.operator.ctfExposeKey
 import org.acasictf.ctf.operator.meta
 import org.acasictf.ctf.operator.model.kubernetes.v1alpha1.EnvTemplate
+import org.acasictf.ctf.operator.model.kubernetes.v1alpha1.EnvTemplateServiceSpecPortCtfExpose
 import org.acasictf.ctf.operator.model.kubernetes.v1alpha1.EnvTemplateServiceSpecPortProtocol
 import org.acasictf.ctf.operator.model.kubernetes.v1alpha1.Environment
 import org.acasictf.ctf.operator.port
@@ -22,11 +25,20 @@ class ServiceCreator(
     private val env: Environment,
     private val envTemplate: EnvTemplate,
     client: MixedOperation<Service, ServiceList, ServiceResource<Service>>
-) : ResourceCreator<Service, ServiceList>(client) {
+) : ResourceCreator<Service, ServiceList>(client, env) {
     override fun generate() = envTemplate.spec.services.map {
         service {
             metadata = meta {
                 name = "${env.metadata.name}-${it.metadata.name}"
+
+                val termproxyExpose = it.spec.ports.firstOrNull {
+                    it.ctfExpose == EnvTemplateServiceSpecPortCtfExpose.Termproxy
+                }
+
+                if (termproxyExpose != null) {
+                    if (it.spec.ports.size > 1) TODO() // TODO: Assuming there is only one port here!
+                    addLabel(ctfExposeKey, EnvTemplateServiceSpecPortCtfExpose.Termproxy.toString())
+                }
             }
             spec = serviceSpec {
                 selector = remapLabels(env, it.spec.selector)
