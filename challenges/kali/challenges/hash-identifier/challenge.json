@@ -1,0 +1,16 @@
+{
+  "$schema": "../../../schemas/challenge.schema.json",
+  "id": "5355ab07-eeba-4565-9fc3-0014c389b0ed",
+  "slug": "hash-identifier",
+  "name": "hash-identifier",
+  "description": "This is a challenge that demonstrates hash-identifier tool",
+  "provisioner": {
+    "type": "kubernetes"
+  },
+  "documentation": [
+    {
+      "name": "HashIdentDocumentation",
+      "path": "docs/HashIdentDocumentation.md"
+    }
+  ]
+}

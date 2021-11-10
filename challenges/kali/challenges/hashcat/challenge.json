@@ -1,0 +1,16 @@
+{
+  "$schema": "../../../schemas/challenge.schema.json",
+  "id": "4c80e73e-c22c-4be2-ab9b-bb29009fca60",
+  "slug": "hashcat",
+  "name": "hashcat",
+  "description": "This is a challenge that demonstrates hashcat tool",
+  "provisioner": {
+    "type": "kubernetes"
+  },
+  "documentation": [
+    {
+      "name": "HashcatDocumentation",
+      "path": "docs/HashcatDocumentation.md"
+    }
+  ]
+}
