@@ -33,14 +33,14 @@ def api_admin_challenges_create():
     from io import BytesIO
 
     zipfile = ZipFile(BytesIO(contents))
-    ct = ChallengeTemplate(zipfile)
+    template = ChallengeTemplate(zipfile)
 
-    reconciler = ChallengeSetModelReconciler(ct)
+    reconciler = ChallengeSetModelReconciler(template)
     reconciler.reconcile()
 
     # TODO: Should we move this into the reconciler?
-    r = UploadEnvironmentTemplateRequest()
-    r.env_zip = contents
-    provisioning_service.UploadEnvironmentTemplate(r)
+    req = UploadEnvironmentTemplateRequest()
+    req.env_zip = contents
+    provisioning_service.UploadEnvironmentTemplate(req)
 
     return Response(status=204)
