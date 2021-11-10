@@ -11,50 +11,50 @@ class ChallengeSetModelReconciler:
 
     @staticmethod
     def map_challenge_model(cs_id):
-        def inner(c):
+        def inner(chl):
             return insert(Challenge).values(
-                id=c.id,
-                slug=c.slug,
+                id=chl.id,
+                slug=chl.slug,
                 parent_id=cs_id,
-                name=c.name,
-                description=c.description,
+                name=chl.name,
+                description=chl.description,
                 provisioner="{}",
             ).on_conflict_do_update(
                 index_elements=['id'],
                 set_=dict(
-                    slug=c.slug,
+                    slug=chl.slug,
                     parent_id=cs_id,
-                    name=c.name,
-                    description=c.description,
+                    name=chl.name,
+                    description=chl.description,
                     provisioner="{}",
                 )
             )
 
         return inner
 
-    def map_challenge_doc_model(self, c_id, c_slug):
-        def inner(d):
-            name = d["name"]
-            path = d["path"]
+    def map_challenge_doc_model(self, chl_id, chl_slug):
+        def inner(doc):
+            name = doc["name"]
+            path = doc["path"]
 
-            if c_id not in self.order_map:
-                self.order_map[c_id] = 0
-            order = self.order_map[c_id]
-            self.order_map[c_id] = order + 1
+            if chl_id not in self.order_map:
+                self.order_map[chl_id] = 0
+            order = self.order_map[chl_id]
+            self.order_map[chl_id] = order + 1
 
             return insert(Documentation).values(
-                parent_id=c_id,
+                parent_id=chl_id,
                 path=path,
                 order=order,
                 name=name,
-                content=self.template.read_file(f"challenges/{c_slug}/{path}"),
+                content=self.template.read_file(f"challenges/{chl_slug}/{path}"),
             ).on_conflict_do_update(
                 index_elements=['parent_id', 'path'],
                 set_=dict(
                     path=path,
                     order=order,
                     name=name,
-                    content=self.template.read_file(f"challenges/{c_slug}/{path}"),
+                    content=self.template.read_file(f"challenges/{chl_slug}/{path}"),
                 )
             )
 
@@ -65,36 +65,36 @@ class ChallengeSetModelReconciler:
         Reconcile the state of the database according to the challenge set
         template.
         """
-        cst = self.template.challenge_set
+        challenge_set_template = self.template.challenge_set
 
-        cs = insert(ChallengeSet).values(
-            id=cst.id,
-            slug=cst.slug,
-            name=cst.name,
-            description=cst.description,
-            version=cst.version,
+        challenge_set = insert(ChallengeSet).values(
+            id=challenge_set_template.id,
+            slug=challenge_set_template.slug,
+            name=challenge_set_template.name,
+            description=challenge_set_template.description,
+            version=challenge_set_template.version,
         ).on_conflict_do_update(
             index_elements=['id'],
             set_=dict(
-                slug=cst.slug,
-                name=cst.name,
-                description=cst.description,
-                version=cst.version,
+                slug=challenge_set_template.slug,
+                name=challenge_set_template.name,
+                description=challenge_set_template.description,
+                version=challenge_set_template.version,
             )
         )
-        db.session.execute(cs)
+        db.session.execute(challenge_set)
 
         challenges = list(
-            map(self.map_challenge_model(cst.id), self.template.challenges)
+            map(self.map_challenge_model(challenge_set_template.id), self.template.challenges)
         )
-        for c in challenges:
-            db.session.execute(c)
+        for challenge in challenges:
+            db.session.execute(challenge)
 
-        for c in self.template.challenges:
-            documentation = list(
-                map(self.map_challenge_doc_model(c.id, c.slug), c.documentation)
+        for challenge in self.template.challenges:
+            docs = list(
+                map(self.map_challenge_doc_model(challenge.id, challenge.slug), challenge.documentation)
             )
-            for d in documentation:
-                db.session.execute(d)
+            for doc in docs:
+                db.session.execute(doc)
 
         db.session.commit()
