@@ -5,12 +5,12 @@ WORKDIR /home/player
 
 #Install packages and install binwalk
 RUN apt-get update && \
-  apt-get -yq --no-install-recommends install binutils binwalk unzip && \
+  apt-get -yq --no-install-recommends install binwalk unzip wget && \
   apt-get clean all && \
   rm -rf /var/lib/apt/lists/*
 
 # Copy over executable
-COPY challenges/kali/challenges/binwalk/src/pictures.zip .
+RUN wget --no-check-certificate https://storage.googleapis.com/clfa-challenge-data/pictures.zip
 
 RUN unzip pictures.zip
 RUN rm pictures.zip
