@@ -6,6 +6,7 @@
   "description": "Challenge set that focuses on Kali Linux",
   "version": "0.1.0",
   "challenges": [
-    "intro"
+    "strings",
+    "binwalk"
   ]
 }
