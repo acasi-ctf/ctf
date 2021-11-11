@@ -57,9 +57,9 @@ function ResponsiveDrawer(props) {
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [displayFlagSubmit, setDisplayFlagSubmit ] = useState(false);
-  const [title, setTitle] = useState("Home");
 
-    //   API GET REQUEST For items that shows up in the mneu list
+  // API GET REQUEST For items that shows up in the menu list
+  // TODO: Handle error/loading states.
   const { data, error, loading } = useFetchAuth(APIpath);
 
   const handleDrawerToggle = () => {
@@ -99,7 +99,7 @@ function ResponsiveDrawer(props) {
         <core.List >    
             {data.map((item)=>{
                 return <SubMenu path={APIpath} listItem={item} key={item.id} 
-                        changeTitle={title => setTitle(title)} displayInput={displayFlagSubmit} setDisplay={setDisplayFlagSubmit}/>;
+                        displayInput={displayFlagSubmit} setDisplay={setDisplayFlagSubmit}/>;
             })}
         </core.List>
     </div>

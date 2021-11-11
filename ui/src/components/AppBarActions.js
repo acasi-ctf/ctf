@@ -1,65 +1,26 @@
-import React, { useState } from "react";
-import Button from "@material-ui/core/Button";
+import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { Avatar, Tooltip, Dialog, DialogContent } from "@material-ui/core";
-import useFetchAuth from "../useFetchAuth";
+import { Avatar } from "@material-ui/core";
 import {Nav, Navbar } from "react-bootstrap";
 
 export default function AppBarActions(props) {
-  const [open, setOpen] = React.useState(false);
-  const { data: environments, loading, error } = useFetchAuth(
-    "/api/user/environments"
-  );
   const {
     user,
     loginWithPopup,
     logout,
     isAuthenticated,
-    getAccessTokenSilently,
   } = useAuth0();
 
-  let authComponent = isAuthenticated ? (
-    <>
-      <Tooltip title="Logout" aria-label="logout">
-        <Avatar
-          src={user.picture}
-          onClick={() =>
-            logout({
-              returnTo: window.location.protocol + "//" + window.location.host,
-            })
-          }
-        />
-      </Tooltip>
-    </>
-  ) : (
-    <>
-      <Button
-      className="d-none"
-        disableElevation
-        onClick={() => loginWithPopup()}
-      >
-        Login
-      </Button>
-    </>
-  );
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-
-  const handleSubmitFlag = ()=>{
-    if(props.displayInput){
-      //display field is in open. checkflag + do validation on the field
-      props.setDisplay(!props.displayInput);
-    }else{
-      props.setDisplay(!props.displayInput);
+  const handleSubmitFlag = () => {
+    const inputSubmitFlag = document.getElementById('inputSubmitFlag');
+    if (inputSubmitFlag.value !== '') {
+      window.alert(`Your flag is: ${inputSubmitFlag.value}`);
+      return;
     }
+
+    props.setDisplay(!props.displayInput);
   }
+
   return (
     <div className="topNav d-flex align-items-start">
 
@@ -70,9 +31,8 @@ export default function AppBarActions(props) {
           <Nav className="ml-auto">
             <Nav.Link href="https://wsu.co1.qualtrics.com/jfe/form/SV_88hZcsQMzabAMOq" target="_blank">Report Issue</Nav.Link>
             <Nav.Link href="https://wsu.co1.qualtrics.com/jfe/form/SV_3HSX4XrAlj1L7mu" target="_blank">Anonymous Survey</Nav.Link>
-            {/* <Nav.Link onClick={handleClickOpen}>Show environments (Testing Purposes)</Nav.Link> */}
-            <input id="inputSubmitFlag" type="text" 
-                   className={props.displayInput? "inputFlag inputFlag-enable":"inputFlag inputFlag-disable"} 
+            <input id="inputSubmitFlag" type="text"
+                   className={props.displayInput? "inputFlag inputFlag-enable":"inputFlag inputFlag-disable"}
                    maxLength="50" minLength="1"/>
             <Nav.Link onClick={handleSubmitFlag}> Submit Flag </Nav.Link>
 
@@ -100,23 +60,6 @@ export default function AppBarActions(props) {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-
-      <Dialog
-        maxWidth={"md"}
-        fullWidth={true}
-        open={open}
-        onClose={handleClose}
-      >
-        <DialogContent>
-          {environments.map((e) => {
-            return (
-              <>
-                <p>{e.id}</p>
-              </>
-            );
-          })}
-        </DialogContent>
-      </Dialog>
       </div>
   );
 }

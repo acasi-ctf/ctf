@@ -9,16 +9,13 @@ import ChallengeBar from "./components/AppBar";
 import Selection from "./pages/Selection.js"
 import Home from "./pages/Home";
 import leaderboard from "./pages/LeaderBoard";
-/********************************************** Dynamic Pages **************************************************************/
+/********************************************** Dynamic Pages *******************************************************************/
 import ChallengePage from "./pages/ChallengePage";
 import StartChallengePage from "./pages/StartChallengePage";
-/***************************************************************************************************************************************/
-
-let a = 0;
+/********************************************************************************************************************************/
 
 export default function App() {
-
-	const { isAuthenticated, getAccessTokenSilently } = useAuth0();
+	const { isAuthenticated } = useAuth0();
 	if (!isAuthenticated){
 		return (
 			<>

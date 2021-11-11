@@ -1,10 +1,9 @@
-import React,{useState,useContext} from 'react';
+import React,{useState} from 'react';
 import {Link} from 'react-router-dom';
 import * as core from '@material-ui/core';
 import '../style/SubMenu.css';
 import useFetchAuth from "../useFetchAuth";
 import * as UI from '@material-ui/icons';
-
 
 const iconClosed = <UI.ArrowDropDown/>;
 const iconOpened = <UI.ArrowDropUp/>;
@@ -13,21 +12,20 @@ const ChallengeIcon = <UI.Assignment/>;
 
 export default function SubMenu(props) {
     const [subnav, setSubNav] = useState(false);
-    //set is each of the item in the list to challenge-set like cipher, web-based,...
+    // set is each of the item in the list to challenge-set like cipher, web-based, ...
     const set = props.listItem;
 
     const showSubmenu = (clickSub,title,slug) =>{
-        //clickSub is to detect whether menu item is click or submenu item is clicked
-        //clickSub = 0, menuItem is click, clickSub = 1, subMenu item is clicked
-        if(clickSub){
+        // clickSub is to detect whether menu item is click or submenu item is clicked
+        // clickSub = 0, menuItem is click, clickSub = 1, subMenu item is clicked
+        if (clickSub) {
             //submenu item 
-            props.changeTitle(title);
-            if(props.displayInput){
+            if (props.displayInput) {
                 const inputSubmitFlag = document.getElementById('inputSubmitFlag');
                 inputSubmitFlag.value = "";
                 props.setDisplay(false);
             }
-        }else{
+        } else {
             //menu item
             setSubNav(!subnav);
         }
@@ -35,7 +33,8 @@ export default function SubMenu(props) {
 
     //constructing the API path then fetch data from there
     const APIpath = props.path+"/"+set.slug+"/challenges";
-    const { data, error, loading } = useFetchAuth(APIpath);
+    const { data } = useFetchAuth(APIpath);
+
     return (
         <>
             <core.ListItem style={{display:'flex', flexDirection:'column', alignItems:'flex-start'}}>

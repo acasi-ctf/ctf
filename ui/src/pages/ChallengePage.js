@@ -2,15 +2,13 @@ import React, { useState, useEffect } from "react";
 import "../style/ChallengePage.css";
 import * as core from "@material-ui/core";
 
-import PropTypes, { string } from "prop-types";
+import PropTypes from "prop-types";
 import Terminal from "../components/Terminal";
 
 import gfm from "remark-gfm";
 import ReactMarkdown from "react-markdown";
 import {useParams} from "react-router-dom";
 import fetchAuth from "../util/fetchAuth";
-import {useHistory, Redirect} from "react-router-dom";
-import { useAuth0 } from "@auth0/auth0-react";
 function a11yProps(index) {
 	return {
 		id: `scrollable-auto-tab-${index}`,
@@ -41,30 +39,15 @@ TabPanel.propTypes = {
 	value: PropTypes.any.isRequired,
 };
 
-export default function ChallengePage(props) {
-	//this code block to dedicated to detect if user manually put in a link
-	//The app should always start with home uri no matter which URI user is given or when page is reload
-	
-	let history = useHistory();
-	// detected reload -> push to home URL
-	useEffect(()=>{
-		if(history.action === 'POP'){
-			const controller = new AbortController();
-			controller.abort();
-			history.push('/');
-		}	
-	});
-
-
-
+export default function ChallengePage() {
 	//value variable control which is the chosen/selected tab in appbar
 	const [value, setValue] = React.useState(0);
 	// A function callback to update the value and the API path when an item is
 	// clicked on TabMode.
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
-		const temp=`/api/challenge-sets/${csSlug}/challenges/${cSlug}`.toString()+'/docs/'
-		+fetchData.documentation[newValue].path;
+		let docPath = fetchData.documentation[newValue].path;
+		const temp = `/api/challenge-sets/${csSlug}/challenges/${cSlug}/docs/${docPath}`;
 		setPath(temp);
 	};
 
@@ -91,50 +74,6 @@ export default function ChallengePage(props) {
 	}, [csSlug, cSlug]);
 
 	const [data, setDat] = useState([]);
-	const [error, setError] = useState(null);
-	const [loading, setLoading] = useState(true);
-	const [running, setRunning] = useState(false);
-	const { isAuthenticated, getAccessTokenSilently } = useAuth0();
-
-	useEffect(() => {
-		async function init() {
-			try {
-				const accessToken = await getAccessTokenSilently();
-
-				const options = {
-					method: "POST",
-					headers: {
-						"Authorization": `Bearer ${accessToken}`,
-						"Content-Type": "application/json"
-					},
-					body:JSON.stringify({
-						"challengeSetSlug" :`${csSlug}`,
-						"challengeSlug"  :`${cSlug}`
-					})
-				};
-
-				const response = await fetch("/api/user/environments", options);
-				if (response.ok) {
-					const json = await response.json();
-					setDat(json);
-				} else {
-					setError(response);
-				}
-			} catch (e) {
-				console.log(e);
-				setError(e);
-			} finally {
-				setLoading(false);
-			}
-		}
-		if (isAuthenticated) {
-			if (!running && loading) {
-				setRunning(true);
-				// noinspection JSIgnoredPromiseFromCall
-				init();
-			}
-		}
-	},  [getAccessTokenSilently, isAuthenticated, loading, running, csSlug, cSlug]);
 
 	// this useEffect gets triggered when path hook is updated
 	// update the documents in the component that display markdown
@@ -174,7 +113,7 @@ export default function ChallengePage(props) {
 				</TabPanel>
 			</div>
 			<div className="terminalBox">
-				<Terminal key={data.id} id={data.id}/>
+				<Terminal key={envId} id={envId}/>
 			</div>
 		</div>
 	);
