@@ -1,5 +1,6 @@
 import "./style/App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import React, { useEffect } from "react";
 import MenuBar from "./components/Menu";
 import { useAuth0 } from "@auth0/auth0-react";
 import UserNotAuthorized from "./pages/error-pages/userNotAuthorized";
@@ -13,9 +14,12 @@ import ChallengePage from "./pages/ChallengePage";
 import StartChallengePage from "./pages/StartChallengePage";
 /***************************************************************************************************************************************/
 
+let a = 0;
+
 export default function App() {
+
 	const { isAuthenticated, getAccessTokenSilently } = useAuth0();
-	if (!isAuthenticated)
+	if (!isAuthenticated){
 		return (
 			<>
 				<div>
@@ -24,6 +28,8 @@ export default function App() {
 				</div>
 			</>
 		);
+	}
+
 
 	return (
 		<Router>
@@ -35,12 +41,16 @@ export default function App() {
 						<Route path="/LeaderBoard" component={leaderboard} />
 						<Route path="/selection" component={Selection} />
 						{/* Challenge Sets pages */}
+<<<<<<< HEAD
 						<Route path="/play/:csSlug/:cSlug">
 							<StartChallengePage />
 						</Route>
 						<Route path="/env/:csSlug/:cSlug/:envId">
 							<ChallengePage />
 						</Route>
+=======
+						<Route path="/play/:csSlug/:cSlug"> <ChallengePage /> </Route>
+>>>>>>> Sprint6_Richard
 					</Switch>
 				</div>
 			</div>

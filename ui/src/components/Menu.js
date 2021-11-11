@@ -43,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
+    overflowX: 'hidden'
   },
   content: {
     flexGrow: 1,
@@ -55,7 +56,7 @@ function ResponsiveDrawer(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
-
+  const [displayFlagSubmit, setDisplayFlagSubmit ] = useState(false);
   const [title, setTitle] = useState("Home");
 
     //   API GET REQUEST For items that shows up in the mneu list
@@ -65,35 +66,42 @@ function ResponsiveDrawer(props) {
     setMobileOpen(!mobileOpen);
   };
 
+  const resetFlagSubmit = ()=>{
+    if(displayFlagSubmit){
+      const inputSubmitFlag = document.getElementById('inputSubmitFlag');
+      inputSubmitFlag.value = "";
+      setDisplayFlagSubmit(false);
+    }
+  }
+
   const drawer = (
     <div>
       <div className="paddingtop" />
-            {/* /* LIST 1 */}
-            {/* Data in this list is read from local file */}
-      <core.List>
-            {staticMenuData.map((item,index)=>{return(
-                            <core.ListItem button key={index} style={{display:'flex', flexDirection:'column', alignItems:'flex-start'}}>
-                                <Link to={item.path} style={{textDecoration:'none'}} onClick={()=>{setTitle(item.name)}} >
-                                    <div style={{display:'flex', flexDirection: 'row'}}>
-                                        <core.ListItemIcon style={{minWidth:'0'}}>{item.icon}</core.ListItemIcon>
-                                        <core.ListItemText style={{color:'#000000', marginLeft:'16px', marginRight:'25px'}}
-                                        primary={<core.Typography style={{fontSize:'15px'}}>{item.name}</core.Typography>} />   
-                                    </div>
-                                </Link> 
-                            </core.ListItem>
-                        );
-                    })}
-                </core.List>
-
-                <core.Divider />
-
-                {/* LIST 2 */}
-                {/* Data in this list is read over API */}
-                <core.List >    
-                    {data.map((item)=>{
-                        return <SubMenu path={APIpath} listItem={item} key={item.id} changeTitle={title => setTitle(title)}/>;
-                    })}
-                </core.List>
+        {/* /* LIST 1 */}
+        {/* Data in this list is read from local file */}
+        <core.List>
+          {staticMenuData.map((item,index)=>{return(
+              <core.ListItem button key={index} style={{display:'flex', flexDirection:'column', alignItems:'flex-start'}}>
+                  <Link to={item.path} style={{textDecoration:'none'}} onClick={resetFlagSubmit} >
+                      <div style={{display:'flex', flexDirection: 'row'}}>
+                          <core.ListItemIcon style={{minWidth:'0'}}>{item.icon}</core.ListItemIcon>
+                          <core.ListItemText style={{color:'#000000', marginLeft:'16px', marginRight:'25px'}}
+                          primary={<core.Typography style={{fontSize:'15px'}}>{item.name}</core.Typography>} />   
+                      </div>
+                  </Link> 
+              </core.ListItem>
+            );
+          })}
+        </core.List>
+        <core.Divider />
+        {/* LIST 2 */}
+        {/* Data in this list is read over API */}
+        <core.List >    
+            {data.map((item)=>{
+                return <SubMenu path={APIpath} listItem={item} key={item.id} 
+                        changeTitle={title => setTitle(title)} displayInput={displayFlagSubmit} setDisplay={setDisplayFlagSubmit}/>;
+            })}
+        </core.List>
     </div>
   );
 
@@ -102,7 +110,7 @@ function ResponsiveDrawer(props) {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar}>
+      <AppBar position="fixed" className={classes.appBar} displayInput={displayFlagSubmit} >
         <Toolbar>
           <IconButton
             color="inherit"
@@ -113,7 +121,7 @@ function ResponsiveDrawer(props) {
           >
             <MenuIcon />
           </IconButton>
-          <ChallengeBar name={"Testing"}/>
+          <ChallengeBar name={"Testing"} displayInput={displayFlagSubmit} setDisplay={setDisplayFlagSubmit} />
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label="mailbox folders">
