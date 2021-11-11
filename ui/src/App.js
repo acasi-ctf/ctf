@@ -41,16 +41,12 @@ export default function App() {
 						<Route path="/LeaderBoard" component={leaderboard} />
 						<Route path="/selection" component={Selection} />
 						{/* Challenge Sets pages */}
-<<<<<<< HEAD
 						<Route path="/play/:csSlug/:cSlug">
 							<StartChallengePage />
 						</Route>
 						<Route path="/env/:csSlug/:cSlug/:envId">
 							<ChallengePage />
 						</Route>
-=======
-						<Route path="/play/:csSlug/:cSlug"> <ChallengePage /> </Route>
->>>>>>> Sprint6_Richard
 					</Switch>
 				</div>
 			</div>
