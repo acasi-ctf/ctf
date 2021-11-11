@@ -10,7 +10,7 @@ import ReactMarkdown from "react-markdown";
 import {useParams} from "react-router-dom";
 import fetchAuth from "../util/fetchAuth";
 import {useHistory, Redirect} from "react-router-dom";
-
+import { useAuth0 } from "@auth0/auth0-react";
 function a11yProps(index) {
 	return {
 		id: `scrollable-auto-tab-${index}`,
