@@ -9,7 +9,6 @@ import gfm from "remark-gfm";
 import ReactMarkdown from "react-markdown";
 import {useParams} from "react-router-dom";
 import fetchAuth from "../util/fetchAuth";
-
 function a11yProps(index) {
 	return {
 		id: `scrollable-auto-tab-${index}`,
@@ -47,8 +46,8 @@ export default function ChallengePage() {
 	// clicked on TabMode.
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
-		const temp=`/api/challenge-sets/${csSlug}/challenges/${cSlug}`.toString()+'/docs/'
-		+fetchData.documentation[newValue].path;
+		let docPath = fetchData.documentation[newValue].path;
+		const temp = `/api/challenge-sets/${csSlug}/challenges/${cSlug}/docs/${docPath}`;
 		setPath(temp);
 	};
 
@@ -96,12 +95,9 @@ export default function ChallengePage() {
 	}, [data, envId]);
 
 	return (
-		<div style={{
-			display: "grid",
-			height: "100%"
-		}}>
-			<div className="left-column">
-				<core.AppBar position="static" color="default">
+		<div className="ChallengePageContainter">
+			<div className="ChallengeSet1">
+				<core.AppBar position="absolute" color="default">
 					<core.Tabs value={value} indicatorColor="primary" onChange={handleChange}
 						textColor="primary" variant="scrollable" scrollButtons="auto" aria-label="simple auto tabs example" >
 						{fetchData && fetchData.documentation.map((item, index) => {
@@ -112,15 +108,12 @@ export default function ChallengePage() {
 					</core.Tabs>
 				</core.AppBar>
 
-				<TabPanel className="box1" value={value} index={value}
-					style={{ overflowY: "scroll", margin: "5px" }}>
-					<ReactMarkdown remarkPlugins={[gfm]} children={txt} style={{
-						margin: "5px"
-					}} />
+				<TabPanel className="box1" value={value} index={value}>
+					<ReactMarkdown remarkPlugins={[gfm]} children={txt} style={{ marginLeft: "10px" }} />
 				</TabPanel>
 			</div>
-			<div className="right-column">
-				<Terminal key={envId} id={envId} />
+			<div className="terminalBox">
+				<Terminal key={envId} id={envId}/>
 			</div>
 		</div>
 	);
