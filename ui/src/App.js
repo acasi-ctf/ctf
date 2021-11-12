@@ -12,7 +12,6 @@ import leaderboard from "./pages/LeaderBoard";
 /********************************************** Dynamic Pages *******************************************************************/
 import ChallengePage from "./pages/ChallengePage";
 import StartChallengePage from "./pages/StartChallengePage";
-/********************************************************************************************************************************/
 
 export default function App() {
 	const { isAuthenticated } = useAuth0();
@@ -20,7 +19,7 @@ export default function App() {
 		return (
 			<>
 				<div>
-				<ChallengeBar name="Welcome to Capture the Flag" />
+				<ChallengeBar name="Welcome to Cyber Literacy for All" />
 				<UserNotAuthorized />
 				</div>
 			</>
