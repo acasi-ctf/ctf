@@ -2,7 +2,7 @@ import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Button, Form, Nav, Card} from "react-bootstrap";
 
-export default function UserNotAuthorized() {
+export default function PreLoginPage() {
   const {
     loginWithPopup,
   } = useAuth0();
@@ -31,7 +31,7 @@ return <div className="challengesWrap">
         </div>
         <div className="col-lg-4 col-md-5">
           <div className="grayCol signinCol">
-            <h2>Welcome <span>to CTF</span></h2>
+              <h2>Welcome to<br/><span><img src="/logo-dark.svg" alt="logo"/></span></h2>
             <img src="/login.svg" alt="login"/>
             <Button className="butn primaryBtn" onClick={() => loginWithPopup()} variant="primary" type="submit"> Sign In/ Sign Up</Button>
           </div>

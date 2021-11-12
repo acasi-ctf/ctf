@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import React from "react";
 import MenuBar from "./components/Menu";
 import { useAuth0 } from "@auth0/auth0-react";
-import UserNotAuthorized from "./pages/error-pages/userNotAuthorized";
+import PreLoginPage from "./pages/error-pages/preLoginPage";
 import ChallengeBar from "./components/AppBar";
 /********************************************** Three Static Pages **************************************************************/
 import Selection from "./pages/Selection.js"
@@ -20,7 +20,7 @@ export default function App() {
 			<>
 				<div>
 				<ChallengeBar name="Welcome to Cyber Literacy for All" />
-				<UserNotAuthorized />
+				<PreLoginPage />
 				</div>
 			</>
 		);
