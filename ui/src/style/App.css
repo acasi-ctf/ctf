@@ -61,6 +61,7 @@
 .mainContent {
     display: flex;
 }
+
 .grayCol {
     padding: 37px 34px 37px 38px;
     background: #f5f1f2;

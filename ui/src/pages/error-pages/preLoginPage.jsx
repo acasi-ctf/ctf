@@ -31,9 +31,9 @@ return <div className="challengesWrap">
         </div>
         <div className="col-lg-4 col-md-5">
           <div className="grayCol signinCol">
-              <h2>Welcome to<br/><span><img src="/logo-dark.svg" alt="logo"/></span></h2>
+              <h2 >Welcome to<br/><span><img src="/logo-dark.svg" alt="logo" /></span></h2>
             <img src="/login.svg" alt="login"/>
-            <Button className="butn primaryBtn" onClick={() => loginWithPopup()} variant="primary" type="submit"> Sign In/ Sign Up</Button>
+            <Button className="butn primaryBtn" onClick={() => loginWithPopup()} variant="primary" type="submit">Sign Up</Button>
           </div>
         </div>
       </div>
