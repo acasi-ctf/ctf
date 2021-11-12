@@ -11,10 +11,10 @@
     position: absolute;
 }
 
-.terminalBox{
-    right: 0px;
-    width: calc(100% - 50% - 5px);
-    height: 100%;
+.terminalBox {
+    right: 0;
+    width: calc(50% - 5px);
+    height: calc(100% - 40px);
     position: absolute;
     font-size: medium;
 }
