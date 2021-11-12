@@ -15,6 +15,10 @@
     {
       "name": "Reverse cipher",
       "path": "docs/Reverse.md"
+    },
+    {
+      "name": "Terminal Usage",
+      "path": "docs/Terminal_Use.md"
     }
   ]
 }

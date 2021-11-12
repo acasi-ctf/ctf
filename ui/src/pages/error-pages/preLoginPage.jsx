@@ -1,10 +1,8 @@
 import React from "react";
-// import Container from '@material-ui/core/Container'
 import { useAuth0 } from "@auth0/auth0-react";
-import useFetchAuth from "../Home";
 import { Button, Form, Nav, Card} from "react-bootstrap";
 
-export default function UserNotAuthorized() {
+export default function PreLoginPage() {
   const {
     loginWithPopup,
   } = useAuth0();
@@ -15,7 +13,11 @@ return <div className="challengesWrap">
         <div className="col-lg-8 col-md-7 mainContent">
           <div className="grayCol">
             <h2>How Wireless Technology Is Changing Business</h2>
-            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</p>
+            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical
+                Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at
+                Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a
+                Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the
+                undoubtable source.</p>
 
             <Nav className="actionLink">
               <Nav.Item className="mr77">
@@ -29,9 +31,9 @@ return <div className="challengesWrap">
         </div>
         <div className="col-lg-4 col-md-5">
           <div className="grayCol signinCol">
-            <h2>Welcome <span>to CTF</span></h2>
+              <h2 >Welcome to<br/><span><img src="/logo-dark.svg" alt="logo" /></span></h2>
             <img src="/login.svg" alt="login"/>
-            <Button className="butn primaryBtn" onClick={() => loginWithPopup()} variant="primary" type="submit"> Sign In/ Sign Up</Button>
+            <Button className="butn primaryBtn" onClick={() => loginWithPopup()} variant="primary" type="submit">Sign Up</Button>
           </div>
         </div>
       </div>

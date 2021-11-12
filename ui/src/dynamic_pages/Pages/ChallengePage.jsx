@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import useFetch from "../Services/useFetch";
 import ChallengeCard from "../Components/ChallengeCard";
 import Spinner from "/Components/Spinner";
-import ChallengeSetsNotFound from "./ChallengeSetsNotFound";
+import ChallengeSetsNotFound from "../../pages/error-pages/ChallengeSetsNotFound";
 
 export default function ChallengeSets() {
   const { data: challengeSets, loading, error } = useFetch(
