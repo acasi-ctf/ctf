@@ -1,6 +1,6 @@
 import "./style/App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import React, { useEffect } from "react";
+import React from "react";
 import MenuBar from "./components/Menu";
 import { useAuth0 } from "@auth0/auth0-react";
 import UserNotAuthorized from "./pages/error-pages/userNotAuthorized";
