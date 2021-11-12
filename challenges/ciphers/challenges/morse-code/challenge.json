@@ -11,6 +11,10 @@
     {
       "name": "Morse code",
       "path": "docs/Morse_code.md"
+    },
+    {
+      "name": "Terminal Usage",
+      "path": "docs/Terminal_Use.md"
     }
   ]
 }

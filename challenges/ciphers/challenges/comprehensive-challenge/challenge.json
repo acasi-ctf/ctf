@@ -15,6 +15,10 @@
     {
       "name": "Mixed challenge",
       "path": "docs/Mixed-Challenge-1.md"
+    },
+    {
+      "name": "Terminal Usage",
+      "path": "docs/Terminal_Use.md"
     }
   ]
 }
