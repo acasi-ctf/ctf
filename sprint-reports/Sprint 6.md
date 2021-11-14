@@ -2,7 +2,8 @@
 [Sprint 6 Summary Video](#)
 
 ## What's New
-### Frontend (User Facing)
+### Work Summary 
+#### User Facing
 * Created API to allow for the calling of the most popular challenges.
 * Added Java Game images. These images are not meant ot be challenging but to show what can be down with very little
   code. These games are not our design but were created by a group of high school students who have become open source
@@ -13,10 +14,13 @@
   * Seven up
 * Flag turn in button implemented on UI. Currently, non-functional as backend has not been implemented.
 * Creation of XSS challenges.
+* Rebranded the site web application to Cyber Literacy For All.
 * Integrated Evon-Tech teams CSS into our web application to help with beautification. This was the sponsors decision
-  to hire contractors as the scope of our project expanded by a multiple of 3. 
+  to hire contractors as the scope of our project expanded by a multiple of 3.
+* Fixed terminal to resize correctly with different screen sizes.
+* Fixed a bug that would cause the menu to not load on page refresh.
 
-## Work Summary (Developer Facing)
+#### Developer Facing
 * Finalize operator refactoring and merged it into main.
   * Add ability to expose terminal and web server through EnvironmentTemplate CRDs.
   * Removed legacy code and the respective tests which were no longer applicable to the new implementation.
@@ -43,6 +47,9 @@
 ## Unfinished Work
 * The user interface does not yet expose a button that allows a user to navigate to a webpage that is created as a part
   of a challenge environment. This is supported on the backend and through the API, however.
+* The user interface exposes a "Flag Turn In" button that is not currently supported on the backend, the back-end
+  will be taken care of in the final sprint.
+* The API for most popular challenges was created, but the trending challenges component remains to be done.
 
 ## Completed Issues / User Stories
 |Issue URL |
@@ -55,13 +62,24 @@
 |[Issue #102](https://github.com/acasi-ctf/ctf/issues/102) |
 |[Issue #101](https://github.com/acasi-ctf/ctf/issues/101) |
 |[Issue #100](https://github.com/acasi-ctf/ctf/issues/100) |
+|[Issue #156](https://github.com/acasi-ctf/ctf/issues/156) |
+|[Issue #150](https://github.com/acasi-ctf/ctf/issues/150) |
+|[Issue #149](https://github.com/acasi-ctf/ctf/issues/149) |
+|[Issue #148](https://github.com/acasi-ctf/ctf/issues/148) |
+|[Issue #147](https://github.com/acasi-ctf/ctf/issues/147) |
+|[Issue #146](https://github.com/acasi-ctf/ctf/issues/146) |
+|[Issue #144](https://github.com/acasi-ctf/ctf/issues/144) |
+|[Issue #143](https://github.com/acasi-ctf/ctf/issues/143) |
+|[Issue #140](https://github.com/acasi-ctf/ctf/issues/140) |
+|[Issue #167](https://github.com/acasi-ctf/ctf/issues/167) |
+|[Issue #169](https://github.com/acasi-ctf/ctf/issues/169) |
 
 ## Incomplete Issues / User Stories
 |Issue | Blocker|
 |------|-----------------------------------------------------------------------|
 |[Issue #103](https://github.com/acasi-ctf/ctf/issues/103) | Not enough time to complete this task, and was not necessary for this sprint either. |
 |[Issue #93](https://github.com/acasi-ctf/ctf/issues/93) | Backend API does not yet exist to accept a flag. |
-
+|[Issue #113](https://github.com/acasi-ctf/ctf/issues/113) | Focused on other tasks. Not priority. |
 ## Code Files for Review
 Please review the following code files, which were actively developed during this sprint, for quality:
 * [ProvisioningService.kt](https://github.com/acasi-ctf/ctf/blob/main/operator/src/main/kotlin/org/acasictf/ctf/operator/service/ProvisioningService.kt)
