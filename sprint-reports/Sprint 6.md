@@ -80,6 +80,13 @@
 |[Issue #103](https://github.com/acasi-ctf/ctf/issues/103) | Not enough time to complete this task, and was not necessary for this sprint either. |
 |[Issue #93](https://github.com/acasi-ctf/ctf/issues/93) | Backend API does not yet exist to accept a flag. |
 |[Issue #113](https://github.com/acasi-ctf/ctf/issues/113) | Focused on other tasks. Not priority. |
+|[Issue #136](https://github.com/acasi-ctf/ctf/issues/136) | Ran out of time. |
+|[Issue #157](https://github.com/acasi-ctf/ctf/issues/157) | Ran out of time. |
+|[Issue #145](https://github.com/acasi-ctf/ctf/issues/145) | Ran out of time. |
+|[Issue #142](https://github.com/acasi-ctf/ctf/issues/142) | Ran out of time. |
+|[Issue #126](https://github.com/acasi-ctf/ctf/issues/126) | Ran out of time. |
+|[Issue #89](https://github.com/acasi-ctf/ctf/issues/89) | Ran out of time. |
+
 ## Code Files for Review
 Please review the following code files, which were actively developed during this sprint, for quality:
 * [ProvisioningService.kt](https://github.com/acasi-ctf/ctf/blob/main/operator/src/main/kotlin/org/acasictf/ctf/operator/service/ProvisioningService.kt)
