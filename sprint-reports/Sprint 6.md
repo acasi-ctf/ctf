@@ -55,6 +55,7 @@
 * The user interface exposes a "Flag Turn In" button that is not currently supported on the backend, the back-end
   will be taken care of in the final sprint.
 * The API for most popular challenges was created, but the trending challenges component remains to be done.
+* Did not get the XSS challenges into images due to Zhaohu needing assistance on creating images.
 
 ## Completed Issues / User Stories
 |Issue URL |
