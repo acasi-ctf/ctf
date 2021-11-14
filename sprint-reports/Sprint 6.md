@@ -81,6 +81,7 @@
 |[Issue #169](https://github.com/acasi-ctf/ctf/issues/169) |
 |[Issue #170](https://github.com/acasi-ctf/ctf/issues/170) |
 |[Issue #162](https://github.com/acasi-ctf/ctf/issues/162) |
+|[Issue #140](https://github.com/acasi-ctf/ctf/issues/140) |
 
 ## Incomplete Issues / User Stories
 |Issue | Blocker|
