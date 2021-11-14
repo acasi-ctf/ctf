@@ -12,6 +12,7 @@
   * Prize Game (Door Game from )
   * Rock Paper Scissors
   * Seven up
+  * Created quick rules markdown for all the games.
 * Flag turn in button implemented on UI. Currently, non-functional as backend has not been implemented.
 * Creation of XSS challenges.
 * Rebranded the site web application to Cyber Literacy For All.
@@ -19,6 +20,10 @@
   to hire contractors as the scope of our project expanded by a multiple of 3.
 * Fixed terminal to resize correctly with different screen sizes.
 * Fixed a bug that would cause the menu to not load on page refresh.
+* Renamed Kali challenges to Tools due to the contents not being specifically tied
+  to Kali Linux and Kali also being the name of a weapons program in India that could
+  cause some confusion with that user group, who our sponsor things will be a large
+  user group for our application.
 
 #### Developer Facing
 * Finalize operator refactoring and merged it into main.
