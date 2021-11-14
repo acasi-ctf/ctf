@@ -1,29 +1,31 @@
 import "./style/App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import React from "react";
 import MenuBar from "./components/Menu";
 import { useAuth0 } from "@auth0/auth0-react";
-import UserNotAuthorized from "./pages/error-pages/userNotAuthorized";
+import PreLoginPage from "./pages/error-pages/preLoginPage";
 import ChallengeBar from "./components/AppBar";
 /********************************************** Three Static Pages **************************************************************/
 import Selection from "./pages/Selection.js"
 import Home from "./pages/Home";
 import leaderboard from "./pages/LeaderBoard";
-/********************************************** Dynamic Pages **************************************************************/
+/********************************************** Dynamic Pages *******************************************************************/
 import ChallengePage from "./pages/ChallengePage";
 import StartChallengePage from "./pages/StartChallengePage";
-/***************************************************************************************************************************************/
 
 export default function App() {
-	const { isAuthenticated, getAccessTokenSilently } = useAuth0();
-	if (!isAuthenticated)
+	const { isAuthenticated } = useAuth0();
+	if (!isAuthenticated){
 		return (
 			<>
 				<div>
-				<ChallengeBar name="Welcome to Capture the Flag" />
-				<UserNotAuthorized />
+				<ChallengeBar name="Welcome to Cyber Literacy for All" />
+				<PreLoginPage />
 				</div>
 			</>
 		);
+	}
+
 
 	return (
 		<Router>

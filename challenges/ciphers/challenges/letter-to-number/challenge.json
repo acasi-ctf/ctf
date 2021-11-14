@@ -15,6 +15,10 @@
     {
       "name": "Letter to Number",
       "path": "docs/Letter-to-Number.md"
+    },
+    {
+      "name": "Terminal Usage",
+      "path": "docs/Terminal_Use.md"
     }
   ]
 }

@@ -1,7 +1,6 @@
 import React from 'react'
 import '../style/Selection.css'
 import {Link} from 'react-router-dom'
-// import * as core from '@material-ui/core';
 import {Card} from "react-bootstrap";
 
 export default function Selection() {

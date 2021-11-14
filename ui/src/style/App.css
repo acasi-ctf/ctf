@@ -29,13 +29,19 @@
 .topNav .navbar-toggler:hover {
     background: transparent;
 }
-.topNav .navbar-light .navbar-nav .nav-link {
+.topNav .navbar-light .navbar-nav .nav-link  {
     font-size: 14px;
     font-weight: 500;
     line-height: 21px;
     color: #fff;
     text-transform: uppercase;
 }
+
+.topNav:hover .navbar-light:hover .navbar-nav:hover .nav-link:hover{
+    text-decoration: none;
+    border: 1px solid;
+}
+
 .topNav {
     padding: 27px 0 30px;
 }
@@ -55,6 +61,7 @@
 .mainContent {
     display: flex;
 }
+
 .grayCol {
     padding: 37px 34px 37px 38px;
     background: #f5f1f2;
@@ -465,4 +472,31 @@ header .MuiToolbar-root{
         padding-top: 52px;
     }
     
+}
+
+
+.inputFlag{
+    background: #FFF;
+    outline: none;
+    border-radius: 10px 0 0 10px;
+    -webkit-transition: all 1s ease;  
+    -moz-transition: all 1s ease;  
+    -o-transition: all 1s ease;  
+    -ms-transition: all 1s ease;  
+    transition: all 1s ease;
+
+}
+
+.inputFlag-disable{
+    width: 0px;
+    visibility: hidden;
+    padding: 0px;
+    border: 0px solid;;
+}
+
+.inputFlag-enable{
+    border: 2px solid;
+    padding-left: 10px;
+    width: 200px;
+    visibility: visible;
 }

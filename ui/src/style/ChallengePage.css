@@ -1,6 +1,30 @@
-.left-column {
-    grid-column: 1;
-    height: 88.5vh;
+.ChallengeSet1{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 50%;
+}
+
+.ChallengeAppBar{
+    position: absolute;
+}
+
+.terminalBox {
+    right: 0;
+    width: calc(50% - 5px);
+    height: calc(100% - 40px);
+    position: absolute;
+    font-size: medium;
+}
+
+.ChallengePageContainter{
+    width: calc(100% - 280px);
+    height: calc(100% - 27px - 30px);
+    position: fixed;
+    display: flex;
+    flex-direction: row;
 }
 
 .right-column {
@@ -9,9 +33,12 @@
     min-width: 50%;
 }
 
-.box1 {
-    height: 88.5vh;
-    border-style: solid;
-    border-color: lightgrey;
-    border-width: 4px;
+.box1{
+    overflow-y: scroll;
+    position: absolute;
+    margin-top: 50px;
+    padding-left: 5px;
+    height: calc(100% - 27px - 30px - 32px);
+    width: 100%;
+    border-style: groove;
 }
