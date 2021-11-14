@@ -4,7 +4,7 @@
 ## What's New
 ### Work Summary 
 #### User Facing
-* Created API to allow for the calling of the most popular challenges.
+* Created API to query the most popular challenges.
 * Added Java Game images. These images are not meant ot be challenging but to show what can be down with very little
   code. These games are not our design but were created by a group of high school students who have become open source
   contributors on the project.
@@ -52,7 +52,7 @@
 ## Unfinished Work
 * The user interface does not yet expose a button that allows a user to navigate to a webpage that is created as a part
   of a challenge environment. This is supported on the backend and through the API, however.
-* The user interface exposes a "Flag Turn In" button that is not currently supported on the backend, the back-end
+* The user interface exposes a "Flag Turn In" button that is not currently supported on the backend, the backend
   will be taken care of in the final sprint.
 * The API for most popular challenges was created, but the trending challenges component remains to be done.
 
@@ -78,6 +78,8 @@
 |[Issue #140](https://github.com/acasi-ctf/ctf/issues/140) |
 |[Issue #167](https://github.com/acasi-ctf/ctf/issues/167) |
 |[Issue #169](https://github.com/acasi-ctf/ctf/issues/169) |
+|[Issue #170](https://github.com/acasi-ctf/ctf/issues/170) |
+|[Issue #162](https://github.com/acasi-ctf/ctf/issues/162) |
 
 ## Incomplete Issues / User Stories
 |Issue | Blocker|
