@@ -15,6 +15,8 @@
   * Created quick rules markdown for all the games.
 * Flag turn in button implemented on UI. Currently, non-functional as backend has not been implemented.
 * Creation of XSS challenges.
+* Adjusted display to change with different screen resolutions.
+* Removed Overflow in the x direction on the side menu.
 * Rebranded the site web application to Cyber Literacy For All.
 * Integrated Evon-Tech teams CSS into our web application to help with beautification. This was the sponsors decision
   to hire contractors as the scope of our project expanded by a multiple of 3.
@@ -23,7 +25,14 @@
 * Renamed Kali challenges to Tools due to the contents not being specifically tied
   to Kali Linux and Kali also being the name of a weapons program in India that could
   cause some confusion with that user group, who our sponsor things will be a large
-  user group for our application.
+  user group for our application.'
+* Created cross-side scripting challenges.
+  * Uses Apache and MySQL to launch a php website that contains a database vulnerable to attack
+  * Challenges created:
+    * Reflection type XSS attack
+    * DOM type XSS attack
+    * Stored type XSS attack
+  * Initial challenge documentation also created.
 
 #### Developer Facing
 * Finalize operator refactoring and merged it into main.
