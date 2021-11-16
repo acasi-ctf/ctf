@@ -1,8 +1,8 @@
 # Sprint 6 Report (10/22/2021 - 11/15/2021)
-[Sprint 6 Summary Video](#)
+[Sprint 6 Summary Video](https://www.youtube.com/watch?v=dn8UNHNJbb8)
 
 ## What's New
-### Work Summary 
+### Work Summary
 #### User Facing
 * Created API to query the most popular challenges.
 * Added Java Game images. These images are not meant ot be challenging but to show what can be down with very little
