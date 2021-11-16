@@ -89,7 +89,7 @@ def create_user_environment():
         challenge_id=c.id,
         user_id=user_id,
         created=datetime.now(),
-        environment_id=resp.success.environment_id.contents
+        environment_id=resp.success.environment_id.contents,
     )
     db.session.add(uc)
     db.session.commit()
@@ -141,10 +141,7 @@ def submit_environment_flag(env_id):
         return "", 400
 
     user_chl = (
-        db.session.query(
-            UserChallenges,
-            Challenge
-        )
+        db.session.query(UserChallenges, Challenge)
         .join(Challenge, UserChallenges.challenge_id == Challenge.id)
         .filter(UserChallenges.environment_id == env_id)
         .first_or_404()

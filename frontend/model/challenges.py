@@ -113,7 +113,7 @@ class Challenge(db.Model):
     """
     Flag information for a challenge.
     """
-    flag = Column(JSONB, server_default="{\"type\": \"none\"}", nullable=False)
+    flag = Column(JSONB, server_default='{"type": "none"}', nullable=False)
 
 
 class Documentation(db.Model):
@@ -182,7 +182,7 @@ class UserChallenges(db.Model):
     environment_id = Column(
         UUID(as_uuid=True),
         server_default="00000000-0000-0000-0000-000000000000",
-        nullable=False
+        nullable=False,
     )
 
     __table_args__ = (PrimaryKeyConstraint(challenge_id, user_id, created),)
