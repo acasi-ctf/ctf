@@ -117,10 +117,18 @@ Please review the following code files, which were actively developed during thi
 
 ## Retrospective Summary
 ### Here's what went well
-
+* Git usage was better. 
+* People working together and planning really well for the most part.
+* Much better use of GitHub Issues and linking issues in GitHub.
+* Less time crunch
 
 ### Here's what we'd like to improve
-
+* Splitting GitHub issues into smaller pieces.
+* Hard to know what team members' goals are.
 
 ### Here are changes we plan to implement in the next sprint
+* Implement a pre-sprint meeting to figure out as a group what everyone will be working on.
+* Create GitHub issues as soon as possible in a sprint.
+* Create atomic issues in GitHub issues to build up larger issues.
+* Users working on issues should create sub-issues if necessary.
 
