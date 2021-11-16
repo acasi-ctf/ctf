@@ -30,7 +30,7 @@ export default function StartChallengePage() {
 		if (isAuthenticated) {
 			startEnvironment();
 		}
-	}, [ isAuthenticated, getAccessTokenSilently, csSlug, cSlug, history ]);
+	}, [ isAuthenticated, getAccessTokenSilently, csSlug, cSlug, history, dispatch ]);
 
 	if (isAuthenticated) {
 		return <div style={{
