@@ -40,6 +40,8 @@ def map_challenge(x):
         "name": x.name,
         "description": x.description,
         "documentation": list(map(map_documentation, x.documentation)),
+        "features": x.features,
+        "flag": x.flag,
     }
 
 
