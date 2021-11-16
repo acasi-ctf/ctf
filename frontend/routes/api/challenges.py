@@ -36,7 +36,6 @@ def map_challenge(x):
     """
 
     # Redact the flag from the API.
-    print(type(x.flag))
     flag = x.flag
     if "value" in flag:
         flag["value"] = "REDACTED"
