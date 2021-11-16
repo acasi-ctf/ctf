@@ -41,7 +41,7 @@ export default function Terminal(props: TerminalOptions) {
             connectedRef.current = false;
             if (xtermRef.current != null) {
                 xtermRef.current.terminal.reset()
-                xtermRef.current.terminal.write("Connecting...\n")
+                xtermRef.current.terminal.write("Connecting... (if this takes too long, refresh)\n")
             }
 
             console.log("Starting stream");

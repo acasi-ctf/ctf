@@ -105,6 +105,16 @@ class Challenge(db.Model):
     """
     documentation = relationship("Documentation")
 
+    """
+    Features of a challenge.
+    """
+    features = Column(JSONB, server_default="[]", nullable=False)
+
+    """
+    Flag information for a challenge.
+    """
+    flag = Column(JSONB, server_default='{"type": "none"}', nullable=False)
+
 
 class Documentation(db.Model):
     """
@@ -150,14 +160,14 @@ class UserChallenges(db.Model):
     __tablename__ = "user_challenges"
 
     """
-    Id of challenge run.
+    ID of challenge run.
     """
     challenge_id = Column(
         UUID(as_uuid=True), ForeignKey("challenge.id", ondelete="CASCADE")
     )
 
     """
-    Id of user who ran challenge.
+    ID of user who ran challenge.
     """
     user_id = Column(UUID(as_uuid=True), nullable=False)
 
@@ -165,5 +175,14 @@ class UserChallenges(db.Model):
     Time challenge was initialized.
     """
     created = Column(DateTime, nullable=False)
+
+    """
+    ID of the environment created.
+    """
+    environment_id = Column(
+        UUID(as_uuid=True),
+        server_default="00000000-0000-0000-0000-000000000000",
+        nullable=False,
+    )
 
     __table_args__ = (PrimaryKeyConstraint(challenge_id, user_id, created),)

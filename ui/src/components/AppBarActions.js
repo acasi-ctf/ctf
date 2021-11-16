@@ -2,6 +2,10 @@ import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Avatar } from "@material-ui/core";
 import {Nav, Navbar } from "react-bootstrap";
+import {useSelector} from "react-redux";
+import {selectEnvironmentId, selectFlagSubmissionVisibility} from "../state";
+import {useParams} from "react-router-dom";
+import fetchAuth from "../util/fetchAuth";
 
 export default function AppBarActions(props) {
   const {
@@ -9,12 +13,27 @@ export default function AppBarActions(props) {
     loginWithPopup,
     logout,
     isAuthenticated,
+    getAccessTokenSilently,
   } = useAuth0();
+  const showFlagSubmission = useSelector(selectFlagSubmissionVisibility);
+  const environmentId = useSelector(selectEnvironmentId);
 
-  const handleSubmitFlag = () => {
+  const handleSubmitFlag = async () => {
     const inputSubmitFlag = document.getElementById('inputSubmitFlag');
     if (inputSubmitFlag.value !== '') {
-      window.alert(`Your flag is: ${inputSubmitFlag.value}`);
+      let accessToken = await getAccessTokenSilently();
+      let ret = await fetchAuth(`/api/user/environments/${environmentId}/submit`, accessToken, "POST", {
+        "value": inputSubmitFlag.value,
+      });
+
+      if (ret.status === 204) {
+        window.alert("Correct flag.");
+      } else if (ret.status === 400) {
+        window.alert("Incorrect flag.");
+      } else {
+        window.alert("Unknown error occurred!");
+      }
+
       return;
     }
 
@@ -23,7 +42,6 @@ export default function AppBarActions(props) {
 
   return (
     <div className="topNav d-flex align-items-start">
-
       <Navbar expand="lg" className="p-0 flex-fill">
         <Navbar.Brand href="/home"><img src="/logo.svg" alt="logo"/></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -34,7 +52,12 @@ export default function AppBarActions(props) {
             <input id="inputSubmitFlag" type="text"
                    className={props.displayInput? "inputFlag inputFlag-enable":"inputFlag inputFlag-disable"}
                    maxLength="50" minLength="1"/>
-            <Nav.Link onClick={handleSubmitFlag}> Submit Flag </Nav.Link>
+
+            {
+              showFlagSubmission
+                  ? <Nav.Link onClick={handleSubmitFlag}> Submit Flag </Nav.Link>
+                  : null
+            }
 
             {isAuthenticated ? (
             <div className="loginUserWrap">

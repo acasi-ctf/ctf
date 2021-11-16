@@ -82,7 +82,15 @@ def create_user_environment():
 
     resp = provisioning_service.StartEnvironment(r)
 
-    uc = UserChallenges(challenge_id=c.id, user_id=user_id, created=datetime.now())
+    if not resp.HasField("success"):
+        raise "Provisioning failed :'("
+
+    uc = UserChallenges(
+        challenge_id=c.id,
+        user_id=user_id,
+        created=datetime.now(),
+        environment_id=resp.success.environment_id.contents,
+    )
     db.session.add(uc)
     db.session.commit()
 
@@ -116,3 +124,37 @@ def get_environment_services(env_id):
     web_services = list(map(map_web_service, resp.web_services))
 
     return jsonify({"termproxy": termproxy_services, "web": web_services})
+
+
+@bp.route("/environments/<env_id>/submit", methods=["POST"])
+@requires_auth
+def submit_environment_flag(env_id):
+    """
+    This route allows a user to submit a flag.
+    :param env_id: ID of the environment.
+    :return: 204 if successful, 400 if not. Other codes may be returned as well.
+    """
+    requires_permission_raise(permission_write_user_environments)
+
+    body = request.get_json()
+    if body is None:
+        return "", 400
+
+    user_chl = (
+        db.session.query(UserChallenges, Challenge)
+        .join(Challenge, UserChallenges.challenge_id == Challenge.id)
+        .filter(UserChallenges.environment_id == env_id)
+        .first_or_404()
+    )
+    flag = user_chl["Challenge"].flag
+
+    if flag["type"] != "static":
+        raise "Unsupported flag type"
+    if "value" not in body:
+        raise "Value not in body"
+
+    status = 204
+    if flag["value"] != body["value"]:
+        status = 400
+
+    return "", status

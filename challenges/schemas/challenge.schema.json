@@ -63,6 +63,64 @@
           "path"
         ]
       }
+    },
+    "features": {
+      "description": "List of features in this challenge",
+      "type": "array",
+      "default": [],
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "flag"
+        ]
+      }
+    },
+    "flag": {
+      "description": "Describes the flag required to complete the challenge",
+      "type": "object",
+      "default": {
+        "type": "none"
+      },
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "none",
+            "static"
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "none"
+              }
+            }
+          },
+          "then": {}
+        },
+        {
+          "if": {
+            "properties": {
+              "type": {
+                "const": "static"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "value": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "value"
+            ]
+          }
+        }
+      ]
     }
   },
   "additionalProperties": false,

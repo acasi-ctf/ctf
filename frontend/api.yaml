@@ -139,6 +139,23 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CreateEnvironmentResponse'
+  /api/user/environments/{environment-id}/submit:
+    post:
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: environment-id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Flag was accepted
+        '400':
+          description: Flag was not accepted
+        '404':
+          description: Challenge was not found
 
 components:
   schemas:
@@ -168,6 +185,8 @@ components:
         - name
         - description
         - documentation
+        - features
+        - flag
       properties:
         id:
           type: string
@@ -189,6 +208,33 @@ components:
                 type: string
               order:
                 type: integer
+        features:
+          type: array
+          items:
+            type: string
+            enum:
+              - flag
+        flag:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - none
+                - static
+          oneOf:
+            - properties:
+                type:
+                  type: string
+                  enum:
+                    - none
+            - properties:
+                type:
+                  type: string
+                  enum:
+                    - static
+                value:
+                  type: string
     ChallengePlayCount:
       type: object
       required:

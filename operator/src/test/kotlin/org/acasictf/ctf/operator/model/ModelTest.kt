@@ -6,7 +6,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class ModelTest {
-    private val json = Json {}
+    private val json = Json { ignoreUnknownKeys = true }
 
     /**
      * Deserializes a challenge set JSON string into a ChallengeSet data class.
