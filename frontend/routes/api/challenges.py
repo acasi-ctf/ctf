@@ -34,6 +34,13 @@ def map_challenge(x):
     :param x: SQLAlchemy Challenge model.
     :return: Generic map containing relevant details for REST API.
     """
+
+    # Redact the flag from the API.
+    print(type(x.flag))
+    flag = x.flag
+    if "value" in flag:
+        flag["value"] = "REDACTED"
+
     return {
         "id": x.id,
         "slug": x.slug,
@@ -41,7 +48,7 @@ def map_challenge(x):
         "description": x.description,
         "documentation": list(map(map_documentation, x.documentation)),
         "features": x.features,
-        "flag": x.flag,
+        "flag": flag,
     }
 
 
