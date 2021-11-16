@@ -41,6 +41,6 @@ def api_admin_challenges_create():
     # TODO: Should we move this into the reconciler?
     req = UploadEnvironmentTemplateRequest()
     req.env_zip = contents
-    provisioning_service.UploadEnvironmentTemplate(req)
+    #provisioning_service.UploadEnvironmentTemplate(req)
 
     return Response(status=204)

@@ -12,13 +12,20 @@ class ChallengeSetModelReconciler:
     @staticmethod
     def map_challenge_model(cs_id):
         def inner(chl):
+            features_default = []
+            flag_default = {
+                "type": "none"
+            }
+
             return insert(Challenge).values(
                 id=chl.id,
                 slug=chl.slug,
                 parent_id=cs_id,
                 name=chl.name,
                 description=chl.description,
-                provisioner="{}",
+                provisioner={},
+                features=getattr(chl, "features", features_default),
+                flag=getattr(chl, "flag", flag_default),
             ).on_conflict_do_update(
                 index_elements=['id'],
                 set_=dict(
@@ -26,7 +33,8 @@ class ChallengeSetModelReconciler:
                     parent_id=cs_id,
                     name=chl.name,
                     description=chl.description,
-                    provisioner="{}",
+                    features=getattr(chl, "features", features_default),
+                    flag=getattr(chl, "flag", flag_default),
                 )
             )
 

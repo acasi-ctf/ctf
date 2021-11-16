@@ -105,6 +105,16 @@ class Challenge(db.Model):
     """
     documentation = relationship("Documentation")
 
+    """
+    Features of a challenge.
+    """
+    features = Column(JSONB, server_default="[]", nullable=False)
+
+    """
+    Flag information for a challenge.
+    """
+    flag = Column(JSONB, server_default="{\"type\": \"none\"}", nullable=False)
+
 
 class Documentation(db.Model):
     """
