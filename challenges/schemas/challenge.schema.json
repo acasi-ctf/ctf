@@ -64,6 +64,17 @@
         ]
       }
     },
+    "features": {
+      "description": "List of features in this challenge",
+      "type": "array",
+      "default": [],
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "flag"
+        ]
+      }
+    },
     "flag": {
       "description": "Describes the flag required to complete the challenge",
       "type": "object",
