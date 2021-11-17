@@ -10,6 +10,7 @@ from frontend.model.challenges import (
     Challenge,
     Documentation,
     UserChallenges,
+    CompletedChallenge,
 )
 
 
@@ -160,3 +161,30 @@ def get_top_challenges():
     challenges = map(map_joined, joined)
 
     return jsonify(list(challenges))
+
+
+@bp.route("/leaderboard")
+def get_leaderboard():
+    """
+    This route builds and returns the leaderboard.
+    :return: JSON list of user leaderboard objects.
+    """
+    joined = (
+        db.session.query(
+            CompletedChallenge.user_id,
+            func.count(CompletedChallenge.challenge_id).label("count"),
+        )
+        .group_by(CompletedChallenge.user_id)
+        .order_by(func.count(CompletedChallenge.challenge_id).desc())
+        .all()
+    )
+
+    def map_joined(x):
+        return {
+            "userId": x["user_id"],
+            "challengeCount": x["count"],
+        }
+
+    leaderboard = map(map_joined, joined)
+
+    return jsonify(list(leaderboard))

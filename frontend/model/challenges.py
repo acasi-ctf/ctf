@@ -186,3 +186,44 @@ class UserChallenges(db.Model):
     )
 
     __table_args__ = (PrimaryKeyConstraint(challenge_id, user_id, created),)
+
+
+class CompletedChallenge(db.Model):
+    """
+    This table contains data on completed challenges.
+    """
+
+    __tablename__ = "completed_challenge"
+
+    """
+    ID of challenge completed.
+    """
+    challenge_id = Column(
+        UUID(as_uuid=True), ForeignKey("challenge.id", ondelete="CASCADE")
+    )
+
+    """
+    ID of user who completed challenge.
+    """
+    user_id = Column(UUID(as_uuid=True), nullable=False)
+
+    """
+    ID of the environment completed.
+    """
+    environment_id = Column(
+        UUID(as_uuid=True),
+        nullable=False,
+    )
+
+    """
+    Time challenge was completed.
+    """
+    completed = Column(DateTime, nullable=False)
+
+    __table_args__ = (
+        PrimaryKeyConstraint(
+            challenge_id,
+            user_id,
+            environment_id,
+        ),
+    )

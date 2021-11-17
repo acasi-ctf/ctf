@@ -110,6 +110,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ChallengePlayCountList'
+  /api/leaderboard:
+    get:
+      responses:
+        '200':
+          description: Leaderboard list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeaderboardList'
   /api/user/environments:
     get:
       security:
@@ -253,6 +262,22 @@ components:
       maxItems: 5
       items:
         $ref: '#/components/schemas/ChallengePlayCount'
+    Leaderboard:
+      type: object
+      required:
+        - userId
+        - challengeCount
+      properties:
+        userId:
+          type: string
+          format: uuid
+        challengeCount:
+          type: integer
+          minimum: 1
+    LeaderboardList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Leaderboard'
     UserEnvironmentInfo:
       type: object
       properties:
