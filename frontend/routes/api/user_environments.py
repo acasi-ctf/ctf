@@ -165,12 +165,16 @@ def submit_environment_flag(env_id):
     if flag["value"] != body["value"]:
         status = 400
     else:
-        completed_chl = insert(CompletedChallenge).values(
-            challenge_id=challenge.id,
-            user_id=user_id,
-            completed=datetime.now(),
-            environment_id=env_id,
-        ).on_conflict_do_nothing()
+        completed_chl = (
+            insert(CompletedChallenge)
+            .values(
+                challenge_id=challenge.id,
+                user_id=user_id,
+                completed=datetime.now(),
+                environment_id=env_id,
+            )
+            .on_conflict_do_nothing()
+        )
         db.session.execute(completed_chl)
         db.session.commit()
 

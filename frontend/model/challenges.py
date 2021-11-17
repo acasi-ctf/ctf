@@ -220,8 +220,10 @@ class CompletedChallenge(db.Model):
     """
     completed = Column(DateTime, nullable=False)
 
-    __table_args__ = (PrimaryKeyConstraint(
-        challenge_id,
-        user_id,
-        environment_id,
-    ),)
+    __table_args__ = (
+        PrimaryKeyConstraint(
+            challenge_id,
+            user_id,
+            environment_id,
+        ),
+    )
