@@ -4,11 +4,9 @@ import io.fabric8.kubernetes.client.KubernetesClient
 import org.acasictf.ctf.operator.kubeNamespace
 import org.acasictf.ctf.operator.meta
 import org.acasictf.ctf.operator.model.Challenge
-import org.acasictf.ctf.operator.model.Kubernetes
 import org.acasictf.ctf.operator.model.kubernetes.v1alpha1.Environment
 import org.acasictf.ctf.operator.model.kubernetes.v1alpha1.EnvironmentList
 import org.acasictf.ctf.operator.model.kubernetes.v1alpha1.EnvironmentSpec
-import org.acasictf.ctf.operator.persistence.ChallengeTemplate
 import org.acasictf.ctf.operator.provisioner.Provisioner
 
 class KubernetesProvisioner(
