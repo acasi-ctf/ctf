@@ -4,9 +4,15 @@ Routes that relate to managing user environments.
 from datetime import datetime
 
 from flask import Blueprint, jsonify, request
+from sqlalchemy.dialects.postgresql import insert
 
 from frontend.extensions import lookup_service, provisioning_service, db
-from frontend.model.challenges import ChallengeSet, Challenge, UserChallenges
+from frontend.model.challenges import (
+    ChallengeSet,
+    Challenge,
+    UserChallenges,
+    CompletedChallenge,
+)
 from frontend.pb import (
     ListUserEnvironmentsRequest,
     StartEnvironmentRequest,
@@ -136,6 +142,7 @@ def submit_environment_flag(env_id):
     """
     requires_permission_raise(permission_write_user_environments)
 
+    user_id = get_user_id()
     body = request.get_json()
     if body is None:
         return "", 400
@@ -146,7 +153,8 @@ def submit_environment_flag(env_id):
         .filter(UserChallenges.environment_id == env_id)
         .first_or_404()
     )
-    flag = user_chl["Challenge"].flag
+    challenge = user_chl["Challenge"]
+    flag = challenge.flag
 
     if flag["type"] != "static":
         raise "Unsupported flag type"
@@ -156,5 +164,18 @@ def submit_environment_flag(env_id):
     status = 204
     if flag["value"] != body["value"]:
         status = 400
+    else:
+        completed_chl = (
+            insert(CompletedChallenge)
+            .values(
+                challenge_id=challenge.id,
+                user_id=user_id,
+                completed=datetime.now(),
+                environment_id=env_id,
+            )
+            .on_conflict_do_nothing()
+        )
+        db.session.execute(completed_chl)
+        db.session.commit()
 
     return "", status
