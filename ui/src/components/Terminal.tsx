@@ -37,6 +37,18 @@ export default function Terminal(props: TerminalOptions) {
     const connectedRef = useRef(false);
 
     useEffect(() => {
+        function resize(rows: number, cols: number) {
+            let resizeMsg = new ResizeMessage();
+            resizeMsg.setColumns(cols);
+            resizeMsg.setRows(rows);
+            let msg = new ClientMessage();
+            msg.setResize(resizeMsg);
+            try {
+                streamRef.current.write(msg);
+            } catch (e) {
+            }
+        }
+
         async function connect(stream: BidirectionalStream<termproxy_pb.ClientMessage, termproxy_pb.ServerMessage>) {
             connectedRef.current = false;
             if (xtermRef.current != null) {
@@ -69,7 +81,8 @@ export default function Terminal(props: TerminalOptions) {
                 if (!connectedRef.current) {
                     connectedRef.current = true;
                     if (xtermRef.current != null) {
-                        xtermRef.current.terminal.reset()
+                        xtermRef.current.terminal.reset();
+                        resize(xtermRef.current.terminal.rows, xtermRef.current.terminal.cols);
                     }
                 }
                 try {
@@ -118,15 +131,7 @@ export default function Terminal(props: TerminalOptions) {
                 }
             });
             xtermRef.current.terminal.onResize((size) => {
-                let resizeMsg = new ResizeMessage();
-                resizeMsg.setColumns(size.cols);
-                resizeMsg.setRows(size.rows);
-                let msg = new ClientMessage();
-                msg.setResize(resizeMsg);
-                try {
-                    streamRef.current.write(msg);
-                } catch (e) {
-                }
+                resize(size.rows, size.cols);
             });
             xtermRef.current.terminal.loadAddon(fitRef.current);
         }
@@ -138,8 +143,8 @@ export default function Terminal(props: TerminalOptions) {
         function handleResize() {
             fitRef.current.fit();
         }
-        window.addEventListener("resize", handleResize)
-        fitRef.current.fit();
+        window.addEventListener("resize", handleResize);
+        handleResize();
     });
 
     return <XTerm className="Terminal" ref={xtermRef}/>
