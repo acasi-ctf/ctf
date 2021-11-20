@@ -3,14 +3,8 @@ import Button from "@material-ui/core/Button";
 import {useState} from "react";
 
 export default function UploadChallengeSet() {
-  const {isAuthenticated, getAccessTokenSilently} = useAuth0();
+  const {getAccessTokenSilently} = useAuth0();
   const [file, setFile] = useState(null);
-
-  if (!isAuthenticated) {
-    return <div>
-      <h1>Permission denied</h1>
-    </div>;
-  }
 
   return <div>
     <h1>Upload Challenge Set</h1>
