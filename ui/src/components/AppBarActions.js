@@ -1,9 +1,11 @@
-import React from "react";
+import { useEffect, useState } from "react";
+import { useCallback } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Avatar } from "@material-ui/core";
 import {Nav, Navbar } from "react-bootstrap";
 import {useSelector} from "react-redux";
 import {selectEnvironmentId, selectFlagSubmissionVisibility} from "../state";
+import FlagNotification from "./NotificationToast";
 import {useParams} from "react-router-dom";
 import fetchAuth from "../util/fetchAuth";
 
@@ -18,29 +20,62 @@ export default function AppBarActions(props) {
   const showFlagSubmission = useSelector(selectFlagSubmissionVisibility);
   const environmentId = useSelector(selectEnvironmentId);
 
-  const handleSubmitFlag = async () => {
+
+  const [displayToast, setDisplayToast] = useState(false);
+  const [color, setColor] = useState("black");
+  const [msg, setMessage] = useState("");
+  const toggleDisplayToast = () => {
+    setDisplayToast(!displayToast);
+  }
+
+
+  const handleSubmitFlag =  async (e) => {
     const inputSubmitFlag = document.getElementById('inputSubmitFlag');
     if (inputSubmitFlag.value !== '') {
       let accessToken = await getAccessTokenSilently();
       let ret = await fetchAuth(`/api/user/environments/${environmentId}/submit`, accessToken, "POST", {
         "value": inputSubmitFlag.value,
       });
-
+      //reset the input field
+      inputSubmitFlag.value = "";
       if (ret.status === 204) {
-        window.alert("Correct flag.");
+        props.setDisplay(!props.displayInput);
+        setDisplayToast(true);
+        setColor("rgb(37, 190, 58)");
+        setMessage("Congratulation! Flag is correct");
       } else if (ret.status === 400) {
-        window.alert("Incorrect flag.");
-      } else {
+        props.setDisplay(!props.displayInput);
+        setDisplayToast(true);
+        setColor("rgb(156, 55, 55)");
+        setMessage("Incorrect flag. Try again");
+      } 
+      else {
         window.alert("Unknown error occurred!");
       }
-
       return;
     }
 
     props.setDisplay(!props.displayInput);
   }
 
+  useEffect(()=>{
+    const inputSubmitFlag = document.getElementById('inputSubmitFlag');
+    inputSubmitFlag.addEventListener('keydown', function(e){
+      if(e.code === 'Enter'){
+        e.preventDefault();
+        document.getElementById('flagSubmitButon').click();
+        e.stopPropagation();
+        if(inputSubmitFlag.value===""){
+          props.setDisplay(!props.displayInput);
+        }
+      }
+    },true);
+  });
+
   return (
+    <>
+    {/* Notification toast */} 
+    {displayToast? <FlagNotification display={displayToast} action={toggleDisplayToast} color={color} message={msg}/>:null}
     <div className="topNav d-flex align-items-start">
       <Navbar expand="lg" className="p-0 flex-fill">
         <Navbar.Brand href="/home"><img src="/logo.svg" alt="logo"/></Navbar.Brand>
@@ -55,7 +90,7 @@ export default function AppBarActions(props) {
 
             {
               showFlagSubmission
-                  ? <Nav.Link onClick={handleSubmitFlag}> Submit Flag </Nav.Link>
+                  ? <Nav.Link id="flagSubmitButon" onClick={handleSubmitFlag}> Submit Flag </Nav.Link>
                   : null
             }
 
@@ -84,5 +119,6 @@ export default function AppBarActions(props) {
         </Navbar.Collapse>
       </Navbar>
       </div>
+      </>
   );
 }
