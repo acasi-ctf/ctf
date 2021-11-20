@@ -12,13 +12,14 @@ return <div className="challengesWrap">
       <div className="row mt-30">
         <div className="col-lg-8 col-md-7 mainContent">
           <div className="grayCol">
-            <h2>How Wireless Technology Is Changing Business</h2>
-            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical
-                Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at
-                Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a
-                Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the
-                undoubtable source.</p>
-
+            <h2>Welcome to Capture the Flag!</h2>
+            <p>Capture the flag is a web-based application that allows you to start learning the basics of cyber
+                literacy. Here we have a collection of activities that you can interact with, whether its a familiar game
+                written by one of hour high school contributors or a security challenge written by some of our more
+                experienced developers, we invite you to interact with our application and any feedback is welcome. This is
+                a Learning platform, so if you don't succeed at first, keep trying! No one has ever accomplished anything
+                great by just giving up.
+            </p>
             <Nav className="actionLink">
               <Nav.Item className="mr77">
                 <Nav.Link href="#" onClick={() => loginWithPopup()}>Learn More</Nav.Link>
