@@ -47,7 +47,7 @@ Morse lines are a thing of the past, but the textual representation of morse cha
 | Y  | **- · - -** |
 | Z  | **- - · ·** |
 
-## Example
+### Example
 Code: .... . .-.. .-.. ---  
 **....** = H  
 **.** = E  

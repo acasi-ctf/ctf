@@ -41,6 +41,6 @@ The letter to number cipher is very simple. It converts a letter to a number, su
 | Y  | 25 |
 | Z  | 26 |
 
-## Example
+### Example
 Code = "14 21 13 2 5 18"
 Decode = "NUMBER"
