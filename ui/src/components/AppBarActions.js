@@ -56,7 +56,9 @@ export default function AppBarActions(props) {
     }
 
     props.setDisplay(!props.displayInput);
+    inputSubmitFlag.focus();
   }
+
 
   useEffect(()=>{
     const inputSubmitFlag = document.getElementById('inputSubmitFlag');
@@ -65,12 +67,9 @@ export default function AppBarActions(props) {
         e.preventDefault();
         document.getElementById('flagSubmitButon').click();
         e.stopPropagation();
-        if(inputSubmitFlag.value===""){
-          props.setDisplay(!props.displayInput);
-        }
       }
     },true);
-  });
+  },[]);
 
   return (
     <>
