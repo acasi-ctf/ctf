@@ -1,4 +1,4 @@
-# Mixed Challenge
+# Cumulative Challenge
 
 ## Starting the Challenge
 
