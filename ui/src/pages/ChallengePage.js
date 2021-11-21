@@ -66,6 +66,8 @@ export default function ChallengePage() {
     fetch(`/api/challenge-sets/${csSlug}/challenges/${cSlug}`)
     .then((res) => res.json())
     .then((json) => {
+      //sorting array of documentation based on its order
+      json.documentation.sort((a,b) => (a.order > b.order) ? 1 : ((b.order > a.order) ? -1 : 0))
       // console.log(json);
       setValue(0);
       setData(json);

@@ -20,7 +20,7 @@
 }
 
 .ChallengePageContainter{
-    width: calc(100% - 280px);
+    width: calc(100% - 290px);
     height: calc(100% - 27px - 30px);
     position: fixed;
     display: flex;
