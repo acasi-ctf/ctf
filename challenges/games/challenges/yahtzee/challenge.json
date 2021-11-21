@@ -11,6 +11,10 @@
     {
       "name": "Yahtzee",
       "path": "docs/Yahtzee.md"
+    },
+    {
+      "name": "Code",
+      "path": "docs/Code.md"
     }
   ]
 }

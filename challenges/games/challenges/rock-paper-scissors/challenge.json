@@ -11,6 +11,10 @@
     {
       "name": "RockPaperScissors",
       "path": "docs/RockPaperScissors.md"
+    },
+    {
+      "name": "Code",
+      "path": "docs/Code.md"
     }
   ]
 }
