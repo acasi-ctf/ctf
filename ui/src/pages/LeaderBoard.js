@@ -20,7 +20,7 @@ export default function Leaderboard(props) {
 
 						let rankInfo = row.insertCell(0);
 						rankInfo.classList.add("rankColumn");
-						rankInfo.innerHTML = idx.toString()
+						rankInfo.innerHTML = (idx+1).toString()
 
 						let playerInfo = row.insertCell(1);
 						playerInfo.innerHTML = data[idx].userId;
