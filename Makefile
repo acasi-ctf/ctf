@@ -13,6 +13,9 @@ all: proto docker
 
 proto: $(PROTOSRC)
 docker: docker_penimage docker_termproxy docker_ui docker_frontend docker_operatorkt
+docker_challenges: docker_challenge_cipher docker_challenge_games_noughts \
+				   docker_challenge_games_prize docker_challenge_games_rps \
+				   docker_challenge_games_seven_up docker_challenge_games_yahtzee
 
 $(PROTOSRC): %:%.proto
 	mkdir -p pb/
@@ -55,6 +58,36 @@ docker_challenge_cipher:
 	docker build -t $(IMAGE_CHALLENGES_BASE)/ciphers:$(IMAGE_TAG) -f images/challenges/ciphers/Dockerfile .
 ifeq ($(DOCKER_PUSH), 1)
 		docker push $(IMAGE_CHALLENGES_BASE)/ciphers:$(IMAGE_TAG)
+endif
+
+docker_challenge_games_noughts:
+	docker build -t $(IMAGE_CHALLENGES_BASE)/games/noughts:$(IMAGE_TAG) -f images/challenges/games/noughts/Dockerfile .
+ifeq ($(DOCKER_PUSH), 1)
+		docker push $(IMAGE_CHALLENGES_BASE)/games/noughts:$(IMAGE_TAG)
+endif
+
+docker_challenge_games_prize:
+	docker build -t $(IMAGE_CHALLENGES_BASE)/games/prize:$(IMAGE_TAG) -f images/challenges/games/prize/Dockerfile .
+ifeq ($(DOCKER_PUSH), 1)
+		docker push $(IMAGE_CHALLENGES_BASE)/games/prize:$(IMAGE_TAG)
+endif
+
+docker_challenge_games_rps:
+	docker build -t $(IMAGE_CHALLENGES_BASE)/games/rock-paper-scissors:$(IMAGE_TAG) -f images/challenges/games/rock-paper-scissors/Dockerfile .
+ifeq ($(DOCKER_PUSH), 1)
+		docker push $(IMAGE_CHALLENGES_BASE)/games/rock-paper-scissors:$(IMAGE_TAG)
+endif
+
+docker_challenge_games_seven_up:
+	docker build -t $(IMAGE_CHALLENGES_BASE)/games/seven-up:$(IMAGE_TAG) -f images/challenges/games/seven-up/Dockerfile .
+ifeq ($(DOCKER_PUSH), 1)
+		docker push $(IMAGE_CHALLENGES_BASE)/games/seven-up:$(IMAGE_TAG)
+endif
+
+docker_challenge_games_yahtzee:
+	docker build -t $(IMAGE_CHALLENGES_BASE)/games/yahtzee:$(IMAGE_TAG) -f images/challenges/games/yahtzee/Dockerfile .
+ifeq ($(DOCKER_PUSH), 1)
+		docker push $(IMAGE_CHALLENGES_BASE)/games/yahtzee:$(IMAGE_TAG)
 endif
 
 lint:

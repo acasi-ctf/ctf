@@ -1,6 +1,8 @@
 """
 Routes that relate to fetching challenge sets and challenges.
 """
+import datetime
+
 from flask import Blueprint, jsonify, Response
 from sqlalchemy import func
 
@@ -147,6 +149,46 @@ def get_top_challenges():
         .join(ChallengeSet, Challenge.parent_id == ChallengeSet.id)
         .group_by(UserChallenges.challenge_id, Challenge, ChallengeSet)
         .order_by(func.count(UserChallenges.challenge_id).desc())
+        .limit(5)
+        .all()
+    )
+
+    def map_joined(x):
+        return {
+            "challengeSet": map_challenge_set(x["ChallengeSet"]),
+            "challenge": map_challenge(x["Challenge"]),
+            "playCount": x["count"],
+        }
+
+    challenges = map(map_joined, joined)
+
+    return jsonify(list(challenges))
+
+
+@bp.route("/trending-challenges")
+def get_trending_challenges():
+    """
+    This route groups challenges and returns the play count of each for the last
+    14 days.
+    :return: JSON list of challenge set and challenge objects, with their respective count.
+    """
+    today = datetime.date.today()
+    fourteen = datetime.timedelta(14)
+    begin_date = today - fourteen
+
+    joined = (
+        db.session.query(
+            UserChallenges.challenge_id,
+            func.count(UserChallenges.challenge_id).label("count"),
+            Challenge,
+            ChallengeSet,
+        )
+        .join(Challenge, UserChallenges.challenge_id == Challenge.id)
+        .join(ChallengeSet, Challenge.parent_id == ChallengeSet.id)
+        .filter(UserChallenges.created >= begin_date)
+        .group_by(UserChallenges.challenge_id, Challenge, ChallengeSet)
+        .order_by(func.count(UserChallenges.challenge_id).desc())
+        .filter()
         .limit(5)
         .all()
     )
