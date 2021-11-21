@@ -57,14 +57,13 @@ function ResponsiveDrawer(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [displayFlagSubmit, setDisplayFlagSubmit ] = useState(false);
   const [isAdmin, setAdmin] = useState(false);
   const {getIdTokenClaims} = useAuth0();
 
   // API GET REQUEST For items that shows up in the menu list
   // TODO: Handle error/loading states.
   const { data, error, loading } = useFetchAuth(APIpath);
-
+  const [displayFlagSubmit, setDisplayFlagSubmit ] = useState(false);
   useEffect(() => {
     async function queryAdmin() {
       let claims = await getIdTokenClaims();
@@ -125,11 +124,10 @@ function ResponsiveDrawer(props) {
   );
 
   const container = window !== undefined ? () => window().document.body : undefined;
-
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar} displayinput={displayFlagSubmit} >
+      <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <IconButton
             color="inherit"

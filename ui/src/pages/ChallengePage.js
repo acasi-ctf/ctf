@@ -110,9 +110,9 @@ export default function ChallengePage() {
 
   return (
       <div className="ChallengePageContainter">
-        <div className="terminalBox">
+        {/* <div className="terminalBox">
           <Terminal key={envId} id={envId}/>
-        </div>
+        </div> */}
         <div className="ChallengeSet1">
           <core.AppBar position="absolute" color="default">
             <core.Tabs value={value} indicatorColor="primary"
