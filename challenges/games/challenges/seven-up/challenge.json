@@ -11,6 +11,10 @@
     {
       "name": "SevenUp",
       "path": "docs/SevenUp.md"
+    },
+    {
+      "name": "Code",
+      "path": "docs/Code.md"
     }
   ]
 }

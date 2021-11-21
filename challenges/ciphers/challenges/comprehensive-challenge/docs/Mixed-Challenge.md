@@ -1,6 +1,17 @@
-# Mixed Challenge
+# Cumulative Challenge
+
+## Starting the Challenge
+
+To start the challenge type the following into the terminal:
+
+```language-shell
+python3 Mixed-Challenge.py
+```
+
+## Objectives
+
 This is the combined challenge for classical ciphers.
-You will use what you have previously learned to complete this comprehensive challenge.
+You must use what you have previously learned from the other cipher challenges to complete this one.
 
 ## Recall
 ### Letter to Number
