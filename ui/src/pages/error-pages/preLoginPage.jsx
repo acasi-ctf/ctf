@@ -16,9 +16,9 @@ export default function PreLoginPage() {
 
             <p>Capture the flag is a web-based application that allows you to start learning the basics of
               cyber
-              literacy. Here we have a collection of activities that you can interact with, whether its a
+              literacy. Here we have a collection of activities that you can interact with, whether it's a
               familiar game
-              written by one of hour high school contributors or a security challenge written by some of
+              written by one of our high school contributors or a security challenge written by some of
               our more
               experienced developers, we invite you to interact with our application and any feedback is
               welcome. This is
