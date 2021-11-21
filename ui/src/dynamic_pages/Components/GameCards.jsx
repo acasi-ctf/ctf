@@ -5,25 +5,25 @@ import Spinner from "../../components/Spinner";
 import useFetch from "../Services/useFetch";
 import ChallengeCard from "../Components/ChallengeCard";
 
-export default function ChallengeSets() {
-  const { data: challengeSets, loading, error } = useFetch(
-    "/api/challenge-sets"
+export default function GameCards() {
+  const { data: challenges, loading, error } = useFetch(
+    "/api/challenge-sets/games/challenges"
   );
 
   if (error) throw error;
   if (loading) return <Spinner />;
-  if (challengeSets.length === 0) return <ChallengeSetsNotFound />;
+  if (challenges.length === 0) return <ChallengeSetsNotFound />;
 
   function renderChallengeSetCard() {
     return (
       <div>
         <ul>
-          {challengeSets.map((cs) => {
-            return <ChallengeCard data={cs} />;
+          {challenges.map((challenge) => {
+            return <ChallengeCard data={challenge}/>;
           })}
         </ul>
       </div>
     );
   }
-  return renderChallengeSetCard(challengeSets);
+  return renderChallengeSetCard(challenges);
 }

@@ -27,7 +27,6 @@ const useStyles = makeStyles({
 export default function ChallengeCard(props) {
   const classes = useStyles();
   const { ChallengeSet } = useParams();
-  debugger;
   return (
     <Card className={classes.root}>
       <CardContent>

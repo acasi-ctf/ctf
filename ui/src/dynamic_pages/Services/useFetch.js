@@ -8,7 +8,6 @@ export default function useFetch(url) {
   useEffect(() => {
     async function init() {
       try {
-        debugger;
         const response = await fetch(url);
 
         if (response.ok) {

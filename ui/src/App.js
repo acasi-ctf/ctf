@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import React from "react";
 import MenuBar from "./components/Menu";
 import {useAuth0} from "@auth0/auth0-react";
-import PreLoginPage from "./pages/error-pages/preLoginPage";
+import PreLoginPage from "./pages/preLoginPage";
 import ChallengeBar from "./components/AppBar";
 /********************************************** Three Static Pages **************************************************************/
 import Selection from "./pages/Selection.js"
