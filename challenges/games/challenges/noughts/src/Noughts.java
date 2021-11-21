@@ -9,7 +9,7 @@ class Noughts {
         }
     }
 
-    public static void main() {
+    public static void main(String[] args) {
         System.out.println("\fLet's play crosses and noughts!");
         System.out.println("Rows run from 0 (top) to 2 (bottom) and columns run from 0 (left) to 2 (right)");
         Scanner sc = new Scanner(System.in);
@@ -19,7 +19,7 @@ class Noughts {
         boolean win = false;
         int ctr;
         int a, b, c, d, i, j;
-        while (win == false) {
+        while (!win) {
             ctr = 0;
             while (true) {
                 System.out.println("Team 1 enter row and column");
@@ -97,7 +97,6 @@ class Noughts {
                     }
                 }
             }
-
         }
     }
-}         
+}
