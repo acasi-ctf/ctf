@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class RockPaperScissors {
-    public static void main() throws Exception {
+    public static void main(String[] args) throws Exception {
         System.out.println("\fLet's play rock, paper, scissors!");
         int n = 9;
         while (n != 0) {
