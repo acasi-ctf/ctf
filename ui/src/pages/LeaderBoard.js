@@ -1,8 +1,39 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import '../style/LeaderBoard.css'
-//end point API
-//https://ctf.cyberliteracyforall.com/api/leaderboard
-export default function leaderboard() {
+
+
+export default function Leaderboard(props) {
+	useEffect(()=>{
+		fetch('/api/leaderboard')
+		.then(res=>{var p = Promise.resolve(res.json());
+								p.then(
+									function(data){
+										let idx;
+										let table = document.getElementById('tableBody')
+										for (idx=0; idx < data.length; idx++){
+											let row = table.insertRow(idx);
+
+											let rankInfo = row.insertCell(0);
+											rankInfo.classList.add("rankColumn");
+											rankInfo.innerHTML = idx.toString()
+											// rankInfo.innerHTML = "<div id=rI-"+idx.toString()+">"+idx.toString()+"</div>";
+
+											
+											let playerInfo = row.insertCell(1);
+											playerInfo.innerHTML = data[idx].userId;
+											playerInfo.classList.add("userColumn");
+
+
+											let playerScore = row.insertCell(2);
+											playerScore.innerHTML = data[idx].challengeCount.toString();
+											playerScore.classList.add("scoreColumn");
+										}
+									}
+								)
+							}
+					)
+	});
+
     return (
         <div id="roundsModeTab" className="mode-page" role="tabpanel"
         aria-label="Rounds Tab" tabIndex="0">
@@ -15,37 +46,30 @@ export default function leaderboard() {
                 <thead className="table-light">
                     <tr>
                         <th scope="col" role="columnheader" 
-                            className="sortable-header cell-align-middle" 
+                            className="rankColumn sortable-header cell-align-middle" 
                             aria-sort="none">
                             <button className="btn bg-transparent table-sort-btn" 
                                     aria-label="Sort ascending by date">
-                                {/* <FontAwesomeIcon icon="sort" />  */}
                             </button>Rank
                         </th>
+                        
                         <th scope="col" role="columnheader" 
-                            className="sortable-header cell-align-middle" 
+                            className="userColumn sortable-header cell-align-middle" 
                             aria-sort="none">
                             <button className="btn bg-transparent table-sort-btn" 
                                     aria-label="Sort ascending by course">
-                                {/* <FontAwesomeIcon icon="sort" />  */}
                             </button>Player
                         </th>
                         <th scope="col" role="columnheader"
-                            className="sortable-header cell-align-middle"
+                            className="scoreColumn sortable-header cell-align-middle"
                             aria-sort="none">
                             <button className="btn bg-transparent table-sort-btn" 
                                     aria-label="Sort ascending by score">
-                                {/* <FontAwesomeIcon icon="sort" /> */}
                             </button>Score
                         </th>
                     </tr>
                 </thead>
-                <tbody>
-                {"this.props.rounds" === null || 0 === 0 ? 
-                    <tr>
-                    <td colSpan="5" scope="rowgroup"><i>No rounds logged</i></td>
-                    </tr> :<></>
-                }
+                <tbody id="tableBody">
                 </tbody>
             </table>        
         </div>

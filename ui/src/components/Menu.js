@@ -110,7 +110,7 @@ function ResponsiveDrawer(props) {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar} displayInput={displayFlagSubmit} >
+      <AppBar position="fixed" className={classes.appBar} displayinput={displayFlagSubmit} >
         <Toolbar>
           <IconButton
             color="inherit"
