@@ -1,6 +1,6 @@
 # Code 
 
-The following is the code that runs to allow you to play Noughts and Crosses
+The following is the code that runs to allow you to play Noughts and Crosses.
 
 ```java
 import java.util.*;
