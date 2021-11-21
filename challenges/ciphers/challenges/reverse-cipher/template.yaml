@@ -11,7 +11,7 @@ spec:
       spec:
         containers:
           - name: penimage
-            image: ghcr.io/acasi-ctf/challenges/ciphers:latest
+            image: ghcr.io/acasi-ctf/challenges/ciphers/reverse:latest
   services:
     - metadata:
         name: penimage-termproxy
