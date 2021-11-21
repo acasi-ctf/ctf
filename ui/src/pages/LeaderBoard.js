@@ -1,38 +1,39 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import '../style/LeaderBoard.css'
 
 
 export default function Leaderboard(props) {
+	const [dataLength, setDataLength] = useState(0);
 	useEffect(()=>{
 		fetch('/api/leaderboard')
-		.then(res=>{var p = Promise.resolve(res.json());
-								p.then(
-									function(data){
-										let idx;
-										let table = document.getElementById('tableBody')
-										for (idx=0; idx < data.length; idx++){
-											let row = table.insertRow(idx);
+		.then(res=>{
+			var p = Promise.resolve(res.json());
+			p.then(
+				function(data){
+					setDataLength(data.length)
+					//sorting the data based on challengeCount (high > low)
+					data.sort((a,b) => (a.challengeCount > b.challengeCount) ? -1 : ((b.challengeCount > a.challengeCount) ? 1 : 0))
+					let idx;
+					let table = document.getElementById('tableBody')
+					for (idx=0; idx < data.length; idx++){
+						let row = table.insertRow(idx);
 
-											let rankInfo = row.insertCell(0);
-											rankInfo.classList.add("rankColumn");
-											rankInfo.innerHTML = idx.toString()
-											// rankInfo.innerHTML = "<div id=rI-"+idx.toString()+">"+idx.toString()+"</div>";
+						let rankInfo = row.insertCell(0);
+						rankInfo.classList.add("rankColumn");
+						rankInfo.innerHTML = idx.toString()
 
-											
-											let playerInfo = row.insertCell(1);
-											playerInfo.innerHTML = data[idx].userId;
-											playerInfo.classList.add("userColumn");
+						let playerInfo = row.insertCell(1);
+						playerInfo.innerHTML = data[idx].userId;
+						playerInfo.classList.add("userColumn");
 
-
-											let playerScore = row.insertCell(2);
-											playerScore.innerHTML = data[idx].challengeCount.toString();
-											playerScore.classList.add("scoreColumn");
-										}
-									}
-								)
-							}
-					)
-	});
+						let playerScore = row.insertCell(2);
+						playerScore.innerHTML = data[idx].challengeCount.toString();
+						playerScore.classList.add("scoreColumn");
+					}
+				}
+			)
+		});
+	},[]);
 
     return (
         <div id="roundsModeTab" className="mode-page" role="tabpanel"
@@ -40,32 +41,26 @@ export default function Leaderboard(props) {
             <h1 className="mode-page-header">Leaderboard</h1>
             <table id="roundsTable" className="table table-hover caption-top">
                 <caption id="roundsTableCaption" aria-live="polite">
-                {"Table displaying " + 0  + " speedgolf round" + 
-                    (0 !== 1 ? "s" : "")}
+                {"Table displaying top " + dataLength  + " highest score player" + 
+                    (dataLength !== 1 ? "s" : "")}
                 </caption>
                 <thead className="table-light">
                     <tr>
                         <th scope="col" role="columnheader" 
                             className="rankColumn sortable-header cell-align-middle" 
                             aria-sort="none">
-                            <button className="btn bg-transparent table-sort-btn" 
-                                    aria-label="Sort ascending by date">
-                            </button>Rank
+                            Rank
                         </th>
                         
                         <th scope="col" role="columnheader" 
                             className="userColumn sortable-header cell-align-middle" 
                             aria-sort="none">
-                            <button className="btn bg-transparent table-sort-btn" 
-                                    aria-label="Sort ascending by course">
-                            </button>Player
+                            Player
                         </th>
                         <th scope="col" role="columnheader"
                             className="scoreColumn sortable-header cell-align-middle"
                             aria-sort="none">
-                            <button className="btn bg-transparent table-sort-btn" 
-                                    aria-label="Sort ascending by score">
-                            </button>Score
+                            Score
                         </th>
                     </tr>
                 </thead>
