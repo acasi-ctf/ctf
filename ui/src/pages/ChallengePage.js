@@ -108,6 +108,9 @@ export default function ChallengePage() {
 
   return (
       <div className="ChallengePageContainter">
+        <div className="terminalBox">
+          <Terminal key={envId} id={envId}/>
+        </div>
         <div className="ChallengeSet1">
           <core.AppBar position="absolute" color="default">
             <core.Tabs value={value} indicatorColor="primary"
@@ -128,9 +131,6 @@ export default function ChallengePage() {
             <ReactMarkdown remarkPlugins={[gfm]} children={txt}
                            style={{marginLeft: "10px"}}/>
           </TabPanel>
-        </div>
-        <div className="terminalBox">
-          <Terminal key={envId} id={envId}/>
         </div>
       </div>
   );
