@@ -12,7 +12,7 @@
 }
 
 .terminalBox {
-    right: 0;
+    left: 0;
     width: calc(50% - 5px);
     height: calc(100% - 40px);
     position: absolute;
@@ -20,11 +20,11 @@
 }
 
 .ChallengePageContainter{
-    width: calc(100% - 280px);
+    width: calc(100% - 290px);
     height: calc(100% - 27px - 30px);
     position: fixed;
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
 }
 
 .right-column {

@@ -7,3 +7,19 @@
     align-items: center;
     height: 90vh;
 }
+
+.rankColumn{
+    width: 25%;
+}
+
+.userColumn{
+    width: 50%;
+}
+
+.scoreColumn{
+    width: 25%;
+}
+
+.rankAndScore{
+    padding-left: 50px;
+}

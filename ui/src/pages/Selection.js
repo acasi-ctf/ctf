@@ -12,7 +12,7 @@ export default function Selection() {
                         <div className="col-lg-4 col-md-6">
                             <Link to={'/play/ciphers/caesar-cipher'}>
                                 <Card>
-                                    <Card.Img variant="null" src="challenges/c001.jpg" alt="thumb" class="mw-100"/>
+                                    <Card.Img variant="null" src="challenges/c001.jpg" alt="thumb" className="mw-100"/>
                                     <Card.Body className="p-0">
                                     <Card.Text className="text-center">
                                         Caesar Cipher
@@ -24,7 +24,7 @@ export default function Selection() {
                         <div className="col-lg-4 col-md-6">
                             <Link to={'./play/ciphers/letter-to-number'}>
                                 <Card>
-                                    <Card.Img variant="null" src="challenges/c002.jpg" alt="thumb" class="mw-100"/>
+                                    <Card.Img variant="null" src="challenges/c002.jpg" alt="thumb" className="mw-100"/>
                                     <Card.Body className="p-0">
                                     <Card.Text className="text-center">
                                     Letter to Number Cipher
@@ -36,7 +36,7 @@ export default function Selection() {
                         <div className="col-lg-4 col-md-6">
                             <Link to={'./play/ciphers/morse-code'}>
                                 <Card>
-                                    <Card.Img variant="null" src="challenges/c003.jpg" alt="thumb" class="mw-100"/>
+                                    <Card.Img variant="null" src="challenges/c003.jpg" alt="thumb" className="mw-100"/>
                                     <Card.Body className="p-0">
                                         <Card.Text className="text-center">
                                         Morse Code Cipher
@@ -49,7 +49,7 @@ export default function Selection() {
                         <div className="col-lg-4 col-md-6">
                             <Link to={'./play/ciphers/reverse-cipher'}>
                                 <Card>
-                                    <Card.Img variant="null" src="challenges/c004.jpg" alt="thumb" class="mw-100"/>
+                                    <Card.Img variant="null" src="challenges/c004.jpg" alt="thumb" className="mw-100"/>
                                     <Card.Body className="p-0">
                                     <Card.Text className="text-center">
                                     Reverse Cipher
@@ -61,7 +61,7 @@ export default function Selection() {
                         <div className="col-lg-4 col-md-6">
                             <Link to={'./play/ciphers/comprehensive-challenge'}>
                                 <Card>
-                                    <Card.Img variant="null" src="challenges/c003.jpg" alt="thumb" class="mw-100"/>
+                                    <Card.Img variant="null" src="challenges/c003.jpg" alt="thumb" className="mw-100"/>
                                     <Card.Body className="p-0">
                                     <Card.Text className="text-center">
                                     Comprehensive Cipher
@@ -73,7 +73,7 @@ export default function Selection() {
                         {/* <div className="col-lg-4 col-md-6">
                             <Link to={'./directory-traversal'}>
                                 <Card>
-                                    <Card.Img variant="null" src="challenges/c001.jpg" alt="thumb" class="mw-100"/>
+                                    <Card.Img variant="null" src="challenges/c001.jpg" alt="thumb" className="mw-100"/>
                                     <Card.Body className="p-0">
                                     <Card.Text className="text-center">
                                     Directory Traversal
@@ -86,7 +86,7 @@ export default function Selection() {
                         <div className="col-lg-4 col-md-6">
                             <Link to={'./web-structure'}>
                                 <Card>
-                                    <Card.Img variant="null" src="challenges/thumb03.jpg" alt="thumb" class="mw-100"/>
+                                    <Card.Img variant="null" src="challenges/thumb03.jpg" alt="thumb" className="mw-100"/>
                                     <Card.Body className="p-0">
                                     <Card.Text className="text-center">
                                     Web Structure

@@ -66,6 +66,8 @@ export default function ChallengePage() {
     fetch(`/api/challenge-sets/${csSlug}/challenges/${cSlug}`)
     .then((res) => res.json())
     .then((json) => {
+      //sorting array of documentation based on its order
+      json.documentation.sort((a,b) => (a.order > b.order) ? 1 : ((b.order > a.order) ? -1 : 0))
       // console.log(json);
       setValue(0);
       setData(json);
@@ -108,6 +110,9 @@ export default function ChallengePage() {
 
   return (
       <div className="ChallengePageContainter">
+        <div className="terminalBox">
+          <Terminal key={envId} id={envId}/>
+        </div>
         <div className="ChallengeSet1">
           <core.AppBar position="absolute" color="default">
             <core.Tabs value={value} indicatorColor="primary"
@@ -128,9 +133,6 @@ export default function ChallengePage() {
             <ReactMarkdown remarkPlugins={[gfm]} children={txt}
                            style={{marginLeft: "10px"}}/>
           </TabPanel>
-        </div>
-        <div className="terminalBox">
-          <Terminal key={envId} id={envId}/>
         </div>
       </div>
   );
