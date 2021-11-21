@@ -9,6 +9,7 @@ import ChallengeBar from "./components/AppBar";
 import Selection from "./pages/Selection.js"
 import Home from "./pages/Home";
 import leaderboard from "./pages/LeaderBoard";
+import UploadChallengeSet from "./pages/admin/UploadChallengeSet";
 /********************************************** Dynamic Pages *******************************************************************/
 import ChallengePage from "./pages/ChallengePage";
 import StartChallengePage from "./pages/StartChallengePage";
@@ -45,6 +46,9 @@ export default function App() {
             <Route path="/env/:csSlug/:cSlug/:envId">
               <ChallengePage/>
             </Route>
+
+            {/* Administration pages */}
+            <Route path="/admin/upload" component={UploadChallengeSet}/>
           </Switch>
         </div>
       </div>
