@@ -1,4 +1,5 @@
 import random
+import base64
 
 #Random String
 def random_alphabet():
@@ -30,6 +31,14 @@ def Caesar(flag,number):
 
     return after
 
+def convert():
+
+    s ="Q0FFUy1BUkNILUFMTEUtTkdFMQ=="
+    b = s.encode("ascii")
+    b64 = base64.b64decode(b)
+    output = b64.decode("ascii")
+    print(output)
+
 def main():
 
     number = random.randint(1,10)
@@ -51,7 +60,8 @@ def main():
             print("Nope!Try Again!")
             continue
 
-    print("Congratulations! You get 10 points!")
+    print("Congratulations! The flag is:")
+    convert()
 
 if __name__ == "__main__":
     main()
