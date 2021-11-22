@@ -1,7 +1,15 @@
 """
 This file defines database tables for the Frontend API using SQLAlchemy.
 """
-from sqlalchemy import Column, ForeignKey, Text, text, PrimaryKeyConstraint, Integer
+from sqlalchemy import (
+    Column,
+    ForeignKey,
+    Text,
+    text,
+    PrimaryKeyConstraint,
+    Integer,
+    DateTime,
+)
 from sqlalchemy.dialects.postgresql import BYTEA, JSONB, UUID
 from sqlalchemy.orm import relationship
 
@@ -97,6 +105,16 @@ class Challenge(db.Model):
     """
     documentation = relationship("Documentation")
 
+    """
+    Features of a challenge.
+    """
+    features = Column(JSONB, server_default="[]", nullable=False)
+
+    """
+    Flag information for a challenge.
+    """
+    flag = Column(JSONB, server_default='{"type": "none"}', nullable=False)
+
 
 class Documentation(db.Model):
     """
@@ -132,3 +150,80 @@ class Documentation(db.Model):
     Contents of this documentation.
     """
     content = Column(BYTEA, nullable=False)
+
+
+class UserChallenges(db.Model):
+    """
+    This table contains data on recently run challenges.
+    """
+
+    __tablename__ = "user_challenges"
+
+    """
+    ID of challenge run.
+    """
+    challenge_id = Column(
+        UUID(as_uuid=True), ForeignKey("challenge.id", ondelete="CASCADE")
+    )
+
+    """
+    ID of user who ran challenge.
+    """
+    user_id = Column(UUID(as_uuid=True), nullable=False)
+
+    """
+    Time challenge was initialized.
+    """
+    created = Column(DateTime, nullable=False)
+
+    """
+    ID of the environment created.
+    """
+    environment_id = Column(
+        UUID(as_uuid=True),
+        server_default="00000000-0000-0000-0000-000000000000",
+        nullable=False,
+    )
+
+    __table_args__ = (PrimaryKeyConstraint(challenge_id, user_id, created),)
+
+
+class CompletedChallenge(db.Model):
+    """
+    This table contains data on completed challenges.
+    """
+
+    __tablename__ = "completed_challenge"
+
+    """
+    ID of challenge completed.
+    """
+    challenge_id = Column(
+        UUID(as_uuid=True), ForeignKey("challenge.id", ondelete="CASCADE")
+    )
+
+    """
+    ID of user who completed challenge.
+    """
+    user_id = Column(UUID(as_uuid=True), nullable=False)
+
+    """
+    ID of the environment completed.
+    """
+    environment_id = Column(
+        UUID(as_uuid=True),
+        nullable=False,
+    )
+
+    """
+    Time challenge was completed.
+    """
+    completed = Column(DateTime, nullable=False)
+
+    __table_args__ = (
+        PrimaryKeyConstraint(
+            challenge_id,
+            user_id,
+            environment_id,
+        ),
+    )

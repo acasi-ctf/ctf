@@ -1,7 +1,4 @@
 {
-  "manifests": {
-    "pods": [
-      "dvwa.yaml"
-    ]
-  }
+  "templatePath": "dvwa.yaml",
+  "templateCRDVersion": "v1alpha1"
 }

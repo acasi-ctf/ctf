@@ -2,7 +2,13 @@
 .idea/
 
 ui/node_modules/
+ui/.env.*
 
 *.db
 
 super-linter.log
+
+work/
+sprint-reports/
+
+ui/.env*

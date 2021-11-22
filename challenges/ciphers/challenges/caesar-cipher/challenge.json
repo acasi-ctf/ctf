@@ -9,12 +9,12 @@
   },
   "documentation": [
     {
-      "name": "Cryptography",
-      "path": "docs/1-Cryptography.md"
-    },
-    {
       "name": "Caesar cipher",
       "path": "docs/Caesar-cipher.md"
+    },
+    {
+      "name": "Terminal Usage",
+      "path": "docs/Terminal_Use.md"
     }
   ]
 }

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -11,22 +11,17 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
-
-
-// import { makeStyles } from '@material-ui/core/styles';
-import Layout from '../pageLayout.js';
 import ChallengeBar from "./AppBar";
 import * as core from '@material-ui/core';
 import {staticMenuData} from './MenuBarData';
 import {Link} from 'react-router-dom';
 import SubMenu from './SubMenu.js';
 import useFetchAuth from "../useFetchAuth";
-
+import {useAuth0} from "@auth0/auth0-react";
 
 const drawerWidth = 280;
 
-const appBarHeight = 0;
-const APIpath = 'api/challenge-sets';
+const APIpath = '/api/challenge-sets';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -49,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
+    overflowX: 'hidden'
   },
   content: {
     flexGrow: 1,
@@ -61,45 +57,70 @@ function ResponsiveDrawer(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [displayFlagSubmit, setDisplayFlagSubmit ] = useState(false);
+  const [isAdmin, setAdmin] = useState(false);
+  const {getIdTokenClaims} = useAuth0();
 
-  const [title, setTitle] = useState("Home");
-
-    //   API GET REQUEST For items that shows up in the mneu list
+  // API GET REQUEST For items that shows up in the menu list
+  // TODO: Handle error/loading states.
   const { data, error, loading } = useFetchAuth(APIpath);
+
+  useEffect(() => {
+    async function queryAdmin() {
+      let claims = await getIdTokenClaims();
+      let roles = claims["http://acasictf.org/roles"] || [];
+      let isAdmin = roles.includes("Administrator");
+      setAdmin(isAdmin);
+    }
+
+    queryAdmin();
+  });
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
+  const resetFlagSubmit = ()=>{
+    if(displayFlagSubmit){
+      const inputSubmitFlag = document.getElementById('inputSubmitFlag');
+      inputSubmitFlag.value = "";
+      setDisplayFlagSubmit(false);
+    }
+  }
+
   const drawer = (
     <div>
       <div className="paddingtop" />
-            {/* /* LIST 1 */}
-            {/* Data in this list is read from local file */}
-      <core.List>
-            {staticMenuData.map((item,index)=>{return(
-                            <core.ListItem button key={index} style={{display:'flex', flexDirection:'column', alignItems:'flex-start'}}>
-                                <Link to={item.path} style={{textDecoration:'none'}} onClick={()=>{setTitle(item.name)}} >
-                                    <div style={{display:'flex', flexDirection: 'row'}}>
-                                        <core.ListItemIcon style={{minWidth:'0'}}>{item.icon}</core.ListItemIcon>
-                                        <core.ListItemText style={{color:'#000000', marginLeft:'16px', marginRight:'25px'}}
-                                        primary={<core.Typography style={{fontSize:'15px'}}>{item.name}</core.Typography>} />   
-                                    </div>
-                                </Link> 
-                            </core.ListItem>
-                        );
-                    })}
-                </core.List>
+        {/* /* LIST 1 */}
+        {/* Data in this list is read from local file */}
+        <core.List>
+          {staticMenuData.map((item,index)=>{
+            if (item.adminOnly === true && !isAdmin) {
+              return null;
+            }
 
-                <core.Divider />
-
-                {/* LIST 2 */}
-                {/* Data in this list is read over API */}
-                <core.List >    
-                    {data.map((item)=>{
-                        return <SubMenu path={APIpath} listItem={item} key={item.id} changeTitle={title => setTitle(title)}/>;
-                    })}
-                </core.List>
+            return (
+              <core.ListItem button key={index} style={{display:'flex', flexDirection:'column', alignItems:'flex-start'}}>
+                  <Link to={item.path} style={{textDecoration:'none'}} onClick={resetFlagSubmit} >
+                      <div style={{display:'flex', flexDirection: 'row'}}>
+                          <core.ListItemIcon style={{minWidth:'0'}}>{item.icon}</core.ListItemIcon>
+                          <core.ListItemText style={{color:'#000000', marginLeft:'16px', marginRight:'25px'}}
+                          primary={<core.Typography style={{fontSize:'15px'}}>{item.name}</core.Typography>} />   
+                      </div>
+                  </Link> 
+              </core.ListItem>
+            );
+          })}
+        </core.List>
+        <core.Divider />
+        {/* LIST 2 */}
+        {/* Data in this list is read over API */}
+        <core.List >    
+            {data.map((item)=>{
+                return <SubMenu path={APIpath} listItem={item} key={item.id} 
+                        displayInput={displayFlagSubmit} setDisplay={setDisplayFlagSubmit}/>;
+            })}
+        </core.List>
     </div>
   );
 
@@ -108,7 +129,7 @@ function ResponsiveDrawer(props) {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar}>
+      <AppBar position="fixed" className={classes.appBar} displayinput={displayFlagSubmit} >
         <Toolbar>
           <IconButton
             color="inherit"
@@ -119,7 +140,7 @@ function ResponsiveDrawer(props) {
           >
             <MenuIcon />
           </IconButton>
-          <ChallengeBar name={"Testing"}/>
+          <ChallengeBar name={"Testing"} displayInput={displayFlagSubmit} setDisplay={setDisplayFlagSubmit} />
         </Toolbar>
       </AppBar>
       <nav className={classes.drawer} aria-label="mailbox folders">

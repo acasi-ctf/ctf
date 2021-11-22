@@ -1,7 +1,17 @@
-# Letter to Number
+# Letter to Number Challenge
+
+## Starting the Challenge
+
+To start the challenge type the following into the terminal:
+
+```language-shell
+python3 Letter-to-Number.py
+```
+
+## Letter to Number Ciphers
 The letter to number cipher is very simple. It converts a letter to a number, such as A = 1, B = 2, and so on.
 
-## Table
+### Table
 |  Letter   | Number  |
 |  ----  | ----  |
 | A  | 1 |
@@ -31,6 +41,6 @@ The letter to number cipher is very simple. It converts a letter to a number, su
 | Y  | 25 |
 | Z  | 26 |
 
-## Example
+### Example
 Code = "14 21 13 2 5 18"
 Decode = "NUMBER"

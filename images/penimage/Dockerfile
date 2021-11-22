@@ -9,6 +9,7 @@ RUN apt-get update && \
 
 # Create the player user account
 RUN useradd -m player -s /bin/bash
+RUN echo "export PS1=\"shell> \"" > /home/player/.bashrc
 
 # This builds the keys that are necessary for sshd to start
 RUN service ssh start

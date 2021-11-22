@@ -1,11 +1,6 @@
 package model
 
-type Paths []string
-
 type KubernetesProvisioner struct {
-	Manifests *KubernetesManifests
-}
-
-type KubernetesManifests struct {
-	Pods Paths
+	TemplatePath       string `json:"templatePath"`
+	TemplateCRDVersion string `json:"templateCRDVersion"`
 }

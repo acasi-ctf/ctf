@@ -1,13 +1,24 @@
 PROTOSRC = proto/common proto/termproxy proto/ctfoperator proto/ctfoperator_internal
 
-IMAGE_CTF_BASE = ghcr.io/acasi-ctf/ctf
-IMAGE_CHALLENGES_BASE = ghcr.io/acasi-ctf/challenges
-IMAGE_TAG = latest
+IMAGE_CTF_BASE        ?= ghcr.io/acasi-ctf/ctf
+IMAGE_CHALLENGES_BASE ?= ghcr.io/acasi-ctf/challenges
+IMAGE_TAG             ?= latest
+
+docker_info:
+	@echo Platform base:   $(IMAGE_CTF_BASE)
+	@echo Challenges base: $(IMAGE_CHALLENGES_BASE)
+	@echo Image tag:       $(IMAGE_TAG)
 
 all: proto docker
 
 proto: $(PROTOSRC)
 docker: docker_penimage docker_termproxy docker_ui docker_frontend docker_operatorkt
+docker_challenges: docker_challenge_cipher_caesar docker_challenge_cipher_comprehensive \
+				   docker_challenge_cipher_letter_number docker_challenge_cipher_morse \
+				   docker_challenge_cipher_reverse \
+				   docker_challenge_games_noughts docker_challenge_games_prize \
+   				   docker_challenge_games_rps docker_challenge_games_seven_up \
+   				   docker_challenge_games_yahtzee
 
 $(PROTOSRC): %:%.proto
 	mkdir -p pb/
@@ -46,10 +57,64 @@ ifeq ($(DOCKER_PUSH), 1)
 		docker push $(IMAGE_CTF_BASE)/frontend:$(IMAGE_TAG)
 endif
 
-docker_challenge_cipher:
-	docker build -t $(IMAGE_CHALLENGES_BASE)/ciphers:$(IMAGE_TAG) -f images/challenges/ciphers/Dockerfile .
+docker_challenge_cipher_caesar:
+	docker build -t $(IMAGE_CHALLENGES_BASE)/ciphers/caesar:$(IMAGE_TAG) -f images/challenges/ciphers/caesar/Dockerfile .
 ifeq ($(DOCKER_PUSH), 1)
-		docker push $(IMAGE_CHALLENGES_BASE)/ciphers:$(IMAGE_TAG)
+		docker push $(IMAGE_CHALLENGES_BASE)/ciphers/caesar:$(IMAGE_TAG)
+endif
+
+docker_challenge_cipher_comprehensive:
+	docker build -t $(IMAGE_CHALLENGES_BASE)/ciphers/comprehensive:$(IMAGE_TAG) -f images/challenges/ciphers/comprehensive/Dockerfile .
+ifeq ($(DOCKER_PUSH), 1)
+		docker push $(IMAGE_CHALLENGES_BASE)/ciphers/comprehensive:$(IMAGE_TAG)
+endif
+
+docker_challenge_cipher_letter_number:
+	docker build -t $(IMAGE_CHALLENGES_BASE)/ciphers/letter-number:$(IMAGE_TAG) -f images/challenges/ciphers/letter-number/Dockerfile .
+ifeq ($(DOCKER_PUSH), 1)
+		docker push $(IMAGE_CHALLENGES_BASE)/ciphers/letter-number:$(IMAGE_TAG)
+endif
+
+docker_challenge_cipher_morse:
+	docker build -t $(IMAGE_CHALLENGES_BASE)/ciphers/morse:$(IMAGE_TAG) -f images/challenges/ciphers/morse/Dockerfile .
+ifeq ($(DOCKER_PUSH), 1)
+		docker push $(IMAGE_CHALLENGES_BASE)/ciphers/morse:$(IMAGE_TAG)
+endif
+
+docker_challenge_cipher_reverse:
+	docker build -t $(IMAGE_CHALLENGES_BASE)/ciphers/reverse:$(IMAGE_TAG) -f images/challenges/ciphers/reverse/Dockerfile .
+ifeq ($(DOCKER_PUSH), 1)
+		docker push $(IMAGE_CHALLENGES_BASE)/ciphers/reverse:$(IMAGE_TAG)
+endif
+
+docker_challenge_games_noughts:
+	docker build -t $(IMAGE_CHALLENGES_BASE)/games/noughts:$(IMAGE_TAG) -f images/challenges/games/noughts/Dockerfile .
+ifeq ($(DOCKER_PUSH), 1)
+		docker push $(IMAGE_CHALLENGES_BASE)/games/noughts:$(IMAGE_TAG)
+endif
+
+docker_challenge_games_prize:
+	docker build -t $(IMAGE_CHALLENGES_BASE)/games/prize:$(IMAGE_TAG) -f images/challenges/games/prize/Dockerfile .
+ifeq ($(DOCKER_PUSH), 1)
+		docker push $(IMAGE_CHALLENGES_BASE)/games/prize:$(IMAGE_TAG)
+endif
+
+docker_challenge_games_rps:
+	docker build -t $(IMAGE_CHALLENGES_BASE)/games/rock-paper-scissors:$(IMAGE_TAG) -f images/challenges/games/rock-paper-scissors/Dockerfile .
+ifeq ($(DOCKER_PUSH), 1)
+		docker push $(IMAGE_CHALLENGES_BASE)/games/rock-paper-scissors:$(IMAGE_TAG)
+endif
+
+docker_challenge_games_seven_up:
+	docker build -t $(IMAGE_CHALLENGES_BASE)/games/seven-up:$(IMAGE_TAG) -f images/challenges/games/seven-up/Dockerfile .
+ifeq ($(DOCKER_PUSH), 1)
+		docker push $(IMAGE_CHALLENGES_BASE)/games/seven-up:$(IMAGE_TAG)
+endif
+
+docker_challenge_games_yahtzee:
+	docker build -t $(IMAGE_CHALLENGES_BASE)/games/yahtzee:$(IMAGE_TAG) -f images/challenges/games/yahtzee/Dockerfile .
+ifeq ($(DOCKER_PUSH), 1)
+		docker push $(IMAGE_CHALLENGES_BASE)/games/yahtzee:$(IMAGE_TAG)
 endif
 
 lint:

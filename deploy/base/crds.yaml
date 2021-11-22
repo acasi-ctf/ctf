@@ -48,6 +48,18 @@ spec:
                                   type: string
                                 image:
                                   type: string
+                                env:
+                                  type: array
+                                  items:
+                                    type: object
+                                    required:
+                                      - name
+                                      - value
+                                    properties:
+                                      name:
+                                        type: string
+                                      value:
+                                        type: string
                               required:
                                 - image
                         required:
@@ -83,6 +95,11 @@ spec:
                                   enum:
                                     - TCP
                                     - UDP
+                                ctfExpose:
+                                  type: string
+                                  enum:
+                                    - None
+                                    - Termproxy
                               required:
                                 - port
                           selector:
@@ -114,6 +131,11 @@ spec:
                               - Prefix
                               - Exact
                               - ImplementationSpecific
+                          ctfExpose:
+                            type: string
+                            enum:
+                              - None
+                              - Web
                           backend:
                             type: object
                             properties:

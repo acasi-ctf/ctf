@@ -1,9 +1,6 @@
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import { fade, makeStyles } from '@material-ui/core/styles';
-import SearchIcon from '@material-ui/icons/Search';
 import AppBarActions from "./AppBarActions";
 
 const useStyles = makeStyles((theme) => ({
@@ -69,25 +66,13 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ChallengeBar(props) {
     const classes = useStyles();
-    var bannerTitle = "";
-    if(props.name.includes("Challenge") && !props.name.includes("Set") && props.name.length <= 11){
-        bannerTitle = "Current Challenge: " + props.name
-    }else{
-        bannerTitle = props.name
-    }
+
     return (
         <div className={classes.root}>
             <AppBar position="static">
                 <div className="container">
-                    {/* <Toolbar> */}
-                        {/* <Typography className={classes.title} variant="h6" noWrap> */}
-                            {/* {bannerTitle} */}
-                            {/* <img src="logo.svg" alt="logo"/> */}
-                        {/* </Typography> */}
-
-                        {/* the bellow is for credential login and survey button */}
-                        <AppBarActions/>
-                    {/* </Toolbar> */}
+                    {/* the bellow is for credential login and survey button */}
+                    <AppBarActions displayinput={props.displayinput} setDisplay={props.setDisplay}/>
                 </div>
             </AppBar>
         </div>

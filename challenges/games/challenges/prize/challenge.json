@@ -1,0 +1,20 @@
+{
+  "$schema": "../../../schemas/challenge.schema.json",
+  "id": "69eb3f04-58f3-4c5b-a9b1-c4e0da1815e0",
+  "slug": "prize",
+  "name": "Prize",
+  "description": "Game of prize",
+  "provisioner": {
+    "type": "kubernetes"
+  },
+  "documentation": [
+    {
+      "name": "Prize",
+      "path": "docs/DoorGame.md"
+    },
+    {
+      "name": "Code",
+      "path": "docs/Code.md"
+    }
+  ]
+}

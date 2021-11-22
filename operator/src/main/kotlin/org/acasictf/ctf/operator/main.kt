@@ -9,6 +9,7 @@ import org.acasictf.ctf.operator.persistence.EnvironmentDao
 import org.acasictf.ctf.operator.persistence.PersistenceLayerImpl
 import org.acasictf.ctf.operator.persistence.GlobalConfig
 import org.acasictf.ctf.operator.provisioner.kubernetes.EnvListener
+import org.acasictf.ctf.operator.provisioner.kubernetes.KubernetesPurger
 import org.acasictf.ctf.operator.service.LookupService
 import org.acasictf.ctf.operator.service.ProvisioningService
 import java.io.File
@@ -34,6 +35,21 @@ fun main() {
         .addService(LookupService(envDao, client))
         .build()
 
+    val kubernetesPurger = KubernetesPurger(client)
+
+    val purgerThread = Thread {
+        logger.info("Starting purge thread")
+        while (!Thread.interrupted()) {
+            Thread.sleep(60 * 1_000)
+            val purged = kubernetesPurger.purge()
+            if (purged > 0) {
+                logger.info("Purged $purged old environments")
+            }
+        }
+    }
+    purgerThread.name = "EnvPurger"
+    purgerThread.start()
+
     kubeNamespace = client.namespace
 
     Runtime.getRuntime().addShutdownHook(Thread {
@@ -43,6 +59,7 @@ fun main() {
     val informerFactory = client.informers()
 
     val envInformer = informerFactory
+        .inNamespace(kubeNamespace)
         .sharedIndexInformerForCustomResource(
             Environment::class.java,
             EnvironmentList::class.java,

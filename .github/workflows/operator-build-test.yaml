@@ -14,8 +14,8 @@ jobs:
       - name: Set up AdoptOpenJDK
         uses: actions/setup-java@v2
         with:
-          java-version: '15'
-          distribution: 'adopt'
+          java-version: '17'
+          distribution: 'temurin'
       - name: Build and Test
         run: |
           cd operator

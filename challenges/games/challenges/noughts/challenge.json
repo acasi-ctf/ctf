@@ -1,0 +1,20 @@
+{
+  "$schema": "../../../schemas/challenge.schema.json",
+  "id": "24477f75-fe6e-4037-9c31-148e13c77d50",
+  "slug": "noughts",
+  "name": "Noughts",
+  "description": "Game of Noughts",
+  "provisioner": {
+    "type": "kubernetes"
+  },
+  "documentation": [
+    {
+      "name": "Noughts",
+      "path": "docs/Noughts.md"
+    },
+    {
+     "name": "Code",
+      "path": "docs/Code.md"
+    }
+  ]
+}

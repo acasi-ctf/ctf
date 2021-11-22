@@ -29,13 +29,19 @@
 .topNav .navbar-toggler:hover {
     background: transparent;
 }
-.topNav .navbar-light .navbar-nav .nav-link {
+.topNav .navbar-light .navbar-nav .nav-link  {
     font-size: 14px;
     font-weight: 500;
     line-height: 21px;
     color: #fff;
     text-transform: uppercase;
 }
+
+.topNav:hover .navbar-light:hover .navbar-nav:hover .nav-link:hover{
+    text-decoration: none;
+    border: 1px solid;
+}
+
 .topNav {
     padding: 27px 0 30px;
 }
@@ -55,6 +61,7 @@
 .mainContent {
     display: flex;
 }
+
 .grayCol {
     padding: 37px 34px 37px 38px;
     background: #f5f1f2;
@@ -263,6 +270,33 @@
     margin: 0 12px;
     padding: 0;
 }
+.uploadWrap{
+    padding: 10px 0;
+    height: calc(100vh - 200px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#roundsModeTab h1,
+.uploadWrap h1{
+    font-size: 25px;
+    font-weight: 500;
+    line-height: 38px;
+    color: #444444;
+    margin-bottom: 8px;
+}
+.uploadWrap .primaryBtn {
+    background: #1176AE;
+    color:#fff;
+    padding: 10px 20px;
+    min-width: 130px;
+    border-radius: 0;
+    margin: 0 10px 0 0;
+}
+.uploadWrap .primaryBtn:hover{
+    background: #1176AE;
+}
 @media all and (max-width:2500px) and (min-width:1700px) {
     .container {
         max-width: 1593px;
@@ -319,6 +353,9 @@
     }
 }
 @media all and (max-width:991px) {
+    .navbar-collapse{
+        height: 100vh;
+    }
     .ml-auto.navbar-nav .nav-link {
         border-bottom: 1px solid #fff;
     }
@@ -465,4 +502,31 @@ header .MuiToolbar-root{
         padding-top: 52px;
     }
     
+}
+
+
+.inputFlag{
+    background: #FFF;
+    outline: none;
+    border-radius: 10px 0 0 10px;
+    -webkit-transition: all 1s ease;  
+    -moz-transition: all 1s ease;  
+    -o-transition: all 1s ease;  
+    -ms-transition: all 1s ease;  
+    transition: all 1s ease;
+
+}
+
+.inputFlag-disable{
+    width: 0px;
+    visibility: hidden;
+    padding: 0px;
+    border: 0px solid;;
+}
+
+.inputFlag-enable{
+    border: 2px solid;
+    padding-left: 10px;
+    width: 200px;
+    visibility: visible;
 }

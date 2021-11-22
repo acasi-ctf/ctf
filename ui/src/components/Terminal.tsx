@@ -18,7 +18,7 @@ import {grpc} from "@improbable-eng/grpc-web";
 import {UUID} from "../generated/common_pb";
 import * as termproxy_pb from "../generated/termproxy_pb";
 
-let host = "ctf.cyberliteracyforall.com";
+let host = window.location.hostname;
 if (process.env.REACT_APP_TERMPROXY_HOST) {
     host = process.env.REACT_APP_TERMPROXY_HOST;
 }
@@ -34,9 +34,28 @@ export default function Terminal(props: TerminalOptions) {
     const xtermRef = useRef<XTerm>(null);
     const fitRef = useRef<FitAddon>(new FitAddon());
     const streamRef = useRef<BidirectionalStream<termproxy_pb.ClientMessage, termproxy_pb.ServerMessage>>(client.proxyTerminal());
+    const connectedRef = useRef(false);
 
     useEffect(() => {
+        function resize(rows: number, cols: number) {
+            let resizeMsg = new ResizeMessage();
+            resizeMsg.setColumns(cols);
+            resizeMsg.setRows(rows);
+            let msg = new ClientMessage();
+            msg.setResize(resizeMsg);
+            try {
+                streamRef.current.write(msg);
+            } catch (e) {
+            }
+        }
+
         async function connect(stream: BidirectionalStream<termproxy_pb.ClientMessage, termproxy_pb.ServerMessage>) {
+            connectedRef.current = false;
+            if (xtermRef.current != null) {
+                xtermRef.current.terminal.reset()
+                xtermRef.current.terminal.write("Connecting... (if this takes too long, refresh)\n")
+            }
+
             console.log("Starting stream");
 
             let envId = new UUID();
@@ -59,6 +78,13 @@ export default function Terminal(props: TerminalOptions) {
             }
 
             stream.on("data", (message) => {
+                if (!connectedRef.current) {
+                    connectedRef.current = true;
+                    if (xtermRef.current != null) {
+                        xtermRef.current.terminal.reset();
+                        resize(xtermRef.current.terminal.rows, xtermRef.current.terminal.cols);
+                    }
+                }
                 try {
                     switch (message.getMessageCase()) {
                         case ServerMessage.MessageCase.STDOUT:
@@ -89,7 +115,7 @@ export default function Terminal(props: TerminalOptions) {
                 setTimeout(() => {
                     streamRef.current = client.proxyTerminal();
                     connect(streamRef.current);
-                }, 5000);
+                }, 2000);
             });
         }
 
@@ -105,22 +131,21 @@ export default function Terminal(props: TerminalOptions) {
                 }
             });
             xtermRef.current.terminal.onResize((size) => {
-                let resizeMsg = new ResizeMessage();
-                resizeMsg.setColumns(size.cols);
-                resizeMsg.setRows(size.rows);
-                let msg = new ClientMessage();
-                msg.setResize(resizeMsg);
-                try {
-                    streamRef.current.write(msg);
-                } catch (e) {
-                }
+                resize(size.rows, size.cols);
             });
             xtermRef.current.terminal.loadAddon(fitRef.current);
-            fitRef.current.fit();
         }
 
         connect(streamRef.current);
     }, [props.id]);
 
-    return <XTerm className="Terminal" ref={xtermRef}/>;
+    useEffect(() => {
+        function handleResize() {
+            fitRef.current.fit();
+        }
+        window.addEventListener("resize", handleResize);
+        handleResize();
+    });
+
+    return <XTerm className="Terminal" ref={xtermRef}/>
 }

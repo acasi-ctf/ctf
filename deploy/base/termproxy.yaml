@@ -17,6 +17,7 @@ spec:
     spec:
       containers:
         - image: ghcr.io/acasi-ctf/ctf/termproxy:latest
+          imagePullPolicy: Always
           name: termproxy
           resources: { }
           volumeMounts:

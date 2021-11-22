@@ -1,9 +1,20 @@
 """
 Routes that relate to fetching challenge sets and challenges.
 """
-from flask import Blueprint, jsonify, Response
+import datetime
 
-from frontend.model.challenges import ChallengeSet, Challenge, Documentation
+from flask import Blueprint, jsonify, Response
+from sqlalchemy import func
+
+from frontend.extensions import db
+from frontend.model.challenges import (
+    ChallengeSet,
+    Challenge,
+    Documentation,
+    UserChallenges,
+    CompletedChallenge,
+)
+
 
 """
 Blueprint that encapsulates this group of routes.
@@ -26,12 +37,20 @@ def map_challenge(x):
     :param x: SQLAlchemy Challenge model.
     :return: Generic map containing relevant details for REST API.
     """
+
+    # Redact the flag from the API.
+    flag = x.flag
+    if "value" in flag:
+        flag["value"] = "REDACTED"
+
     return {
         "id": x.id,
         "slug": x.slug,
         "name": x.name,
         "description": x.description,
         "documentation": list(map(map_documentation, x.documentation)),
+        "features": x.features,
+        "flag": flag,
     }
 
 
@@ -111,3 +130,103 @@ def get_challenge_doc(challenge_set_slug, challenge_slug, doc_path):
     d = Documentation.query.filter_by(parent_id=c.id, path=doc_path).first_or_404()
 
     return Response(d.content, mimetype="text/markdown")
+
+
+@bp.route("/top-challenges")
+def get_top_challenges():
+    """
+    This route groups challenges and returns the play count of each.
+    :return: JSON list of challenge set and challenge objects, with their respective count.
+    """
+    joined = (
+        db.session.query(
+            UserChallenges.challenge_id,
+            func.count(UserChallenges.challenge_id).label("count"),
+            Challenge,
+            ChallengeSet,
+        )
+        .join(Challenge, UserChallenges.challenge_id == Challenge.id)
+        .join(ChallengeSet, Challenge.parent_id == ChallengeSet.id)
+        .group_by(UserChallenges.challenge_id, Challenge, ChallengeSet)
+        .order_by(func.count(UserChallenges.challenge_id).desc())
+        .limit(5)
+        .all()
+    )
+
+    def map_joined(x):
+        return {
+            "challengeSet": map_challenge_set(x["ChallengeSet"]),
+            "challenge": map_challenge(x["Challenge"]),
+            "playCount": x["count"],
+        }
+
+    challenges = map(map_joined, joined)
+
+    return jsonify(list(challenges))
+
+
+@bp.route("/trending-challenges")
+def get_trending_challenges():
+    """
+    This route groups challenges and returns the play count of each for the last
+    14 days.
+    :return: JSON list of challenge set and challenge objects, with their respective count.
+    """
+    today = datetime.date.today()
+    fourteen = datetime.timedelta(14)
+    begin_date = today - fourteen
+
+    joined = (
+        db.session.query(
+            UserChallenges.challenge_id,
+            func.count(UserChallenges.challenge_id).label("count"),
+            Challenge,
+            ChallengeSet,
+        )
+        .join(Challenge, UserChallenges.challenge_id == Challenge.id)
+        .join(ChallengeSet, Challenge.parent_id == ChallengeSet.id)
+        .filter(UserChallenges.created >= begin_date)
+        .group_by(UserChallenges.challenge_id, Challenge, ChallengeSet)
+        .order_by(func.count(UserChallenges.challenge_id).desc())
+        .filter()
+        .limit(5)
+        .all()
+    )
+
+    def map_joined(x):
+        return {
+            "challengeSet": map_challenge_set(x["ChallengeSet"]),
+            "challenge": map_challenge(x["Challenge"]),
+            "playCount": x["count"],
+        }
+
+    challenges = map(map_joined, joined)
+
+    return jsonify(list(challenges))
+
+
+@bp.route("/leaderboard")
+def get_leaderboard():
+    """
+    This route builds and returns the leaderboard.
+    :return: JSON list of user leaderboard objects.
+    """
+    joined = (
+        db.session.query(
+            CompletedChallenge.user_id,
+            func.count(CompletedChallenge.challenge_id).label("count"),
+        )
+        .group_by(CompletedChallenge.user_id)
+        .order_by(func.count(CompletedChallenge.challenge_id).desc())
+        .all()
+    )
+
+    def map_joined(x):
+        return {
+            "userId": x["user_id"],
+            "challengeCount": x["count"],
+        }
+
+    leaderboard = map(map_joined, joined)
+
+    return jsonify(list(leaderboard))

@@ -1,11 +1,13 @@
 package org.acasictf.ctf.operator.provisioner.kubernetes.creator
 
+import io.fabric8.kubernetes.api.model.EnvVar
 import io.fabric8.kubernetes.api.model.apps.StatefulSet
 import io.fabric8.kubernetes.api.model.apps.StatefulSetList
 import io.fabric8.kubernetes.client.dsl.MixedOperation
 import org.acasictf.ctf.operator.*
 import org.acasictf.ctf.operator.model.kubernetes.v1alpha1.EnvTemplate
 import org.acasictf.ctf.operator.model.kubernetes.v1alpha1.Environment
+import org.acasictf.ctf.operator.persistence.GlobalConfig
 
 /**
  * Implementation of [ResourceCreator] that will create the
@@ -16,7 +18,7 @@ class StatefulSetCreator(
     private val env: Environment,
     private val envTemplate: EnvTemplate,
     client: MixedOperation<StatefulSet, StatefulSetList, *>
-) : ResourceCreator<StatefulSet, StatefulSetList>(client) {
+) : ResourceCreator<StatefulSet, StatefulSetList>(client, env) {
     override fun generate() = envTemplate.spec.pods.map {
         statefulSet {
             metadata = meta {
@@ -35,6 +37,28 @@ class StatefulSetCreator(
                             container {
                                 name = c.name
                                 image = c.image
+
+                                // Backwards compatibility
+                                val initialEnvs = listOf(
+                                    env {
+                                        name = "PUBLIC_KEY"
+                                        value = GlobalConfig.publicKey
+                                    }
+                                )
+                                // New variables, which override existing ones
+                                val addonEnvs = listOf(
+                                    env {
+                                        name = "CTF_TERMPROXY_PUBLIC_KEY"
+                                        value = GlobalConfig.publicKey
+                                    }
+                                )
+
+                                env = initialEnvs + c.env.map { ev ->
+                                    EnvVar().apply {
+                                        name = ev.name
+                                        value = ev.value
+                                    }
+                                } + addonEnvs
                             }
                         }
                     }
