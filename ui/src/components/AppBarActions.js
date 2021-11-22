@@ -39,12 +39,12 @@ export default function AppBarActions(props) {
       //reset the input field
       inputSubmitFlag.value = "";
       if (ret.status === 204) {
-        props.setDisplay(!props.displayinput);
+        props.setDisplay(!props.displayInput);
         setDisplayToast(true);
         setColor("rgb(37, 190, 58)");
         setMessage("Congratulation! Flag is correct");
       } else if (ret.status === 400) {
-        props.setDisplay(!props.displayinput);
+        props.setDisplay(!props.displayInput);
         setDisplayToast(true);
         setColor("rgb(156, 55, 55)");
         setMessage("Incorrect flag. Try again");
@@ -55,7 +55,7 @@ export default function AppBarActions(props) {
       return;
     }
 
-    props.setDisplay(!props.displayinput);
+    props.setDisplay(!props.displayInput);
     inputSubmitFlag.focus();
   }
 
@@ -84,7 +84,7 @@ export default function AppBarActions(props) {
             <Nav.Link href="https://wsu.co1.qualtrics.com/jfe/form/SV_88hZcsQMzabAMOq" target="_blank">Report Issue</Nav.Link>
             <Nav.Link href="https://wsu.co1.qualtrics.com/jfe/form/SV_3HSX4XrAlj1L7mu" target="_blank">Anonymous Survey</Nav.Link>
             <input id="inputSubmitFlag" type="text"
-                   className={props.displayinput? "inputFlag inputFlag-enable":"inputFlag inputFlag-disable"}
+                   className={props.displayInput? "inputFlag inputFlag-enable":"inputFlag inputFlag-disable"}
                    maxLength="50" minLength="1"/>
 
             {
