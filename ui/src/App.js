@@ -36,9 +36,10 @@ export default function App() {
         <MenuBar/>
         <div className="container-fluid mt-110">
           <Switch>
-            <Route path="/" exact component={Home}/>
+            {/*<Route path="/" exact component={Home}/>*/}
+            <Route path="/" exact component={Selection}/>
             <Route path="/LeaderBoard" component={leaderboard}/>
-            <Route path="/selection" component={Selection}/>
+
             {/* Challenge Sets pages */}
             <Route path="/play/:csSlug/:cSlug">
               <StartChallengePage/>
