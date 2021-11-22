@@ -18,8 +18,11 @@ export default function TrendingChallengeCards() {
     return (
       <div>
         <ul>
-          {trendingChallenges.map((challenge) => {
-            return <ChallengeCard data={challenge.challenge} />;
+          {trendingChallenges.map((challenge,idx) => {
+            return <ChallengeCard 
+                      key={"trend"+idx.toString()}
+                      data={challenge.challenge} 
+                    />;
           })}
         </ul>
 

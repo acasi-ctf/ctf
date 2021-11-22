@@ -1,3 +1,4 @@
+/*this class is not being used for now*/
 .Home{
     display: flex;
     /* display item in middle in term of row */
@@ -6,4 +7,15 @@
     /* for align item to for, must include heigh on the container */
     align-items: center;
     height: 89vh;
+}
+
+.homePageContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+
+.challengeTitle{
+    font-size: 40px;
 }
