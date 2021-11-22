@@ -35,8 +35,8 @@ const useStyles = makeStyles({
 
 export default function ChallengeCard(props) {
   const classes = useStyles();
-  const { ChallengeSet } = useParams();
-  console.log(props.data)
+  // const { ChallengeSet } = useParams();
+  // console.log(props.data)
   return (
     // link to homepage for now. Will link to path later in future
     <Link to={'/'}>
