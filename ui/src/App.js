@@ -38,7 +38,7 @@ export default function App() {
           <Switch>
             {/*<Route path="/" exact component={Home}/>*/}
             <Route path="/" exact component={Selection}/>
-            <Route path="/LeaderBoard" component={leaderboard}/>
+            <Route path="/leaderboard" component={leaderboard}/>
 
             {/* Challenge Sets pages */}
             <Route path="/play/:csSlug/:cSlug">
