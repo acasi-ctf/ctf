@@ -59,7 +59,8 @@ def main():
         else:
             print("Nope!Try Again!")
             continue
-
+    
+    print()
     print("Congratulations! The flag is:")
     convert()
 
