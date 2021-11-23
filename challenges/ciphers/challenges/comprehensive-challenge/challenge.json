@@ -9,12 +9,8 @@
   },
   "documentation": [
     {
-      "name": "Cryptography",
-      "path": "docs/1-Cryptography.md"
-    },
-    {
-      "name": "Mixed challenge",
-      "path": "docs/Mixed-Challenge-1.md"
+      "name": "Comprehensive challenge",
+      "path": "docs/Mixed-Challenge.md"
     },
     {
       "name": "Terminal Usage",

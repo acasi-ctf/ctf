@@ -1,9 +1,14 @@
+# Code
+
+The following is the code that runs to allow you to play Seven Up.
+
+```java
 import java.util.Scanner;
 
 public class SevenUp {
-    public static void main(String[] args) throws Exception {
+    public static void main() throws Exception {
         System.out.println("\fHello.");
-        Thread.sleep(2000); // 3 seconds delay
+        Thread.sleep(2000);//3 seconds delay
         System.out.println("Let's play 7 up 7 down!");
         Thread.sleep(2000);
         int d1 = (int) (Math.random() * 6) + 1;
@@ -14,9 +19,9 @@ public class SevenUp {
 
         while (n != 0) {
             System.out.println("What do you predict?");
-            System.out.println("Type 1 and press enter for less than 7");
-            System.out.println("Type 2 and press enter for more than 7");
-            System.out.println("Type 3 and press enter for exactly 7");
+            System.out.println("Press 1 for less than 7");
+            System.out.println("Press 2 for more than 7");
+            System.out.println("Press 3 for exactly 7");
             int input = sc.nextInt();
 
             if (input != 1 && input != 2 && input != 3) {
@@ -30,12 +35,14 @@ public class SevenUp {
             else
                 System.out.println("You lose!");
 
-            System.out.println("Type 0 and press enter to quit and 4 to continue.");
+            System.out.println("Press 0 to quit and 4 to continue.");
             n = sc.nextInt();
             d1 = (int) (Math.random() * 6) + 1;
             d2 = (int) (Math.random() * 6) + 1;
             total = d1 + d2;
         }
-        System.out.println("Bye!");
+        if (n == 0)
+            System.out.println("Bye!");
     }
 }
+```

@@ -1,7 +1,12 @@
+# Code
+
+The following is the code that runs to allow you to play Rock Paper Scissors.
+
+```java
 import java.util.Scanner;
 
 public class RockPaperScissors {
-    public static void main(String[] args) throws Exception {
+    public static void main() throws Exception {
         System.out.println("\fLet's play rock, paper, scissors!");
         int n = 9;
         while (n != 0) {
@@ -37,3 +42,4 @@ public class RockPaperScissors {
         System.out.println("Bye!!");
     }
 }
+```

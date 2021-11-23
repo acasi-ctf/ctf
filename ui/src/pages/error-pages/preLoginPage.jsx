@@ -1,23 +1,31 @@
 import React from "react";
-import { useAuth0 } from "@auth0/auth0-react";
-import { Button, Form, Nav, Card} from "react-bootstrap";
+import {useAuth0} from "@auth0/auth0-react";
+import {Button, Card, Nav} from "react-bootstrap";
 
 export default function PreLoginPage() {
   const {
     loginWithPopup,
   } = useAuth0();
 
-return <div className="challengesWrap">
+  return <div className="challengesWrap">
     <div className="container">
       <div className="row mt-30">
         <div className="col-lg-8 col-md-7 mainContent">
           <div className="grayCol">
-            <h2>How Wireless Technology Is Changing Business</h2>
-            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical
-                Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at
-                Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a
-                Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the
-                undoubtable source.</p>
+            <h2>Welcome to Capture the Flag!</h2>
+
+            <p>Capture the flag is a web-based application that allows you to start learning the basics of
+              cyber
+              literacy. Here we have a collection of activities that you can interact with, whether it's a
+              familiar game
+              written by one of our high school contributors or a security challenge written by some of
+              our more
+              experienced developers, we invite you to interact with our application and any feedback is
+              welcome. This is
+              a Learning platform, so if you don't succeed at first, keep trying! No one has ever
+              accomplished anything
+              great by just giving up.
+            </p>
 
             <Nav className="actionLink">
               <Nav.Item className="mr77">
@@ -31,9 +39,10 @@ return <div className="challengesWrap">
         </div>
         <div className="col-lg-4 col-md-5">
           <div className="grayCol signinCol">
-              <h2 >Welcome to<br/><span><img src="/logo-dark.svg" alt="logo" /></span></h2>
+            <h2>Welcome to<br/><span><img src="/logo-dark.svg" alt="logo"/></span></h2>
             <img src="/login.svg" alt="login"/>
-            <Button className="butn primaryBtn" onClick={() => loginWithPopup()} variant="primary" type="submit">Sign Up</Button>
+            <Button className="butn primaryBtn" onClick={() => loginWithPopup()} variant="primary"
+                    type="submit">Sign Up</Button>
           </div>
         </div>
       </div>
@@ -53,89 +62,89 @@ return <div className="challengesWrap">
           <div className="col-lg-4 col-md-6">
             <Nav.Link href="#" onClick={() => loginWithPopup()}>
               <Card>
-                  <Card.Img variant="null" src="challenges/c001.jpg" alt="thumb" className="mw-100"/>
-                  <Card.Body className="p-0">
+                <Card.Img variant="null" src="challenges/c001.jpg" alt="thumb" className="mw-100"/>
+                <Card.Body className="p-0">
                   <Card.Text className="text-center">
-                      Caesar Cipher
+                    Caesar Cipher
                   </Card.Text>
-                  </Card.Body>
+                </Card.Body>
               </Card>
-              </Nav.Link>
+            </Nav.Link>
           </div>
           <div className="col-lg-4 col-md-6">
             <Nav.Link href="#" onClick={() => loginWithPopup()}>
               <Card>
-                  <Card.Img variant="null" src="challenges/c002.jpg" alt="thumb" className="mw-100"/>
-                  <Card.Body className="p-0">
+                <Card.Img variant="null" src="challenges/c002.jpg" alt="thumb" className="mw-100"/>
+                <Card.Body className="p-0">
                   <Card.Text className="text-center">
-                  Letter to Number Cipher
+                    Letter to Number Cipher
                   </Card.Text>
-                  </Card.Body>
+                </Card.Body>
               </Card>
-              </Nav.Link>
+            </Nav.Link>
           </div>
           <div className="col-lg-4 col-md-6">
-          <Nav.Link href="#" onClick={() => loginWithPopup()}>
+            <Nav.Link href="#" onClick={() => loginWithPopup()}>
               <Card>
-                  <Card.Img variant="null" src="challenges/c003.jpg" alt="thumb" className="mw-100"/>
-                  <Card.Body className="p-0">
-                      <Card.Text className="text-center">
-                      Morse Code Cipher
-                      </Card.Text>
-                  </Card.Body>
+                <Card.Img variant="null" src="challenges/c003.jpg" alt="thumb" className="mw-100"/>
+                <Card.Body className="p-0">
+                  <Card.Text className="text-center">
+                    Morse Code Cipher
+                  </Card.Text>
+                </Card.Body>
               </Card>
-              </Nav.Link>
+            </Nav.Link>
           </div>
 
           <div className="col-lg-4 col-md-6">
-          <Nav.Link href="#" onClick={() => loginWithPopup()}>
+            <Nav.Link href="#" onClick={() => loginWithPopup()}>
               <Card>
-                  <Card.Img variant="null" src="challenges/c004.jpg" alt="thumb" className="mw-100"/>
-                  <Card.Body className="p-0">
+                <Card.Img variant="null" src="challenges/c004.jpg" alt="thumb" className="mw-100"/>
+                <Card.Body className="p-0">
                   <Card.Text className="text-center">
-                  Reverse Cipher
+                    Reverse Cipher
                   </Card.Text>
-                  </Card.Body>
+                </Card.Body>
               </Card>
-              </Nav.Link>
+            </Nav.Link>
           </div>
           <div className="col-lg-4 col-md-6">
-          <Nav.Link href="#" onClick={() => loginWithPopup()}>
+            <Nav.Link href="#" onClick={() => loginWithPopup()}>
               <Card>
-                  <Card.Img variant="null" src="challenges/c003.jpg" alt="thumb" className="mw-100"/>
-                  <Card.Body className="p-0">
+                <Card.Img variant="null" src="challenges/c003.jpg" alt="thumb" className="mw-100"/>
+                <Card.Body className="p-0">
                   <Card.Text className="text-center">
-                  Comprehensive Cipher
+                    Comprehensive Cipher
                   </Card.Text>
-                  </Card.Body>
+                </Card.Body>
               </Card>
-              </Nav.Link>
+            </Nav.Link>
           </div>
           <div className="col-lg-4 col-md-6">
-          <Nav.Link href="#" onClick={() => loginWithPopup()}>
-                  <Card>
-                      <Card.Img variant="null" src="challenges/c001.jpg" alt="thumb" className="mw-100"/>
-                      <Card.Body className="p-0">
-                      <Card.Text className="text-center">
-                      Directory Traversal
-                      </Card.Text>
-                      </Card.Body>
-                  </Card>
-                  </Nav.Link>
+            <Nav.Link href="#" onClick={() => loginWithPopup()}>
+              <Card>
+                <Card.Img variant="null" src="challenges/c001.jpg" alt="thumb" className="mw-100"/>
+                <Card.Body className="p-0">
+                  <Card.Text className="text-center">
+                    Directory Traversal
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </Nav.Link>
 
           </div>
 
           <div className="col-lg-4 col-md-6">
-          <Nav.Link href="#" onClick={() => loginWithPopup()}>
+            <Nav.Link href="#" onClick={() => loginWithPopup()}>
               <Card>
-                  <Card.Img variant="null" src="challenges/thumb03.jpg" alt="thumb" className="mw-100"/>
-                  <Card.Body className="p-0">
+                <Card.Img variant="null" src="challenges/thumb03.jpg" alt="thumb" className="mw-100"/>
+                <Card.Body className="p-0">
                   <Card.Text className="text-center">
-                  Web Structure
+                    Web Structure
                   </Card.Text>
-                  </Card.Body>
+                </Card.Body>
               </Card>
-              </Nav.Link>
+            </Nav.Link>
           </div>
 
         </div>
@@ -330,16 +339,20 @@ return <div className="challengesWrap">
           <div className="col">
             <Nav className="socialNav justify-content-center">
               <Nav.Item>
-                <Nav.Link href="https://www.facebook.com/" target="blank"><img src="social/fb.png" alt="facebook"/></Nav.Link>
+                <Nav.Link href="https://www.facebook.com/" target="blank"><img src="social/fb.png"
+                                                                               alt="facebook"/></Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link href="https://www.instagram.com" target="blank"><img src="social/insta.png" alt="instagram"/></Nav.Link>
+                <Nav.Link href="https://www.instagram.com" target="blank"><img src="social/insta.png"
+                                                                               alt="instagram"/></Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link href="https://pinterest.com" target="blank"><img src="social/pin.png" alt="pinterest"/></Nav.Link>
+                <Nav.Link href="https://pinterest.com" target="blank"><img src="social/pin.png"
+                                                                           alt="pinterest"/></Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link href="https://twitter.com/" target="blank"><img src="social/twitter.png" alt="twitter"/></Nav.Link>
+                <Nav.Link href="https://twitter.com/" target="blank"><img src="social/twitter.png"
+                                                                          alt="twitter"/></Nav.Link>
               </Nav.Item>
             </Nav>
           </div>

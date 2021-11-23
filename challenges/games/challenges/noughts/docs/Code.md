@@ -1,3 +1,8 @@
+# Code 
+
+The following is the code that runs to allow you to play Noughts and Crosses.
+
+```java
 import java.util.*;
 
 class Noughts {
@@ -9,7 +14,7 @@ class Noughts {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main() {
         System.out.println("\fLet's play crosses and noughts!");
         System.out.println("Rows run from 0 (top) to 2 (bottom) and columns run from 0 (left) to 2 (right)");
         Scanner sc = new Scanner(System.in);
@@ -19,7 +24,7 @@ class Noughts {
         boolean win = false;
         int ctr;
         int a, b, c, d, i, j;
-        while (!win) {
+        while (win == false) {
             ctr = 0;
             while (true) {
                 System.out.println("Team 1 enter row and column");
@@ -97,6 +102,8 @@ class Noughts {
                     }
                 }
             }
+
         }
     }
-}
+}         
+```

@@ -11,6 +11,10 @@
     {
       "name": "Prize",
       "path": "docs/DoorGame.md"
+    },
+    {
+      "name": "Code",
+      "path": "docs/Code.md"
     }
   ]
 }

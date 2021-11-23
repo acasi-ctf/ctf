@@ -1,14 +1,19 @@
+# Code 
+
+The following is the code that runs to allow you to play the Prize Game.
+
+```java
 import java.util.*;
 
 class Prize {
-    public static void main(String[] args) {
+    public static void main() {
         Scanner sc = new Scanner(System.in);
         System.out.println("\fThere are 3 doors. One of them has a prize behind it.");
         String input = "Yes";
         double ctr = 0;
         double points = 0;
         while (input.equalsIgnoreCase("Yes")) {
-            System.out.println("Choose door 1, 2 or 3 by typing the number and pressing enter");
+            System.out.println("Choose door 1,2 or 3");
             int choice = sc.nextInt();
             int door = (int) (Math.random() * 3) + 1;
             int open = door;
@@ -29,7 +34,7 @@ class Prize {
                     System.out.println("Invalid");
                     continue;
             }
-            System.out.println("Door " + open + " does not contain the prize.\nEnter Yes to change your choice.");
+            System.out.println("Door " + open + " does not contain the prize.\nWould you like to change your choice?");
             input = sc.next();
             if (input.equalsIgnoreCase("Yes")) {
                 System.out.println("Enter your new door choice");
@@ -48,3 +53,4 @@ class Prize {
         System.out.println("Percentage of games won: " + percent + "%");
     }
 }
+```
