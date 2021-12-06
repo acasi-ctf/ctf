@@ -50,6 +50,9 @@
     color: #fff;
     padding: .5rem;
 }
+.topNav .navbar-light .navbar-nav .nav-link, .topNav button{
+    border:1px solid transparent
+}
 .topNav .navbar-light .navbar-nav .nav-link:hover, .topNav button:hover {
     background: transparent;
     text-decoration: underline;
@@ -477,7 +480,11 @@ header .MuiToolbar-root{
     }
 
 }
-
+@media screen and (max-width:991px){
+    .mt-110{
+        padding-top: 65px;
+    }
+}
 
 .inputFlag{
     background: #FFF;
@@ -503,4 +510,7 @@ header .MuiToolbar-root{
     padding-left: 10px;
     width: 200px;
     visibility: visible;
+}
+.ChallengeSet1 .MuiAppBar-positionAbsolute{
+    position: relative;
 }

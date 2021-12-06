@@ -1,8 +1,10 @@
 .Terminal {
-    width: 100%;
-    height: 100%;
+    width: 50%;
+    height: calc(100% - 40px);
     font-size: 5px;
-    background-color: black;
+    background-color: #000;
+    overflow: auto;
+    resize: both;
 }
 
 .xterm .xterm-screen canvas{
