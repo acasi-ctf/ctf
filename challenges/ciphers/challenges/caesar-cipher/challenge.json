@@ -16,5 +16,12 @@
       "name": "Terminal Usage",
       "path": "docs/Terminal_Use.md"
     }
-  ]
+  ],
+  "features": [
+    "flag"
+  ],
+  "flag": {
+    "type": "static",
+    "value": "CAES-ARCH-ALLE-NGE1"
+  }
 }

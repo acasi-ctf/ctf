@@ -1,4 +1,5 @@
 import random
+import base64
 
 #random string
 def random_alphabet():
@@ -21,7 +22,17 @@ def Reverse(string):
 
     return reverse
 
+def convert():
+
+    s = b'QbkrpEmBiOMJ+`|Q&KHORz*?'
+    b85 = base64.b85decode(s)
+    output = str(b85)
+    output = output[2:21]
+    print(output)
+    
+
 def main():
+
     string = random_alphabet()
     code = Reverse(string)
     print("This is a reverse text challenge!")
@@ -34,10 +45,12 @@ def main():
         if strs == string:
             break
         else:
-            print("Nope... Try Again!")
+            print("Nope! Try Again!")
             continue
 
-    print("Congratulations! You get 10 points!")
+    print()
+    print("Congratulations! The flag is:")
+    convert()
     
 
 if __name__ == "__main__":

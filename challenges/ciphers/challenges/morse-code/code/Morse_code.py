@@ -1,4 +1,5 @@
 import random
+import base64
 
 #dictionary for encode
 code = {'A':'.-'  ,'B':'-...','C':'-.-.','D':'-..','E':'.',
@@ -24,8 +25,15 @@ def encode(string):
     for letter in string:
         print(code[letter], end=' ')
     print()
+
+def convert():
+    s = b'9i"Yc/O`$&6nLhp84+sp9M@k'
+    a85 = base64.a85decode(s)
+    output = str(a85)
+    output = output[2:21]
+    print(output)
     
-def main():    
+def main():
 
     string = random_alphabet()
     print("This is a Morse Code challenge!")
@@ -39,10 +47,12 @@ def main():
         if strs == string:
             break
         else:
-            print("Nope... Try Again!")
+            print("Nope! Try Again!")
             continue
-
-    print("Congratulations! You get 10 points!")
+    
+    print()
+    print("Congratulations! The flag is:")
+    convert()
         
 
 if __name__=="__main__":
