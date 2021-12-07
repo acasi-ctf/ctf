@@ -14,8 +14,9 @@
 /* Header and nav */
 
 .MuiAppBar-colorPrimary {
-    background: #1176ae !important;
+    background: #FFF !important;
     box-shadow: none !important;
+    color: grey !important ;
 }
 .topNav .navbar-toggler {
 
@@ -23,7 +24,7 @@
     padding: 2px 5px;
 }
 .navbar-light .navbar-toggler-icon{
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='18' height='12' viewBox='0 0 18 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 10h20M4 15h20M4 20h20'/%3e%3c/svg%3e") !important;   
+    *background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='18' height='12' viewBox='0 0 18 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 10h20M4 15h20M4 20h20'/%3e%3c/svg%3e") !important;
     width: 27px;
 }
 .topNav .navbar-toggler:hover {
@@ -33,7 +34,7 @@
     font-size: 14px;
     font-weight: 500;
     line-height: 21px;
-    color: #fff;
+    color: rgba(0,0,0,.5);
     text-transform: uppercase;
 }
 
@@ -48,6 +49,9 @@
 .topNav button {
     color: #fff;
     padding: .5rem;
+}
+.topNav .navbar-light .navbar-nav .nav-link, .topNav button{
+    border:1px solid transparent
 }
 .topNav .navbar-light .navbar-nav .nav-link:hover, .topNav button:hover {
     background: transparent;
@@ -100,7 +104,7 @@
     margin-right: 10px;
 }
 .primaryBtn {
-    background: #1176AE;
+    background: #FFA600;
     color: #fff;
 }
 .secondaryBtn {
@@ -112,7 +116,7 @@
     font-weight: 500;
     line-height: 42px;
     letter-spacing: 0em;
-    color: #1176AE;
+    color: #FFA600;
     text-transform: uppercase;
     margin-bottom: 7px;
     text-align: center;
@@ -126,7 +130,7 @@
     font-size: 25px;
     font-weight: 500;
     line-height: 38px;
-    color: #444444;
+    color: #FFA600;
     margin-bottom: 8px;
 }
 .mainContent p {
@@ -151,7 +155,7 @@
     font-weight: 500;
     line-height: 30px;
     letter-spacing: 0em;
-    color: #1176AE;
+    color: #FFA600;
     text-decoration: none;
     text-transform: uppercase;
 }
@@ -164,7 +168,7 @@
 }
 
 .challengesCol {
-    background: #1176ae;
+    background: #F5F1F2;
     padding-top: 40px;
     padding-bottom: 40px;
 }
@@ -188,7 +192,7 @@
     margin: 15px 0;
 }
 .challengesCol .card .card-text{
-    color: #1176ae;
+    color: #FFA600;
     text-transform: uppercase;
     font-size: 17px;
     font-weight: 500;}
@@ -204,7 +208,7 @@
     font-weight: 500;
     line-height: 30px;
     letter-spacing: 0em;
-    color: #1176AE;
+    color: #FFA600;
     padding: 0;
 }
 .bubbleBtn {
@@ -223,7 +227,7 @@
     line-height: 38px;
     letter-spacing: 0em;
     margin: 53px 0 10px;
-    color: #444;
+    color: #FFA600;
 }
 /* footer */
 
@@ -458,13 +462,16 @@
 header.MuiAppBar-positionFixed{
     z-index: 9999 !important;
 }
+header div.container{
+    width: 100% !important;
+}
 .MuiPaper-elevation16,
 .MuiDrawer-paperAnchorDockedLeft{
-    background: #06547f !important;
+    background: #e5e5e5 !important;
 }
 .MuiPaper-elevation16 *,
 .MuiDrawer-paperAnchorDockedLeft *{
-    color: #fff;
+    *color: #fff;
 }
 .paddingtop{
     padding-top: 100px;
@@ -473,7 +480,7 @@ header .MuiToolbar-regular{
     padding: 0 !important;
 }
 header .makeStyles-menuButton-10{
-    
+
     margin: 5px 0 auto 0 !important;
 }
 header .MuiToolbar-root{
@@ -501,18 +508,22 @@ header .MuiToolbar-root{
     .paddingtop{
         padding-top: 52px;
     }
-    
-}
 
+}
+@media screen and (max-width:991px){
+    .mt-110{
+        padding-top: 65px;
+    }
+}
 
 .inputFlag{
     background: #FFF;
     outline: none;
     border-radius: 10px 0 0 10px;
-    -webkit-transition: all 1s ease;  
-    -moz-transition: all 1s ease;  
-    -o-transition: all 1s ease;  
-    -ms-transition: all 1s ease;  
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
     transition: all 1s ease;
 
 }
@@ -529,4 +540,7 @@ header .MuiToolbar-root{
     padding-left: 10px;
     width: 200px;
     visibility: visible;
+}
+.ChallengeSet1 .MuiAppBar-positionAbsolute{
+    position: relative;
 }

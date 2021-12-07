@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
     menuButton: {
         marginRight: theme.spacing(2),
     },
-    
+
     title: {
         flexGrow: 1,
         display: 'none',
@@ -70,7 +70,7 @@ export default function ChallengeBar(props) {
     return (
         <div className={classes.root}>
             <AppBar position="static">
-                <div className="container">
+                <div className="container-fluid">
                     {/* the bellow is for credential login and survey button */}
                     <AppBarActions displayinput={props.displayinput} setDisplay={props.setDisplay}/>
                 </div>
