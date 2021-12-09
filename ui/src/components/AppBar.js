@@ -1,7 +1,8 @@
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
-import { fade, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import AppBarActions from "./AppBarActions";
+import { alpha } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -23,9 +24,9 @@ const useStyles = makeStyles((theme) => ({
     search: {
         position: 'relative',
         borderRadius: theme.shape.borderRadius,
-        backgroundColor: fade(theme.palette.common.white, 0.15),
+        backgroundColor: alpha(theme.palette.common.white, 0.15),
         '&:hover': {
-            backgroundColor: fade(theme.palette.common.white, 0.25),
+            backgroundColor: alpha(theme.palette.common.white, 0.25),
         },
         marginLeft: 0,
         width: '100%',
