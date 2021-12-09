@@ -9,6 +9,9 @@ import ChallengeBar from "./components/AppBar";
 import Selection from "./pages/Selection.js"
 import Home from "./pages/Home";
 import leaderboard from "./pages/LeaderBoard";
+import Pentesting from "./pages/Pentesting";
+import Games from "./pages/Games";
+import Ciphers from "./pages/Ciphers";
 import UploadChallengeSet from "./pages/admin/UploadChallengeSet";
 /********************************************** Dynamic Pages *******************************************************************/
 import ChallengePage from "./pages/ChallengePage";
@@ -39,6 +42,9 @@ export default function App() {
             <Route path="/" exact component={Home}/>
             <Route path="/LeaderBoard" component={leaderboard}/>
             <Route path="/selection" component={Selection}/>
+            <Route path="/pentesting" component={Pentesting}/>
+            <Route path="/games" component={Games}/>
+            <Route path="/ciphers" component={Ciphers}/>
             {/* Challenge Sets pages */}
             <Route path="/play/:csSlug/:cSlug">
               <StartChallengePage/>
