@@ -52,7 +52,17 @@
     of the challenges that have been started the most over the past two weeks.
 
 ## Unfinished Work
-**TODO: do we need this? the final report should cover this**
+The unfinished work for our project is in no way part of the MVP. These are merely suggestions for future groups if
+any were to take up this project in the future.
+* Create more challenges.
+* Show user which challenges have been completed in the UI.
+* Content for the rest of the cyber literacy site.
+* Create administrative dashboard to display all sorts of metrics coming in from the platform.
+  * View number of users.
+  * Stop or start a session manually.
+  * Check for abusive use of the system resources.
+* Add the ability to save a session as a snapshot that can be loaded back up into an environment.
+* Add a forum section to the CTF so that users can get help from other users.
 
 ## Completed Issues / User Stories
 **TODO: added most, but any newly closed issues need to be added**
