@@ -53,7 +53,7 @@
 
 ## Unfinished Work
 The unfinished work for our project is in no way part of the MVP. These are merely suggestions for future groups if
-any were to take up this project in the future.
+any were to take up this project.
 * Create more challenges.
 * Show user which challenges have been completed in the UI.
 * Content for the rest of the cyber literacy site.
