@@ -107,6 +107,15 @@
     background: #FFA600;
     color: #fff;
 }
+.btn-primary:not(:disabled):not(.disabled):active,
+.primaryBtn:active,
+.primaryBtn:hover{
+    background: #d68c03;
+}
+.primaryBtn:focus{
+    background: #a56d06;
+    box-shadow:0 0 0 .2rem #FFA60042;
+}
 .secondaryBtn {
     color: #444;
     background: #DAD8D8;
@@ -189,7 +198,7 @@
     line-height: 28px;
     letter-spacing: 0em;
     color: #444;
-    margin: 15px 0;
+    margin: 15px 0 0;
 }
 .challengesCol .card .card-text{
     color: #FFA600;
@@ -467,11 +476,11 @@ header div.container{
 }
 .MuiPaper-elevation16,
 .MuiDrawer-paperAnchorDockedLeft{
-    background: #e5e5e5 !important;
+    background: #1c2b36 !important;
 }
 .MuiPaper-elevation16 *,
 .MuiDrawer-paperAnchorDockedLeft *{
-    *color: #fff;
+    color: #fff;
 }
 .paddingtop{
     padding-top: 100px;

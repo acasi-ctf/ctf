@@ -3,8 +3,6 @@
     height: calc(100% - 40px);
     font-size: 5px;
     background-color: #000;
-    overflow: auto;
-    resize: both;
 }
 
 .xterm .xterm-screen canvas{
