@@ -1,6 +1,6 @@
 # Sprint 7 Report (11/16/2021 - 12/12/2021)
 **TODO: add link**
-[Sprint 7 Summary Video](#)
+[Sprint 7 Summary Video](https://youtube.com)
 
 ## What's New
 ### Work Summary
