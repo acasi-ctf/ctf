@@ -52,6 +52,9 @@
 **TODO: added most, but any newly closed issues need to be added**
 |Issue URL |
 |----------|
+|[Issue #55](https://github.com/acasi-ctf/ctf/issues/55) |
+|[Issue #180](https://github.com/acasi-ctf/ctf/issues/180) |
+|[Issue #5](https://github.com/acasi-ctf/ctf/issues/5) |
 |[Issue #199](https://github.com/acasi-ctf/ctf/issues/199) |
 |[Issue #181](https://github.com/acasi-ctf/ctf/issues/181) |
 |[Issue #103](https://github.com/acasi-ctf/ctf/issues/103) |
@@ -81,10 +84,9 @@
 |[Issue #175](https://github.com/acasi-ctf/ctf/issues/175) |
 
 ## Incomplete Issues / User Stories
-**TODO**
 |Issue | Blocker|
 |------|-----------------------------------------------------------------------|
-|[Issue #XYZ](https://github.com/acasi-ctf/ctf/issues/XYZ) | ... |
+|[Issue #44](https://github.com/acasi-ctf/ctf/issues/44) | We do not have time to implement the challenge being marked as completed in the UI. |
 
 ## Code Files for Review
 Please review the following code files, which were actively developed during this sprint, for quality:
