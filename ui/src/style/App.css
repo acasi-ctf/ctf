@@ -553,3 +553,9 @@ header .MuiToolbar-root{
 .ChallengeSet1 .MuiAppBar-positionAbsolute{
     position: relative;
 }
+.MuiTab-textColorPrimary{
+color: #FFA600 !important;
+}
+.PrivateTabIndicator-colorPrimary-32 {
+    background-color: #1c2b36 !important;
+}
