@@ -16,7 +16,8 @@
 * Clean up of existing challenge sets experience and documentation
   * Much of the documentation was hard to read or not specific enough on how
     to play the challenge.
-  * Some of the challenge sets that used code given to us by our sponsor were
+  * Challenges documentation has been updated to show how to start each one via command line input.
+  * Some challenge sets that used code given to us by our sponsor were
     not working, this was resolved.
 * Leaderboard page
   * Shows a table that compares the top players on the platform and their
@@ -24,6 +25,11 @@
 * Improve site summary
   * Our homepage had lorem ipsum text up until now, but has been changed to
     add a description of what the CTF platform is.
+* Challenge selection now displays a list of cards for each challenge set. Clicking on one of these cards will take you
+  to a list of cards, each one representing a challenge in the set. Clicking one of these will take you to the 
+  challenge.
+* Home Page now displays cards for most popular, trending and games to take you directly to challenges that people find
+  more engaging.
 
 #### Developer Facing
 * Challenge schema now includes fields for enabling specific challenge features
