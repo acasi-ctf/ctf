@@ -113,20 +113,25 @@ Please review the following code files, which were actively developed during thi
 
 ## Retrospective Summary
 ### Here's what went well
-**TODO**
-* Git usage was better.
-* People working together and planning really well for the most part.
-* Much better use of GitHub Issues and linking issues in GitHub.
-* Less time crunch overall.
+* Calculating the number of commits in sprint 5, 6 and 7 we come a total of 370 commits over the last 3 sprints.
+  Averaging 123 commits per sprint. This is a massive improvement over sprint 4 in which we only had 45. We didn't have
+  any metrics to display in previous sprints, so we are getting them to you a little belatedly.
+* Much better use of GitHub Issues and linking issues in GitHub, 41 issues and pull requests closed. Compared to
+  previous sprints this was a large improvement. In sprint 4 we had 7, sprint 5 we had 16 and in sprint 6, 31 issues
+  were closed.
 
 ### Here's what we could improve
-**TODO**
-* Splitting GitHub issues into smaller pieces.
-* Hard to know what team members' goals are.
+* We did not meet consistently after Thanksgiving Break. Up until then we had been meeting on a bi-weekly basis or more.
+  With that said, the drop in communication did not seem to affect the final product of our efforts.
+* Splitting up the work more evenly. This sprint seemed like a lot more of the work was piled on a few members, not
+  because of a lack of willingness to work on anyone's part, but due to a lack of knowledge in the required area. I
+  think this was a failing more of a lack of team members that could straddle positions.
+
 
 ### Here are changes we would plan to implement in a future sprint
-**TODO**
-* Implement a pre-sprint meeting to figure out as a group what everyone will be working on.
-* Create GitHub issues as soon as possible in a sprint.
-* Create atomic issues in GitHub issues to build up larger issues.
-* Users working on issues should create sub-issues if necessary.
+* Get members of the team familiar with each portion of the project so that they can assist when it is needed. If we
+  were to continue with this project I would have each member of the team pick one other member and learn the basics of
+  what that team member does towards the project so that we could have some redundancy.
+* I would try and do more pair programming from the start. This would allow us to accomplish the above objective, while
+  also having a second set of eyes on the code checking for logic errors and stuff that you don't need to be as familiar
+  with until they pick up the necessary skills to start contributing in that area in a larger manner.
