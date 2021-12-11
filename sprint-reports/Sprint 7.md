@@ -16,7 +16,8 @@
 * Clean up of existing challenge sets experience and documentation
   * Much of the documentation was hard to read or not specific enough on how
     to play the challenge.
-  * Challenges documentation has been updated to show how to start each one via command line input.
+  * Challenges documentation has been updated to show how to start each one
+    via command line input.
   * Some challenge sets that used code given to us by our sponsor were
     not working, this was resolved.
 * Leaderboard page
@@ -25,11 +26,12 @@
 * Improve site summary
   * Our homepage had lorem ipsum text up until now, but has been changed to
     add a description of what the CTF platform is.
-* Challenge selection now displays a list of cards for each challenge set. Clicking on one of these cards will take you
-  to a list of cards, each one representing a challenge in the set. Clicking one of these will take you to the 
-  challenge.
-* Home Page now displays cards for most popular, trending and games to take you directly to challenges that people find
-  more engaging.
+* Challenge selection now displays a list of cards for each challenge set.
+  Clicking on one of these cards will take you to a list of cards, each one
+  representing a challenge in the set. Clicking one of these will take you
+  to the challenge.
+* Home Page now displays cards for most popular, trending and games to take you
+  directly to challenges that people find more engaging.
 
 #### Developer Facing
 * Challenge schema now includes fields for enabling specific challenge features
@@ -50,6 +52,9 @@
   * As an extension to last sprint's work, we implemented an alternative API
     route for a future page to show the trending challenges, which is a list
     of the challenges that have been started the most over the past two weeks.
+* Finalize challenge set creation documentation
+  * Finish writing the documentation that talks about creating challenge sets
+    and publish it to the primary documentation site.
 
 ## Unfinished Work
 The unfinished work for our project is in no way part of the MVP. These are merely suggestions for future groups if
@@ -126,7 +131,6 @@ Please review the following code files, which were actively developed during thi
 * Splitting up the work more evenly. This sprint seemed like a lot more of the work was piled on a few members, not
   because of a lack of willingness to work on anyone's part, but due to a lack of knowledge in the required area. I
   think this was a failing more of a lack of team members that could straddle positions.
-
 
 ### Here are changes we would plan to implement in a future sprint
 * Get members of the team familiar with each portion of the project so that they can assist when it is needed. If we
