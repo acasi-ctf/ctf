@@ -70,7 +70,6 @@ merely suggestions for future groups if any were to take up this project.
 * Add a forum section to the CTF so that users can get help from other users.
 
 ## Completed Issues / User Stories
-**TODO: added most, but any newly closed issues need to be added**
 |Issue URL |
 |----------|
 |[Issue #55](https://github.com/acasi-ctf/ctf/issues/55) |
