@@ -72,7 +72,7 @@ export default function ChallengeBar(props) {
             <AppBar position="static">
                 <div className="container">
                     {/* the bellow is for credential login and survey button */}
-                    <AppBarActions displayinput={props.displayinput} setDisplay={props.setDisplay}/>
+                    <AppBarActions displayinput={props.displayInput} setDisplay={props.setDisplay}/>
                 </div>
             </AppBar>
         </div>
