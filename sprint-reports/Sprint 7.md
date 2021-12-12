@@ -101,6 +101,9 @@ merely suggestions for future groups if any were to take up this project.
 |[Issue #173](https://github.com/acasi-ctf/ctf/issues/173) |
 |[Issue #174](https://github.com/acasi-ctf/ctf/issues/174) |
 |[Issue #175](https://github.com/acasi-ctf/ctf/issues/175) |
+|[Issue #215](https://github.com/acasi-ctf/ctf/issues/215) |
+|[Issue #136](https://github.com/acasi-ctf/ctf/issues/136) |
+|[Issue #113](https://github.com/acasi-ctf/ctf/issues/113) |
 
 ## Incomplete Issues / User Stories
 |Issue | Blocker|
