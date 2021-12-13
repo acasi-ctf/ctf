@@ -35,8 +35,6 @@ export default function Home() {
       (data) => {
         setIsLoaded(true);
         setTopChallengeData(data);
-        console.log('Top Challenge Data =>');
-        console.log(data);
       },
       (error) => {
         setIsLoaded(true);
@@ -49,8 +47,7 @@ export default function Home() {
     fetch('/api/challenge-sets/games/challenges')
     .then(res => res.json())
     .then(
-      (data) => {
-        console.log(data);
+      (data) => {        
         setIsLoaded(true);
         setGameChallengeData(data);
       },
@@ -74,9 +71,9 @@ export default function Home() {
           <h3>Trending challenges</h3>
           <div className="challengesCol cHomeCol">
             <div className="container">
-              <div className="row flexWrap">
+              <div className="row flexWrap flex-nowrap">
               {trendingChallengeData.map((trending, trendingIndex) => (
-                <div className="col-xl-3 col-lg-6 col-md-12">
+                <div className="col-xl col-lg-6 col-md-12">
                   <Link to={"/play/"+trending.challengeSet.slug+"/"+trending.challenge.slug}>
                     <Card>
                       <Card.Img variant="null" src={"challenges/c00"+ (trendingIndex === 0 ? 2 : trendingIndex) +".jpg"} alt="thumb" className="mw-100"/>
@@ -96,9 +93,9 @@ export default function Home() {
           <h3>Most Popular</h3>
           <div className="challengesCol cHomeCol">
             <div className="container">
-              <div className="row flexWrap">
+              <div className="row flexWrap flex-nowrap">
               {topChallengeData.map((popular, topIndex) => (
-                <div className="col-xl-3 col-lg-6 col-md-12">
+                <div className="col-xl col-lg-6 col-md-12">
                   <Link to={"/play/"+popular.challengeSet.slug+"/"+popular.challenge.slug}>
                     <Card>
                     <Card.Img variant="null" src={"challenges/c00"+ (topIndex === 0 ? 2 : topIndex) +".jpg"} alt="thumb" className="mw-100"/>
@@ -119,9 +116,9 @@ export default function Home() {
           <h3>Java Games</h3>
           <div className="challengesCol cHomeCol">
             <div className="container">
-              <div className="row flexWrap">
+              <div className="row flexWrap flex-nowrap">
               {gameChallengeData.map((javagame, gameIndex) => (
-                <div className="col-xl-3 col-lg-6 col-md-12">
+                <div className="col-xl col-lg-6 col-md-12">
                    <Link to={"/play/games/"+javagame.slug}>
                     <Card>
                       <Card.Img variant="null" src={"challenges/c00"+ (gameIndex === 0 ? 2 : gameIndex) +".jpg"} alt="thumb" className="mw-100"/>
