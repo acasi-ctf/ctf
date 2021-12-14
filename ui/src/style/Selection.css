@@ -1,6 +1,8 @@
 .challengesCol.selection{
     background: #e5e5e5;
     padding: 15px 0 0;
+    min-height: calc(100vh - 97px);
+    width: 100%;
 }
 .challengesCol.selection .card{
     margin: 0 0 30px;

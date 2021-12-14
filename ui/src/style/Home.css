@@ -1,9 +1,66 @@
 .Home{
-    display: flex;
+    /* display: flex; */
     /* display item in middle in term of row */
-    justify-content: center;
+    /* justify-content: center; */
     /* display item in middle in term of column  */
     /* for align item to for, must include heigh on the container */
-    align-items: center;
-    height: 89vh;
+    /* align-items: center; */
+    min-height: 89vh;
+}
+.challengesCol.cHomeCol .nav-link{
+    padding: 0;
+}
+.challengesCol.cHomeCol .card{
+    margin: 13px 0;
+    padding: 10px;
+}
+.challengesCol.cHomeCol{
+    padding:  0px;
+}
+.challengesCol.cHomeCol .card .card-text{
+    font-size: 16px;
+}
+h2{
+    color:#444;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+h3{
+    font-size: 20px;
+    color:#444;
+    margin: 25px 0 10px;
+}
+p{
+    color:#444;
+    line-height: 24px;
+}
+
+.challengesCol.cHomeCol .card .card-text{
+    margin-bottom: 0;
+    margin-top: 11px;
+    line-height: 16px;
+}
+
+.challengesCol.cHomeCol .row{
+    margin-right: -8px;
+    margin-left: -8px;
+}
+.challengesCol.cHomeCol .row .col-xl{
+    padding-right: 8px;
+    padding-left: 8px;
+}
+.titleText{
+    background: #f5f1f2;
+    padding: 24px 20px;
+    margin-top: -15px;
+    min-height: 160px;
+}
+
+@media all and (max-width:1380px) {
+    .challengesCol.cHomeCol .card .card-text{
+        font-size: 12px;
+    }
+    .flexWrap.flex-nowrap{
+        flex-wrap: wrap !important;
+    }
 }
