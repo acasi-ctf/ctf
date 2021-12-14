@@ -9,7 +9,7 @@ export default function Selection() {
 
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
-    const [challengeSetData, setChallengeSetData] = useState([]);    
+    const [challengeSetData, setChallengeSetData] = useState([]);
 
     useEffect(()=>{
         fetch('/api/challenge-sets')
@@ -33,7 +33,7 @@ export default function Selection() {
                     <div className="row flexWrap">
                         {challengeSetData.map((challengeSet, challengeSetIndex) => (
                             <div className="col-lg-4 col-md-6">
-                                <Link to={challengeSet.slug}>
+                                <Link to={"selection-detail/"+challengeSet.slug}>
                                     <Card>
                                         <Card.Img variant="null" src={"challenges/c00"+ (++challengeSetIndex) +".jpg"} alt="thumb" className="mw-100"/>
                                         <Card.Body className="p-0">
@@ -42,7 +42,7 @@ export default function Selection() {
                                         </Card.Text>
                                         </Card.Body>
                                     </Card>
-                                </Link>               
+                                </Link>
                             </div>
                             ))
                         }
