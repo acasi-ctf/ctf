@@ -63,10 +63,11 @@ export default function Home() {
     <div className="container-fluid mt-3 mb-3">
       <div className="row">
         <div className="col-12">
-          <h2>Welcome to Capture the Flag!</h2>
-          <p>Capture the flag is a web-based application that allows you to start learning the basics of cyber literacy. Here we have a collection of activities that you can interact with, whether it's a familiar game written by one of our high school contributors or a security challenge written by some of our more experienced developers, we invite you to interact with our application and any feedback is welcome. This is a Learning platform, so if you don't succeed at first, keep trying! No one has ever accomplished anything great by just giving up.</p>
+          <div className="titleText">
+            <h2>Welcome to Capture the Flag!</h2>
+            <p className="mb-0">Capture the flag is a web-based application that allows you to start learning the basics of cyber literacy. Here we have a collection of activities that you can interact with, whether it's a familiar game written by one of our high school contributors or a security challenge written by some of our more experienced developers, we invite you to interact with our application and any feedback is welcome. This is a Learning platform, so if you don't succeed at first, keep trying! No one has ever accomplished anything great by just giving up.</p>
+          </div>
         </div>
-        <hr/>
         <div className="col-12">
           <h3>Trending challenges</h3>
           <div className="challengesCol cHomeCol">

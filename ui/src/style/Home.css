@@ -11,7 +11,8 @@
     padding: 0;
 }
 .challengesCol.cHomeCol .card{
-    margin: 15px 0;
+    margin: 13px 0;
+    padding: 10px;
 }
 .challengesCol.cHomeCol{
     padding:  0px;
@@ -27,28 +28,38 @@ h2{
 h3{
     font-size: 20px;
     color:#444;
-    margin: 15px 0 8px;
+    margin: 25px 0 10px;
 }
 p{
     color:#444;
     line-height: 24px;
 }
-hr{
-    width: 100%;
-    border-top: 1px solid #e8e8e8;
-    border-bottom: 1px solid #fff;
-}
+
 .challengesCol.cHomeCol .card .card-text{
     margin-bottom: 0;
+    margin-top: 11px;
+    line-height: 16px;
 }
 
+.challengesCol.cHomeCol .row{
+    margin-right: -8px;
+    margin-left: -8px;
+}
+.challengesCol.cHomeCol .row .col-xl{
+    padding-right: 8px;
+    padding-left: 8px;
+}
+.titleText{
+    background: #f5f1f2;
+    padding: 24px 20px;
+    margin-top: -15px;
+    min-height: 160px;
+}
 
 @media all and (max-width:1380px) {
     .challengesCol.cHomeCol .card .card-text{
-        font-size: 14px;
+        font-size: 12px;
     }
-}
-@media all and (max-width:1380px) {
     .flexWrap.flex-nowrap{
         flex-wrap: wrap !important;
     }
