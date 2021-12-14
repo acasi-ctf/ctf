@@ -14,8 +14,9 @@
 /* Header and nav */
 
 .MuiAppBar-colorPrimary {
-    background: #1176ae !important;
+    background: #FFF !important;
     box-shadow: none !important;
+    color: grey !important ;
 }
 .topNav .navbar-toggler {
 
@@ -23,7 +24,7 @@
     padding: 2px 5px;
 }
 .navbar-light .navbar-toggler-icon{
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='18' height='12' viewBox='0 0 18 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 10h20M4 15h20M4 20h20'/%3e%3c/svg%3e") !important;   
+    *background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='18' height='12' viewBox='0 0 18 30'%3e%3cpath stroke='white' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 10h20M4 15h20M4 20h20'/%3e%3c/svg%3e") !important;
     width: 27px;
 }
 .topNav .navbar-toggler:hover {
@@ -33,7 +34,7 @@
     font-size: 14px;
     font-weight: 500;
     line-height: 21px;
-    color: #fff;
+    color: rgba(0,0,0,.5);
     text-transform: uppercase;
 }
 
@@ -48,6 +49,9 @@
 .topNav button {
     color: #fff;
     padding: .5rem;
+}
+.topNav .navbar-light .navbar-nav .nav-link, .topNav button{
+    border:1px solid transparent
 }
 .topNav .navbar-light .navbar-nav .nav-link:hover, .topNav button:hover {
     background: transparent;
@@ -100,8 +104,17 @@
     margin-right: 10px;
 }
 .primaryBtn {
-    background: #1176AE;
+    background: #FFA600;
     color: #fff;
+}
+.btn-primary:not(:disabled):not(.disabled):active,
+.primaryBtn:active,
+.primaryBtn:hover{
+    background: #d68c03;
+}
+.primaryBtn:focus{
+    background: #a56d06;
+    box-shadow:0 0 0 .2rem #FFA60042;
 }
 .secondaryBtn {
     color: #444;
@@ -112,7 +125,7 @@
     font-weight: 500;
     line-height: 42px;
     letter-spacing: 0em;
-    color: #1176AE;
+    color: #FFA600;
     text-transform: uppercase;
     margin-bottom: 7px;
     text-align: center;
@@ -126,7 +139,7 @@
     font-size: 25px;
     font-weight: 500;
     line-height: 38px;
-    color: #444444;
+    color: #FFA600;
     margin-bottom: 8px;
 }
 .mainContent p {
@@ -151,7 +164,7 @@
     font-weight: 500;
     line-height: 30px;
     letter-spacing: 0em;
-    color: #1176AE;
+    color: #FFA600;
     text-decoration: none;
     text-transform: uppercase;
 }
@@ -164,7 +177,7 @@
 }
 
 .challengesCol {
-    background: #1176ae;
+    background: #F5F1F2;
     padding-top: 40px;
     padding-bottom: 40px;
 }
@@ -185,10 +198,10 @@
     line-height: 28px;
     letter-spacing: 0em;
     color: #444;
-    margin: 15px 0;
+    margin: 15px 0 0;
 }
 .challengesCol .card .card-text{
-    color: #1176ae;
+    color: #FFA600;
     text-transform: uppercase;
     font-size: 17px;
     font-weight: 500;}
@@ -204,7 +217,7 @@
     font-weight: 500;
     line-height: 30px;
     letter-spacing: 0em;
-    color: #1176AE;
+    color: #FFA600;
     padding: 0;
 }
 .bubbleBtn {
@@ -223,7 +236,7 @@
     line-height: 38px;
     letter-spacing: 0em;
     margin: 53px 0 10px;
-    color: #444;
+    color: #FFA600;
 }
 /* footer */
 
@@ -269,6 +282,33 @@
 .socialNav .nav-link {
     margin: 0 12px;
     padding: 0;
+}
+.uploadWrap{
+    padding: 10px 0;
+    height: calc(100vh - 200px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#roundsModeTab h1,
+.uploadWrap h1{
+    font-size: 25px;
+    font-weight: 500;
+    line-height: 38px;
+    color: #444444;
+    margin-bottom: 8px;
+}
+.uploadWrap .primaryBtn {
+    background: #1176AE;
+    color:#fff;
+    padding: 10px 20px;
+    min-width: 130px;
+    border-radius: 0;
+    margin: 0 10px 0 0;
+}
+.uploadWrap .primaryBtn:hover{
+    background: #1176AE;
 }
 @media all and (max-width:2500px) and (min-width:1700px) {
     .container {
@@ -326,6 +366,9 @@
     }
 }
 @media all and (max-width:991px) {
+    .navbar-collapse{
+        height: 100vh;
+    }
     .ml-auto.navbar-nav .nav-link {
         border-bottom: 1px solid #fff;
     }
@@ -428,9 +471,12 @@
 header.MuiAppBar-positionFixed{
     z-index: 9999 !important;
 }
+header div.container{
+    width: 100% !important;
+}
 .MuiPaper-elevation16,
 .MuiDrawer-paperAnchorDockedLeft{
-    background: #06547f !important;
+    background: #1c2b36 !important;
 }
 .MuiPaper-elevation16 *,
 .MuiDrawer-paperAnchorDockedLeft *{
@@ -443,7 +489,7 @@ header .MuiToolbar-regular{
     padding: 0 !important;
 }
 header .makeStyles-menuButton-10{
-    
+
     margin: 5px 0 auto 0 !important;
 }
 header .MuiToolbar-root{
@@ -471,18 +517,22 @@ header .MuiToolbar-root{
     .paddingtop{
         padding-top: 52px;
     }
-    
-}
 
+}
+@media screen and (max-width:991px){
+    .mt-110{
+        padding-top: 65px;
+    }
+}
 
 .inputFlag{
     background: #FFF;
     outline: none;
     border-radius: 10px 0 0 10px;
-    -webkit-transition: all 1s ease;  
-    -moz-transition: all 1s ease;  
-    -o-transition: all 1s ease;  
-    -ms-transition: all 1s ease;  
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
     transition: all 1s ease;
 
 }
@@ -499,4 +549,13 @@ header .MuiToolbar-root{
     padding-left: 10px;
     width: 200px;
     visibility: visible;
+}
+.ChallengeSet1 .MuiAppBar-positionAbsolute{
+    position: relative;
+}
+.MuiTab-textColorPrimary{
+color: #FFA600 !important;
+}
+.PrivateTabIndicator-colorPrimary-32 {
+    background-color: #1c2b36 !important;
 }

@@ -48,7 +48,7 @@ export default function AppBarActions(props) {
         setDisplayToast(true);
         setColor("rgb(156, 55, 55)");
         setMessage("Incorrect flag. Try again");
-      } 
+      }
       else {
         window.alert("Unknown error occurred!");
       }
@@ -73,11 +73,11 @@ export default function AppBarActions(props) {
 
   return (
     <>
-    {/* Notification toast */} 
+    {/* Notification toast */}
     {displayToast? <FlagNotification display={displayToast} action={toggleDisplayToast} color={color} message={msg}/>:null}
     <div className="topNav d-flex align-items-start">
       <Navbar expand="lg" className="p-0 flex-fill">
-        <Navbar.Brand href="/home"><img src="/logo.svg" alt="logo"/></Navbar.Brand>
+        <Navbar.Brand href="/home"><img src="//www.cyberliteracyforall.com/wp-content/uploads/2021/10/cyberliteracyforall.png" alt="logo"/></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">

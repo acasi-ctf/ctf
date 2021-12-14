@@ -1,103 +1,54 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
 import '../style/Selection.css'
-import {Link} from 'react-router-dom'
-import {Card} from "react-bootstrap";
+import PreLoginPage from "./error-pages/preLoginPage";
+import { useAuth0 } from "@auth0/auth0-react";
+import {Button, Card, Nav} from "react-bootstrap";
+import {Link} from 'react-router-dom';
 
 export default function Selection() {
+
+    const [error, setError] = useState(null);
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [challengeSetData, setChallengeSetData] = useState([]);
+
+    useEffect(()=>{
+        fetch('/api/challenge-sets')
+        .then(res => res.json())
+        .then(
+          (data) => {
+            setIsLoaded(true);
+            setChallengeSetData(data);
+            console.log(data);
+          },
+          (error) => {
+            setIsLoaded(true);
+            setError(error);
+          }
+        )
+    },[]);
     return (
         <div className="row">
             <div className="challengesCol selection">
                 <div className="container-fluid">
                     <div className="row flexWrap">
-                        <div className="col-lg-4 col-md-6">
-                            <Link to={'/play/ciphers/caesar-cipher'}>
-                                <Card>
-                                    <Card.Img variant="null" src="challenges/c001.jpg" alt="thumb" className="mw-100"/>
-                                    <Card.Body className="p-0">
-                                    <Card.Text className="text-center">
-                                        Caesar Cipher
-                                    </Card.Text>
-                                    </Card.Body>
-                                </Card>
-                            </Link>               
-                        </div>
-                        <div className="col-lg-4 col-md-6">
-                            <Link to={'./play/ciphers/letter-to-number'}>
-                                <Card>
-                                    <Card.Img variant="null" src="challenges/c002.jpg" alt="thumb" className="mw-100"/>
-                                    <Card.Body className="p-0">
-                                    <Card.Text className="text-center">
-                                    Letter to Number Cipher
-                                    </Card.Text>
-                                    </Card.Body>
-                                </Card>
-                            </Link>
-                        </div>
-                        <div className="col-lg-4 col-md-6">
-                            <Link to={'./play/ciphers/morse-code'}>
-                                <Card>
-                                    <Card.Img variant="null" src="challenges/c003.jpg" alt="thumb" className="mw-100"/>
-                                    <Card.Body className="p-0">
+                        {challengeSetData.map((challengeSet, challengeSetIndex) => (
+                            <div className="col-lg-4 col-md-6">
+                                <Link to={"selection-detail/"+challengeSet.slug}>
+                                    <Card>
+                                        <Card.Img variant="null" src={"challenges/c00"+ (++challengeSetIndex) +".jpg"} alt="thumb" className="mw-100"/>
+                                        <Card.Body className="p-0">
                                         <Card.Text className="text-center">
-                                        Morse Code Cipher
+                                        {challengeSet.name}
                                         </Card.Text>
-                                    </Card.Body>
-                                </Card>
-                            </Link>
-                        </div>
-
-                        <div className="col-lg-4 col-md-6">
-                            <Link to={'./play/ciphers/reverse-cipher'}>
-                                <Card>
-                                    <Card.Img variant="null" src="challenges/c004.jpg" alt="thumb" className="mw-100"/>
-                                    <Card.Body className="p-0">
-                                    <Card.Text className="text-center">
-                                    Reverse Cipher
-                                    </Card.Text>
-                                    </Card.Body>
-                                </Card>
-                            </Link>
-                        </div>
-                        <div className="col-lg-4 col-md-6">
-                            <Link to={'./play/ciphers/comprehensive-challenge'}>
-                                <Card>
-                                    <Card.Img variant="null" src="challenges/c003.jpg" alt="thumb" className="mw-100"/>
-                                    <Card.Body className="p-0">
-                                    <Card.Text className="text-center">
-                                    Comprehensive Cipher
-                                    </Card.Text>
-                                    </Card.Body>
-                                </Card>
-                            </Link>
-                        </div>
-                        {/* <div className="col-lg-4 col-md-6">
-                            <Link to={'./directory-traversal'}>
-                                <Card>
-                                    <Card.Img variant="null" src="challenges/c001.jpg" alt="thumb" className="mw-100"/>
-                                    <Card.Body className="p-0">
-                                    <Card.Text className="text-center">
-                                    Directory Traversal
-                                    </Card.Text>
-                                    </Card.Body>
-                                </Card>
-                            </Link>
-                        </div>
-
-                        <div className="col-lg-4 col-md-6">
-                            <Link to={'./web-structure'}>
-                                <Card>
-                                    <Card.Img variant="null" src="challenges/thumb03.jpg" alt="thumb" className="mw-100"/>
-                                    <Card.Body className="p-0">
-                                    <Card.Text className="text-center">
-                                    Web Structure
-                                    </Card.Text>
-                                    </Card.Body>
-                                </Card>
-                            </Link>
-                        </div> */}
+                                        </Card.Body>
+                                    </Card>
+                                </Link>
+                            </div>
+                            ))
+                        }
                     </div>
                 </div>
             </div>
         </div>
-    )
+    );
 }

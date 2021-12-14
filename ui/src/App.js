@@ -7,6 +7,7 @@ import PreLoginPage from "./pages/error-pages/preLoginPage";
 import ChallengeBar from "./components/AppBar";
 /********************************************** Three Static Pages **************************************************************/
 import Selection from "./pages/Selection.js"
+import SelectionDetail from "./pages/SelectionDetail";
 import Home from "./pages/Home";
 import leaderboard from "./pages/LeaderBoard";
 import UploadChallengeSet from "./pages/admin/UploadChallengeSet";
@@ -45,6 +46,9 @@ export default function App() {
             </Route>
             <Route path="/env/:csSlug/:cSlug/:envId">
               <ChallengePage/>
+            </Route>
+            <Route path="/selection-detail/:csSlug">
+              <SelectionDetail/>
             </Route>
 
             {/* Administration pages */}

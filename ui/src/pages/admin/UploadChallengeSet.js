@@ -6,11 +6,12 @@ export default function UploadChallengeSet() {
   const {getAccessTokenSilently} = useAuth0();
   const [file, setFile] = useState(null);
 
-  return <div>
+  return <div className="uploadWrap">
     <h1>Upload Challenge Set</h1>
 
+  <div>
     <Button
-        variant="contained"
+        className="butn primaryBtn btn btn-primary"
         component="label"
     >
       Choose File
@@ -22,7 +23,7 @@ export default function UploadChallengeSet() {
           }}
       />
     </Button>
-    <Button variant="contained" onClick={async () => {
+    <Button className="butn primaryBtn btn btn-primary" onClick={async () => {
       let accessToken = await getAccessTokenSilently();
 
       let formData = new FormData();
@@ -46,5 +47,6 @@ export default function UploadChallengeSet() {
     }}>
       Upload
     </Button>
+    </div>
   </div>;
 }

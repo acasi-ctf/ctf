@@ -1,7 +1,8 @@
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
-import { fade, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import AppBarActions from "./AppBarActions";
+import { alpha } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -11,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     menuButton: {
         marginRight: theme.spacing(2),
     },
-    
+
     title: {
         flexGrow: 1,
         display: 'none',
@@ -23,9 +24,9 @@ const useStyles = makeStyles((theme) => ({
     search: {
         position: 'relative',
         borderRadius: theme.shape.borderRadius,
-        backgroundColor: fade(theme.palette.common.white, 0.15),
+        backgroundColor: alpha(theme.palette.common.white, 0.15),
         '&:hover': {
-            backgroundColor: fade(theme.palette.common.white, 0.25),
+            backgroundColor: alpha(theme.palette.common.white, 0.25),
         },
         marginLeft: 0,
         width: '100%',
@@ -70,7 +71,7 @@ export default function ChallengeBar(props) {
     return (
         <div className={classes.root}>
             <AppBar position="static">
-                <div className="container">
+                <div className="container-fluid">
                     {/* the bellow is for credential login and survey button */}
                     <AppBarActions displayinput={props.displayInput} setDisplay={props.setDisplay}/>
                 </div>
