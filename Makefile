@@ -18,7 +18,10 @@ docker_challenges: docker_challenge_cipher_caesar docker_challenge_cipher_compre
 				   docker_challenge_cipher_reverse \
 				   docker_challenge_games_noughts docker_challenge_games_prize \
    				   docker_challenge_games_rps docker_challenge_games_seven_up \
-   				   docker_challenge_games_yahtzee
+   				   docker_challenge_games_yahtzee \
+                                   docker_challenge_pentesting_binwalk \
+                                   docker_challenge_pentesting_hashidentifier \
+                                   docker_challenge_pentesting_hashcat docker_challenge_pentesting_strings
 
 $(PROTOSRC): %:%.proto
 	mkdir -p pb/
@@ -115,6 +118,30 @@ docker_challenge_games_yahtzee:
 	docker build -t $(IMAGE_CHALLENGES_BASE)/games/yahtzee:$(IMAGE_TAG) -f images/challenges/games/yahtzee/Dockerfile .
 ifeq ($(DOCKER_PUSH), 1)
 		docker push $(IMAGE_CHALLENGES_BASE)/games/yahtzee:$(IMAGE_TAG)
+endif
+
+docker_challenge_pentesting_binwalk:
+	docker build -t $(IMAGE_CHALLENGES_BASE)/pentesting/binwalk:$(IMAGE_TAG) -f images/challenges/pentesting/binwalk/Dockerfile .
+ifeq ($(DOCKER_PUSH), 1)
+		docker push $(IMAGE_CHALLENGES_BASE)/pentesting/binwalk:$(IMAGE_TAG)
+endif
+
+docker_challenge_pentesting_hashidentifier:
+	docker build -t $(IMAGE_CHALLENGES_BASE)/pentesting/hash-identifier:$(IMAGE_TAG) -f images/challenges/pentesting/hash-identifier/Dockerfile .
+ifeq ($(DOCKER_PUSH), 1)
+		docker push $(IMAGE_CHALLENGES_BASE)/pentesting/hash-identifier:$(IMAGE_TAG)
+endif
+
+docker_challenge_pentesting_hashcat:
+	docker build -t $(IMAGE_CHALLENGES_BASE)/pentesting/hashcat:$(IMAGE_TAG) -f images/challenges/pentesting/hashcat/Dockerfile .
+ifeq ($(DOCKER_PUSH), 1)
+		docker push $(IMAGE_CHALLENGES_BASE)/pentesting/hashcat:$(IMAGE_TAG)
+endif
+
+docker_challenge_pentesting_strings:
+	docker build -t $(IMAGE_CHALLENGES_BASE)/pentesting/strings:$(IMAGE_TAG) -f images/challenges/pentesting/strings/Dockerfile .
+ifeq ($(DOCKER_PUSH), 1)
+		docker push $(IMAGE_CHALLENGES_BASE)/pentesting/strings:$(IMAGE_TAG)
 endif
 
 lint:
