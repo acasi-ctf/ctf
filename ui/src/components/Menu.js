@@ -105,9 +105,9 @@ function ResponsiveDrawer(props) {
                       <div style={{display:'flex', flexDirection: 'row'}}>
                           <core.ListItemIcon style={{minWidth:'0'}}>{item.icon}</core.ListItemIcon>
                           <core.ListItemText style={{color:'#000000', marginLeft:'16px', marginRight:'25px'}}
-                          primary={<core.Typography style={{fontSize:'15px'}}>{item.name}</core.Typography>} />   
+                          primary={<core.Typography style={{fontSize:'15px'}}>{item.name}</core.Typography>} />
                       </div>
-                  </Link> 
+                  </Link>
               </core.ListItem>
             );
           })}
@@ -115,9 +115,9 @@ function ResponsiveDrawer(props) {
         <core.Divider />
         {/* LIST 2 */}
         {/* Data in this list is read over API */}
-        <core.List >    
+        <core.List >
             {data.map((item)=>{
-                return <SubMenu path={APIpath} listItem={item} key={item.id} 
+                return <SubMenu path={APIpath} listItem={item} key={item.id}
                         displayInput={displayFlagSubmit} setDisplay={setDisplayFlagSubmit}/>;
             })}
         </core.List>
@@ -174,7 +174,7 @@ function ResponsiveDrawer(props) {
           </Drawer>
         </Hidden>
       </nav>
-      
+
     </div>
   );
 }

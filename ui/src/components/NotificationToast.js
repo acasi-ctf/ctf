@@ -9,13 +9,16 @@ export default function FlagNotification(props) {
 
 
         const ele = document.getElementById('myToast');
+        var ove = document.getElementById('overlay');
         const toastOption = {autohide: false ,animation: true, delay: 4000}
         var toastElement = new Toast(ele,toastOption);
         toastElement.show();
+        ove.style.display = "block";
 
         setTimeout(()=>{
             if(props.display){
                 toastElement.hide();
+                ove.style.display = "none";
                 props.action()
             }
         },4000);

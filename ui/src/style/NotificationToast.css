@@ -1,10 +1,14 @@
 .toastContainer{
     position: fixed;
-    right: 10px;
-    top: 100px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .toast-body{
     color:black;
     background-color: white;
+}
+.text-primary {
+    color: black !important;
 }
