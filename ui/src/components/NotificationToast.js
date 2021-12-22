@@ -29,16 +29,19 @@ export default function FlagNotification(props) {
     }
 
     return(
-        <div className="toastContainer">
-            <div id="myToast" className="toast">
-                <div id="toast-header" className="toast-header">
-                    <strong className="mr-auto text-primary">Toast Header</strong>
-                    <button type="button" className="ml-2 mb-1 close" onClick={handleClostToast}>&times;</button>
-                </div>
-                <div className="toast-body">
-                    {props.message}
+        <div>
+            <div className="toastContainer">
+                <div id="myToast" className="toast">
+                    <div id="toast-header" className="toast-header">
+                        <strong className="mr-auto text-primary">Toast Header</strong>
+                        <button type="button" className="ml-2 mb-1 close" onClick={handleClostToast}>&times;</button>
+                    </div>
+                    <div className="toast-body">
+                        {props.message}
+                    </div>
                 </div>
             </div>
+            <div class="overlayFull"></div>
         </div>
     );
 }

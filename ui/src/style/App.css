@@ -528,7 +528,7 @@ header .MuiToolbar-root{
 .inputFlag{
     background: #FFF;
     outline: none;
-    border-radius: 10px 0 0 10px;
+    border-radius: 1px;
     -webkit-transition: all 1s ease;
     -moz-transition: all 1s ease;
     -o-transition: all 1s ease;
@@ -545,10 +545,11 @@ header .MuiToolbar-root{
 }
 
 .inputFlag-enable{
-    border: 2px solid;
+    border: 1px solid rgba(0,0,0,.5);
     padding-left: 10px;
     width: 200px;
     visibility: visible;
+    margin:0 5px;
 }
 .ChallengeSet1 .MuiAppBar-positionAbsolute{
     position: relative;
@@ -561,7 +562,7 @@ color: #FFA600 !important;
 }
 #overlay {
     background-color: rgba(0, 0, 0, 0.8);
-    z-index: 999;
+    z-index: 99999;
     position: absolute;
     left: 0;
     top: 0;
