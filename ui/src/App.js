@@ -32,6 +32,7 @@ export default function App() {
   }
 
   return <Provider store={store}>
+    <div id="overlay">There</div>
     <Router>
       <div className="App">
         <MenuBar/>
