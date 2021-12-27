@@ -300,7 +300,7 @@
     margin-bottom: 8px;
 }
 .uploadWrap .primaryBtn {
-    background: #1176AE;
+    background: #d68c03 !important;
     color:#fff;
     padding: 10px 20px;
     min-width: 130px;
@@ -308,8 +308,10 @@
     margin: 0 10px 0 0;
 }
 .uploadWrap .primaryBtn:hover{
-    background: #1176AE;
+    background: #a56d06 !important;
+    box-shadow:0 0 0 .2rem #FFA60042 !important;
 }
+
 @media all and (max-width:2500px) and (min-width:1700px) {
     .container {
         max-width: 1593px;
