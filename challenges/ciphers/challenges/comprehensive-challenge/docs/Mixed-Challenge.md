@@ -5,7 +5,7 @@
 To start the challenge type the following into the terminal:
 
 ```language-shell
-python3 Mixed-Challenge.py
+python3 Comprehensive-Challenge.py
 ```
 
 ## Objectives
