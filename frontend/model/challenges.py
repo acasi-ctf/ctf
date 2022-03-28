@@ -208,6 +208,11 @@ class CompletedChallenge(db.Model):
     user_id = Column(UUID(as_uuid=True), nullable=False)
 
     """
+    Human name of user who completed challenge.
+    """
+    user_name = Column(Text, nullable=True)
+
+    """
     ID of the environment completed.
     """
     environment_id = Column(

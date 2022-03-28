@@ -22,8 +22,12 @@ export default function Leaderboard(props) {
 						rankInfo.classList.add("rankColumn");
 						rankInfo.innerHTML = (idx+1).toString()
 
-						let playerInfo = row.insertCell(1);
-						playerInfo.innerHTML = data[idx].userId;
+						//let playerInfo = row.insertCell(1);
+						//playerInfo.innerHTML = data[idx].userId;
+						//playerInfo.classList.add("userColumn");
+
+                        let playerInfo = row.insertCell(1);
+						playerInfo.innerHTML = data[idx].userName;
 						playerInfo.classList.add("userColumn");
 
 						let playerScore = row.insertCell(2);
@@ -41,19 +45,19 @@ export default function Leaderboard(props) {
             <h1 className="mode-page-header">Leaderboard</h1>
             <table id="roundsTable" className="table table-hover caption-top">
                 <caption id="roundsTableCaption" aria-live="polite">
-                {"Table displaying top " + dataLength  + " highest score player" + 
+                {"Table displaying top " + dataLength  + " highest score player" +
                     (dataLength !== 1 ? "s" : "")}
                 </caption>
                 <thead className="table-light">
                     <tr>
-                        <th scope="col" role="columnheader" 
-                            className="rankColumn sortable-header cell-align-middle" 
+                        <th scope="col" role="columnheader"
+                            className="rankColumn sortable-header cell-align-middle"
                             aria-sort="none">
                             Rank
                         </th>
-                        
-                        <th scope="col" role="columnheader" 
-                            className="userColumn sortable-header cell-align-middle" 
+
+                        <th scope="col" role="columnheader"
+                            className="userColumn sortable-header cell-align-middle"
                             aria-sort="none">
                             Player
                         </th>
@@ -66,8 +70,7 @@ export default function Leaderboard(props) {
                 </thead>
                 <tbody id="tableBody">
                 </tbody>
-            </table>        
+            </table>
         </div>
     )
 }
-

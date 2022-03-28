@@ -224,6 +224,7 @@ def get_leaderboard():
     def map_joined(x):
         return {
             "userId": x["user_id"],
+            "userName": x["user_name"],
             "challengeCount": x["count"],
         }
 
