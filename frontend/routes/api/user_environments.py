@@ -172,7 +172,7 @@ def submit_environment_flag(env_id):
             .values(
                 challenge_id=challenge.id,
                 user_id=user_id,
-                name=user_name,
+                user_name=user_name,
                 completed=datetime.now(),
                 environment_id=env_id,
             )

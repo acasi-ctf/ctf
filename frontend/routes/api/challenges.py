@@ -214,6 +214,7 @@ def get_leaderboard():
     joined = (
         db.session.query(
             CompletedChallenge.user_id,
+            CompletedChallenge.user_name,
             func.count(CompletedChallenge.challenge_id).label("count"),
         )
         .group_by(CompletedChallenge.user_id)
