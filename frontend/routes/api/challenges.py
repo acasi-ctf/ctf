@@ -217,7 +217,7 @@ def get_leaderboard():
             CompletedChallenge.user_name,
             func.count(CompletedChallenge.challenge_id).label("count"),
         )
-        .group_by(CompletedChallenge.user_id)
+        .group_by(CompletedChallenge.user_id,CompletedChallenge.user_name)
         .order_by(func.count(CompletedChallenge.challenge_id).desc())
         .all()
     )

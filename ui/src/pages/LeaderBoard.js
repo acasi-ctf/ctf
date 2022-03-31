@@ -22,11 +22,7 @@ export default function Leaderboard(props) {
 						rankInfo.classList.add("rankColumn");
 						rankInfo.innerHTML = (idx+1).toString()
 
-						//let playerInfo = row.insertCell(1);
-						//playerInfo.innerHTML = data[idx].userId;
-						//playerInfo.classList.add("userColumn");
-
-                        let playerInfo = row.insertCell(1);
+						let playerInfo = row.insertCell(1);
 						playerInfo.innerHTML = data[idx].userName;
 						playerInfo.classList.add("userColumn");
 
@@ -59,7 +55,7 @@ export default function Leaderboard(props) {
                         <th scope="col" role="columnheader"
                             className="userColumn sortable-header cell-align-middle"
                             aria-sort="none">
-                            Player
+                            Player Name
                         </th>
                         <th scope="col" role="columnheader"
                             className="scoreColumn sortable-header cell-align-middle"
