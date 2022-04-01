@@ -1,0 +1,11 @@
+{
+  "$schema": "../schemas/challenge-set.schema.json",
+  "id": "e69e33ed-fd74-4d1e-ab68-47c4c0d347e0",
+  "slug": "maths",
+  "name": "Maths",
+  "description": "Challenge set that contains math games",
+  "version": "0.1.0",
+  "challenges": [
+    "arithmetic"
+  ]
+}

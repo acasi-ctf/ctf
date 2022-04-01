@@ -1,0 +1,27 @@
+{
+  "$schema": "../../../schemas/challenge.schema.json",
+  "id": "21355d2e-1426-42b9-9bbf-716a28352989",
+  "slug": "arithmetic",
+  "name": "Arithmetic",
+  "description": "This is a program that helps me practice my addition, subtraction, and multiplication using only the integers 0 through 9",
+  "provisioner": {
+    "type": "kubernetes"
+  },
+  "documentation": [
+    {
+      "name": "Arithmetic",
+      "path": "docs/Arithmetic.md"
+    },
+    {
+      "name": "Terminal Usage",
+      "path": "docs/Terminal_Use.md"
+    }
+  ],
+  "features": [
+    "flag"
+  ],
+  "flag": {
+    "type": "static",
+    "value": "MATH-SPCH-ALLE-NGE1"
+  }
+}

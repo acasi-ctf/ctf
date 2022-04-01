@@ -1,0 +1,5 @@
+{
+  "$schema": "../../../schemas/provisioners/kubernetes.schema.json",
+  "templatePath": "template.yaml",
+  "templateCRDVersion": "v1alpha1"
+}

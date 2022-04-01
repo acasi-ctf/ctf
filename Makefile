@@ -14,14 +14,16 @@ all: proto docker
 proto: $(PROTOSRC)
 docker: docker_penimage docker_termproxy docker_ui docker_frontend docker_operatorkt
 docker_challenges: docker_challenge_cipher_caesar docker_challenge_cipher_comprehensive \
-				   docker_challenge_cipher_letter_number docker_challenge_cipher_morse \
-				   docker_challenge_cipher_reverse \
-				   docker_challenge_games_noughts docker_challenge_games_prize \
-   				   docker_challenge_games_rps docker_challenge_games_seven_up \
-   				   docker_challenge_games_yahtzee \
-                                   docker_challenge_pentesting_binwalk \
-                                   docker_challenge_pentesting_hashidentifier \
-                                   docker_challenge_pentesting_hashcat docker_challenge_pentesting_strings
+					docker_challenge_cipher_letter_number docker_challenge_cipher_morse \
+					docker_challenge_cipher_reverse \
+					docker_challenge_games_noughts docker_challenge_games_prize \
+					docker_challenge_games_rps docker_challenge_games_seven_up \
+					docker_challenge_games_yahtzee \
+					docker_challenge_pentesting_binwalk \
+					docker_challenge_pentesting_hashidentifier \
+					docker_challenge_pentesting_hashcat docker_challenge_pentesting_strings \
+					docker_challenge_maths_arithmetic
+
 
 $(PROTOSRC): %:%.proto
 	mkdir -p pb/
@@ -142,6 +144,12 @@ docker_challenge_pentesting_strings:
 	docker build -t $(IMAGE_CHALLENGES_BASE)/pentesting/strings:$(IMAGE_TAG) -f images/challenges/pentesting/strings/Dockerfile .
 ifeq ($(DOCKER_PUSH), 1)
 		docker push $(IMAGE_CHALLENGES_BASE)/pentesting/strings:$(IMAGE_TAG)
+endif
+
+docker_challenge_maths_arithmetic:
+	docker build -t $(IMAGE_CHALLENGES_BASE)/maths/arithmetic:$(IMAGE_TAG) -f images/challenges/maths/arithmetic/Dockerfile .
+ifeq ($(DOCKER_PUSH), 1)
+		docker push $(IMAGE_CHALLENGES_BASE)/maths/arithmetic:$(IMAGE_TAG)
 endif
 
 lint:
