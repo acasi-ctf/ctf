@@ -21,6 +21,7 @@ from frontend.pb import (
 from frontend.routes.decorators import (
     requires_auth,
     get_user_id,
+    get_user_name,
     requires_permission_raise,
 )
 from frontend.routes.scopes import (
@@ -143,6 +144,7 @@ def submit_environment_flag(env_id):
     requires_permission_raise(permission_write_user_environments)
 
     user_id = get_user_id()
+    user_name = get_user_name()
     body = request.get_json()
     if body is None:
         return "", 400
@@ -170,6 +172,7 @@ def submit_environment_flag(env_id):
             .values(
                 challenge_id=challenge.id,
                 user_id=user_id,
+                user_name=user_name,
                 completed=datetime.now(),
                 environment_id=env_id,
             )
