@@ -80,7 +80,7 @@ def get_user_id():
 
 def get_user_name():
     if AUTH_DISABLED:
-        return "Test User"
+        return "Guest User"
     token = get_token_auth_header()
     unverified_claims = jwt.get_unverified_claims(token)
     if unverified_claims.get("http://acasictf.org/nickname"):
