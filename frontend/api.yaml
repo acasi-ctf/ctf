@@ -266,11 +266,14 @@ components:
       type: object
       required:
         - userId
+        - userName
         - challengeCount
       properties:
         userId:
           type: string
           format: uuid
+        userName:
+          type: string
         challengeCount:
           type: integer
           minimum: 1

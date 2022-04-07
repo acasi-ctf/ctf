@@ -78,6 +78,21 @@ def get_user_id():
         400,
     )
 
+def get_user_name():
+    if AUTH_DISABLED:
+        return "Guest User"
+    token = get_token_auth_header()
+    unverified_claims = jwt.get_unverified_claims(token)
+    if unverified_claims.get("http://acasictf.org/nickname"):
+        return unverified_claims["http://acasictf.org/nickname"]
+    raise AuthError(
+        {
+            "code": "user_name_claim_missing",
+            "description": "User Name claim is missing",
+        },
+        400,
+    )
+
 
 def get_token_auth_header():
     """Obtains the Access Token from the Authorization Header"""
